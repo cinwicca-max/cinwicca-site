@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Lua Nova aos 24° de Gêmeos · O Portão 12 · Cinwicca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --obsidian:#08090f; --deep:#0d1020; --ink:#141a2e;
+  --gold:#d4b15a; --gold-lt:#ecd49a; --gold-dk:#8b6b22;
+  --rose:#b67a8f; --cream:#f6ecd0;
+  --text:#f1e7cf; --text-2:#d6c7a2; --text-3:#a99878;
+  --border:rgba(212,177,90,0.18); --border-b:rgba(212,177,90,0.42);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  background:var(--obsidian); color:var(--text);
+  font-size:18px; line-height:1.78;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+#cosmos{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.55;}
+
+.docnav{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:0.9rem 2rem;
+  background:rgba(8,9,15,0.85);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.docnav .brand{
+  font-family:'Cinzel',serif;font-size:0.72rem;font-weight:500;
+  letter-spacing:0.24em;color:var(--gold);text-transform:uppercase;
+}
+.langbar{display:flex;gap:0.35rem;align-items:center;}
+.langbar button{
+  font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.16em;
+  background:transparent;border:1px solid var(--border);color:var(--text-3);
+  padding:0.32rem 0.6rem;border-radius:2px;cursor:pointer;text-transform:uppercase;
+  transition:all .25s;
+}
+.langbar button:hover{color:var(--gold-lt);border-color:var(--border-b);}
+.langbar button.active{color:var(--obsidian);background:var(--gold);border-color:var(--gold);}
+
+.doc{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:5rem 2rem 6rem;display:none;}
+.doc.active{display:block;}
+
+.doc-eyebrow{
+  font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.32em;
+  color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:1.6rem;
+}
+.doc-dingbats{text-align:center;color:var(--gold);margin-bottom:1.4rem;letter-spacing:0.6em;font-size:0.9rem;}
+.doc-title{
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+  font-size:clamp(2.4rem,5vw,3.6rem);text-align:center;color:#fff;
+  line-height:1.1;letter-spacing:-0.005em;margin-bottom:0.6rem;
+}
+.doc-subtitle{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(1.2rem,2vw,1.5rem);text-align:center;color:var(--gold-lt);
+  margin-bottom:2rem;font-weight:400;
+}
+.doc-epigraph{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;
+  text-align:center;color:var(--text-2);line-height:1.6;max-width:540px;margin:0 auto 2.4rem;
+}
+
+p{margin-bottom:1.15rem;color:var(--text);}
+.first p:first-of-type::first-letter{
+  font-family:'Cormorant Garamond',serif;float:left;font-size:3.4rem;line-height:0.82;
+  padding:0.18rem 0.55rem 0 0;color:var(--gold);font-weight:500;
+}
+
+.chapter-mark{
+  font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.32em;
+  color:var(--gold);text-transform:uppercase;text-align:center;margin-top:5rem;margin-bottom:1rem;
+}
+.chapter-title{
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+  font-size:clamp(1.9rem,3.8vw,2.6rem);text-align:center;color:#fff;line-height:1.2;margin-bottom:2.4rem;
+}
+.chapter-title em{color:var(--gold-lt);font-style:italic;}
+
+.section-divider{display:flex;align-items:center;gap:1.2rem;margin:3.2rem auto;max-width:360px;}
+.section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border-b));}
+.section-divider::after{background:linear-gradient(90deg,var(--border-b),transparent);}
+.section-divider span{color:var(--gold);font-size:0.85rem;}
+
+.excerpt{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.28rem;
+  color:var(--gold-lt);line-height:1.55;border-left:2px solid var(--gold-dk);
+  padding:0.4rem 0 0.4rem 1.6rem;margin:2rem 0;
+}
+.excerpt small{
+  display:block;font-family:'Cinzel',serif;font-size:0.62rem;font-style:normal;
+  letter-spacing:0.2em;color:var(--text-3);text-transform:uppercase;margin-top:0.6rem;
+}
+
+.tablet{
+  border:1px solid var(--border-b);border-radius:3px;
+  background:linear-gradient(140deg,rgba(212,177,90,0.06),rgba(31,42,90,0.20));
+  padding:1.6rem 1.8rem;margin:0 0 3rem;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem 2rem;
+}
+.tablet .cell .k{
+  font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.22em;
+  color:var(--gold);text-transform:uppercase;display:block;margin-bottom:0.2rem;
+}
+.tablet .cell .v{font-size:1.02rem;color:var(--text);line-height:1.4;}
+.tablet .cell .v em{color:var(--gold-lt);font-style:italic;}
+
+.polarity{border:1px solid var(--border);border-radius:3px;padding:1.3rem 1.5rem;margin:1.8rem 0;background:rgba(13,16,32,0.5);}
+.polarity .row{display:grid;grid-template-columns:1fr auto 1fr;gap:0.8rem;align-items:start;}
+.polarity .shadow,.polarity .gift{font-size:1rem;line-height:1.5;}
+.polarity .shadow{color:var(--text-3);}
+.polarity .gift{color:var(--gold-lt);text-align:right;}
+.polarity .arrow{color:var(--gold);font-size:1.1rem;padding-top:0.1rem;}
+.polarity .lbl{font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;display:block;margin-bottom:0.35rem;color:var(--text-3);}
+.polarity .gift .lbl{color:var(--gold);}
+
+/* sabian / gene-key cards */
+.gem{
+  border:1px solid var(--border);border-left:2px solid var(--gold-dk);border-radius:3px;
+  background:rgba(31,42,90,0.14);padding:1.5rem 1.7rem;margin:2rem 0;
+}
+.gem .gem-lbl{
+  font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.24em;
+  color:var(--gold);text-transform:uppercase;display:block;margin-bottom:0.55rem;
+}
+.gem .gem-img{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;
+  color:var(--cream);line-height:1.4;margin-bottom:0.7rem;
+}
+.gem .gem-flow{
+  font-family:'Inter',sans-serif;font-size:0.74rem;letter-spacing:0.06em;
+  color:var(--text-3);margin-bottom:0.8rem;
+}
+.gem .gem-flow b{color:var(--gold-lt);font-weight:500;}
+.gem p{font-size:1.02rem;color:var(--text-2);margin-bottom:0;line-height:1.6;}
+
+/* houses */
+.houses{margin:2.2rem 0 1rem;}
+.house{display:grid;grid-template-columns:auto 1fr;gap:1.2rem;padding:1.4rem 0;border-top:1px solid var(--border);}
+.house:last-child{border-bottom:1px solid var(--border);}
+.house .num{
+  width:44px;height:44px;flex:none;border:1px solid var(--border-b);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;font-size:0.9rem;color:var(--gold);
+}
+.house h4{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.24rem;color:var(--cream);margin-bottom:0.1rem;line-height:1.25;}
+.house h4 span{font-size:0.66rem;font-family:'Inter',sans-serif;color:var(--text-3);letter-spacing:0.09em;text-transform:uppercase;display:block;margin-top:0.18rem;font-weight:400;}
+.house .pol{font-size:0.95rem;color:var(--text-2);margin-bottom:0.45rem;line-height:1.5;}
+.house .pol b{color:var(--text-3);font-weight:400;font-style:italic;}
+.house .pol i{color:var(--gold-lt);font-style:italic;}
+.house p.guide{font-size:1rem;color:var(--text);margin-bottom:0;line-height:1.55;}
+
+.bridge{margin-top:5rem;padding:2.6rem 2.2rem;border-radius:4px;background:linear-gradient(140deg,rgba(31,42,90,0.25),rgba(13,16,32,0.55));border:1px solid var(--border-b);}
+.bridge .chapter-mark{margin-top:0;}
+
+/* offering / CTA */
+.offering{
+  margin-top:3rem;padding:2.4rem 2.2rem;border-radius:4px;text-align:center;
+  border:1px solid var(--border);background:rgba(13,16,32,0.45);
+}
+.offering .eyebrow{font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;margin-bottom:0.9rem;}
+.offering h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:1.5rem;color:var(--cream);margin-bottom:0.9rem;line-height:1.3;}
+.offering p{font-size:1.02rem;color:var(--text-2);max-width:540px;margin:0 auto 1.6rem;line-height:1.6;}
+.offering a.cta{
+  display:inline-block;font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--gold);text-decoration:none;
+  border:1px solid var(--border-b);border-radius:2px;padding:0.8rem 2rem;transition:all .25s;
+}
+.offering a.cta:hover{background:var(--gold);color:var(--obsidian);border-color:var(--gold);}
+
+.signature{margin-top:3rem;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-lt);font-size:1.15rem;}
+.signature small{display:block;font-family:'Cinzel',serif;font-style:normal;font-size:0.62rem;letter-spacing:0.26em;color:var(--text-3);text-transform:uppercase;margin-top:0.6rem;}
+.fine{font-size:0.8rem;color:var(--text-3);font-style:italic;line-height:1.6;margin-top:2.4rem;}
+
+@media(max-width:560px){
+  .docnav{padding:0.8rem 1.1rem;}
+  .tablet{grid-template-columns:1fr;}
+  .polarity .row{grid-template-columns:1fr;gap:0.6rem;}
+  .polarity .gift{text-align:left;}
+  .polarity .arrow{display:none;}
+}
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+
+<nav class="docnav">
+  <span class="brand">Cinwicca · Caminho da Alma</span>
+  <div class="langbar">
+    <button data-go="pt" class="active">PT</button>
+    <button data-go="en">EN</button>
+    <button data-go="es">ES</button>
+  </div>
+</nav>
+
+<!-- ════════════════ PORTUGUÊS ════════════════ -->
+<article class="doc active" data-lang="pt">
+
+  <div class="doc-eyebrow">Lua Nova · Super Lua</div>
+  <div class="doc-dingbats">☽ ✦ ☉</div>
+  <h1 class="doc-title">A Lua Nova aos 24° de Gêmeos</h1>
+  <p class="doc-subtitle">O Portão 12 e o Canal da Abertura — uma semente que só Urano viu nascer assim há 84 anos</p>
+  <p class="doc-epigraph">Toda palavra é uma faca de dois gumes: pode costurar mundos ou rasgá-los. Esta lunação nos devolve o poder — e a responsabilidade — do que escolhemos dizer.</p>
+
+  <div class="tablet">
+    <div class="cell"><span class="k">Evento</span><span class="v">Super Lua Nova — a maior do ano</span></div>
+    <div class="cell"><span class="k">Grau exato</span><span class="v">24°02′ de <em>Gêmeos</em></span></div>
+    <div class="cell"><span class="k">Momento</span><span class="v">14 jun, 23h54 (Brasília) · 15 jun, 02h54 UTC</span></div>
+    <div class="cell"><span class="k">Portão · Human Design</span><span class="v">Portão 12 — <em>Cautela / A Quietude</em> · linha 2</span></div>
+    <div class="cell"><span class="k">Símbolo Sabiano</span><span class="v">Gêmeos 25 — <em>Um jardineiro podando grandes palmeiras</em></span></div>
+    <div class="cell"><span class="k">Gene Key</span><span class="v">12 — Coração Puro · Vaidade → <em>Discernimento</em> → Pureza</span></div>
+  </div>
+
+  <div class="first">
+  <p>Há sementes que plantamos toda primavera, e há sementes que só germinam quando o céu inteiro se reorganiza para recebê-las. Esta Lua Nova é da segunda espécie. Ela acontece aos 24°02′ de Gêmeos — o signo da palavra, da mente, das pontes entre as pessoas — e cai dentro do <strong>Portão 12 do Human Design</strong>, o portão da Cautela e da Quietude, na Garganta. Mas o que a torna rara não é o grau. É a testemunha. Pela primeira vez desde a década de 1940 — desde a última travessia de <strong>Urano por Gêmeos</strong>, há cerca de 84 anos — uma Lua Nova em Gêmeos nasce sob o olhar do Grande Despertador instalado no mesmo signo.</p>
+  <p>Da última vez, o mundo reinventava como falava consigo mesmo: o rádio, os primeiros computadores, as transmissões que atravessavam continentes. Hoje, a inteligência artificial, as redes, a linguagem que se desdobra mais rápido do que conseguimos sentir. Urano em Gêmeos reescreve o sistema nervoso da espécie — a forma como pensamos, conversamos, discordamos, nos dividimos e nos reconectamos. E é exatamente nesse campo elétrico que esta Lua Nova nos sussurra uma instrução antiga e contracorrente: <em>antes de falar, sinta. Antes de transmitir, espere o momento certo.</em></p>
+  </div>
+
+  <div class="chapter-mark">Primeiro Movimento</div>
+  <h2 class="chapter-title">O Portão 12 — <em>a sabedoria da pausa</em></h2>
+  <p>No mandala do Human Design, o grau de 24° de Gêmeos pertence ao Portão 12, chamado de <strong>A Quietude</strong> ou <strong>Cautela</strong>. É uma das vozes do Centro da Garganta — o centro de toda manifestação — e sua voz é singular: não diz "eu sei" nem "eu farei", e sim <em>"eu posso tentar… ou não"</em>. É a única voz do gráfico que reserva o direito ao silêncio. Onde outros portões empurram para fora, o 12 segura, escuta o estado de espírito interno e espera a maré emocional certa para se abrir.</p>
+  <p>Esse é o seu dom e a sua armadilha — porque o Portão 12 vive de humor. Quando a maré está alta, sua palavra é arte: comove, atravessa, transforma a sala inteira. Quando está baixa, recolhe-se, emudece. A linha 2 desta Lua Nova acentua justamente essa qualidade: a do natural que floresce quando a ressonância é verdadeira, e que se retrai — sem culpa — quando não é. Não é um defeito a ser corrigido. É um ritmo a ser honrado.</p>
+
+  <div class="polarity">
+    <div class="row">
+      <div class="shadow"><span class="lbl">A polaridade da sombra</span>Calar por medo, orgulho ou hábito; ou despejar palavras impulsivas no fundo da onda emocional — palavras que ferem antes de servir.</div>
+      <div class="arrow">↔</div>
+      <div class="gift"><span class="lbl">A polaridade do dom</span>O discernimento de saber <i>quando</i> a palavra cura e quando divide; falar a verdade emocional no instante exato em que pode ser recebida.</div>
+    </div>
+  </div>
+
+  <div class="gem">
+    <span class="gem-lbl">Símbolo Sabiano · Gêmeos 25</span>
+    <div class="gem-img">"Um jardineiro podando grandes palmeiras."</div>
+    <p>Eis a promessa do novo, escondida numa imagem simples. Podar não é mutilar: é a arte amorosa de retirar o que já cumpriu seu papel para que a vida volte a circular. A palmeira, símbolo de vitória, só ergue sua glória quando as folhas secas são liberadas. Com Mercúrio desacelerando rumo à sua retrogradação, este é o convite preciso desta lunação: corte o excesso, o ruído, as palavras que não são mais suas — e abra espaço limpo para o que está chegando.</p>
+  </div>
+
+  <div class="gem">
+    <span class="gem-lbl">Gene Key 12 · O Coração Puro</span>
+    <div class="gem-flow">Sombra: Vaidade &nbsp;→&nbsp; <b>Dom: Discernimento</b> &nbsp;→&nbsp; Siddhi: Pureza</div>
+    <p>O mesmo portão, lido pelas Gene Keys, conta a jornada da palavra: da <em>vaidade</em> (falar para ser visto, para buscar aprovação) ao <em>discernimento</em> (escolher o que vem do coração e não do medo) até a <em>pureza</em> (a expressão tão verdadeira que o Divino se reconhece nela). Curiosamente, o pulso anual desta Gene Key acende-se a cada 13 a 19 de junho — e foi exatamente aí que o Sol tocou esta Lua Nova. O céu inteiro nos pede o mesmo: que a palavra seja sentida antes de dita.</p>
+  </div>
+
+  <div class="section-divider"><span>✦</span></div>
+
+  <div class="chapter-mark">Segundo Movimento</div>
+  <h2 class="chapter-title">Quem carrega o par — <em>o Canal 12-22</em></h2>
+  <p>O Portão 12, sozinho, é como um interruptor sem fio. Ele alcança através do gráfico procurando o seu par: o <strong>Portão 22, no Plexo Solar</strong> — o portão da Abertura e da Graça (Gene Key 22: Desonra → Gentileza → <em>Graça</em>). Quando os dois estão definidos, forma-se o <strong>Canal 12-22, o Canal da Abertura</strong>, descrito como <em>"o desenho de um ser social"</em>. Se você tem apenas um dos dois portões, ele fica "pendurado" — e a vida tende a lhe trazer pessoas (e trânsitos, como esta Lua Nova) que completam o circuito por um tempo.</p>
+  <p>O Portão 22 traz a profundidade emocional crua; o Portão 12 lhe dá voz. Juntos, são um canal <em>manifestado</em> e <em>acústico</em>: as pessoas escutam a sua emoção <strong>antes</strong> de processarem suas palavras. O timbre, a inflexão, a música da voz importam tanto quanto o conteúdo. É o desenho da poeta, da cantora, de quem segura espaço para que o outro se sinta finalmente ouvido.</p>
+  <p>Mas o Plexo Solar tem um medo próprio — o <strong>medo do silêncio</strong>: a angústia de não ter nada que valha a pena dizer ou escutar. É esse medo que faz preencher o vazio cedo demais. E há a maré: dias de carisma magnético seguidos de dias de retraimento que parecem, de fora, antissociais. Nada disso é falha de caráter. É a mecânica de uma alma desenhada para sentir em ondas.</p>
+
+  <div class="excerpt">A sua abertura, e a sua atenção ao que é essencial e novo para o outro, são dons de graça — que tocam até estranhos.<small>Sobre o Canal da Abertura</small></div>
+
+  <div class="chapter-mark">Terceiro Movimento</div>
+  <h2 class="chapter-title">O circuito — <em>e o seu alerta</em></h2>
+  <p>O Canal 12-22 pertence ao <strong>Circuito Individual</strong>, mais precisamente ao <strong>subcircuito do Conhecer</strong>. E é vital compreender este circuito, porque ele carrega o alerta mais delicado — e mais lindo — do mapa.</p>
+  <p>O propósito da circuitaria Individual é um só: <strong>mutar a espécie</strong>. O indivíduo é a célula através da qual algo verdadeiramente novo entra no coletivo. Mas a mutação tem um preço energético, e esse preço se chama <strong>melancolia</strong>. O circuito Individual pulsa: sobe em inspiração, desce em melancolia, e é no fundo dessa onda que a criatividade se gesta.</p>
+
+  <div class="polarity">
+    <div class="row">
+      <div class="shadow"><span class="lbl">O risco</span>Tratar a melancolia como doença a ser "consertada"; falar e agir do fundo da onda; encher o silêncio por medo; ou rebelar-se sem causa, apenas para romper.</div>
+      <div class="arrow">↔</div>
+      <div class="gift"><span class="lbl">A maturidade</span>Habitar a melancolia como ventre criativo; esperar a clareza emocional antes de decidir e declarar; deixar o humor verdadeiro encontrar a sua hora — e então mutar quem escuta.</div>
+    </div>
+  </div>
+
+  <p>O Individual não foi feito para ser compreendido sob demanda, nem para ser sempre "sociável". Sua solidão é estrutural, e até necessária. Quando Urano em Gêmeos quadra os Nodos da Lua neste período, o convite — e a tentação — da rebeldia está no ar para todos. O alerta evolutivo é fino: <em>romper o velho porque chegou a hora, e não apenas pelo prazer de romper.</em> A diferença entre o profeta e o mero contrário é o tempo certo. É sempre o Portão 12.</p>
+  <p>Visto do ponto de vista da espécie, é comovente: a evolução da consciência depende de pessoas dispostas a honrar o próprio ritmo estranho, a própria maré, a própria voz fora de compasso — e a falar a coisa nova quando ela está madura. Urano reescreve a linguagem coletiva; os portadores do 12-22 são antenas dessa mutação. O que dizem, e <strong>quando</strong> dizem, ajuda a afinar o sistema nervoso de todos nós.</p>
+
+  <div class="section-divider"><span>✦</span></div>
+
+  <div class="chapter-mark">Quarto Movimento</div>
+  <h2 class="chapter-title">A semente em cada casa</h2>
+  <p>Onde 24° de Gêmeos cai no seu mapa natal, ali esta Lua Nova planta — e ali Urano vem despertar pelos próximos anos. Encontre a casa em que se encontra esse grau (ou o seu Portão 12 / Canal 12-22) e leia a semente. As intenções plantadas agora amadurecem na Lua Cheia de <strong>24 de novembro de 2026</strong>.</p>
+
+  <div class="houses">
+    <div class="house"><span class="num">I</span><div><h4>Casa 1 <span>Identidade · corpo · voz própria</span></h4><p class="pol"><b>silenciar quem você é por cautela</b> <i>↔ falar-se à existência no tempo certo</i></p><p class="guide">Deixe a nova identidade emergir do humor verdadeiro, sem se declarar cedo demais. Urano traz reinvenções súbitas de como você se mostra ao mundo.</p></div></div>
+    <div class="house"><span class="num">II</span><div><h4>Casa 2 <span>Valores · recursos · autoestima</span></h4><p class="pol"><b>calar o próprio valor por medo de não bastar</b> <i>↔ nomear, com graça, o que você vale</i></p><p class="guide">Sua voz pode ser o seu sustento. Quando a maré subir, diga o seu sim, o seu dom, o seu preço.</p></div></div>
+    <div class="house"><span class="num">III</span><div><h4>Casa 3 <span>Mente · escrita · comunicação</span></h4><p class="pol"><b>palavra impulsiva e dispersa</b> <i>↔ palavra que cura, escolhida com pausa</i></p><p class="guide">A casa natural de Gêmeos, duplamente acesa: aqui você aprende o poder de uma frase bem-temperada, enquanto Urano abre formas inéditas de dizer.</p></div></div>
+    <div class="house"><span class="num">IV</span><div><h4>Casa 4 <span>Lar · raízes · linhagem</span></h4><p class="pol"><b>humores herdados ditando o seu</b> <i>↔ sentir para libertar a linhagem</i></p><p class="guide">Há um sentimento de família que nunca foi dito em voz alta. Nomeá-lo, com cuidado, cura para trás e para frente.</p></div></div>
+    <div class="house"><span class="num">V</span><div><h4>Casa 5 <span>Criação · alegria · romance</span></h4><p class="pol"><b>só criar quando o humor permite, e travar</b> <i>↔ fazer arte a partir da própria onda</i></p><p class="guide">Seu humor não é obstáculo à criação: é a matéria-prima dela. Faça da melancolia ventre, e da euforia, generosidade.</p></div></div>
+    <div class="house"><span class="num">VI</span><div><h4>Casa 6 <span>Trabalho · saúde · ritmo</span></h4><p class="pol"><b>a maré bagunçando rotina e corpo</b> <i>↔ um ritmo que respeita a onda</i></p><p class="guide">Construa um cotidiano que abrace os dias de recolhimento em vez de lutar contra eles. Dizer as suas necessidades é higiene emocional.</p></div></div>
+    <div class="house"><span class="num">VII</span><div><h4>Casa 7 <span>Parcerias · o outro · o espelho</span></h4><p class="pol"><b>dizer no fundo da onda o que fere o vínculo</b> <i>↔ intimidade tecida pela verdade na hora certa</i></p><p class="guide">Espere a clareza emocional antes da grande conversa relacional. A maré baixa quase nunca traz a palavra definitiva.</p></div></div>
+    <div class="house"><span class="num">VIII</span><div><h4>Casa 8 <span>Intimidade · partilha · transformação</span></h4><p class="pol"><b>vulnerabilidade ao que dizem; segredos que pesam</b> <i>↔ o poder de nomear o profundo</i></p><p class="guide">Com Vênus oposta a Plutão no campo, jogos de poder pedem honestidade radical. O que é dito em voz alta, com graça, liberta.</p></div></div>
+    <div class="house"><span class="num">IX</span><div><h4>Casa 9 <span>Sentido · crença · ensino · o longe</span></h4><p class="pol"><b>pregar de um humor ou de um dogma</b> <i>↔ ensinar a partir do que foi vivido</i></p><p class="guide">Você ensina pelo tom, não só pelo conteúdo. Cuidado com a certeza fácil de Urano; a sabedoria que muta os outros é a que você de fato viveu.</p></div></div>
+    <div class="house"><span class="num">X</span><div><h4>Casa 10 <span>Vocação · reputação · o público</span></h4><p class="pol"><b>cautela que paralisa; medo do que dirão</b> <i>↔ a voz pública que move uma mudança</i></p><p class="guide">A visibilidade pede a palavra certa na hora certa. Urano pode trazer viradas súbitas de rumo — deixe a quietude dizer quando dar o passo.</p></div></div>
+    <div class="house"><span class="num">XI</span><div><h4>Casa 11 <span>Comunidade · amigos · futuro</span></h4><p class="pol"><b>oscilar entre carisma e retraimento no grupo</b> <i>↔ ser a voz que muta a comunidade</i></p><p class="guide">O coletivo evolui por causa dos seus humores, não apesar deles. A comunidade que de fato lhe pertence sabe esperar a sua maré.</p></div></div>
+    <div class="house"><span class="num">XII</span><div><h4>Casa 12 <span>O invisível · retiro · espírito</span></h4><p class="pol"><b>melancolia confundida com depressão; isolamento</b> <i>↔ o silêncio fértil de onde brota a palavra do mistério</i></p><p class="guide">Aqui a Quietude é sagrada — o ventre escuro de onde nasce o que ainda não tem nome. Se a escuridão pesar demais, peça mão amiga; ninguém atravessa o vazio sozinho.</p></div></div>
+  </div>
+
+  <div class="bridge">
+    <div class="chapter-mark">Para levar consigo</div>
+    <p>Esta Lua Nova é uma semente de fala consciente, plantada no exato momento em que a espécie aprende a falar de novo. O jardineiro poda; Urano abre o portal do que ainda não existe; o coração escolhe a palavra pura. Tudo aponta para o mesmo gesto: limpar o velho para que o novo tenha onde nascer.</p>
+    <p>O Portão 12 não nos pede para silenciar a verdade. Pede o oposto: que ela seja dita <strong>inteira</strong>, e por isso <strong>na hora certa</strong>. Num tempo de ruído acelerado, talvez o ato mais revolucionário — e mais amoroso — seja a pausa antes do verbo.</p>
+    <p style="margin-bottom:0;">Plante a sua intenção enquanto a Lua ainda é nova. Regue-a com paciência. E confie: o que se semeia em silêncio fértil floresce na Lua Cheia de novembro.</p>
+  </div>
+
+  <div class="offering">
+    <div class="eyebrow">Um convite</div>
+    <h3>Isto é a leitura de um trânsito — não o seu mapa.</h3>
+    <p>Este é o céu que pertence a todos nós neste momento. O seu desenho, porém, é só seu: onde exatamente esta Lua Nova toca a sua vida, que portões e canais ela acende em você, e como dançar com os ciclos do seu próprio tempo — isso pede uma leitura pessoal. Se algo aqui ressoou, será uma alegria te encontrar.</p>
+    <a class="cta" href="#contato">Entre em contato</a>
+  </div>
+
+  <div class="signature">Que a sua voz encontre a sua maré.<small>Cinwicca · Caminho da Alma</small></div>
+
+  <p class="fine">Dados: Super Lua Nova a 24°02′ de Gêmeos, exata em 15 jun 2026 às 02h54 UTC (14 jun, 23h54 em Brasília) — a maior super lua do ano. Urano reentrou em Gêmeos em 26 abr 2026, permanecendo até 2033; a passagem anterior ocorreu em 1941–1949. Human Design: Portão 12 (A Quietude / Cautela), Garganta, 22°30′–28°07′ de Gêmeos; o grau de 24°02′ corresponde à linha 2. Canal 12-22 (Canal da Abertura), unindo o Portão 22 (Plexo Solar) ao Portão 12 (Garganta), no Circuito Individual / subcircuito do Conhecer. Símbolo Sabiano de Gêmeos 25 ("Um jardineiro podando grandes palmeiras"). Gene Key 12 (Coração Puro): Vaidade → Discernimento → Pureza.</p>
+
+</article>
+
+<!-- ════════════════ ENGLISH ════════════════ -->
+<article class="doc" data-lang="en">
+
+  <div class="doc-eyebrow">New Moon · Supermoon</div>
+  <div class="doc-dingbats">☽ ✦ ☉</div>
+  <h1 class="doc-title">The New Moon at 24° Gemini</h1>
+  <p class="doc-subtitle">Gate 12 and the Channel of Openness — a seed Uranus has not witnessed quite like this in 84 years</p>
+  <p class="doc-epigraph">Every word is a double-edged blade: it can stitch worlds together or tear them apart. This lunation hands back to us the power — and the responsibility — of what we choose to say.</p>
+
+  <div class="tablet">
+    <div class="cell"><span class="k">Event</span><span class="v">Super New Moon — the largest of the year</span></div>
+    <div class="cell"><span class="k">Exact degree</span><span class="v">24°02′ <em>Gemini</em></span></div>
+    <div class="cell"><span class="k">Moment</span><span class="v">14 Jun, 10:54pm EDT · 15 Jun, 02:54 UTC</span></div>
+    <div class="cell"><span class="k">Gate · Human Design</span><span class="v">Gate 12 — <em>Caution / Standstill</em> · line 2</span></div>
+    <div class="cell"><span class="k">Sabian Symbol</span><span class="v">Gemini 25 — <em>A gardener trimming large palm trees</em></span></div>
+    <div class="cell"><span class="k">Gene Key</span><span class="v">12 — A Pure Heart · Vanity → <em>Discrimination</em> → Purity</span></div>
+  </div>
+
+  <div class="first">
+  <p>Some seeds we plant every spring; others germinate only when the whole sky rearranges itself to receive them. This New Moon is of the second kind. It falls at 24°02′ Gemini — the sign of the word, the mind, the bridges between people — and lands inside <strong>Gate 12 of Human Design</strong>, the gate of Caution and Standstill, in the Throat. But what makes it rare is not the degree. It is the witness. For the first time since the 1940s — since the last passage of <strong>Uranus through Gemini</strong>, some 84 years ago — a Gemini New Moon is born under the gaze of the Great Awakener seated in the very same sign.</p>
+  <p>Last time, the world was reinventing how it spoke to itself: radio, the first computers, transmissions crossing continents. Today: artificial intelligence, the networks, language unfolding faster than we can feel it. Uranus in Gemini rewires the nervous system of the species — how we think, converse, disagree, divide, and reconnect. And it is precisely in that electric field that this New Moon whispers an ancient, countercurrent instruction: <em>before you speak, feel. Before you transmit, wait for the right moment.</em></p>
+  </div>
+
+  <div class="chapter-mark">First Movement</div>
+  <h2 class="chapter-title">Gate 12 — <em>the wisdom of the pause</em></h2>
+  <p>In the Human Design mandala, 24° Gemini belongs to Gate 12, called <strong>Standstill</strong> or <strong>Caution</strong>. It is one of the voices of the Throat Centre — the centre of all manifestation — and its voice is singular: it does not say "I know" or "I will," but rather <em>"I can try… or not."</em> It is the one voice in the chart that reserves the right to silence. Where other gates push outward, the 12 holds, listens to its inner mood, and waits for the right emotional tide before it opens.</p>
+  <p>This is both its gift and its trap — because Gate 12 lives on mood. When the tide is high, its word is art: it moves, it pierces, it transforms a whole room. When the tide is low, it withdraws, falls quiet. The line 2 of this New Moon heightens exactly that quality: the natural who flowers when the resonance is true, and who retreats — without guilt — when it is not. This is not a flaw to be fixed. It is a rhythm to be honoured.</p>
+
+  <div class="polarity">
+    <div class="row">
+      <div class="shadow"><span class="lbl">The shadow pole</span>Falling silent out of fear, pride, or habit; or spilling impulsive words from the bottom of the emotional wave — words that wound before they serve.</div>
+      <div class="arrow">↔</div>
+      <div class="gift"><span class="lbl">The gift pole</span>The discernment to know <i>when</i> a word heals and when it divides; speaking emotional truth in the exact instant it can be received.</div>
+    </div>
+  </div>
+
+  <div class="gem">
+    <span class="gem-lbl">Sabian Symbol · Gemini 25</span>
+    <div class="gem-img">"A gardener trimming large palm trees."</div>
+    <p>Here is the promise of the new, hidden in a simple image. To prune is not to mutilate: it is the loving art of removing what has already served its purpose so that life may circulate again. The palm — a symbol of victory — only lifts its glory once the dead fronds are released. With Mercury slowing toward its retrograde, this is the precise invitation of the lunation: cut away the excess, the noise, the words that are no longer yours — and open clean space for what is arriving.</p>
+  </div>
+
+  <div class="gem">
+    <span class="gem-lbl">Gene Key 12 · A Pure Heart</span>
+    <div class="gem-flow">Shadow: Vanity &nbsp;→&nbsp; <b>Gift: Discrimination</b> &nbsp;→&nbsp; Siddhi: Purity</div>
+    <p>The same gate, read through the Gene Keys, tells the journey of the word: from <em>vanity</em> (speaking to be seen, to seek approval) to <em>discrimination</em> (choosing what comes from the heart rather than from fear) to <em>purity</em> (expression so true that the Divine recognises itself in it). Fittingly, this Gene Key's annual pulse lights up each 13–19 June — exactly where the Sun met this New Moon. The whole sky asks the same of us: that the word be felt before it is spoken.</p>
+  </div>
+
+  <div class="section-divider"><span>✦</span></div>
+
+  <div class="chapter-mark">Second Movement</div>
+  <h2 class="chapter-title">Those who carry the pair — <em>the Channel 12-22</em></h2>
+  <p>Gate 12 alone is like a switch with no wire. It reaches across the chart looking for its pair: <strong>Gate 22, in the Solar Plexus</strong> — the gate of Openness and Grace (Gene Key 22: Dishonour → Graciousness → <em>Grace</em>). When both are defined, they form the <strong>Channel 12-22, the Channel of Openness</strong>, described as <em>"the design of a social being."</em> If you have only one of the two gates, it hangs — and life tends to bring you people (and transits, like this New Moon) who complete the circuit for a while.</p>
+  <p>Gate 22 brings raw emotional depth; Gate 12 gives it a voice. Together they are a <em>manifested</em> and <em>acoustic</em> channel: people hear your emotion <strong>before</strong> they process your words. Timbre, inflection, the music of the voice matter as much as the content. It is the design of the poet, the singer, the one who holds space so another may feel, at last, truly heard.</p>
+  <p>But the Solar Plexus has its own fear — the <strong>fear of silence</strong>: the anxiety of having nothing worth saying or hearing. It is that fear that fills the void too soon. And there is the tide: days of magnetic charm followed by days of withdrawal that, from outside, look antisocial. None of this is a flaw of character. It is the mechanics of a soul designed to feel in waves.</p>
+
+  <div class="excerpt">Your openness, and your attentiveness to what is essential and new for others, are gifts of grace — that touch even strangers.<small>On the Channel of Openness</small></div>
+
+  <div class="chapter-mark">Third Movement</div>
+  <h2 class="chapter-title">The circuit — <em>and its alert</em></h2>
+  <p>The Channel 12-22 belongs to the <strong>Individual Circuit</strong>, more precisely to the <strong>Knowing sub-circuit</strong>. And it is vital to understand this circuit, because it carries the most delicate — and most beautiful — alert in the chart.</p>
+  <p>The purpose of Individual circuitry is one thing: <strong>to mutate the species</strong>. The individual is the cell through which something genuinely new enters the collective. But mutation has an energetic price, and that price is called <strong>melancholy</strong>. The Individual circuit pulses: it rises in inspiration, descends into melancholy, and it is at the bottom of that wave that creativity is conceived.</p>
+
+  <div class="polarity">
+    <div class="row">
+      <div class="shadow"><span class="lbl">The risk</span>Treating melancholy as an illness to be "fixed"; speaking and acting from the bottom of the wave; filling the silence out of fear; or rebelling without a cause, just to break.</div>
+      <div class="arrow">↔</div>
+      <div class="gift"><span class="lbl">The maturity</span>Inhabiting melancholy as a creative womb; waiting for emotional clarity before deciding and declaring; letting the true mood find its hour — and then mutating whoever listens.</div>
+    </div>
+  </div>
+
+  <p>The Individual was not made to be understood on demand, nor to be forever "sociable." Its solitude is structural, even necessary. As Uranus in Gemini squares the lunar Nodes in this period, the invitation — and the temptation — of rebellion is in the air for everyone. The evolutionary alert is fine: <em>break the old because the hour has come, not merely for the pleasure of breaking.</em> The difference between the prophet and the merely contrary is right timing. It is always Gate 12.</p>
+  <p>Seen from the vantage of the species, it is moving: the evolution of consciousness depends on people willing to honour their own odd rhythm, their own tide, their own out-of-step voice — and to speak the new thing when it is ripe. Uranus rewrites the collective language; carriers of the 12-22 are antennae for that mutation. What they say, and <strong>when</strong> they say it, helps tune the nervous system of us all.</p>
+
+  <div class="section-divider"><span>✦</span></div>
+
+  <div class="chapter-mark">Fourth Movement</div>
+  <h2 class="chapter-title">The seed in each house</h2>
+  <p>Wherever 24° Gemini falls in your birth chart, there this New Moon plants — and there Uranus comes to awaken over the coming years. Find the house that holds this degree (or your Gate 12 / Channel 12-22) and read its seed. Intentions planted now ripen at the Full Moon of <strong>24 November 2026</strong>.</p>
+
+  <div class="houses">
+    <div class="house"><span class="num">I</span><div><h4>House 1 <span>Identity · body · one's own voice</span></h4><p class="pol"><b>silencing who you are out of caution</b> <i>↔ speaking yourself into being, at the right time</i></p><p class="guide">Let the new identity emerge from true mood, without declaring it too soon. Uranus brings sudden reinventions of how you show up.</p></div></div>
+    <div class="house"><span class="num">II</span><div><h4>House 2 <span>Values · resources · self-worth</span></h4><p class="pol"><b>muting your worth for fear of not being enough</b> <i>↔ naming, with grace, what you are worth</i></p><p class="guide">Your voice can become your livelihood. When the tide rises, speak your yes, your gift, your price.</p></div></div>
+    <div class="house"><span class="num">III</span><div><h4>House 3 <span>Mind · writing · communication</span></h4><p class="pol"><b>impulsive, scattered words</b> <i>↔ healing words, chosen with a pause</i></p><p class="guide">Gemini's natural house, doubly lit: here you learn the power of a well-tempered sentence, while Uranus opens unheard-of ways of saying.</p></div></div>
+    <div class="house"><span class="num">IV</span><div><h4>House 4 <span>Home · roots · lineage</span></h4><p class="pol"><b>inherited moods dictating your own</b> <i>↔ feeling, to free the lineage</i></p><p class="guide">There is a family feeling never spoken aloud. To name it, gently, heals both backward and forward.</p></div></div>
+    <div class="house"><span class="num">V</span><div><h4>House 5 <span>Creation · joy · romance</span></h4><p class="pol"><b>creating only when the mood allows, and freezing</b> <i>↔ making art out of your own wave</i></p><p class="guide">Your mood is not an obstacle to creation: it is its raw material. Make the melancholy a womb, and the euphoria a generosity.</p></div></div>
+    <div class="house"><span class="num">VI</span><div><h4>House 6 <span>Daily work · health · rhythm</span></h4><p class="pol"><b>the tide disrupting routine and body</b> <i>↔ a rhythm that respects the wave</i></p><p class="guide">Build a daily life that embraces the days of withdrawal instead of fighting them. To voice your needs is emotional hygiene.</p></div></div>
+    <div class="house"><span class="num">VII</span><div><h4>House 7 <span>Partnership · the other · the mirror</span></h4><p class="pol"><b>saying, at the wave's low, what wounds the bond</b> <i>↔ intimacy woven by truth at the right time</i></p><p class="guide">Wait for emotional clarity before the big relational conversation. The low tide almost never carries the final word.</p></div></div>
+    <div class="house"><span class="num">VIII</span><div><h4>House 8 <span>Intimacy · sharing · transformation</span></h4><p class="pol"><b>vulnerability to what others say; secrets that weigh</b> <i>↔ the power to name the deep</i></p><p class="guide">With Venus opposing Pluto in the field, power games ask for radical honesty. What is said aloud, with grace, sets free.</p></div></div>
+    <div class="house"><span class="num">IX</span><div><h4>House 9 <span>Meaning · belief · teaching · the far</span></h4><p class="pol"><b>preaching from a mood or a dogma</b> <i>↔ teaching from what has been lived</i></p><p class="guide">You teach through tone, not only content. Beware Uranus's easy certainty; the wisdom that mutates others is the one you truly lived.</p></div></div>
+    <div class="house"><span class="num">X</span><div><h4>House 10 <span>Vocation · reputation · the public</span></h4><p class="pol"><b>caution that paralyses; fear of what they'll say</b> <i>↔ the public voice that moves a change</i></p><p class="guide">Visibility asks for the right word at the right time. Uranus may bring sudden turns of direction — let stillness say when to step forward.</p></div></div>
+    <div class="house"><span class="num">XI</span><div><h4>House 11 <span>Community · friends · the future</span></h4><p class="pol"><b>swinging between charm and withdrawal in the group</b> <i>↔ being the voice that mutates the community</i></p><p class="guide">The collective evolves because of your moods, not despite them. The community that truly belongs to you knows how to wait for your tide.</p></div></div>
+    <div class="house"><span class="num">XII</span><div><h4>House 12 <span>The invisible · retreat · spirit</span></h4><p class="pol"><b>melancholy mistaken for depression; isolation</b> <i>↔ the fertile silence from which the word of mystery is born</i></p><p class="guide">Here Standstill is sacred — the dark womb from which the still-unnamed is born. If the darkness weighs too much, reach for a kind hand; no one crosses the void alone.</p></div></div>
+  </div>
+
+  <div class="bridge">
+    <div class="chapter-mark">To carry with you</div>
+    <p>This New Moon is a seed of conscious speech, planted in the very moment the species is learning to speak anew. The gardener prunes; Uranus opens the doorway to what does not yet exist; the heart chooses the pure word. All of it points to the same gesture: clear away the old so the new has somewhere to be born.</p>
+    <p>Gate 12 does not ask us to silence the truth. It asks the opposite: that it be spoken <strong>whole</strong>, and therefore <strong>at the right time</strong>. In an age of accelerated noise, perhaps the most revolutionary — and most loving — act is the pause before the word.</p>
+    <p style="margin-bottom:0;">Plant your intention while the Moon is still new. Water it with patience. And trust: what is sown in fertile silence flowers at November's Full Moon.</p>
+  </div>
+
+  <div class="offering">
+    <div class="eyebrow">An invitation</div>
+    <h3>This is the reading of a transit — not your chart.</h3>
+    <p>This is the sky that belongs to all of us right now. Your design, though, is yours alone: exactly where this New Moon touches your life, which gates and channels it lights up in you, and how to dance with the cycles of your own time — that asks for a personal reading. If something here resonated, it would be a joy to meet you.</p>
+    <a class="cta" href="#contact">Get in touch</a>
+  </div>
+
+  <div class="signature">May your voice find its tide.<small>Cinwicca · Soul Path</small></div>
+
+  <p class="fine">Data: Super New Moon at 24°02′ Gemini, exact 15 Jun 2026 at 02:54 UTC (14 Jun, 10:54pm EDT) — the largest supermoon of the year. Uranus re-entered Gemini on 26 Apr 2026, remaining until 2033; the previous passage was 1941–1949. Human Design: Gate 12 (Standstill / Caution), Throat, 22°30′–28°07′ Gemini; 24°02′ corresponds to line 2. Channel 12-22 (Channel of Openness), joining Gate 22 (Solar Plexus) to Gate 12 (Throat), in the Individual Circuit / Knowing sub-circuit. Sabian Symbol for Gemini 25 ("A gardener trimming large palm trees"). Gene Key 12 (A Pure Heart): Vanity → Discrimination → Purity.</p>
+
+</article>
+
+<!-- ════════════════ ESPAÑOL ════════════════ -->
+<article class="doc" data-lang="es">
+
+  <div class="doc-eyebrow">Luna Nueva · Superluna</div>
+  <div class="doc-dingbats">☽ ✦ ☉</div>
+  <h1 class="doc-title">La Luna Nueva a 24° de Géminis</h1>
+  <p class="doc-subtitle">La Puerta 12 y el Canal de la Apertura — una semilla que Urano no veía nacer así hace 84 años</p>
+  <p class="doc-epigraph">Toda palabra es un cuchillo de doble filo: puede coser mundos o desgarrarlos. Esta lunación nos devuelve el poder — y la responsabilidad — de lo que elegimos decir.</p>
+
+  <div class="tablet">
+    <div class="cell"><span class="k">Evento</span><span class="v">Súper Luna Nueva — la mayor del año</span></div>
+    <div class="cell"><span class="k">Grado exacto</span><span class="v">24°02′ de <em>Géminis</em></span></div>
+    <div class="cell"><span class="k">Momento</span><span class="v">15 jun, 02:54 UTC (14 jun, 23:54 Brasilia)</span></div>
+    <div class="cell"><span class="k">Puerta · Human Design</span><span class="v">Puerta 12 — <em>Cautela / La Quietud</em> · línea 2</span></div>
+    <div class="cell"><span class="k">Símbolo Sabiano</span><span class="v">Géminis 25 — <em>Un jardinero podando grandes palmeras</em></span></div>
+    <div class="cell"><span class="k">Gene Key</span><span class="v">12 — Un Corazón Puro · Vanidad → <em>Discernimiento</em> → Pureza</span></div>
+  </div>
+
+  <div class="first">
+  <p>Hay semillas que plantamos cada primavera, y hay semillas que solo germinan cuando el cielo entero se reordena para recibirlas. Esta Luna Nueva es de la segunda especie. Cae a 24°02′ de Géminis — el signo de la palabra, de la mente, de los puentes entre las personas — y aterriza dentro de la <strong>Puerta 12 del Human Design</strong>, la puerta de la Cautela y la Quietud, en la Garganta. Pero lo que la vuelve rara no es el grado. Es el testigo. Por primera vez desde la década de 1940 — desde el último tránsito de <strong>Urano por Géminis</strong>, hace unos 84 años — una Luna Nueva en Géminis nace bajo la mirada del Gran Despertador instalado en el mismo signo.</p>
+  <p>La última vez, el mundo reinventaba cómo se hablaba a sí mismo: la radio, las primeras computadoras, las transmisiones que cruzaban continentes. Hoy: la inteligencia artificial, las redes, el lenguaje que se despliega más rápido de lo que podemos sentir. Urano en Géminis reescribe el sistema nervioso de la especie — cómo pensamos, conversamos, discrepamos, nos dividimos y nos reconectamos. Y es justo en ese campo eléctrico que esta Luna Nueva susurra una instrucción antigua y a contracorriente: <em>antes de hablar, siente. Antes de transmitir, espera el momento justo.</em></p>
+  </div>
+
+  <div class="chapter-mark">Primer Movimiento</div>
+  <h2 class="chapter-title">La Puerta 12 — <em>la sabiduría de la pausa</em></h2>
+  <p>En el mándala del Human Design, el grado de 24° de Géminis pertenece a la Puerta 12, llamada <strong>La Quietud</strong> o <strong>Cautela</strong>. Es una de las voces del Centro de la Garganta — el centro de toda manifestación — y su voz es singular: no dice "yo sé" ni "yo haré", sino <em>"puedo intentar… o no"</em>. Es la única voz del gráfico que se reserva el derecho al silencio. Donde otras puertas empujan hacia afuera, la 12 sostiene, escucha su estado de ánimo interno y espera la marea emocional justa para abrirse.</p>
+  <p>Ese es su don y su trampa — porque la Puerta 12 vive del ánimo. Cuando la marea está alta, su palabra es arte: conmueve, atraviesa, transforma la sala entera. Cuando está baja, se recoge, enmudece. La línea 2 de esta Luna Nueva acentúa precisamente esa cualidad: la del natural que florece cuando la resonancia es verdadera, y que se retrae — sin culpa — cuando no lo es. No es un defecto a corregir. Es un ritmo a honrar.</p>
+
+  <div class="polarity">
+    <div class="row">
+      <div class="shadow"><span class="lbl">El polo de la sombra</span>Callar por miedo, orgullo o costumbre; o derramar palabras impulsivas desde el fondo de la ola emocional — palabras que hieren antes de servir.</div>
+      <div class="arrow">↔</div>
+      <div class="gift"><span class="lbl">El polo del don</span>El discernimiento de saber <i>cuándo</i> la palabra cura y cuándo divide; decir la verdad emocional en el instante exacto en que puede ser recibida.</div>
+    </div>
+  </div>
+
+  <div class="gem">
+    <span class="gem-lbl">Símbolo Sabiano · Géminis 25</span>
+    <div class="gem-img">"Un jardinero podando grandes palmeras."</div>
+    <p>He aquí la promesa de lo nuevo, escondida en una imagen simple. Podar no es mutilar: es el arte amoroso de retirar lo que ya cumplió su papel para que la vida vuelva a circular. La palmera, símbolo de victoria, solo alza su gloria cuando las hojas secas son liberadas. Con Mercurio desacelerando hacia su retrogradación, esta es la invitación precisa de la lunación: corta el exceso, el ruido, las palabras que ya no son tuyas — y abre espacio limpio para lo que está llegando.</p>
+  </div>
+
+  <div class="gem">
+    <span class="gem-lbl">Gene Key 12 · Un Corazón Puro</span>
+    <div class="gem-flow">Sombra: Vanidad &nbsp;→&nbsp; <b>Don: Discernimiento</b> &nbsp;→&nbsp; Siddhi: Pureza</div>
+    <p>La misma puerta, leída por las Gene Keys, cuenta el viaje de la palabra: de la <em>vanidad</em> (hablar para ser visto, para buscar aprobación) al <em>discernimiento</em> (elegir lo que viene del corazón y no del miedo) hasta la <em>pureza</em> (la expresión tan verdadera que lo Divino se reconoce en ella). Curiosamente, el pulso anual de esta Gene Key se enciende cada 13 al 19 de junio — justo donde el Sol tocó esta Luna Nueva. El cielo entero nos pide lo mismo: que la palabra sea sentida antes de ser dicha.</p>
+  </div>
+
+  <div class="section-divider"><span>✦</span></div>
+
+  <div class="chapter-mark">Segundo Movimiento</div>
+  <h2 class="chapter-title">Quien lleva el par — <em>el Canal 12-22</em></h2>
+  <p>La Puerta 12, sola, es como un interruptor sin cable. Alcanza a través del gráfico buscando su par: la <strong>Puerta 22, en el Plexo Solar</strong> — la puerta de la Apertura y la Gracia (Gene Key 22: Deshonra → Gentileza → <em>Gracia</em>). Cuando ambas están definidas, forman el <strong>Canal 12-22, el Canal de la Apertura</strong>, descrito como <em>"el diseño de un ser social"</em>. Si tienes solo una de las dos puertas, queda "colgada" — y la vida tiende a traerte personas (y tránsitos, como esta Luna Nueva) que completan el circuito por un tiempo.</p>
+  <p>La Puerta 22 trae la profundidad emocional cruda; la Puerta 12 le da voz. Juntas son un canal <em>manifestado</em> y <em>acústico</em>: las personas escuchan tu emoción <strong>antes</strong> de procesar tus palabras. El timbre, la inflexión, la música de la voz importan tanto como el contenido. Es el diseño de la poeta, de la cantante, de quien sostiene espacio para que el otro se sienta, por fin, verdaderamente escuchado.</p>
+  <p>Pero el Plexo Solar tiene un miedo propio — el <strong>miedo al silencio</strong>: la angustia de no tener nada que valga la pena decir o escuchar. Es ese miedo el que llena el vacío demasiado pronto. Y está la marea: días de carisma magnético seguidos de días de retraimiento que, desde afuera, parecen antisociales. Nada de esto es un defecto de carácter. Es la mecánica de un alma diseñada para sentir en olas.</p>
+
+  <div class="excerpt">Tu apertura, y tu atención a lo que es esencial y nuevo para el otro, son dones de gracia — que tocan incluso a los extraños.<small>Sobre el Canal de la Apertura</small></div>
+
+  <div class="chapter-mark">Tercer Movimiento</div>
+  <h2 class="chapter-title">El circuito — <em>y su alerta</em></h2>
+  <p>El Canal 12-22 pertenece al <strong>Circuito Individual</strong>, más precisamente al <strong>subcircuito del Conocer</strong>. Y es vital comprender este circuito, porque lleva la alerta más delicada — y más hermosa — del gráfico.</p>
+  <p>El propósito de la circuitería Individual es uno solo: <strong>mutar a la especie</strong>. El individuo es la célula a través de la cual algo verdaderamente nuevo entra en lo colectivo. Pero la mutación tiene un precio energético, y ese precio se llama <strong>melancolía</strong>. El circuito Individual pulsa: sube en inspiración, baja en melancolía, y es en el fondo de esa ola donde se gesta la creatividad.</p>
+
+  <div class="polarity">
+    <div class="row">
+      <div class="shadow"><span class="lbl">El riesgo</span>Tratar la melancolía como una enfermedad a "arreglar"; hablar y actuar desde el fondo de la ola; llenar el silencio por miedo; o rebelarse sin causa, solo por romper.</div>
+      <div class="arrow">↔</div>
+      <div class="gift"><span class="lbl">La madurez</span>Habitar la melancolía como vientre creativo; esperar la claridad emocional antes de decidir y declarar; dejar que el ánimo verdadero encuentre su hora — y entonces mutar a quien escucha.</div>
+    </div>
+  </div>
+
+  <p>El Individual no fue hecho para ser comprendido a demanda, ni para ser siempre "sociable". Su soledad es estructural, incluso necesaria. Cuando Urano en Géminis cuadra los Nodos de la Luna en este período, la invitación — y la tentación — de la rebeldía está en el aire para todos. La alerta evolutiva es fina: <em>romper lo viejo porque llegó la hora, y no solo por el placer de romper.</em> La diferencia entre el profeta y el mero contrario es el momento justo. Es siempre la Puerta 12.</p>
+  <p>Visto desde la perspectiva de la especie, es conmovedor: la evolución de la conciencia depende de personas dispuestas a honrar su propio ritmo extraño, su propia marea, su propia voz a destiempo — y a decir lo nuevo cuando está maduro. Urano reescribe el lenguaje colectivo; quienes portan el 12-22 son antenas de esa mutación. Lo que dicen, y <strong>cuándo</strong> lo dicen, ayuda a afinar el sistema nervioso de todos nosotros.</p>
+
+  <div class="section-divider"><span>✦</span></div>
+
+  <div class="chapter-mark">Cuarto Movimiento</div>
+  <h2 class="chapter-title">La semilla en cada casa</h2>
+  <p>Donde 24° de Géminis cae en tu carta natal, ahí esta Luna Nueva planta — y ahí Urano viene a despertar en los próximos años. Encuentra la casa que contiene este grado (o tu Puerta 12 / Canal 12-22) y lee su semilla. Las intenciones plantadas ahora maduran en la Luna Llena del <strong>24 de noviembre de 2026</strong>.</p>
+
+  <div class="houses">
+    <div class="house"><span class="num">I</span><div><h4>Casa 1 <span>Identidad · cuerpo · voz propia</span></h4><p class="pol"><b>silenciar quién eres por cautela</b> <i>↔ decirte a la existencia en el momento justo</i></p><p class="guide">Deja que la nueva identidad emerja del ánimo verdadero, sin declararte demasiado pronto. Urano trae reinvenciones súbitas de cómo te muestras.</p></div></div>
+    <div class="house"><span class="num">II</span><div><h4>Casa 2 <span>Valores · recursos · autoestima</span></h4><p class="pol"><b>callar tu propio valor por miedo a no bastar</b> <i>↔ nombrar, con gracia, lo que vales</i></p><p class="guide">Tu voz puede ser tu sustento. Cuando suba la marea, di tu sí, tu don, tu precio.</p></div></div>
+    <div class="house"><span class="num">III</span><div><h4>Casa 3 <span>Mente · escritura · comunicación</span></h4><p class="pol"><b>palabra impulsiva y dispersa</b> <i>↔ palabra que cura, elegida con pausa</i></p><p class="guide">La casa natural de Géminis, doblemente encendida: aquí aprendes el poder de una frase bien templada, mientras Urano abre formas inéditas de decir.</p></div></div>
+    <div class="house"><span class="num">IV</span><div><h4>Casa 4 <span>Hogar · raíces · linaje</span></h4><p class="pol"><b>ánimos heredados dictando el tuyo</b> <i>↔ sentir para liberar el linaje</i></p><p class="guide">Hay un sentimiento de familia que nunca fue dicho en voz alta. Nombrarlo, con cuidado, cura hacia atrás y hacia adelante.</p></div></div>
+    <div class="house"><span class="num">V</span><div><h4>Casa 5 <span>Creación · alegría · romance</span></h4><p class="pol"><b>crear solo cuando el ánimo lo permite, y trabarse</b> <i>↔ hacer arte desde la propia ola</i></p><p class="guide">Tu ánimo no es obstáculo para la creación: es su materia prima. Haz de la melancolía un vientre, y de la euforia, generosidad.</p></div></div>
+    <div class="house"><span class="num">VI</span><div><h4>Casa 6 <span>Trabajo · salud · ritmo</span></h4><p class="pol"><b>la marea desordenando rutina y cuerpo</b> <i>↔ un ritmo que respeta la ola</i></p><p class="guide">Construye un cotidiano que abrace los días de recogimiento en vez de luchar contra ellos. Decir tus necesidades es higiene emocional.</p></div></div>
+    <div class="house"><span class="num">VII</span><div><h4>Casa 7 <span>Pareja · el otro · el espejo</span></h4><p class="pol"><b>decir en el fondo de la ola lo que hiere el vínculo</b> <i>↔ intimidad tejida por la verdad en el momento justo</i></p><p class="guide">Espera la claridad emocional antes de la gran conversación de pareja. La marea baja casi nunca trae la palabra definitiva.</p></div></div>
+    <div class="house"><span class="num">VIII</span><div><h4>Casa 8 <span>Intimidad · compartir · transformación</span></h4><p class="pol"><b>vulnerabilidad a lo que dicen; secretos que pesan</b> <i>↔ el poder de nombrar lo profundo</i></p><p class="guide">Con Venus opuesta a Plutón en el campo, los juegos de poder piden honestidad radical. Lo dicho en voz alta, con gracia, libera.</p></div></div>
+    <div class="house"><span class="num">IX</span><div><h4>Casa 9 <span>Sentido · creencia · enseñanza · lo lejano</span></h4><p class="pol"><b>predicar desde un ánimo o un dogma</b> <i>↔ enseñar desde lo vivido</i></p><p class="guide">Enseñas por el tono, no solo por el contenido. Cuidado con la certeza fácil de Urano; la sabiduría que muta a otros es la que de verdad viviste.</p></div></div>
+    <div class="house"><span class="num">X</span><div><h4>Casa 10 <span>Vocación · reputación · lo público</span></h4><p class="pol"><b>cautela que paraliza; miedo al qué dirán</b> <i>↔ la voz pública que mueve un cambio</i></p><p class="guide">La visibilidad pide la palabra justa en el momento justo. Urano puede traer giros súbitos — deja que la quietud diga cuándo dar el paso.</p></div></div>
+    <div class="house"><span class="num">XI</span><div><h4>Casa 11 <span>Comunidad · amigos · el futuro</span></h4><p class="pol"><b>oscilar entre carisma y retraimiento en el grupo</b> <i>↔ ser la voz que muta la comunidad</i></p><p class="guide">El colectivo evoluciona gracias a tus ánimos, no a pesar de ellos. La comunidad que de verdad te pertenece sabe esperar tu marea.</p></div></div>
+    <div class="house"><span class="num">XII</span><div><h4>Casa 12 <span>Lo invisible · retiro · espíritu</span></h4><p class="pol"><b>melancolía confundida con depresión; aislamiento</b> <i>↔ el silencio fértil de donde brota la palabra del misterio</i></p><p class="guide">Aquí la Quietud es sagrada — el vientre oscuro de donde nace lo que aún no tiene nombre. Si la oscuridad pesa demasiado, busca una mano amiga; nadie cruza el vacío en soledad.</p></div></div>
+  </div>
+
+  <div class="bridge">
+    <div class="chapter-mark">Para llevar contigo</div>
+    <p>Esta Luna Nueva es una semilla de habla consciente, plantada en el preciso momento en que la especie aprende a hablar de nuevo. El jardinero poda; Urano abre el portal de lo que aún no existe; el corazón elige la palabra pura. Todo apunta al mismo gesto: limpiar lo viejo para que lo nuevo tenga dónde nacer.</p>
+    <p>La Puerta 12 no nos pide silenciar la verdad. Pide lo contrario: que sea dicha <strong>entera</strong>, y por eso <strong>en el momento justo</strong>. En un tiempo de ruido acelerado, quizá el acto más revolucionario — y más amoroso — sea la pausa antes del verbo.</p>
+    <p style="margin-bottom:0;">Planta tu intención mientras la Luna aún es nueva. Riégala con paciencia. Y confía: lo que se siembra en silencio fértil florece en la Luna Llena de noviembre.</p>
+  </div>
+
+  <div class="offering">
+    <div class="eyebrow">Una invitación</div>
+    <h3>Esto es la lectura de un tránsito — no tu carta.</h3>
+    <p>Este es el cielo que ahora nos pertenece a todos. Tu diseño, en cambio, es solo tuyo: dónde exactamente esta Luna Nueva toca tu vida, qué puertas y canales enciende en ti, y cómo danzar con los ciclos de tu propio tiempo — eso pide una lectura personal. Si algo aquí resonó, será una alegría encontrarte.</p>
+    <a class="cta" href="#contacto">Escríbeme</a>
+  </div>
+
+  <div class="signature">Que tu voz encuentre su marea.<small>Cinwicca · Camino del Alma</small></div>
+
+  <p class="fine">Datos: Súper Luna Nueva a 24°02′ de Géminis, exacta el 15 jun 2026 a las 02:54 UTC (14 jun, 23:54 en Brasilia) — la mayor superluna del año. Urano reingresó en Géminis el 26 abr 2026, permaneciendo hasta 2033; el tránsito anterior fue en 1941–1949. Human Design: Puerta 12 (La Quietud / Cautela), Garganta, 22°30′–28°07′ de Géminis; el grado de 24°02′ corresponde a la línea 2. Canal 12-22 (Canal de la Apertura), uniendo la Puerta 22 (Plexo Solar) a la Puerta 12 (Garganta), en el Circuito Individual / subcircuito del Conocer. Símbolo Sabiano de Géminis 25 ("Un jardinero podando grandes palmeras"). Gene Key 12 (Un Corazón Puro): Vanidad → Discernimiento → Pureza.</p>
+
+</article>
+
+<script>
+(function(){
+  /* language switcher */
+  const docs=document.querySelectorAll('.doc');
+  const btns=document.querySelectorAll('.langbar button');
+  function go(lang){
+    docs.forEach(d=>d.classList.toggle('active',d.dataset.lang===lang));
+    btns.forEach(b=>b.classList.toggle('active',b.dataset.go===lang));
+    document.documentElement.lang = lang==='pt'?'pt-BR':lang;
+    window.scrollTo({top:0,behavior:'instant'in window?'instant':'auto'});
+  }
+  btns.forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+  /* optional: honour ?lang=en in URL */
+  const q=new URLSearchParams(location.search).get('lang');
+  if(q&&['pt','en','es'].includes(q))go(q);
+
+  /* starfield */
+  const c=document.getElementById('cosmos');if(!c)return;
+  const x=c.getContext('2d');let w,h,stars=[];
+  function size(){w=c.width=innerWidth;h=c.height=innerHeight;
+    stars=Array.from({length:Math.min(160,Math.floor(w*h/9000))},()=>({
+      x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2+0.2,
+      a:Math.random(),s:Math.random()*0.015+0.003}));}
+  function draw(){x.clearRect(0,0,w,h);
+    for(const st of stars){st.a+=st.s;if(st.a>1||st.a<0)st.s*=-1;
+      x.beginPath();x.arc(st.x,st.y,st.r,0,7);
+      x.fillStyle='rgba(212,177,90,'+(0.18+st.a*0.5)+')';x.fill();}
+    requestAnimationFrame(draw);}
+  size();draw();addEventListener('resize',size);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample · An Area of Life Question · Cinwicca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obsidian: #08090f;
+  --deep:     #0d1020;
+  --ink:      #141a2e;
+  --gold:     #d4b15a;
+  --gold-lt:  #ecd49a;
+  --gold-dk:  #8b6b22;
+  --rose:     #b67a8f;
+  --cream:    #f6ecd0;
+  --text:     #f1e7cf;
+  --text-2:   #d6c7a2;
+  --text-3:   #a99878;
+  --border:   rgba(212,177,90,0.18);
+  --border-b: rgba(212,177,90,0.42);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: var(--obsidian);
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.55; }
+
+/* ── NAV BAR ── */
+.docnav {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(8,9,15,0.85);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+.docnav a.back {
+  font-family: 'Cinzel', serif;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: color 0.25s;
+}
+.docnav a.back:hover { color: var(--gold-lt); }
+.docnav .doctag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem; font-weight: 500;
+  color: var(--text-3); letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.docnav .doctag em { color: var(--gold); font-style: normal; }
+
+/* ── DOCUMENT FRAME ── */
+.doc {
+  position: relative; z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 5rem 2rem 6rem;
+}
+
+/* SAMPLE BANNER */
+.sample-banner {
+  border: 1px solid var(--border-b);
+  background: linear-gradient(140deg, rgba(212,177,90,0.06), rgba(31,42,90,0.20));
+  border-radius: 3px;
+  padding: 1.6rem 1.8rem;
+  margin-bottom: 4rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.2rem;
+  align-items: center;
+}
+.sample-banner .glyph {
+  width: 48px; height: 48px;
+  border: 1px solid var(--border-b);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 1.4rem;
+}
+.sample-banner .eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem; letter-spacing: 0.3em;
+  color: var(--gold); text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+.sample-banner p { font-size: 1rem; color: var(--text); line-height: 1.6; }
+.sample-banner p em { color: var(--text-2); font-style: italic; }
+.sample-banner .lang-line {
+  font-size: 0.85rem;
+  color: var(--text-3);
+  font-style: italic;
+  margin-top: 0.4rem;
+}
+
+/* ── DOC HEADER ── */
+.doc-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem; letter-spacing: 0.32em;
+  color: var(--gold); text-transform: uppercase;
+  text-align: center; margin-bottom: 1.6rem;
+}
+.doc-dingbats { text-align: center; color: var(--gold); margin-bottom: 1.4rem; letter-spacing: 0.6em; font-size: 0.9rem; }
+.doc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 4.8vw, 3.4rem);
+  text-align: center;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  margin-bottom: 0.6rem;
+}
+.doc-title em { font-style: italic; color: var(--gold-lt); }
+.doc-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  text-align: center;
+  color: var(--gold-lt);
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+
+/* ── OPENING REFRAIN ── */
+.opening-refrain {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 580px;
+  margin: 0 auto 2.5rem;
+}
+.opening-refrain p { margin-bottom: 0.4rem; }
+.opening-refrain p:last-child {
+  color: var(--gold-lt);
+  font-style: italic;
+  margin-top: 0.8rem;
+}
+
+/* ── THE QUESTION BLOCK ── */
+.the-question {
+  margin: 2.5rem auto 3rem;
+  max-width: 580px;
+  padding: 2rem 2rem;
+  background: linear-gradient(140deg, rgba(31,42,90,0.18), rgba(13,16,32,0.45));
+  border: 1px solid var(--border-b);
+  border-radius: 3px;
+  text-align: center;
+}
+.the-question .qmark {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.the-question blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.45rem;
+  color: var(--gold-lt);
+  line-height: 1.4;
+}
+
+/* ── SECTION DIVIDER ── */
+.section-divider {
+  display: flex; align-items: center; gap: 1.2rem;
+  margin: 3rem auto;
+  max-width: 360px;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-b));
+}
+.section-divider::after { background: linear-gradient(90deg, var(--border-b), transparent); }
+.section-divider span { color: var(--gold); font-size: 0.85rem; }
+
+/* ── CHAPTER STYLES ── */
+.chapter-mark {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem; letter-spacing: 0.3em;
+  color: var(--gold); text-transform: uppercase;
+  text-align: center;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+  text-align: center;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 2.5rem;
+}
+.chapter-title em { color: var(--gold-lt); font-style: italic; }
+
+h3.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--gold-lt);
+  line-height: 1.25;
+  margin: 2.5rem 0 0.8rem;
+}
+h3.section-title small {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  font-style: normal;
+  margin-top: 0.4rem;
+  font-weight: 400;
+}
+
+h4.sub-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--cream);
+  margin: 1.5rem 0 0.5rem;
+}
+
+/* ── VEILED PARAGRAPHS ── */
+.veiled {
+  font-size: 1.04rem;
+  line-height: 1.75;
+  color: var(--text-2);
+  filter: blur(4.5px);
+  opacity: 0.55;
+  user-select: none;
+  pointer-events: none;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.veiled.short { max-width: 80%; }
+.veiled.shorter { max-width: 60%; }
+.veiled-strike {
+  text-decoration: line-through;
+  text-decoration-color: rgba(212,177,90,0.5);
+  text-decoration-thickness: 1.2px;
+  text-decoration-skip-ink: none;
+}
+.veil-cluster { position: relative; margin-bottom: 1.6rem; }
+.veil-cluster::after {
+  content: '';
+  position: absolute;
+  top: 50%; right: -1.2rem;
+  width: 3px; height: 60%;
+  transform: translateY(-50%);
+  background: linear-gradient(to bottom, transparent, var(--gold-dk), transparent);
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+/* ── VISIBLE READABLE PARAGRAPHS (chart talk that stays) ── */
+.visible-p {
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 1.1rem;
+}
+.visible-p em { font-style: italic; color: var(--gold-lt); }
+.visible-p strong { color: var(--gold-lt); font-weight: 500; font-style: italic; }
+
+/* ── EXCERPT (gold-bordered quote) ── */
+.excerpt {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--gold-lt);
+  line-height: 1.55;
+  border-left: 2px solid var(--gold-dk);
+  padding: 0.4rem 0 0.4rem 1.6rem;
+  margin: 1.6rem 0 1.8rem;
+}
+.excerpt small {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  font-style: normal;
+  letter-spacing: 0.2em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+/* ── CHART CONFIG BADGE ── */
+.config-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  background: rgba(212,177,90,0.06);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  margin: 0.4rem 0.4rem 0.4rem 0;
+}
+
+.config-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0 1.6rem; }
+
+/* ── KEY INSIGHT BLOCK (large pull-quote at chapter close) ── */
+.key-insight {
+  margin: 3rem 0;
+  padding: 2rem 2.2rem;
+  background: linear-gradient(140deg, rgba(212,177,90,0.05), rgba(31,42,90,0.18));
+  border: 1px solid var(--border-b);
+  border-left: 3px solid var(--gold);
+  border-radius: 3px;
+}
+.key-insight .ki-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.key-insight p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--cream);
+  line-height: 1.5;
+}
+.key-insight p + p { margin-top: 0.8rem; color: var(--gold-lt); }
+
+/* ── TITLES-ONLY LIST ── */
+.titles-only {
+  margin: 1.2rem 0 2rem;
+  padding-left: 0;
+  list-style: none;
+}
+.titles-only li {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem;
+  color: var(--text);
+  padding: 0.6rem 0 0.6rem 1.2rem;
+  border-left: 1px solid var(--border);
+  margin-bottom: 0.3rem;
+  position: relative;
+}
+.titles-only li::before {
+  content: '✦';
+  position: absolute; left: -0.6rem; top: 0.65rem;
+  color: var(--gold);
+  background: var(--obsidian);
+  padding: 0 0.3rem;
+  font-size: 0.7rem;
+}
+.titles-only li small {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+  margin-top: 0.2rem;
+  font-style: italic;
+}
+
+/* ── BRIDGE (the upsell at the end) ── */
+.bridge {
+  margin-top: 6rem;
+  padding: 3rem 2.4rem;
+  background: linear-gradient(140deg, rgba(31,42,90,0.25), rgba(13,16,32,0.5));
+  border: 1px solid var(--border-b);
+  border-radius: 3px;
+  position: relative;
+}
+.bridge::before {
+  content: '';
+  position: absolute; top: -1px; left: 20%; right: 20%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.bridge .br-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--gold);
+  text-align: center; margin-bottom: 1rem;
+}
+.bridge h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3.4vw, 2.3rem);
+  text-align: center;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.bridge h2 em { color: var(--gold-lt); font-style: italic; }
+.bridge .br-sub {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--text-2);
+  margin-bottom: 2rem;
+}
+.bridge p { font-size: 1.05rem; color: var(--text); line-height: 1.75; margin-bottom: 1.1rem; }
+.bridge h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold-lt);
+  margin: 2rem 0 1rem;
+}
+.bridge ul { list-style: none; padding-left: 0; }
+.bridge ul li {
+  font-size: 1.02rem; color: var(--text);
+  line-height: 1.6; padding: 0.7rem 0 0.7rem 1.5rem;
+  border-bottom: 1px solid rgba(212,177,90,0.08);
+  position: relative;
+}
+.bridge ul li:last-child { border-bottom: 0; }
+.bridge ul li::before { content: '◈'; position: absolute; left: 0; top: 0.85rem; font-size: 0.6rem; color: var(--gold); }
+.bridge ul li strong { color: var(--gold-lt); font-weight: 500; font-style: italic; }
+.bridge .quote {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--gold-lt);
+  margin: 2.6rem auto;
+  max-width: 540px;
+  line-height: 1.55;
+}
+.bridge .cta-row {
+  text-align: center;
+  margin-top: 2.5rem;
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+.btn-gold, .btn-ghost {
+  font-family: 'Cinzel', serif;
+  font-size: 0.76rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 1rem 2.2rem;
+  text-decoration: none;
+  border-radius: 2px;
+  display: inline-block;
+  transition: all 0.3s;
+  border: 1px solid transparent;
+}
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-dk), var(--gold), var(--gold-dk));
+  color: var(--obsidian); font-weight: 600;
+}
+.btn-gold:hover { background: linear-gradient(135deg, var(--gold), var(--gold-lt), var(--gold)); box-shadow: 0 0 30px rgba(212,177,90,0.25); }
+.btn-ghost { background: transparent; color: var(--gold); border-color: var(--border-b); }
+.btn-ghost:hover { background: rgba(212,177,90,0.06); border-color: var(--gold); }
+
+/* ── SIGNATURE ── */
+.signature {
+  text-align: center;
+  margin-top: 5rem;
+  padding: 3rem 0 2rem;
+  border-top: 1px solid var(--border);
+}
+.signature .glyph {
+  color: var(--gold); font-size: 1.4rem;
+  letter-spacing: 0.6em; margin-bottom: 1rem;
+}
+.signature .sign-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+.signature .sign-sub {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+
+.doc-footer {
+  text-align: center;
+  margin-top: 4rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: var(--text-3);
+}
+.doc-footer a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--border-b); }
+.doc-footer a:hover { color: var(--gold-lt); }
+
+@media (max-width: 640px) {
+  .doc { padding: 4rem 1.4rem 5rem; }
+  .bridge { padding: 2.4rem 1.4rem; }
+  .veiled { filter: blur(3.5px); }
+  body { font-size: 17px; }
+  .the-question { padding: 1.6rem 1.4rem; }
+  .key-insight { padding: 1.6rem 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<nav class="docnav">
+  <a class="back" href="../index.html">← Cinwicca · Home</a>
+  <div class="doctag"><em>●</em> Sample · template</div>
+</nav>
+
+<article class="doc">
+
+  <!-- SAMPLE BANNER -->
+  <div class="sample-banner">
+    <div class="glyph">☾</div>
+    <div>
+      <div class="eyebrow">Sample reading · Template preview</div>
+      <p>This is a sample of an <strong>Area of Life Question</strong> reading — a focused, single-question session. The recipient's personal and family content is <em>veiled with deep respect</em>. What remains visible is the <strong>shape of the work</strong>: the framing, the chart language, the structural insights, and the closing question.</p>
+      <div class="lang-line">This sample is in English. Your own reading will be written in your preferred language (PT-BR · ES · EN).</div>
+    </div>
+  </div>
+
+  <!-- DOCUMENT TITLE BLOCK -->
+  <div class="doc-eyebrow">A Focused Reading by Cinwicca</div>
+  <div class="doc-dingbats">✶ &nbsp; ✦ &nbsp; ✶</div>
+  <h1 class="doc-title">An Area of <em>Life</em> Question</h1>
+  <p class="doc-subtitle">When a single question opens a lineage</p>
+
+  <!-- OPENING REFRAIN -->
+  <div class="opening-refrain">
+    <p>There are charts that speak about personality.</p>
+    <p>There are charts that speak about events.</p>
+    <p>And there are charts that seem to carry, within them,<br>the memory of an entire lineage.</p>
+    <p>This is one of those charts.</p>
+  </div>
+
+  <!-- THE QUESTION -->
+  <div class="the-question">
+    <div class="qmark">The question brought to the reading</div>
+    <blockquote>
+      "How can I heal my relationships — especially with my father, and with the masculine?"
+    </blockquote>
+  </div>
+
+  <p class="visible-p" style="text-align:center; max-width:580px; margin: 0 auto 1rem; font-style:italic; color:var(--text-2);">
+    The question appeared, at first, deceptively simple.
+  </p>
+  <p class="veiled veiled-strike" style="text-align:center; max-width:580px; margin: 0 auto 2.5rem;">
+    But the chart reveals that this was never merely a relational question.
+  </p>
+
+  <div class="key-insight">
+    <div class="ki-eyebrow">The first reframing</div>
+    <p>It was an ancestral one.</p>
+    <p>The entire symbolic architecture of the chart is organised around a profound wound: the coexistence of love and oppression within the masculine.</p>
+  </div>
+
+  <!-- ── CHAPTER 1: THE SOLAR FATHER ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">First Movement</div>
+  <h2 class="chapter-title">The <em>Solar Father</em> — and Its Shadow</h2>
+
+  <div class="config-row">
+    <span class="config-badge">☉ Sun</span>
+    <span class="config-badge">♃ Jupiter</span>
+    <span class="config-badge">in Aquarius</span>
+    <span class="config-badge">4th house</span>
+  </div>
+
+  <p class="visible-p">In childhood, the father archetype appears as a strong solar figure — intellectually cultivated, encouraging of education, someone in whose presence intelligence felt seen and valued.</p>
+  <p class="veiled veiled-strike">The <strong>Sun conjunct Jupiter in Aquarius in the 4th house</strong> speaks clearly of this: the father as carrier of vision, intellect, expansion and moral authority.</p>
+
+  <p class="visible-p">But this same configuration reveals something far more complex.</p>
+
+  <p class="visible-p">When <em>Jupiter precedes the Sun</em>, we often see identities formed around ideals greater than the self.</p>
+  <p class="veiled veiled-strike">The child learns very early to become mature, intelligent, elevated, "special." She learns to embody an ideal — but not necessarily to know who she is.</p>
+
+  <h3 class="section-title">Where the shadow enters <small>· biographical detail</small></h3>
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">While the father represented intellectual expansion, emotionally he upheld a deeply patriarchal system. The mother appears as a woman deprived of power: imprisoned, silenced, subjected to a controlling and misogynistic masculine.</p>
+    <p class="veiled veiled-strike">It is after the mother's death that the family trauma fully surfaces. The mistress enters the home. The paternal grandparents move into the emotional field. Alcoholism and violence intensify.</p>
+    <p class="veiled veiled-strike short">The men become increasingly free of responsibility — while the feminine remains trapped in adaptation and silence.</p>
+  </div>
+
+  <!-- ── CHAPTER 2: THE KARMIC CORE ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Second Movement</div>
+  <h2 class="chapter-title">The <em>Karmic Core</em></h2>
+
+  <div class="config-row">
+    <span class="config-badge">☋ South Node</span>
+    <span class="config-badge">♄ Saturn ℞</span>
+    <span class="config-badge">in Gemini</span>
+    <span class="config-badge">8th house</span>
+  </div>
+
+  <p class="visible-p">It is precisely here that we encounter the karmic core of the chart: the <strong>South Node conjunct retrograde Saturn in Gemini in the 8th house</strong>.</p>
+
+  <p class="visible-p">The 8th house speaks of psychic inheritance, trauma, invisible power dynamics, dependency and survival patterns.</p>
+  <p class="veiled veiled-strike">Retrograde Saturn reveals an ancestral imprint of guilt, emotional restraint and excessive responsibility. In Gemini, the trauma manifests through contradiction:</p>
+
+  <ul class="titles-only">
+    <li>Love mixed with violence</li>
+    <li>Intelligence mixed with oppression</li>
+    <li>Admiration mixed with fear</li>
+  </ul>
+
+  <p class="visible-p">Very early, the child learns to read environments, interpret moods and adapt emotionally.</p>
+  <p class="veiled veiled-strike short">She learns to survive through the mind.</p>
+
+  <!-- ── CHAPTER 3: THE GRAND AIR TRINE ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Third Movement</div>
+  <h2 class="chapter-title">The <em>Grand Air Trine</em><br>Brilliance as a Survival Strategy</h2>
+
+  <div class="config-row">
+    <span class="config-badge">Sun/Jupiter ♒ Aquarius</span>
+    <span class="config-badge">Saturn/SN ♊ Gemini</span>
+    <span class="config-badge">Uranus ♎ Libra · 12th</span>
+  </div>
+
+  <p class="visible-p">The grand air trine between these three points reveals something extraordinary: an emotional intelligence used as a survival mechanism.</p>
+
+  <div class="key-insight">
+    <div class="ki-eyebrow">The shape of the gift, and the shape of the wound</div>
+    <p>She perceives everything. Understands everything. Names everything.</p>
+    <p>But does not necessarily feel.</p>
+  </div>
+
+  <p class="visible-p">Many people with this configuration become <em>brilliant observers of themselves</em> while remaining deeply dissociated from their emotional bodies.</p>
+  <p class="veiled veiled-strike">The mind becomes a refuge in the face of emotional unpredictability.</p>
+
+  <!-- ── CHAPTER 4: RELATIONAL FIELD ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Fourth Movement</div>
+  <h2 class="chapter-title">The <em>Relational Field</em></h2>
+
+  <div class="config-row">
+    <span class="config-badge">♅ Uranus</span>
+    <span class="config-badge">in Libra</span>
+    <span class="config-badge">12th house</span>
+  </div>
+
+  <p class="visible-p"><strong>Uranus in Libra in the 12th house</strong> speaks of a psyche that associates intimacy with instability.</p>
+  <p class="veiled veiled-strike">There is profound relational lucidity: she immediately perceives injustice, imbalance and incoherence within partnerships.</p>
+
+  <p class="veiled veiled-strike">But because she grew up in an environment where love and violence coexisted, her nervous system may confuse intensity with connection.</p>
+
+  <p class="visible-p">And so relationships become paradoxical:</p>
+  <ul class="titles-only">
+    <li>She longs for freedom yet attracts confinement</li>
+    <li>Seeks consciousness yet encounters emotionally unavailable partners</li>
+    <li>Yearns for true partnership yet repeats dynamics in which the feminine must serve, sustain, or adapt</li>
+  </ul>
+
+  <!-- ── CHAPTER 5: VENUS / LILITH ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Fifth Movement</div>
+  <h2 class="chapter-title">The <em>Wounded Feminine</em><br>Venus, Lilith, and the Silenced Voice</h2>
+
+  <div class="config-row">
+    <span class="config-badge">♀ Venus</span>
+    <span class="config-badge">⚸ Lilith</span>
+    <span class="config-badge">in Capricorn</span>
+    <span class="config-badge">3rd house</span>
+  </div>
+
+  <p class="visible-p"><strong>Venus in Capricorn conjunct Lilith in the 3rd house</strong> — a feminine identity deeply wounded by patriarchy.</p>
+
+  <p class="visible-p">Venus in Capricorn learns early that love requires maturity, restraint and deservingness.</p>
+  <p class="veiled veiled-strike">Affection is never simple; it must be earned. Lilith, meanwhile, carries the memory of the exiled wild feminine — the female voice that had to be silenced in order to survive.</p>
+
+  <h4 class="sub-title">In the 3rd house, this often manifests as:</h4>
+  <ul class="titles-only">
+    <li>Fear of expressing emotional needs</li>
+    <li>Self-censorship</li>
+    <li>Excessive politeness</li>
+    <li>Difficulty confronting others</li>
+    <li>Constant vigilance around one's own voice</li>
+  </ul>
+
+  <h3 class="section-title">The quincunx between Saturn/South Node and Venus/Lilith</h3>
+  <p class="visible-p">The inherited model of love is fundamentally incompatible with the deeper truth of the soul.</p>
+
+  <div class="key-insight">
+    <div class="ki-eyebrow">What she learned · what the soul no longer consents to</div>
+    <p>She learned: <em>to love means to adapt.</em></p>
+    <p>But the soul no longer consents to this architecture.</p>
+  </div>
+
+  <p class="visible-p">And this is why certain relationships repeatedly collapse — not as punishment, but because something within her can no longer survive inside the ancestral pattern.</p>
+
+  <!-- ── CHAPTER 6: THE EVOLUTIONARY DIRECTION ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Sixth Movement</div>
+  <h2 class="chapter-title">The <em>Evolutionary Direction</em></h2>
+
+  <div class="config-row">
+    <span class="config-badge">☽ Moon ♐ Sagittarius · 1st</span>
+    <span class="config-badge">☊ North Node ♐ Sagittarius · 2nd</span>
+  </div>
+
+  <p class="visible-p">After a lifetime spent orienting herself around the emotional needs of others, the soul now seeks individuation.</p>
+
+  <p class="visible-p">The <strong>North Node in the 2nd house</strong> is remarkably clear: she came here to learn <em>self-worth</em>.</p>
+  <p class="veiled veiled-strike">Not worth derived from serving, sustaining, understanding, saving, adapting, or being "good." But intrinsic worth.</p>
+
+  <p class="visible-p">The <strong>Moon in Sagittarius in the 1st house</strong> longs for emotional truth, authenticity and embodied presence.</p>
+  <p class="veiled veiled-strike">It seeks a life lived from the centre of one's own being — rather than from the constant management of other people's wounds.</p>
+
+  <!-- ── FINAL SYNTHESIS ── -->
+  <div class="section-divider"><span>✦ &nbsp; ✶ &nbsp; ✦</span></div>
+  <div class="chapter-mark">The Question Beneath the Question</div>
+  <h2 class="chapter-title"><em>What the soul is actually asking</em></h2>
+
+  <div class="key-insight" style="text-align:center;">
+    <div class="ki-eyebrow">The most important sentence in this entire reading</div>
+    <p style="font-size:1.4rem;">She did not come to heal one relationship.</p>
+    <p style="font-size:1.4rem;">She came to interrupt a lineage.</p>
+  </div>
+
+  <p class="visible-p">Healing begins when she stops trying to become:</p>
+  <ul class="titles-only">
+    <li>The perfect daughter</li>
+    <li>The understanding woman</li>
+    <li>The emotional saviour of the masculine</li>
+  </ul>
+
+  <p class="visible-p">And begins, finally, to ask:</p>
+
+  <div class="excerpt" style="font-size:1.4rem; text-align:center; border-left:0; padding-left:0; margin-top:2rem;">
+    "Who am I when I am no longer surviving?"
+  </div>
+
+  <!-- ── SIGNATURE ── -->
+  <div class="signature">
+    <div class="glyph">✦ &nbsp; ✶ &nbsp; ✦</div>
+    <div class="sign-name">Cinwicca</div>
+    <div class="sign-sub">Cintia de Godoy · Soul Path Reader</div>
+  </div>
+
+  <!-- ── BRIDGE TO A FULLER READING ── -->
+  <section class="bridge" id="bridge">
+    <div class="br-eyebrow">A bridge to a fuller reading</div>
+    <h2>What this <em>focused reading</em> opens</h2>
+    <p class="br-sub">An Area of Life Question is a single, focused excavation. It opens a door — and the room behind the door is wider than this reading can map.</p>
+
+    <p>This reading takes one specific question and follows it down into the chart — not to predict, but to recognise the patterns that organise the question's origin.</p>
+    <p>It is bounded by the question. Other rooms — the wider architecture of the soul, the timing of what is unfolding now, the gifts and challenges that live beyond this single area — remain to be walked.</p>
+
+    <h3>What a fuller reading would open next</h3>
+    <ul>
+      <li><strong>The full natal chart</strong> — every planet, asteroid, configuration, and house, read together as a single living instrument.</li>
+      <li><strong>Progressions and transits</strong> — what this season is for, where the next threshold lies, and when.</li>
+      <li><strong>A Soul Blueprint</strong> — five wisdom traditions woven together (Numerology, Chinese Astrology, the Maya Calendar, Western Astrology and Human Design), naming the complete architecture of the soul.</li>
+      <li><strong>Karmic Patterns</strong> — going deeper into the ancestral and lineage work begun here, with explicit attention to what is ready to be released.</li>
+    </ul>
+
+    <p class="quote">"A single question, asked with honesty, often turns out to be a doorway into the whole."</p>
+
+    <p>When you are ready — when the invitation feels genuine and the moment feels right — the next reading goes deeper.</p>
+
+    <div class="cta-row">
+      <a href="../index.html#form" class="btn-gold">Book your reading</a>
+      <a href="../index.html#offerings" class="btn-ghost">See all offerings</a>
+    </div>
+  </section>
+
+  <div class="doc-footer">
+    Sample template · Cinwicca © 2026 · <a href="../index.html">return to Cinwicca</a>
+  </div>
+
+</article>
+
+<script>
+// ── COSMOS CANVAS ──
+const canvas = document.getElementById('cosmos');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [];
+function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+resize(); addEventListener('resize', resize);
+for (let i = 0; i < 120; i++) {
+  stars.push({
+    x: Math.random(), y: Math.random(),
+    r: Math.random() * 1.1 + 0.2,
+    o: Math.random() * 0.5 + 0.1,
+    phase: Math.random() * Math.PI * 2,
+    speed: Math.random() * 0.0003 + 0.0001,
+    gold: Math.random() > 0.85
+  });
+}
+let t = 0;
+function drawCosmos() {
+  ctx.clearRect(0, 0, W, H);
+  stars.forEach(s => {
+    const pulse = Math.sin(t * s.speed * 1000 + s.phase) * 0.3 + 0.7;
+    ctx.beginPath();
+    ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = s.gold
+      ? `rgba(212,177,90,${s.o * pulse})`
+      : `rgba(220,210,200,${s.o * pulse})`;
+    ctx.fill();
+  });
+  t += 0.016;
+  requestAnimationFrame(drawCosmos);
+}
+drawCosmos();
+</script>
+</body>
+</html>

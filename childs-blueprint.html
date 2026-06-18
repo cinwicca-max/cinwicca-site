@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample · Child's Blueprint · Cinwicca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obsidian: #08090f;
+  --deep:     #0d1020;
+  --ink:      #141a2e;
+  --gold:     #d4b15a;
+  --gold-lt:  #ecd49a;
+  --gold-dk:  #8b6b22;
+  --rose:     #b67a8f;
+  --cream:    #f6ecd0;
+  --text:     #f1e7cf;
+  --text-2:   #d6c7a2;
+  --text-3:   #a99878;
+  --border:   rgba(212,177,90,0.18);
+  --border-b: rgba(212,177,90,0.42);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: var(--obsidian);
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.55; }
+
+/* ── NAV BAR ── */
+.docnav {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(8,9,15,0.85);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+.docnav a.back {
+  font-family: 'Cinzel', serif;
+  font-size: 0.74rem; font-weight: 500;
+  letter-spacing: 0.22em; color: var(--gold);
+  text-decoration: none; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: color 0.25s;
+}
+.docnav a.back:hover { color: var(--gold-lt); }
+.docnav .doctag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem; font-weight: 500;
+  color: var(--text-3); letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.docnav .doctag em { color: var(--gold); font-style: normal; }
+
+/* ── DOCUMENT FRAME ── */
+.doc {
+  position: relative; z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 5rem 2rem 6rem;
+}
+
+/* SAMPLE BANNER */
+.sample-banner {
+  border: 1px solid var(--border-b);
+  background:
+    linear-gradient(140deg, rgba(212,177,90,0.06), rgba(31,42,90,0.20));
+  border-radius: 3px;
+  padding: 1.6rem 1.8rem;
+  margin-bottom: 4rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.2rem;
+  align-items: center;
+}
+.sample-banner .glyph {
+  width: 48px; height: 48px;
+  border: 1px solid var(--border-b);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 1.4rem;
+}
+.sample-banner .eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem; letter-spacing: 0.3em;
+  color: var(--gold); text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+.sample-banner p {
+  font-size: 1rem; color: var(--text);
+  line-height: 1.6;
+}
+.sample-banner p em { color: var(--text-2); font-style: italic; }
+.sample-banner .lang-line {
+  font-size: 0.85rem; color: var(--text-3);
+  font-style: italic; margin-top: 0.4rem;
+}
+
+/* ── DOC HEADER ── */
+.doc-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem; letter-spacing: 0.32em;
+  color: var(--gold); text-transform: uppercase;
+  text-align: center; margin-bottom: 1.6rem;
+}
+.doc-dingbats { text-align: center; color: var(--gold); margin-bottom: 1.4rem; letter-spacing: 0.6em; font-size: 0.9rem; }
+.doc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  text-align: center; color: #fff;
+  line-height: 1.1; letter-spacing: -0.005em;
+  margin-bottom: 0.6rem;
+}
+.doc-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  text-align: center; color: var(--gold-lt);
+  margin-bottom: 2rem; font-weight: 400;
+}
+.doc-epigraph {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 1.15rem;
+  text-align: center; color: var(--text-2);
+  line-height: 1.6; max-width: 520px;
+  margin: 0 auto 3rem;
+}
+.doc-meta {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem; color: var(--text-3);
+  letter-spacing: 0.1em; margin-bottom: 4rem;
+  line-height: 1.7;
+}
+.doc-meta strong { color: var(--gold-lt); font-weight: 500; }
+
+/* ── CHAPTERS ── */
+.chapter-mark {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem; letter-spacing: 0.32em;
+  color: var(--gold); text-transform: uppercase;
+  text-align: center; margin-top: 5rem; margin-bottom: 1rem;
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(1.9rem, 3.8vw, 2.6rem);
+  text-align: center; color: #fff;
+  line-height: 1.2; margin-bottom: 3rem;
+}
+.chapter-title em { color: var(--gold-lt); font-style: italic; }
+.section-divider {
+  display: flex; align-items: center; gap: 1.2rem;
+  margin: 3rem auto; max-width: 360px;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-b));
+}
+.section-divider::after { background: linear-gradient(90deg, var(--border-b), transparent); }
+.section-divider span { color: var(--gold); font-size: 0.85rem; }
+
+h3.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500; font-size: 1.55rem;
+  color: var(--gold-lt); line-height: 1.25;
+  margin: 2.6rem 0 1rem; letter-spacing: -0.005em;
+}
+h4.sub-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-weight: 500;
+  font-size: 1.25rem; color: var(--cream);
+  margin: 1.8rem 0 0.7rem;
+}
+
+/* ── REDACTED / VEILED ── */
+.veiled {
+  font-size: 1.06rem; line-height: 1.75;
+  color: var(--text-2);
+  filter: blur(4.5px); opacity: 0.55;
+  user-select: none; pointer-events: none;
+  margin-bottom: 1rem; position: relative;
+}
+.veiled.short { max-width: 80%; }
+.veiled.shorter { max-width: 60%; }
+.veiled-strike {
+  text-decoration: line-through;
+  text-decoration-color: rgba(212,177,90,0.5);
+  text-decoration-thickness: 1.2px;
+  text-decoration-skip-ink: none;
+}
+.veil-cluster {
+  position: relative; padding-right: 0; margin-bottom: 1.6rem;
+}
+.veil-cluster::after {
+  content: ''; position: absolute;
+  top: 50%; right: -1.2rem;
+  width: 3px; height: 60%;
+  transform: translateY(-50%);
+  background: linear-gradient(to bottom, transparent, var(--gold-dk), transparent);
+  border-radius: 2px; opacity: 0.6;
+}
+
+/* ── VISIBLE EXCERPTS ── */
+.excerpt {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 1.25rem;
+  color: var(--gold-lt); line-height: 1.55;
+  border-left: 2px solid var(--gold-dk);
+  padding: 0.4rem 0 0.4rem 1.6rem;
+  margin: 1.6rem 0 1.8rem;
+}
+.excerpt small {
+  display: block; font-family: 'Cinzel', serif;
+  font-size: 0.62rem; font-style: normal;
+  letter-spacing: 0.2em; color: var(--text-3);
+  text-transform: uppercase; margin-top: 0.5rem;
+}
+.poem {
+  text-align: center; font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 1.2rem;
+  color: var(--gold-lt); line-height: 1.8;
+  margin: 1.4rem auto 2rem; max-width: 520px;
+}
+
+/* ── TITLES-ONLY LIST ── */
+.titles-only {
+  margin: 1.2rem 0 2rem; padding-left: 0; list-style: none;
+}
+.titles-only li {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; color: var(--text);
+  padding: 0.65rem 0 0.65rem 1.2rem;
+  border-left: 1px solid var(--border);
+  margin-bottom: 0.3rem; position: relative;
+}
+.titles-only li::before {
+  content: '✦'; position: absolute; left: -0.6rem; top: 0.7rem;
+  color: var(--gold); background: var(--obsidian);
+  padding: 0 0.3rem; font-size: 0.7rem;
+}
+.titles-only li small {
+  display: block; font-family: 'Inter', sans-serif;
+  font-size: 0.78rem; color: var(--text-3);
+  letter-spacing: 0.08em; margin-top: 0.2rem; font-style: italic;
+}
+
+/* ── BRIDGE / CTA BLOCK ── */
+.bridge {
+  margin-top: 6rem; padding: 3rem 2.4rem;
+  background: linear-gradient(140deg, rgba(31,42,90,0.25), rgba(13,16,32,0.5));
+  border: 1px solid var(--border-b); border-radius: 3px; position: relative;
+}
+.bridge::before {
+  content: ''; position: absolute; top: -1px; left: 20%; right: 20%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.bridge .br-eyebrow {
+  font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--gold); text-align: center; margin-bottom: 1rem;
+}
+.bridge h2 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 500;
+  font-size: clamp(1.8rem, 3.4vw, 2.4rem); text-align: center;
+  color: #fff; line-height: 1.2; margin-bottom: 0.6rem;
+}
+.bridge h2 em { color: var(--gold-lt); font-style: italic; }
+.bridge .br-sub {
+  text-align: center; font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 1.1rem; color: var(--text-2); margin-bottom: 2rem;
+}
+.bridge p { font-size: 1.05rem; color: var(--text); line-height: 1.75; margin-bottom: 1.1rem; }
+.bridge h3 {
+  font-family: 'Cinzel', serif; font-size: 0.85rem; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-lt);
+  margin: 2.2rem 0 1rem;
+}
+.bridge ul { list-style: none; padding-left: 0; }
+.bridge ul li {
+  font-size: 1.02rem; color: var(--text); line-height: 1.6;
+  padding: 0.7rem 0 0.7rem 1.5rem;
+  border-bottom: 1px solid rgba(212,177,90,0.08);
+  position: relative;
+}
+.bridge ul li:last-child { border-bottom: 0; }
+.bridge ul li::before {
+  content: '◈'; position: absolute; left: 0; top: 0.85rem;
+  font-size: 0.6rem; color: var(--gold);
+}
+.bridge ul li strong { color: var(--gold-lt); font-weight: 500; font-style: italic; }
+.bridge .quote {
+  text-align: center; font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 1.2rem; color: var(--gold-lt);
+  border-left: 0; margin: 2.6rem auto; max-width: 540px; line-height: 1.55;
+}
+.bridge .cta-row {
+  text-align: center; margin-top: 2.5rem;
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+.btn-gold, .btn-ghost {
+  font-family: 'Cinzel', serif; font-size: 0.76rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 1rem 2.2rem; text-decoration: none;
+  border-radius: 2px; display: inline-block; transition: all 0.3s;
+  border: 1px solid transparent;
+}
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-dk), var(--gold), var(--gold-dk));
+  color: var(--obsidian); font-weight: 600;
+}
+.btn-gold:hover { background: linear-gradient(135deg, var(--gold), var(--gold-lt), var(--gold)); box-shadow: 0 0 30px rgba(212,177,90,0.25); }
+.btn-ghost { background: transparent; color: var(--gold); border-color: var(--border-b); }
+.btn-ghost:hover { background: rgba(212,177,90,0.06); border-color: var(--gold); }
+
+/* ── SIGNATURE ── */
+.signature {
+  text-align: center; margin-top: 5rem;
+  padding: 3rem 0 2rem; border-top: 1px solid var(--border);
+}
+.signature .glyph { color: var(--gold); font-size: 1.4rem; letter-spacing: 0.6em; margin-bottom: 1rem; }
+.signature .sign-name {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 1.6rem; color: var(--gold); margin-bottom: 0.4rem;
+}
+.signature .sign-sub {
+  font-family: 'Cinzel', serif; font-size: 0.7rem;
+  letter-spacing: 0.28em; color: var(--text-3); text-transform: uppercase;
+}
+.doc-footer {
+  text-align: center; margin-top: 4rem;
+  font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--text-3);
+}
+.doc-footer a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--border-b); }
+.doc-footer a:hover { color: var(--gold-lt); }
+
+@media (max-width: 640px) {
+  .doc { padding: 4rem 1.4rem 5rem; }
+  .bridge { padding: 2.4rem 1.4rem; }
+  .veiled { filter: blur(3.5px); }
+  body { font-size: 17px; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<nav class="docnav">
+  <a class="back" href="../index.html">← Cinwicca · Home</a>
+  <div class="doctag"><em>●</em> Sample · Child's Blueprint</div>
+</nav>
+
+<article class="doc">
+
+  <!-- SAMPLE BANNER -->
+  <div class="sample-banner">
+    <div class="glyph">🌙</div>
+    <div>
+      <div class="eyebrow">Sample reading · Child's Blueprint</div>
+      <p>This is a sample of a <strong>Child's Blueprint</strong> reading. The child's identity has been <em>fully withheld out of deep respect</em> — all names, dates, biographical detail and personal content are masked. What remains visible is the <strong>shape of the work</strong>: the structure, voice, and passages that belong to the child's particular soul-nature.</p>
+      <div class="lang-line">Child readings are written for the adults who love them — in their preferred language (PT-BR · ES · EN).</div>
+    </div>
+  </div>
+
+  <!-- DOCUMENT TITLE BLOCK -->
+  <div class="doc-eyebrow">A Soul Path Reading by Cinwicca</div>
+  <div class="doc-dingbats">✶ &nbsp; ✦ &nbsp; ✶</div>
+  <h1 class="doc-title">O Mapa <em style="font-style:italic; color:var(--gold-lt); font-family:'Cormorant Garamond';">da Alma</em></h1>
+  <p class="doc-subtitle">a map for cultivating the soul — not for fixing it</p>
+  <p class="doc-epigraph">um mapa de cultivo da alma —<br>não de destino</p>
+  <div class="doc-meta">
+    <strong>A Convergence Reading</strong><br>
+    Chinese Astrology · Maya Calendar · Numerology<br>Human Design &amp; Gene Keys · Astrology<br>
+    <br>Written in Portuguese · Sample veiled for privacy
+  </div>
+
+  <!-- ── PREFACE — Terms & Purpose ── -->
+  <div class="chapter-mark">Preface</div>
+  <h2 class="chapter-title">Before <em>We Begin</em></h2>
+
+  <div class="excerpt">
+    "This document is an instrument of contemplation, offered as a map for cultivating the soul of a specific child — and for the adults who love them."
+  </div>
+
+  <p style="font-size:1.06rem; color:var(--text); line-height:1.78; margin-bottom:1.4rem;">This reading gathers five ancient symbolic traditions — Chinese astrology, the Maya calendar, cabalistic numerology, Human Design (with the Gene Keys) and Western astrology — read in synthesis, at the line where they meet.</p>
+
+  <ul class="titles-only">
+    <li>What this map is — a symbolic mirror, written with care</li>
+    <li>What this map is not — not a diagnosis, not a prediction</li>
+    <li>How to read — slowly, and across the years of a life</li>
+  </ul>
+
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">Read with lightness in the lap and firmness in the heart. Keep what resonates. Return to time what does not yet make sense — it may make sense in ten years. Remember always: the map is never the territory. This child is, and will always be, greater than any page written about them.</p>
+  </div>
+
+  <!-- ── DEDICATION POEM (visible — as in the others) ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">For the Child</div>
+  <h2 class="chapter-title"><em>A Letter to a Soul</em></h2>
+
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">You arrived as rivers arrive: without asking permission, but bringing life to everything they touch. There are children who enter the world running. You seem to have arrived listening — as one who already knew the sound of the wind, the secret of the waters, and the silent language of the stars.</p>
+    <p class="veiled veiled-strike short">May they never rush your flowering. Every flower has a secret rhythm, and the rarest ones open slowly.</p>
+  </div>
+
+  <div class="poem">
+    May they give you ground without cutting your wings.<br>
+    May they give you roots<br>
+    so that the sky never frightens you.<br>
+    And may you, even when you grow,<br>
+    keep alive in you<br>
+    that gentle courage<br>
+    of feeling the whole world<br>
+    without becoming hard.
+  </div>
+
+  <!-- ── CHAPTER 1 — CHINESE ASTROLOGY ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Chapter One</div>
+  <h2 class="chapter-title">Chinese Astrology<br><em>The Year's Element</em></h2>
+
+  <ul class="titles-only">
+    <li>The Animal — the soul's foundation in time</li>
+    <li>The Element — the medium through which they move</li>
+    <li>The Fixed Element — an innate frequency</li>
+    <li>Yin or Yang — the quality of energy</li>
+  </ul>
+
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">In Chinese cosmology, this child was born in the Year of the __ __ — and this is not a small designation. The __ carries a particular quality of attunement: a sensitivity to atmosphere, to unspoken feeling, to the emotional temperature of a room before any word has been said.</p>
+    <p class="veiled veiled-strike short">The element gives this child a way of understanding the world that is not purely rational — it is felt, tasted, sensed at the edges of experience.</p>
+  </div>
+
+  <!-- ── CHAPTER 2 — MAYA CALENDAR ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Chapter Two</div>
+  <h2 class="chapter-title">The Maya Calendar<br><em>The Galactic Signature</em></h2>
+
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">The Maya cosmological system assigns each soul a galactic signature — a solar seal and a tone — that describes not what a person does, but the frequency they carry into the world simply by being.</p>
+  </div>
+
+  <ul class="titles-only">
+    <li>The Solar Seal — the soul's essential nature</li>
+    <li>The Tone — the quality of purpose</li>
+    <li>The Guiding Power — what orients them from within</li>
+  </ul>
+
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">This child's signature speaks of a particular quality of knowing — not the knowing that comes from books or instruction, but the knowing that arrives quietly, as water finds its level.</p>
+    <p class="veiled veiled-strike shorter">The tone suggests a life organised around a specific kind of deepening.</p>
+  </div>
+
+  <!-- ── CHAPTER 3 — NUMEROLOGY ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Chapter Three</div>
+  <h2 class="chapter-title">Numerology<br><em>The Architecture of the Name and Date</em></h2>
+
+  <h3 class="section-title">The Soul Number</h3>
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">The soul number is not the child's personality — it is the frequency of the soul's deepest longing. It names what this child will seek, instinctively and again and again, beneath every circumstance.</p>
+    <p class="veiled veiled-strike short">The number reduces to __ — a vibration associated with __. These are not qualities to be taught. They are already present.</p>
+  </div>
+
+  <h3 class="section-title">The Life Path</h3>
+  <ul class="titles-only">
+    <li>Core Life Theme — the thread that holds the life together</li>
+    <li>Shadow Curriculum — the recurring friction that teaches</li>
+    <li>The Gift — what emerges when shadow is integrated</li>
+  </ul>
+
+  <!-- ── CHAPTER 4 — HUMAN DESIGN & GENE KEYS ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Chapter Four</div>
+  <h2 class="chapter-title">Human Design &amp; Gene Keys<br><em>The Bodygraph</em></h2>
+
+  <h3 class="section-title">Type · Strategy · Authority</h3>
+  <ul class="titles-only">
+    <li>Energy Type — how this child is designed to move through life</li>
+    <li>Strategy — the specific decision-making pathway for this type</li>
+    <li>Authority — the body's way of knowing what is correct</li>
+    <li>Profile — the soul's life role, in two lines</li>
+    <li>Definition — how energy moves through the centres</li>
+  </ul>
+
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">The type tells us something essential about how this child experiences energy — and how they most naturally engage with the world. Understanding the type is the most practical gift a parent can hold, because it transforms what might otherwise look like a challenge into legible design.</p>
+    <p class="veiled veiled-strike short">The authority names how the body already knows — before the mind catches up. For this child, that means __.</p>
+  </div>
+
+  <h3 class="section-title">Key Gene Keys — The Gift Line</h3>
+  <ul class="titles-only">
+    <li>Gene Key __ — from __ (shadow) to __ (gift) to __ (siddhi)</li>
+    <li>Gene Key __ — from __ (shadow) to __ (gift) to __ (siddhi)</li>
+    <li>Gene Key __ — from __ (shadow) to __ (gift) to __ (siddhi)</li>
+  </ul>
+
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">The Gene Keys do not describe fixed personality traits. They describe a spectrum of possible expression — and the art of parenting with awareness is to understand which end of the spectrum a child needs encouragement toward, without ever shaming the shadow that is simply a part of human experience.</p>
+  </div>
+
+  <!-- ── CHAPTER 5 — WESTERN ASTROLOGY ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Chapter Five</div>
+  <h2 class="chapter-title">Astrology<br><em>The Celestial Blueprint</em></h2>
+
+  <h3 class="section-title">The Ascendant — First Breath</h3>
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike short">The ascendant is the mask the soul wore at the moment of first breath — and it tells us how this child meets the world, and how the world first meets them.</p>
+  </div>
+
+  <h3 class="section-title">The Personal Planets</h3>
+  <ul class="titles-only">
+    <li>Sun — the core identity; what this child is here to become</li>
+    <li>Moon — the emotional body; what this child needs to feel safe</li>
+    <li>Mercury — how they think and communicate</li>
+    <li>Venus — what they love and value</li>
+    <li>Mars — how they act, assert, and pursue</li>
+  </ul>
+
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">The Moon's placement is particularly important in a child's chart. It names what this child needs to feel held — not what they demand, but what nourishes the deep root. A Moon in __ needs __. This is not a preference; it is a developmental requirement.</p>
+    <p class="veiled veiled-strike short">The Sun will only fully arrive later — perhaps in the twenties and thirties. For now, it is the Moon that speaks most clearly about who this child is.</p>
+  </div>
+
+  <h3 class="section-title">Notable Configurations</h3>
+  <ul class="titles-only">
+    <li>Key aspect 1 — what it names in this child's temperament</li>
+    <li>Key aspect 2 — the creative gifts it carries</li>
+    <li>Key aspect 3 — the shadow it may cast, and how to work with it</li>
+  </ul>
+
+  <!-- ── CHAPTER 6 — CONVERGENCE ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Chapter Six</div>
+  <h2 class="chapter-title">The Convergence<br><em>Where the Maps Meet</em></h2>
+
+  <div class="excerpt">
+    "When five different wisdom traditions — born in five different cultures, across five different centuries — converge on the same themes, the message is no longer a curiosity. It is a declaration."
+  </div>
+
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">Five separate systems — each developed independently, in different corners of the world, with different vocabularies and cosmologies — have been asked the same question about this child. And what they return is remarkable for its consistency.</p>
+    <p class="veiled veiled-strike">Each tradition uses different language. But the same quality surfaces again and again: a child who __ — who __ — who, when met correctly, can __.</p>
+  </div>
+
+  <ul class="titles-only">
+    <li>Theme 1 — what all five traditions see in common</li>
+    <li>Theme 2 — the soul's particular quality of sensitivity</li>
+    <li>Theme 3 — what needs protection in the early years</li>
+    <li>Theme 4 — what will emerge as natural gift</li>
+    <li>Theme 5 — what this child will teach the adults around them</li>
+  </ul>
+
+  <!-- ── FINAL SECTION — Love Letter to Parents ── -->
+  <div class="section-divider"><span>✦ &nbsp; ✶ &nbsp; ✦</span></div>
+  <div class="chapter-mark">A Note for Those Who Love Them</div>
+  <h2 class="chapter-title"><em>A Gardener's Guide</em></h2>
+
+  <div class="excerpt" style="font-size:1.3rem;">
+    Raising a child without understanding their design is like planting a seed without knowing whether it prefers sun or shade, clay or sand, solitude or abundance.
+  </div>
+
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">This child does not need to be fixed. They need to be understood. And what this map can offer — to a parent who reads it slowly, over years — is the particular grammar of this specific soul.</p>
+    <p class="veiled veiled-strike">The convergence of these five traditions tells us something precise about what this child needs to flourish — and equally, what can wound them in ways that take years to surface.</p>
+  </div>
+
+  <div class="excerpt" style="text-align:center; border-left:0; padding-left:0;">
+    "The map is not the child. But it is a very good mirror of the child."
+  </div>
+
+  <p class="veiled veiled-strike short">Trust what you already feel about them. This document only names it.</p>
+
+  <div style="text-align:center; margin: 2.5rem 0 1rem;">
+    <div style="color:var(--gold); letter-spacing:0.6em; font-size:0.95rem;">★ &nbsp; ★ &nbsp; ★</div>
+  </div>
+
+  <h2 class="chapter-title" style="font-size:clamp(1.7rem,3.4vw,2.3rem); margin-bottom:1.5rem;">
+    <em>May this child be seen. May they be well.</em>
+  </h2>
+  <p style="text-align:center; font-style:italic; color:var(--text-2); font-size:1.1rem; line-height:1.7; max-width:520px; margin:0 auto 3rem;">
+    The soul arrived already whole.<br>
+    The only task is not to break what is already there —<br>
+    and to water what is still, quietly, becoming.
+  </p>
+
+  <!-- ── SIGNATURE ── -->
+  <div class="signature">
+    <div class="glyph">✦ &nbsp; ✶ &nbsp; ✦</div>
+    <div class="sign-name">Cinwicca</div>
+    <div class="sign-sub">Cintia de Godoy · Soul Path Reader</div>
+  </div>
+
+  <!-- ── BRIDGE / CTA ── -->
+  <section class="bridge" id="bridge">
+    <div class="br-eyebrow">A reading for the adults who love them</div>
+    <h2>Understanding Your <em>Child's Design</em></h2>
+    <p class="br-sub">This reading is written for parents, grandparents, and caregivers — anyone who holds this child's growing.</p>
+
+    <p>The Child's Blueprint is one of the most tender offerings in the Soul Path practice. It is written slowly, with particular care — because the soul being mapped cannot yet speak for themselves. What this document offers is a way of <em>seeing</em> a child before the world has had time to explain them to themselves.</p>
+    <p>Every child who comes into the world carries a specific design — a particular configuration of temperament, sensitivity, gifts, and shadow. Understanding that design does not limit a child. It liberates the adults around them from projecting the wrong expectations.</p>
+
+    <h3>What a Child's Blueprint Includes</h3>
+    <ul>
+      <li><strong>Five-tradition convergence</strong> — Chinese astrology, Maya calendar, numerology, Human Design &amp; Gene Keys, and Western astrology, read in synthesis.</li>
+      <li><strong>Developmental notes</strong> — what matters in early childhood, what emerges in adolescence, what the soul is building toward.</li>
+      <li><strong>A practical section for parents</strong> — concrete, grounded guidance on how to support this specific child's design.</li>
+      <li><strong>A written in your language</strong> — PT-BR, Spanish, or English, as you prefer.</li>
+    </ul>
+
+    <p class="quote">"The map is not the child. But for the adults who love them, it can be the beginning of a very different kind of seeing."</p>
+
+    <div class="cta-row">
+      <a href="../index.html#form" class="btn-gold">Book a Child's Blueprint</a>
+      <a href="../index.html#offerings" class="btn-ghost">See all offerings</a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <div class="doc-footer">
+    Sample · Cinwicca © 2026 · <a href="../index.html">return to Cinwicca</a>
+  </div>
+
+</article>
+
+<script>
+// ── COSMOS CANVAS ──
+const canvas = document.getElementById('cosmos');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [];
+function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+resize(); addEventListener('resize', resize);
+for (let i = 0; i < 120; i++) {
+  stars.push({
+    x: Math.random(), y: Math.random(),
+    r: Math.random() * 1.1 + 0.2,
+    o: Math.random() * 0.5 + 0.1,
+    phase: Math.random() * Math.PI * 2,
+    speed: Math.random() * 0.0003 + 0.0001,
+    gold: Math.random() > 0.85
+  });
+}
+let t = 0;
+function drawCosmos() {
+  ctx.clearRect(0, 0, W, H);
+  stars.forEach(s => {
+    const pulse = Math.sin(t * s.speed * 1000 + s.phase) * 0.3 + 0.7;
+    ctx.beginPath();
+    ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = s.gold
+      ? `rgba(212,177,90,${s.o * pulse})`
+      : `rgba(220,210,200,${s.o * pulse})`;
+    ctx.fill();
+  });
+  t += 0.016;
+  requestAnimationFrame(drawCosmos);
+}
+drawCosmos();
+</script>
+</body>
+</html>

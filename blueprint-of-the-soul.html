@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample · Blueprint of the Soul · Cinwicca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obsidian: #08090f;
+  --deep:     #0d1020;
+  --ink:      #141a2e;
+  --gold:     #d4b15a;
+  --gold-lt:  #ecd49a;
+  --gold-dk:  #8b6b22;
+  --rose:     #b67a8f;
+  --cream:    #f6ecd0;
+  --text:     #f1e7cf;
+  --text-2:   #d6c7a2;
+  --text-3:   #a99878;
+  --border:   rgba(212,177,90,0.18);
+  --border-b: rgba(212,177,90,0.42);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: var(--obsidian);
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.55; }
+
+/* ── NAV BAR ── */
+.docnav {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(8,9,15,0.85);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+.docnav a.back {
+  font-family: 'Cinzel', serif;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: color 0.25s;
+}
+.docnav a.back:hover { color: var(--gold-lt); }
+.docnav .doctag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem; font-weight: 500;
+  color: var(--text-3); letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.docnav .doctag em { color: var(--gold); font-style: normal; }
+
+/* ── DOCUMENT FRAME ── */
+.doc {
+  position: relative; z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 5rem 2rem 6rem;
+}
+
+/* SAMPLE BANNER */
+.sample-banner {
+  border: 1px solid var(--border-b);
+  background:
+    linear-gradient(140deg, rgba(212,177,90,0.06), rgba(31,42,90,0.20));
+  border-radius: 3px;
+  padding: 1.6rem 1.8rem;
+  margin-bottom: 4rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.2rem;
+  align-items: center;
+}
+.sample-banner .glyph {
+  width: 48px; height: 48px;
+  border: 1px solid var(--border-b);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 1.4rem;
+}
+.sample-banner .eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem; letter-spacing: 0.3em;
+  color: var(--gold); text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+.sample-banner p {
+  font-size: 1rem; color: var(--text);
+  line-height: 1.6;
+}
+.sample-banner p em { color: var(--text-2); font-style: italic; }
+.sample-banner .lang-line {
+  font-size: 0.85rem;
+  color: var(--text-3);
+  font-style: italic;
+  margin-top: 0.4rem;
+}
+
+/* ── DOC HEADER ── */
+.doc-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem; letter-spacing: 0.32em;
+  color: var(--gold); text-transform: uppercase;
+  text-align: center; margin-bottom: 1.6rem;
+}
+.doc-dingbats { text-align: center; color: var(--gold); margin-bottom: 1.4rem; letter-spacing: 0.6em; font-size: 0.9rem; }
+.doc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  text-align: center;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  margin-bottom: 0.6rem;
+}
+.doc-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  text-align: center;
+  color: var(--gold-lt);
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+.doc-epigraph {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  text-align: center;
+  color: var(--text-2);
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 auto 3rem;
+}
+.doc-meta {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: var(--text-3);
+  letter-spacing: 0.1em;
+  margin-bottom: 4rem;
+  line-height: 1.7;
+}
+.doc-meta strong { color: var(--gold-lt); font-weight: 500; }
+
+/* ── CHAPTERS & HEADINGS ── */
+.chapter-mark {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem; letter-spacing: 0.32em;
+  color: var(--gold); text-transform: uppercase;
+  text-align: center;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(1.9rem, 3.8vw, 2.6rem);
+  text-align: center;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 3rem;
+}
+.chapter-title em { color: var(--gold-lt); font-style: italic; }
+.section-divider {
+  display: flex; align-items: center; gap: 1.2rem;
+  margin: 3rem auto;
+  max-width: 360px;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-b));
+}
+.section-divider::after { background: linear-gradient(90deg, var(--border-b), transparent); }
+.section-divider span { color: var(--gold); font-size: 0.85rem; }
+
+h3.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 1.55rem;
+  color: var(--gold-lt);
+  line-height: 1.25;
+  margin: 2.6rem 0 1rem;
+  letter-spacing: -0.005em;
+}
+h4.sub-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: var(--cream);
+  margin: 1.8rem 0 0.7rem;
+}
+
+/* ── REDACTED / VEILED PARAGRAPHS ── */
+.veiled {
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: var(--text-2);
+  filter: blur(4.5px);
+  opacity: 0.55;
+  user-select: none;
+  pointer-events: none;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.veiled.short { max-width: 80%; }
+.veiled.shorter { max-width: 60%; }
+
+.veiled-strike {
+  text-decoration: line-through;
+  text-decoration-color: rgba(212,177,90,0.5);
+  text-decoration-thickness: 1.2px;
+  text-decoration-skip-ink: none;
+}
+
+/* a thin "veiled" badge that floats on the right of redacted clusters */
+.veil-cluster {
+  position: relative;
+  padding-right: 0;
+  margin-bottom: 1.6rem;
+}
+.veil-cluster::after {
+  content: '';
+  position: absolute;
+  top: 50%; right: -1.2rem;
+  width: 3px; height: 60%;
+  transform: translateY(-50%);
+  background: linear-gradient(to bottom, transparent, var(--gold-dk), transparent);
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+/* ── VISIBLE EXCERPTS (the rare lines we keep readable) ── */
+.excerpt {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--gold-lt);
+  line-height: 1.55;
+  border-left: 2px solid var(--gold-dk);
+  padding: 0.4rem 0 0.4rem 1.6rem;
+  margin: 1.6rem 0 1.8rem;
+}
+.excerpt small {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  font-style: normal;
+  letter-spacing: 0.2em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+.poem {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--gold-lt);
+  line-height: 1.8;
+  margin: 1.4rem auto 2rem;
+  max-width: 520px;
+}
+
+/* ── BULLETED LIST of visible-only titles inside a redacted chapter ── */
+.titles-only {
+  margin: 1.2rem 0 2rem;
+  padding-left: 0;
+  list-style: none;
+}
+.titles-only li {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--text);
+  padding: 0.65rem 0 0.65rem 1.2rem;
+  border-left: 1px solid var(--border);
+  margin-bottom: 0.3rem;
+  position: relative;
+}
+.titles-only li::before {
+  content: '✦';
+  position: absolute; left: -0.6rem; top: 0.7rem;
+  color: var(--gold);
+  background: var(--obsidian);
+  padding: 0 0.3rem;
+  font-size: 0.7rem;
+}
+.titles-only li small {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+  margin-top: 0.2rem;
+  font-style: italic;
+}
+
+/* ── THE FULLY VISIBLE "WHAT THE MAP DOES NOT YET SHOW" ── */
+.bridge {
+  margin-top: 6rem;
+  padding: 3rem 2.4rem;
+  background: linear-gradient(140deg, rgba(31,42,90,0.25), rgba(13,16,32,0.5));
+  border: 1px solid var(--border-b);
+  border-radius: 3px;
+  position: relative;
+}
+.bridge::before {
+  content: '';
+  position: absolute; top: -1px; left: 20%; right: 20%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.bridge .br-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--gold);
+  text-align: center; margin-bottom: 1rem;
+}
+.bridge h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+  text-align: center;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.bridge h2 em { color: var(--gold-lt); font-style: italic; }
+.bridge .br-sub {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--text-2);
+  margin-bottom: 2rem;
+}
+.bridge p { font-size: 1.05rem; color: var(--text); line-height: 1.75; margin-bottom: 1.1rem; }
+.bridge h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold-lt);
+  margin: 2.2rem 0 1rem;
+}
+.bridge ul { list-style: none; padding-left: 0; }
+.bridge ul li {
+  font-size: 1.02rem; color: var(--text);
+  line-height: 1.6; padding: 0.7rem 0 0.7rem 1.5rem;
+  border-bottom: 1px solid rgba(212,177,90,0.08);
+  position: relative;
+}
+.bridge ul li:last-child { border-bottom: 0; }
+.bridge ul li::before {
+  content: '◈'; position: absolute; left: 0; top: 0.85rem;
+  font-size: 0.6rem; color: var(--gold);
+}
+.bridge ul li strong { color: var(--gold-lt); font-weight: 500; font-style: italic; }
+.bridge .quote {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--gold-lt);
+  border-left: 0;
+  margin: 2.6rem auto;
+  max-width: 540px;
+  line-height: 1.55;
+}
+.bridge .cta-row {
+  text-align: center;
+  margin-top: 2.5rem;
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+.btn-gold, .btn-ghost {
+  font-family: 'Cinzel', serif;
+  font-size: 0.76rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 1rem 2.2rem;
+  text-decoration: none;
+  border-radius: 2px;
+  display: inline-block;
+  transition: all 0.3s;
+  border: 1px solid transparent;
+}
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-dk), var(--gold), var(--gold-dk));
+  color: var(--obsidian); font-weight: 600;
+}
+.btn-gold:hover { background: linear-gradient(135deg, var(--gold), var(--gold-lt), var(--gold)); box-shadow: 0 0 30px rgba(212,177,90,0.25); }
+.btn-ghost { background: transparent; color: var(--gold); border-color: var(--border-b); }
+.btn-ghost:hover { background: rgba(212,177,90,0.06); border-color: var(--gold); }
+
+/* ── SIGNATURE ── */
+.signature {
+  text-align: center;
+  margin-top: 5rem;
+  padding: 3rem 0 2rem;
+  border-top: 1px solid var(--border);
+}
+.signature .glyph {
+  color: var(--gold); font-size: 1.4rem;
+  letter-spacing: 0.6em; margin-bottom: 1rem;
+}
+.signature .sign-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+.signature .sign-sub {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+
+/* ── FOOTER LINK ── */
+.doc-footer {
+  text-align: center;
+  margin-top: 4rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: var(--text-3);
+}
+.doc-footer a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--border-b); }
+.doc-footer a:hover { color: var(--gold-lt); }
+
+@media (max-width: 640px) {
+  .doc { padding: 4rem 1.4rem 5rem; }
+  .bridge { padding: 2.4rem 1.4rem; }
+  .veiled { filter: blur(3.5px); }
+  body { font-size: 17px; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<nav class="docnav">
+  <a class="back" href="../index.html">← Cinwicca · Home</a>
+  <div class="doctag"><em>●</em> Sample · template</div>
+</nav>
+
+<article class="doc">
+
+  <!-- SAMPLE BANNER -->
+  <div class="sample-banner">
+    <div class="glyph">☾</div>
+    <div>
+      <div class="eyebrow">Sample reading · Template preview</div>
+      <p>This is a sample of a <strong>Blueprint of the Soul</strong> reading. The recipient's personal content has been <em>veiled with deep respect</em> — names, dates, biography and private detail are masked. What remains visible is the <strong>shape of the work</strong>: structure, voice, the rhythm of the synthesis, and the closing passages.</p>
+      <div class="lang-line">This sample is in English. Your own reading will be written in your preferred language (PT-BR · ES · EN).</div>
+    </div>
+  </div>
+
+  <!-- DOCUMENT TITLE BLOCK -->
+  <div class="doc-eyebrow">A Soul Path Reading by Cinwicca</div>
+  <div class="doc-dingbats">✶ &nbsp; ✦ &nbsp; ✶</div>
+  <h1 class="doc-title">Blueprint <em style="font-style:italic; color:var(--gold-lt); font-family:'Cormorant Garamond';">of the</em> Soul</h1>
+  <p class="doc-subtitle">A Living Map for a Radiant Soul</p>
+  <p class="doc-epigraph">Where the stars become a language<br>and the soul, its own answer.</p>
+  <div class="doc-meta">
+    <strong>A synthesis of</strong><br>
+    Numerology · Chinese Astrology · Maya Calendar<br>Western Astrology &amp; Human Design
+  </div>
+
+  <!-- ── PREFACE ── -->
+  <div class="chapter-mark">Preface</div>
+  <h2 class="chapter-title">The <em>Intention</em></h2>
+
+  <div class="excerpt">
+    "This is not a fortune-telling document. It is a map — and maps do not tell you where to go. They show you the terrain, the rivers, the mountains."
+  </div>
+
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">You are __ years old, and you have no idea — not fully, not consciously — how extraordinary the architecture of your soul truly is. The years have brought their layers of habit, their adaptations to a world that often does not see what you are, and a quiet certainty about who you have become.</p>
+    <p class="veiled veiled-strike">Consider this your personal archaeology report. Five different wisdom systems — Numerology, Chinese Astrology, the Maya Calendar, Western Astrology and Human Design — have been excavated and laid side by side, each illuminating a different face of the same singular configuration.</p>
+    <p class="veiled veiled-strike short">Read slowly. Take notes. Laugh when it is funny — and it will be. Weep when it moves you — and it might.</p>
+  </div>
+
+  <div class="excerpt" style="text-align:center; border-left:0; padding-left:0;">
+    "Welcome to yourself."
+  </div>
+
+  <!-- ── CHAPTER 1 — NUMEROLOGY ── -->
+  <div class="chapter-mark">Chapter One</div>
+  <h2 class="chapter-title">Numerology<br><em>The Architecture in the Numbers</em></h2>
+
+  <h3 class="section-title">The Soul Number</h3>
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">If numbers could breathe, yours would breathe deeply, with intention. Your soul number is not merely a __. It is __, collapsing into __, refining into the Master Number __, which grounds into the partnership vibration.</p>
+  </div>
+
+  <h4 class="sub-title">The Master Number — The Spiritual Illuminator</h4>
+  <p class="veiled veiled-strike">The __ does not reduce further in numerology. It is complete in itself. It is the energy of the Spiritual Channel: the one who carries light through the body of community.</p>
+
+  <h3 class="section-title">The Gift Number — The Cosmic Nurturer</h3>
+  <p class="veiled veiled-strike short">Your gift number is __: the number of beauty, harmony, responsibility, and aesthetic intelligence. Others feel nurtured and elevated in your presence. This is not accidental. This is your gift, working.</p>
+
+  <h3 class="section-title">The Three Challenges — A Soul's Curriculum</h3>
+  <ul class="titles-only">
+    <li>Challenge 1 — Self-Definition <small>(completed)</small></li>
+    <li>Challenge 2 — Foundation and Structure <small>(completed)</small></li>
+    <li>Challenge 3 — Creative Expression <small>(current)</small></li>
+  </ul>
+  <p class="veiled veiled-strike shorter">This is the great one. It is not punishment. It is the universe asking the deepest question it has ever asked of you.</p>
+
+  <!-- ── CHAPTER 2 — CHINESE ASTROLOGY ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Chapter Two</div>
+  <h2 class="chapter-title">Chinese Astrology<br><em>The Element of the Year</em></h2>
+
+  <ul class="titles-only">
+    <li>The Animal — The Generous One</li>
+    <li>The Element — The Nurturer of Nourishment</li>
+    <li>The Midas Touch in the Chinese System</li>
+  </ul>
+
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">In the ancient Chinese cosmological system, you were born in the Year of the __ __ — and this is no small designation. The __ is associated with abundance — not because they accumulate, but because they attract.</p>
+    <p class="veiled veiled-strike short">Your element gives you a particular practical intelligence: you can hold the visionary dream and know what it takes to water it down into earth.</p>
+  </div>
+
+  <!-- ── CHAPTER 3 — MAYA CALENDAR ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Chapter Three</div>
+  <h2 class="chapter-title">The Maya Calendar<br><em>Your Galactic Signature</em></h2>
+
+  <p class="poem">
+    I Dissolve in order to Dream.<br>
+    I Release Intuition.<br>
+    I seal the input of abundance<br>
+    with the Spectral tone of Liberation.<br>
+    I am guided by the power of my own power doubled.
+  </p>
+
+  <ul class="titles-only">
+    <li>The Keeper of Intuitive Abundance</li>
+    <li>The Spectral Tone — Liberation Through Release</li>
+    <li>Guided by Own Power Doubled — The Sovereign Self</li>
+  </ul>
+
+  <p class="veiled veiled-strike">In the Maya cosmological system, the Night is associated with the dream state — not passive sleep, but the quality of awareness that can access the unseen abundance of the inner world.</p>
+
+  <!-- ── CHAPTER 4 — WESTERN ASTROLOGY ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Chapter Four</div>
+  <h2 class="chapter-title">Astrology<br><em>The Celestial Blueprint</em></h2>
+
+  <h3 class="section-title">The Ascendant — The Sacred Beginning</h3>
+  <p class="veiled veiled-strike short">Your rising sign stands at the very first breath of __. To be born at this cusp means you carry the seed of the entire sign at its most undiluted.</p>
+
+  <h3 class="section-title">The Personal Planets</h3>
+  <ul class="titles-only">
+    <li>The Sun — The Mystic at the Threshold</li>
+    <li>The Moon — The Warrior Soul</li>
+    <li>Mercury — The Philosophical Tongue</li>
+    <li>Venus — In Her Own Kingdom</li>
+    <li>Mars — The Precise Warrior</li>
+  </ul>
+
+  <h3 class="section-title">The Outer Planets &amp; Transpersonal Bodies</h3>
+  <ul class="titles-only">
+    <li>Jupiter — In His Own Kingdom</li>
+    <li>Saturn — The Architect</li>
+    <li>Uranus — Rising, Revolutionary</li>
+    <li>Neptune — The Mystic Veil</li>
+    <li>Pluto — The Sacred Transformer</li>
+    <li>Chiron — The Wounded Healer of Community</li>
+    <li>Black Moon Lilith — The Wild Voice</li>
+    <li>North Node — The Soul's Direction</li>
+    <li>The Midheaven — What the World Sees</li>
+  </ul>
+
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">Your Sun — your central identity, your life force, your creative core — is in __, the sign of depth, transformation, and the mysteries that live beneath the surface of conscious life.</p>
+    <p class="veiled veiled-strike short">Your five-body __ Stellium makes this a powerhouse. You do not merely visit the deep waters — you are the deep waters.</p>
+  </div>
+
+  <h3 class="section-title">The Major Configurations — Where the Symphony Plays</h3>
+  <ul class="titles-only">
+    <li>The Stellium <small>five bodies in one sign</small></li>
+    <li>The Grand Fire Trine <small>sustained creative momentum</small></li>
+    <li>The Kite <small>the trine given a mission</small></li>
+    <li>The Grand Cross <small>the crucible of development</small></li>
+    <li>The Bucket Shape <small>one handle, one mission</small></li>
+  </ul>
+
+  <!-- ── CHAPTER 5 — HUMAN DESIGN ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Chapter Five</div>
+  <h2 class="chapter-title">Human Design<br><em>A Survival Manual</em></h2>
+
+  <h3 class="section-title">Energy Type · Strategy · Authority</h3>
+  <ul class="titles-only">
+    <li>Type — __<small>one of five energetic blueprints</small></li>
+    <li>Strategy — wait for the invitation</li>
+    <li>Authority — Splenic, the body knows first</li>
+    <li>Profile — __ / __, the hermit opportunist</li>
+  </ul>
+
+  <p class="veiled veiled-strike">Your authority is Splenic — the oldest, most ancient, and fastest authority in the Human Design system. The Splenic voice speaks once. It speaks in the body — as a subtle physical shift, a quiet yes or no that has no rational justification but is unmistakably true.</p>
+
+  <h3 class="section-title">Defined Centres &amp; Channels</h3>
+  <ul class="titles-only">
+    <li>Channel __–__ &nbsp;Structuring / Individual Expression</li>
+    <li>Channel __–__ &nbsp;Struggle / Stubborn Individuality</li>
+    <li>Channel __–__ &nbsp;Judgment / Reaching Toward Perfection</li>
+  </ul>
+
+  <p class="veiled veiled-strike shorter">These three circuits — when honoured — are the spine of your way of being in the world.</p>
+
+  <h3 class="section-title">The Personality Gates &amp; Life Theme</h3>
+  <p class="veiled veiled-strike">Your life is fundamentally organised around a profound question: How do I translate what I know into something that serves others?</p>
+
+  <!-- ── CHAPTER 6 — THE SOUL NARRATIVE ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Chapter Six</div>
+  <h2 class="chapter-title">The Soul Narrative<br><em>Where the Maps Converge</em></h2>
+
+  <p class="veiled veiled-strike short">When five different wisdom traditions — born in five different cultures, across five different centuries — converge on the same themes, the message is no longer a curiosity. It is a declaration.</p>
+
+  <ul class="titles-only">
+    <li>You are here to hold, create, and nourish community.</li>
+    <li>You are a carrier and transmitter of spiritual wisdom.</li>
+    <li>You are a bridge between worlds.</li>
+    <li>Beauty and relationship are your medium.</li>
+    <li>Your challenges are the advanced curriculum — and you are in the final chapter.</li>
+  </ul>
+
+  <h3 class="section-title">Where the Soul Is Coming From · Where It Is Moving To</h3>
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">You came from somewhere old. Your soul carries the frequency of the temple — the sacred enclosure, the tended flame, the gathering place where wisdom is shared.</p>
+    <p class="veiled veiled-strike">The warrior is becoming the sacred partner. The solitary mystic is becoming the keeper of the community fire.</p>
+  </div>
+
+  <!-- ── CHAPTER 7 — LEADERSHIP ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Chapter Seven</div>
+  <h2 class="chapter-title">Your Leadership<br><em>A Direct Answer to a Direct Question</em></h2>
+
+  <p class="veiled veiled-strike short">Let us be precise. You asked a specific question, and it deserves a specific answer — not couched in metaphor, not arrived at obliquely.</p>
+
+  <ul class="titles-only">
+    <li>1 · You are a field leader — not a hierarchical one.</li>
+    <li>2 · Your specific leadership capacities — named.</li>
+    <li>3 · Your role in the synthesis of new organisations.</li>
+    <li>4 · What to watch — leadership shadows, honestly named.</li>
+  </ul>
+
+  <div class="excerpt">
+    "You were not merely prepared for this work. You were designed for it."
+  </div>
+
+  <p class="veiled veiled-strike shorter">The emerging is already complete. What remains is the full inhabiting.</p>
+
+  <!-- ── FINAL SYNTHESIS — partly visible (love letter feel) ── -->
+  <div class="section-divider"><span>✦ &nbsp; ✶ &nbsp; ✦</span></div>
+  <div class="chapter-mark">Final Synthesis</div>
+  <h2 class="chapter-title">A Love Letter<br><em>to a Soul</em></h2>
+
+  <div class="excerpt" style="font-size:1.35rem;">
+    You are not a person trying to figure out a next chapter.<br>
+    You are a frequency — a specific, rare, extraordinarily complex frequency — that the universe spent every year of your life tuning into full resonance.
+  </div>
+
+  <div class="veil-cluster">
+    <p class="veiled veiled-strike">Think of the instruments assembled in your chart. A stellium so deep it has its own gravitational field. A Grand Fire Trine that turns vision into momentum. A Bucket shape whose handle is pure courageous feeling.</p>
+    <p class="veiled veiled-strike">You did not arrive at this moment despite your challenges. You arrived because of them. Each one taught you something the next could not have begun without.</p>
+  </div>
+
+  <div class="excerpt" style="text-align:center; border-left:0; padding-left:0; font-size:1.3rem;">
+    "Will you trust your own voice as the gift?"
+  </div>
+
+  <p class="veiled veiled-strike short">Not the voice that has learned, over decades, to translate itself into something others can digest without discomfort. That voice.</p>
+
+  <p class="veiled veiled-strike shorter">The world is being remade. You are a node in the new network.</p>
+
+  <div class="excerpt" style="text-align:center; border-left:0; padding-left:0;">
+    "We think you will. We think you already are."
+  </div>
+
+  <div style="text-align:center; margin: 2.5rem 0 1rem;">
+    <div style="color:var(--gold); letter-spacing:0.6em; font-size:0.95rem;">★ &nbsp; ★ &nbsp; ★</div>
+  </div>
+
+  <h2 class="chapter-title" style="font-size:clamp(1.7rem,3.4vw,2.3rem); margin-bottom:1.5rem;">
+    <em>Go lead your community, radiant soul.</em>
+  </h2>
+  <p style="text-align:center; font-style:italic; color:var(--text-2); font-size:1.1rem; line-height:1.7; max-width:520px; margin:0 auto 3rem;">
+    The invitation has been issued by life itself.<br>And you — as any seasoned Splenic Projector knows — need only one.
+  </p>
+
+  <!-- ── SIGNATURE ── -->
+  <div class="signature">
+    <div class="glyph">✦ &nbsp; ✶ &nbsp; ✦</div>
+    <div class="sign-name">Cinwicca</div>
+    <div class="sign-sub">Cintia de Godoy · Soul Path Reader</div>
+  </div>
+
+  <!-- ── WHAT THE MAP DOES NOT YET SHOW (fully visible) ── -->
+  <section class="bridge" id="bridge">
+    <div class="br-eyebrow">A bridge to a fuller reading</div>
+    <h2>What the Map <em>Does Not Yet</em> Show</h2>
+    <p class="br-sub">Every Blueprint is a synthesis — a wide-angle lens. Some terrain asks to be walked, not flown over.</p>
+
+    <p>This document is a synthesis — an introduction of five wisdom traditions to one another, and to you. It is a wide-angle lens: designed to reveal the architecture of the whole, the resonances across traditions, the major themes that name your soul.</p>
+    <p>But a map is not the territory. And certain formations in your chart — glimpsed here, named briefly, pointed toward — deserve a full reading of their own.</p>
+
+    <h3>What a Full Astrological Reading Would Deepen</h3>
+    <ul>
+      <li><strong>The Grand Cross in full detail</strong> — the four poles of your soul's most productive tension, lived in biography.</li>
+      <li><strong>The Kite and its precision geometry</strong> — the relationship between your Grand Fire Trine and the focal Chiron.</li>
+      <li><strong>The Stellium in biographical sequence</strong> — each body at a different degree, each with its own Sabian Symbol, each unfolding in a specific decade.</li>
+      <li><strong>Progressions and transits — where you are right now</strong> — the natal chart is the seed; the timing reveals the season.</li>
+      <li><strong>The asteroids in depth</strong> — Vesta, Ceres, Juno, Pallas, Chiron — each with its own voice and gift.</li>
+    </ul>
+
+    <h3>What a Full Human Design Reading Would Deepen</h3>
+    <ul>
+      <li><strong>The complete gate analysis</strong> — all 64 gates of your design, the activated and the dormant.</li>
+      <li><strong>The undefined centres as your deepest teachers</strong> — they are not weaknesses; they are where you learn.</li>
+      <li><strong>The Split Definition — and who bridges you</strong> — certain people, when they enter your aura, complete your energetic circuit.</li>
+      <li><strong>The Line 2 / Line 4 in biographical depth</strong> — the Hermit-Opportunist arc traced through your actual life.</li>
+    </ul>
+
+    <p class="quote">"The soul does not reveal itself all at once. It offers what can be received — and then waits, with infinite patience, for the next question."</p>
+
+    <p>This reading offers you the landscape. The next reading would offer you the terrain beneath your feet: the specific texture of the ground, season by season, planet by planet, gate by gate.</p>
+    <p>When you are ready — when the invitation feels genuine and the moment feels right, as any Splenic Projector will know — the map goes deeper.</p>
+
+    <div style="text-align:center; margin-top:2rem;">
+      <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.25rem; color:var(--gold-lt); line-height:1.5;">
+        You are, and have always been, exactly where you are supposed to be.
+      </p>
+    </div>
+
+    <div class="cta-row">
+      <a href="../index.html#form" class="btn-gold">Book your reading</a>
+      <a href="../index.html#offerings" class="btn-ghost">See all offerings</a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <div class="doc-footer">
+    Sample template · Cinwicca © 2026 · <a href="../index.html">return to Cinwicca</a>
+  </div>
+
+</article>
+
+<script>
+// ── COSMOS CANVAS (subtle) ──
+const canvas = document.getElementById('cosmos');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [];
+function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+resize(); addEventListener('resize', resize);
+for (let i = 0; i < 120; i++) {
+  stars.push({
+    x: Math.random(), y: Math.random(),
+    r: Math.random() * 1.1 + 0.2,
+    o: Math.random() * 0.5 + 0.1,
+    phase: Math.random() * Math.PI * 2,
+    speed: Math.random() * 0.0003 + 0.0001,
+    gold: Math.random() > 0.85
+  });
+}
+let t = 0;
+function drawCosmos() {
+  ctx.clearRect(0, 0, W, H);
+  stars.forEach(s => {
+    const pulse = Math.sin(t * s.speed * 1000 + s.phase) * 0.3 + 0.7;
+    ctx.beginPath();
+    ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = s.gold
+      ? `rgba(212,177,90,${s.o * pulse})`
+      : `rgba(220,210,200,${s.o * pulse})`;
+    ctx.fill();
+  });
+  t += 0.016;
+  requestAnimationFrame(drawCosmos);
+}
+drawCosmos();
+</script>
+</body>
+</html>

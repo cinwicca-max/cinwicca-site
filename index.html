@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinwicca · Soul Path Readings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obsidian: #08090f;
+  --deep:     #0d1020;
+  --ink:      #141a2e;
+  --indigo:   #1f2a5a;
+  --gold:     #d4b15a;
+  --gold-lt:  #ecd49a;
+  --gold-dk:  #8b6b22;
+  --rose:     #b67a8f;
+  --cream:    #f6ecd0;
+  --text:     #f1e7cf;
+  --text-2:   #d6c7a2;
+  --text-3:   #a99878;
+  --border:   rgba(212,177,90,0.18);
+  --border-b: rgba(212,177,90,0.42);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  background: var(--obsidian);
+  color: var(--text);
+  overflow-x: hidden;
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.85; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 2.5rem;
+  background: rgba(8,9,15,0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.34em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+.nav-links { display: flex; gap: 1.6rem; }
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* ── LANG SWITCHER ── */
+.lang-switch {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(212,177,90,0.04);
+}
+.lang-switch button {
+  background: transparent; border: 0;
+  color: var(--text-3);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 0.45rem 0.85rem;
+  cursor: pointer; transition: all 0.25s;
+  text-transform: uppercase;
+}
+.lang-switch button + button { border-left: 1px solid var(--border); }
+.lang-switch button:hover { color: var(--gold-lt); }
+.lang-switch button.active { background: var(--gold); color: var(--obsidian); }
+
+.wrapper { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+.wrapper-sm { max-width: 720px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+
+/* ── HERO ── */
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 9rem 1.5rem 5rem;
+}
+.hero-sigil { width: 110px; height: 110px; margin: 0 auto 2.5rem; opacity: 0; animation: fadeUp 1.2s 0.3s forwards; }
+.hero-sigil svg { width: 100%; height: 100%; }
+.hero-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem; letter-spacing: 0.32em;
+  color: var(--gold); text-transform: uppercase;
+  margin-bottom: 1.8rem; opacity: 0; animation: fadeUp 1s 0.5s forwards;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(2.6rem, 6.2vw, 5rem);
+  color: #fff; line-height: 1.05; letter-spacing: -0.005em;
+  margin-bottom: 1.4rem; opacity: 0; animation: fadeUp 1s 0.7s forwards;
+}
+.hero h1 em { font-style: italic; color: var(--gold-lt); font-weight: 500; }
+.hero-sub {
+  font-size: clamp(1.15rem, 1.8vw, 1.32rem);
+  color: var(--text-2); line-height: 1.7;
+  max-width: 600px; margin: 0 auto 2.5rem;
+  opacity: 0; animation: fadeUp 1s 0.9s forwards;
+}
+.hero-sub strong {
+  display: block; color: var(--gold-lt); font-weight: 500;
+  font-style: italic; letter-spacing: 0.02em; margin-bottom: 0.6rem;
+}
+.hero-divider {
+  display: flex; align-items: center; gap: 1rem;
+  margin: 0 auto 2.2rem; width: 200px;
+  opacity: 0; animation: fadeUp 1s 1.1s forwards;
+}
+.hero-divider::before, .hero-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dk), transparent);
+}
+.hero-divider span { color: var(--gold); font-size: 0.9rem; }
+.hero-cta { opacity: 0; animation: fadeUp 1s 1.3s forwards; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+.btn-primary, .btn-secondary {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 1.05rem 2.4rem;
+  cursor: pointer; transition: all 0.3s;
+  text-decoration: none; display: inline-block;
+  border-radius: 2px; border: 1px solid transparent;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold-dk), var(--gold), var(--gold-dk));
+  color: var(--obsidian); font-weight: 600;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--gold), var(--gold-lt), var(--gold));
+  box-shadow: 0 0 40px rgba(212,177,90,0.28); transform: translateY(-2px);
+}
+.btn-secondary { background: transparent; color: var(--gold); border-color: var(--border-b); }
+.btn-secondary:hover { background: rgba(212,177,90,0.06); border-color: var(--gold); color: var(--gold-lt); }
+
+.scroll-hint {
+  position: absolute; bottom: 2.5rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+  opacity: 0; animation: fadeUp 1s 1.8s forwards;
+}
+.scroll-hint span {
+  font-family: 'Cinzel', serif; font-size: 0.65rem;
+  letter-spacing: 0.28em; color: var(--text-3); text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2.2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* ── SECTION TITLES ── */
+.section-label {
+  font-family: 'Cinzel', serif; font-size: 0.7rem;
+  letter-spacing: 0.32em; color: var(--gold);
+  text-transform: uppercase; display: block; margin-bottom: 1rem;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.6vw, 2.8rem);
+  font-weight: 400; color: #fff;
+  line-height: 1.15; letter-spacing: -0.005em; margin-bottom: 1.2rem;
+}
+.section-title em { font-style: italic; color: var(--gold-lt); font-weight: 500; }
+.section-body { font-size: 1.18rem; color: var(--text-2); line-height: 1.75; }
+.section-head { text-align: center; margin-bottom: 4.5rem; }
+
+.ornament { display: flex; align-items: center; gap: 1.5rem; margin: 5rem auto; max-width: 480px; }
+.ornament::before, .ornament::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-b));
+}
+.ornament::after { background: linear-gradient(90deg, var(--border-b), transparent); }
+.ornament-inner { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.32em; color: var(--gold); white-space: nowrap; }
+
+/* ── INTRO ── */
+.intro-section { padding: 7rem 0 4rem; }
+.intro-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 5rem; align-items: start; }
+.intro-text p { font-size: 1.18rem; line-height: 1.78; color: var(--text); margin-bottom: 1.4rem; }
+.intro-text p strong { color: var(--gold-lt); font-weight: 500; font-style: italic; }
+.intro-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-style: italic;
+  color: var(--gold-lt); line-height: 1.5;
+  border-left: 2px solid var(--gold-dk);
+  padding: 0.4rem 0 0.4rem 1.8rem; margin: 2rem 0;
+}
+.intro-byline {
+  font-family: 'Cinzel', serif; font-size: 0.7rem;
+  letter-spacing: 0.22em; color: var(--text-3);
+  text-transform: uppercase; margin-top: 2rem;
+}
+.intro-byline span { color: var(--gold-lt); }
+
+.intro-visual { display: flex; flex-direction: column; gap: 1.2rem; }
+.intro-tag {
+  background: rgba(212,177,90,0.04);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--gold-dk);
+  padding: 1.4rem 1.6rem;
+  border-radius: 2px; transition: all 0.3s;
+}
+.intro-tag:hover { border-color: var(--border-b); background: rgba(212,177,90,0.07); }
+.intro-tag-icon { font-size: 1.4rem; color: var(--gold); display: block; margin-bottom: 0.4rem; line-height: 1; }
+.intro-tag-title { font-family: 'Cinzel', serif; font-size: 0.92rem; font-weight: 500; color: var(--gold-lt); letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+.intro-tag-body { font-size: 1.02rem; color: var(--text); line-height: 1.6; }
+
+/* ── SUPPORT / SLIDING SCALE ── */
+.support-section { padding: 4rem 0 2rem; position: relative; z-index: 1; }
+.support-card {
+  background: linear-gradient(135deg, rgba(182,122,143,0.10) 0%, rgba(31,42,90,0.18) 100%);
+  border: 1px solid rgba(212,177,90,0.32);
+  border-radius: 4px;
+  padding: 2.6rem 2.4rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  max-width: 920px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+.support-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 90% 100%, rgba(212,177,90,0.10), transparent 50%),
+    radial-gradient(circle at 0% 0%, rgba(182,122,143,0.10), transparent 50%);
+  pointer-events: none;
+}
+.support-card > * { position: relative; z-index: 1; }
+.support-glyph {
+  font-size: 2.2rem; color: var(--gold);
+  width: 64px; height: 64px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border-b);
+  border-radius: 50%;
+}
+.support-text-block { min-width: 0; }
+.support-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem; letter-spacing: 0.28em;
+  color: var(--gold); text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.support-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 500;
+  color: var(--cream); margin-bottom: 0.5rem;
+  line-height: 1.25;
+}
+.support-title em { color: var(--gold-lt); font-style: italic; }
+.support-body { font-size: 1.04rem; color: var(--text); line-height: 1.6; }
+@media (max-width: 720px) {
+  .support-card { grid-template-columns: 1fr; gap: 1.2rem; text-align: center; padding: 2rem 1.4rem; }
+  .support-glyph { margin: 0 auto; }
+}
+
+/* ── SERVICES ── */
+.services-section { padding: 5rem 0; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.4rem; }
+.service-card {
+  background: linear-gradient(140deg, rgba(31,42,90,0.22) 0%, rgba(13,16,32,0.55) 100%);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 2rem 1.8rem;
+  transition: all 0.4s;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0; transition: opacity 0.4s;
+}
+.service-card:hover {
+  border-color: var(--border-b); transform: translateY(-3px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(212,177,90,0.05);
+}
+.service-card:hover::before { opacity: 1; }
+.service-icon { font-size: 1.5rem; color: var(--gold); margin-bottom: 1rem; display: block; line-height: 1; }
+.service-name {
+  font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 500;
+  color: var(--gold-lt); letter-spacing: 0.04em; margin-bottom: 0.6rem;
+}
+.service-desc { font-size: 1.04rem; color: var(--text); line-height: 1.6; margin-bottom: 1.2rem; flex: 1; }
+.service-price {
+  font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 600;
+  color: var(--gold); margin-bottom: 1rem;
+}
+.service-price span.persession {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem; font-weight: 400;
+  color: var(--text-3); letter-spacing: 0.1em;
+  text-transform: uppercase; margin-left: 0.4rem;
+}
+
+.service-example { border-top: 1px solid var(--border); padding-top: 0.9rem; margin-top: auto; }
+.service-example > summary {
+  list-style: none; cursor: pointer;
+  font-family: 'Cinzel', serif; font-size: 0.7rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold-dk); transition: color 0.25s;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.service-example > summary::-webkit-details-marker { display: none; }
+.service-example > summary::before {
+  content: '+'; display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; line-height: 0.8;
+  width: 1em; color: var(--gold-dk);
+  transition: transform 0.25s, color 0.25s;
+}
+.service-example[open] > summary::before { content: '–'; color: var(--gold); }
+.service-example > summary:hover { color: var(--gold); }
+.service-example[open] > summary { color: var(--gold); }
+.service-example-body {
+  font-size: 0.98rem; font-style: italic;
+  color: var(--text-2); line-height: 1.6;
+  padding: 0.8rem 0 0.2rem;
+}
+.service-example-body em.placeholder { color: var(--text-3); font-style: italic; opacity: 0.8; }
+
+/* ── TESTIMONIALS ── */
+/* ── SAMPLES SECTION ── */
+.samples-section { padding: 5rem 0 3rem; }
+.samples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.4rem;
+}
+.sample-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  background: linear-gradient(140deg, rgba(31,42,90,0.22) 0%, rgba(13,16,32,0.55) 100%);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 2rem 1.9rem 1.8rem;
+  color: var(--text);
+  transition: all 0.35s;
+  overflow: hidden;
+}
+.sample-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 100% 0%, rgba(212,177,90,0.10), transparent 55%);
+  pointer-events: none; opacity: 0.7; transition: opacity 0.35s;
+}
+.sample-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 18px 50px rgba(0,0,0,0.45), 0 0 30px rgba(212,177,90,0.08); }
+.sample-card:hover::after { opacity: 1; }
+.sample-card .sc-tag {
+  font-family: 'Cinzel', serif; font-size: 0.65rem;
+  letter-spacing: 0.28em; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 0.8rem;
+  display: inline-block;
+}
+.sample-card .sc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem; font-weight: 500;
+  color: #fff; line-height: 1.25; margin-bottom: 0.6rem;
+}
+.sample-card .sc-title em { font-style: italic; color: var(--gold-lt); }
+.sample-card .sc-desc {
+  font-size: 1rem; color: var(--text-2);
+  line-height: 1.6; margin-bottom: 1.2rem;
+}
+.sample-card .sc-meta {
+  font-family: 'Cinzel', serif; font-size: 0.66rem;
+  letter-spacing: 0.2em; color: var(--text-3);
+  text-transform: uppercase; display: flex; gap: 0.8rem; align-items: center;
+  margin-bottom: 1rem;
+}
+.sample-card .sc-meta span:not(:first-child)::before { content: '·'; margin-right: 0.8rem; color: var(--border-b); }
+.sample-card .sc-cta {
+  font-family: 'Cinzel', serif; font-size: 0.72rem;
+  letter-spacing: 0.18em; color: var(--gold);
+  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 0.4rem;
+}
+.sample-card.coming-soon {
+  border-style: dashed; opacity: 0.65;
+  background: rgba(8,9,15,0.4);
+  cursor: default;
+}
+.sample-card.coming-soon:hover { transform: none; box-shadow: none; border-color: var(--border); }
+.sample-card.coming-soon .sc-cta { color: var(--text-3); }
+
+.testimonials-section { padding: 5rem 0; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.4rem; }
+.testimonial-card {
+  background: rgba(212,177,90,0.03);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 2.2rem 2rem 1.8rem;
+  position: relative; transition: border-color 0.3s;
+}
+.testimonial-card:hover { border-color: rgba(212,177,90,0.3); }
+.testimonial-card::before {
+  content: '\201C';
+  position: absolute; top: 0.6rem; left: 1.4rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem; color: var(--gold-dk); opacity: 0.55; line-height: 1;
+}
+.testimonial-text { font-size: 1.08rem; font-style: italic; line-height: 1.7; color: var(--text); margin-bottom: 1.2rem; padding-top: 1.4rem; }
+.testimonial-author { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; }
+.testimonial-author small {
+  display: block; font-family: 'Inter', sans-serif; font-size: 0.62rem;
+  letter-spacing: 0.18em; color: var(--text-3); text-transform: uppercase;
+  font-weight: 400; margin-top: 0.25rem;
+}
+
+.testimonial-share {
+  margin-top: 3rem;
+  background: linear-gradient(140deg, rgba(31,42,90,0.18) 0%, rgba(13,16,32,0.45) 100%);
+  border: 1px dashed var(--border-b);
+  border-radius: 3px;
+  padding: 2.2rem 2.2rem;
+  max-width: 760px; margin-left: auto; margin-right: auto;
+}
+.testimonial-share h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 500;
+  color: var(--gold-lt); margin-bottom: 0.4rem;
+  font-style: italic;
+}
+.testimonial-share p.share-intro {
+  font-size: 1rem; color: var(--text-2);
+  line-height: 1.6; margin-bottom: 1.4rem;
+}
+.share-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+@media (max-width: 600px) { .share-row { grid-template-columns: 1fr; } }
+.share-permission {
+  display: flex; gap: 0.6rem; align-items: flex-start;
+  margin: 1rem 0; font-size: 0.95rem; color: var(--text-2);
+}
+.share-permission input { margin-top: 0.4rem; accent-color: var(--gold); }
+.share-actions { text-align: right; }
+
+/* ── FORM ── */
+/* ── BLOG SECTION ── */
+.blog-section { padding: 6rem 0 4rem; }
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.6rem;
+  margin-top: 0;
+}
+.blog-card {
+  background: linear-gradient(140deg, rgba(31,42,90,0.18) 0%, rgba(13,16,32,0.50) 100%);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 2rem 2rem 1.6rem;
+  transition: all 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.blog-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(140deg, rgba(212,177,90,0.05), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.blog-card:hover { border-color: rgba(212,177,90,0.4); transform: translateY(-3px); box-shadow: 0 18px 50px rgba(0,0,0,0.4), 0 0 28px rgba(212,177,90,0.07); }
+.blog-card:hover::after { opacity: 1; }
+.blog-card-meta {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem; letter-spacing: 0.14em;
+  color: var(--text-3); text-transform: uppercase;
+  margin-bottom: 0.9rem;
+  display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap;
+}
+.blog-card-meta .bc-tag {
+  background: rgba(212,177,90,0.10);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.22rem 0.75rem;
+  font-size: 0.66rem; color: var(--gold);
+  letter-spacing: 0.1em;
+}
+.blog-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500; font-size: 1.42rem;
+  color: #fff; line-height: 1.25;
+  margin-bottom: 0.85rem; letter-spacing: -0.005em;
+}
+.blog-card-title em { color: var(--gold-lt); font-style: italic; }
+.blog-card-excerpt {
+  font-size: 1.0rem; color: var(--text-2);
+  line-height: 1.65; margin-bottom: 1.2rem;
+}
+.blog-card-cta {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem; letter-spacing: 0.2em;
+  color: var(--gold); text-transform: uppercase;
+  transition: color 0.2s;
+}
+.blog-card:hover .blog-card-cta { color: var(--gold-lt); }
+.blog-placeholder {
+  border: 1px dashed rgba(212,177,90,0.2);
+  border-radius: 3px; padding: 2.5rem 2rem;
+  text-align: center; color: var(--text-3);
+  font-style: italic; font-size: 1.05rem;
+}
+
+.form-section { padding: 5rem 0 7rem; }
+.form-intro { text-align: center; max-width: 620px; margin: 0 auto 3rem; }
+.form-intro p { font-size: 1.15rem; color: var(--text); line-height: 1.75; }
+.soul-form {
+  background: linear-gradient(140deg, rgba(31,42,90,0.18) 0%, rgba(13,16,32,0.5) 100%);
+  border: 1px solid var(--border-b);
+  border-radius: 3px;
+  padding: 3rem;
+  max-width: 760px; margin: 0 auto;
+}
+.form-group { margin-bottom: 2rem; }
+.form-label {
+  display: block; font-family: 'Cinzel', serif;
+  font-size: 0.8rem; font-weight: 500;
+  letter-spacing: 0.18em; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 0.6rem;
+}
+.form-label .req { color: var(--rose); margin-left: 0.2rem; }
+.form-hint { font-size: 0.96rem; color: var(--text-2); margin-bottom: 0.6rem; display: block; line-height: 1.55; }
+.form-input, .form-textarea {
+  width: 100%;
+  background: rgba(8,9,15,0.7);
+  border: 1px solid rgba(212,177,90,0.3);
+  border-radius: 2px;
+  padding: 0.95rem 1.1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+.form-input:focus, .form-textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212,177,90,0.08);
+  background: rgba(8,9,15,0.85);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: #8a7a5a; font-style: italic; }
+.form-textarea { resize: vertical; min-height: 110px; line-height: 1.65; }
+
+.services-radio { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.8rem; }
+.service-radio-item input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+.service-radio-label {
+  display: flex; flex-direction: column;
+  padding: 1rem 1.15rem;
+  background: rgba(8,9,15,0.5);
+  border: 1px solid var(--border);
+  border-radius: 2px; cursor: pointer;
+  transition: all 0.25s; height: 100%;
+}
+.service-radio-item input:checked + .service-radio-label {
+  border-color: var(--gold);
+  background: rgba(212,177,90,0.08);
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+.service-radio-label:hover { border-color: var(--border-b); background: rgba(212,177,90,0.04); }
+.srl-name { font-family: 'Cinzel', serif; font-size: 0.84rem; font-weight: 500; color: var(--text); letter-spacing: 0.04em; margin-bottom: 0.35rem; }
+.srl-price { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 600; color: var(--gold); }
+.srl-desc { font-size: 0.92rem; color: var(--text-2); margin-top: 0.35rem; line-height: 1.45; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.form-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+.form-submit-wrap { text-align: center; margin-top: 2.5rem; }
+.form-note { font-size: 0.94rem; color: var(--text-2); margin-top: 1.2rem; line-height: 1.65; }
+.form-note a { color: var(--gold); text-decoration: underline; text-decoration-color: var(--gold-dk); text-underline-offset: 3px; }
+.form-note a:hover { color: var(--gold-lt); }
+
+.payment-inline {
+  background: rgba(212,177,90,0.05);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1.4rem 1.6rem;
+  margin-top: 2rem;
+  display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;
+}
+.payment-inline > div { flex: 1; min-width: 240px; }
+.payment-inline-title {
+  font-family: 'Cinzel', serif; font-size: 0.78rem;
+  font-weight: 500; letter-spacing: 0.22em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.payment-inline p { font-size: 1rem; color: var(--text); line-height: 1.6; }
+.payment-inline code {
+  font-family: 'SF Mono', Menlo, monospace; font-size: 0.92rem;
+  color: var(--gold-lt); background: rgba(212,177,90,0.1);
+  padding: 0.12rem 0.45rem; border-radius: 3px;
+}
+
+.form-success { display: none; text-align: center; padding: 3rem 2rem; }
+.form-success.visible { display: block; }
+.form-success-mark { font-size: 3rem; color: var(--gold); margin-bottom: 1rem; }
+.form-success h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-style: italic;
+  color: var(--gold-lt); margin-bottom: 1rem; font-weight: 500;
+}
+.form-success p { font-size: 1.1rem; color: var(--text); line-height: 1.75; }
+
+/* ── FOOTER ── */
+footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: center; }
+.footer-brand {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem; color: var(--gold);
+  letter-spacing: 0.36em; text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.footer-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem; font-style: italic;
+  color: var(--text-3); margin-bottom: 1rem;
+}
+.footer-sub strong { color: var(--gold-lt); font-weight: 500; }
+.footer-copy { font-size: 0.92rem; color: var(--text-3); line-height: 1.8; }
+.footer-links { display: flex; gap: 1.8rem; justify-content: center; margin: 1rem 0 1.2rem; flex-wrap: wrap; }
+.footer-links a {
+  font-family: 'Cinzel', serif; font-size: 0.7rem;
+  font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--text-2);
+  text-decoration: none; transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s, transform 0.8s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 880px) {
+  nav { padding: 0.9rem 1.2rem; }
+  .nav-brand { font-size: 0.82rem; letter-spacing: 0.24em; }
+  .nav-right { gap: 1rem; }
+  .nav-links { display: none; }
+  .intro-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .soul-form { padding: 2rem 1.4rem; }
+  .hero { padding: 8rem 1.2rem 4rem; }
+  body { font-size: 17px; }
+}
+@media (max-width: 480px) {
+  .lang-switch button { padding: 0.4rem 0.65rem; font-size: 0.68rem; }
+  .footer-brand { font-size: 0.95rem; letter-spacing: 0.28em; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#top">Cinwicca</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#about" data-i18n="nav.about">The Work</a>
+      <a href="#offerings" data-i18n="nav.offerings">Offerings</a>
+      <a href="#samples" data-i18n="nav.samples">Samples</a>
+      <a href="#testimonials" data-i18n="nav.testimonials">Voices</a>
+      <a href="#blog" data-i18n="nav.blog">Writing</a>
+      <a href="#form" data-i18n="nav.begin">Begin</a>
+    </div>
+    <div class="lang-switch" role="tablist" aria-label="Language">
+      <button data-lang="en" class="active">EN</button>
+      <button data-lang="pt">PT</button>
+      <button data-lang="es">ES</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="top">
+  <div class="hero-sigil" aria-hidden="true">
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="56" stroke="rgba(212,177,90,0.3)" stroke-width="0.5"/>
+      <circle cx="60" cy="60" r="44" stroke="rgba(212,177,90,0.2)" stroke-width="0.5"/>
+      <circle cx="60" cy="60" r="32" stroke="rgba(212,177,90,0.4)" stroke-width="0.5"/>
+      <path d="M60 20 L66 42 L90 42 L71 55 L78 78 L60 65 L42 78 L49 55 L30 42 L54 42 Z"
+            stroke="rgba(212,177,90,0.55)" stroke-width="0.8" fill="rgba(212,177,90,0.05)"/>
+      <path d="M60 36 L72 60 L60 84 L48 60 Z"
+            stroke="rgba(212,177,90,0.4)" stroke-width="0.6" fill="none"/>
+      <circle cx="60" cy="60" r="3" fill="rgba(212,177,90,0.8)"/>
+      <circle cx="60" cy="6" r="1.5" fill="rgba(212,177,90,0.45)"/>
+      <circle cx="60" cy="114" r="1.5" fill="rgba(212,177,90,0.45)"/>
+      <circle cx="6" cy="60" r="1.5" fill="rgba(212,177,90,0.45)"/>
+      <circle cx="114" cy="60" r="1.5" fill="rgba(212,177,90,0.45)"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 60 60" to="360 60 60" dur="120s" repeatCount="indefinite"/>
+    </svg>
+  </div>
+
+  <p class="hero-eyebrow" data-i18n="hero.eyebrow">Soul Path Readings · Cinwicca</p>
+  <h1><span data-i18n="hero.title1">Your Soul's</span><br><em data-i18n="hero.title2">Blueprint</em></h1>
+  <p class="hero-sub">
+    <strong data-i18n="hero.modalities">Astrology · Numerology · Human Design · Maia Cosmology</strong>
+    <span data-i18n="hero.sub">A map of who you truly are — beyond expectation, conditioning, or "should."</span>
+  </p>
+  <div class="hero-divider" aria-hidden="true"><span>✦</span></div>
+  <div class="hero-cta">
+    <a href="#form" class="btn-primary" data-i18n="hero.cta1">Begin Your Reading</a>
+    <a href="#offerings" class="btn-secondary" data-i18n="hero.cta2">Explore Offerings</a>
+  </div>
+  <div class="scroll-hint">
+    <span data-i18n="hero.scroll">Descend</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── INTRO ── -->
+<section class="intro-section" id="about">
+  <div class="wrapper">
+    <div class="intro-grid">
+      <div class="intro-text reveal">
+        <span class="section-label" data-i18n="about.label">The Work</span>
+        <h2 class="section-title"><span data-i18n="about.title1">A practice </span><em data-i18n="about.title2">of integrity</em></h2>
+        <p data-i18n="about.p1">This work is deeply personal, and part of my own experiment as a <strong>Seer</strong> — a Human Design Projector. With my focused aura, I am here to truly see you, and to guide you in the areas you need most, desire most, and long for most.</p>
+        <p data-i18n="about.p2">The process may validate parts of yourself you always knew were there, but repressed because no one else recognised them. It may also shine light on patterns you developed under pressure or conditioning — parts that don't truly belong to you.</p>
+        <p data-i18n="about.p3">Together, we will uncover the real blueprint of your Soul: <strong>who you are, the gifts you carry from ancestry and past lives, and the path your Soul is moving toward.</strong></p>
+        <blockquote class="intro-quote" data-i18n="about.quote">"The universe doesn't dictate your fate — it whispers the best paths. Will you listen?"</blockquote>
+        <div class="intro-byline" data-i18n="about.byline">Cinwicca · <span>Cintia de Godoy</span></div>
+      </div>
+      <div class="intro-visual reveal">
+        <div class="intro-tag">
+          <span class="intro-tag-icon">♈</span>
+          <div class="intro-tag-title" data-i18n="tag.astro.title">Astrology</div>
+          <div class="intro-tag-body" data-i18n="tag.astro.body">Your birth chart is a snapshot of the cosmos at your first breath. It reveals your innate gifts, your emotional patterns, and the timing of your biggest transformations.</div>
+        </div>
+        <div class="intro-tag">
+          <span class="intro-tag-icon">✦</span>
+          <div class="intro-tag-title" data-i18n="tag.num.title">Numerology</div>
+          <div class="intro-tag-body" data-i18n="tag.num.body">Your birth date and name vibrate at a unique frequency. Numerology is a clear, practical key to understanding your destiny.</div>
+        </div>
+        <div class="intro-tag">
+          <span class="intro-tag-icon">◈</span>
+          <div class="intro-tag-title" data-i18n="tag.hd.title">Human Design</div>
+          <div class="intro-tag-body" data-i18n="tag.hd.body">The user manual for your energy. Manifestor, Generator, Projector or Reflector — this system takes the guesswork out of decisions.</div>
+        </div>
+        <div class="intro-tag">
+          <span class="intro-tag-icon">☾</span>
+          <div class="intro-tag-title" data-i18n="tag.maia.title">Maia Cosmology</div>
+          <div class="intro-tag-body" data-i18n="tag.maia.body">Rooted in ancestral Moon Calendars, it reconnects you with your multidimensional, cosmic essence. Your personal Kin imprints a unique quality on your Soul.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ornament wrapper"><div class="ornament-inner">✦ · ✦ · ✦</div></div>
+
+<!-- ── SUPPORT / SLIDING SCALE ── -->
+<section class="support-section">
+  <div class="wrapper">
+    <div class="support-card reveal">
+      <div class="support-glyph" aria-hidden="true">☾</div>
+      <div class="support-text-block">
+        <div class="support-eyebrow" data-i18n="support.eyebrow">Support · Sliding Scale</div>
+        <div class="support-title"><span data-i18n="support.title1">Cost should never be a </span><em data-i18n="support.title2">barrier</em></div>
+        <div class="support-body" data-i18n="support.body">If a reading calls to you but the price feels out of reach, please write to me. I hold space for sliding-scale rates, concession spots, and the occasional gift session for those in genuine need. Reach out in honesty — no explanation required.</div>
+      </div>
+      <a href="mailto:cinwicca@gmail.com?subject=Sliding%20Scale%20Enquiry" class="btn-secondary" data-i18n="support.cta">Write to me</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section class="services-section" id="offerings">
+  <div class="wrapper">
+    <div class="section-head reveal">
+      <span class="section-label" data-i18n="offer.label">Offerings</span>
+      <h2 class="section-title"><span data-i18n="offer.title1">Choose </span><em data-i18n="offer.title2">your path</em></h2>
+      <p class="section-body" data-i18n="offer.body">Each reading is a bespoke act of witnessing. Select the depth that calls to you.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <span class="service-icon">✧</span>
+        <div class="service-name" data-i18n="svc.area.name">Area of Life Question</div>
+        <div class="service-desc" data-i18n="svc.area.desc">A focused reading to help you understand and move forward in one specific area of your life. Clarity on a single situation.</div>
+        <div class="service-price"><span data-i18n="price.222">£55</span><span class="persession" data-i18n="svc.persession">/ session</span></div>
+        <details class="service-example" open>
+          <summary data-i18n="svc.example">See an example</summary>
+          <div class="service-example-body"><a href="samples/area-of-life-question.html" style="color:var(--gold); text-decoration:underline; text-decoration-color:var(--gold-dk); text-underline-offset:3px;" data-i18n="svc.example.area.link">Read the full sample reading →</a></div>
+        </details>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">♈</span>
+        <div class="service-name" data-i18n="svc.natal.name">Natal Astrology Reading</div>
+        <div class="service-desc" data-i18n="svc.natal.desc">A deep dive into your birth chart — your innate gifts, emotional patterns, life themes, and the timing of your biggest transformations.</div>
+        <div class="service-price"><span data-i18n="price.444">£111</span><span class="persession" data-i18n="svc.persession">/ session</span></div>
+        <details class="service-example">
+          <summary data-i18n="svc.example">See an example</summary>
+          <div class="service-example-body"><em class="placeholder" data-i18n="svc.example.natal">A sample reading for this offering will be added here shortly.</em></div>
+        </details>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">◈</span>
+        <div class="service-name" data-i18n="svc.hd1.name">Human Design — Initial</div>
+        <div class="service-desc" data-i18n="svc.hd1.desc">Your energy type, strategy, and authority. A first deep encounter with how you are designed to make decisions and move through the world.</div>
+        <div class="service-price"><span data-i18n="price.444">£111</span><span class="persession" data-i18n="svc.persession">/ session</span></div>
+        <details class="service-example">
+          <summary data-i18n="svc.example">See an example</summary>
+          <div class="service-example-body"><em class="placeholder" data-i18n="svc.example.hd1">A sample reading for this offering will be added here shortly.</em></div>
+        </details>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">◈◈</span>
+        <div class="service-name" data-i18n="svc.hd2.name">Human Design — Full</div>
+        <div class="service-desc" data-i18n="svc.hd2.desc">Complete Human Design analysis: centres, channels, gates, profile, and conditioning. Deep transformation and realignment.</div>
+        <div class="service-price"><span data-i18n="price.555">£222</span><span class="persession" data-i18n="svc.persession">/ session</span></div>
+        <details class="service-example">
+          <summary data-i18n="svc.example">See an example</summary>
+          <div class="service-example-body"><em class="placeholder" data-i18n="svc.example.hd2">A sample reading for this offering will be added here shortly.</em></div>
+        </details>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">✦</span>
+        <div class="service-name" data-i18n="svc.soul.name">Soul Blueprint</div>
+        <div class="service-desc" data-i18n="svc.soul.desc">A synthesis reading weaving Astrology, Human Design, and Numerology together — the complete map of your Soul's design and direction.</div>
+        <div class="service-price"><span data-i18n="price.555">£222</span><span class="persession" data-i18n="svc.persession">/ session</span></div>
+        <details class="service-example" open>
+          <summary data-i18n="svc.example">See an example</summary>
+          <div class="service-example-body"><a href="samples/blueprint-of-the-soul.html" style="color:var(--gold); text-decoration:underline; text-decoration-color:var(--gold-dk); text-underline-offset:3px;" data-i18n="svc.example.soul.link">Read the full sample reading →</a></div>
+        </details>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">❋</span>
+        <div class="service-name" data-i18n="svc.karma.name">Karmic Patterns</div>
+        <div class="service-desc" data-i18n="svc.karma.desc">Ancestral and lineage work. Understanding the patterns you carry from your family line — and those ready to be released through you.</div>
+        <div class="service-price"><span data-i18n="price.555">£222</span><span class="persession" data-i18n="svc.persession">/ session</span></div>
+        <details class="service-example">
+          <summary data-i18n="svc.example">See an example</summary>
+          <div class="service-example-body"><em class="placeholder" data-i18n="svc.example.karma">A sample reading for this offering will be added here shortly.</em></div>
+        </details>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">☀</span>
+        <div class="service-name" data-i18n="svc.solar.name">Solar Return</div>
+        <div class="service-desc" data-i18n="svc.solar.desc">Astrology and gate activations for your year ahead. Aligning with your cycles and timing — understanding what this year is truly for.</div>
+        <div class="service-price"><span data-i18n="price.444">£111</span><span class="persession" data-i18n="svc.persession">/ session</span></div>
+        <details class="service-example">
+          <summary data-i18n="svc.example">See an example</summary>
+          <div class="service-example-body"><em class="placeholder" data-i18n="svc.example.solar">A sample reading for this offering will be added here shortly.</em></div>
+        </details>
+      </div>
+
+      <div class="service-card reveal" style="border-color:rgba(182,122,143,0.4);">
+        <span class="service-icon" style="color:var(--rose);">☘</span>
+        <div class="service-name" data-i18n="svc.child.name">Child's Blueprint</div>
+        <div class="service-desc" data-i18n="svc.child.desc">Raising a child without understanding their Human Design is like assembling furniture without the instructions. Understand your child's unique design — and guide them with confidence.</div>
+        <div class="service-price"><span data-i18n="price.555">£222</span><span class="persession" data-i18n="svc.persession">/ session</span></div>
+        <details class="service-example">
+          <summary data-i18n="svc.example">See an example</summary>
+          <div class="service-example-body"><em class="placeholder" data-i18n="svc.example.child">A sample reading for this offering will be added here shortly.</em></div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="ornament wrapper"><div class="ornament-inner">✦ · ✦ · ✦</div></div>
+
+<!-- ── SAMPLES / MODELOS ── -->
+<section class="samples-section" id="samples">
+  <div class="wrapper">
+    <div class="section-head reveal">
+      <span class="section-label" data-i18n="samples.label">Samples</span>
+      <h2 class="section-title"><span data-i18n="samples.title1">See a </span><em data-i18n="samples.title2">reading</em></h2>
+      <p class="section-body" data-i18n="samples.body">A glimpse of the work, with the recipient's privacy held with care. Personal content is veiled; the structure, voice, and closing passages remain.</p>
+    </div>
+    <div class="samples-grid">
+      <a class="sample-card reveal" href="samples/blueprint-of-the-soul.html">
+        <div class="sc-tag" data-i18n="samples.tag.template">Template · Sample</div>
+        <div class="sc-title"><span data-i18n="samples.s1.title1">Blueprint </span><em data-i18n="samples.s1.title2">of the Soul</em></div>
+        <div class="sc-meta">
+          <span data-i18n="samples.s1.meta1">7 chapters</span>
+          <span data-i18n="samples.s1.meta2">5 traditions</span>
+          <span data-i18n="samples.s1.meta3">Veiled · EN</span>
+        </div>
+        <div class="sc-desc" data-i18n="samples.s1.desc">A synthesis reading weaving Numerology, Chinese Astrology, the Maya Calendar, Western Astrology and Human Design. This sample preserves the structure, voice, and final synthesis — personal content is veiled.</div>
+        <div class="sc-cta"><span data-i18n="samples.read">Read the sample</span> →</div>
+      </a>
+      <a class="sample-card reveal" href="samples/area-of-life-question.html">
+        <div class="sc-tag" data-i18n="samples.tag.template">Template · Sample</div>
+        <div class="sc-title"><span data-i18n="samples.s2.title1">An Area of </span><em data-i18n="samples.s2.title2">Life Question</em></div>
+        <div class="sc-meta">
+          <span data-i18n="samples.s2.meta1">Single question</span>
+          <span data-i18n="samples.s2.meta2">Focused reading</span>
+          <span data-i18n="samples.s2.meta3">Veiled · EN</span>
+        </div>
+        <div class="sc-desc" data-i18n="samples.s2.desc">A focused reading that follows one question down into the chart. This sample shows the framing, the chart language, the structural insights, and the question beneath the question — with biographical content veiled.</div>
+        <div class="sc-cta"><span data-i18n="samples.read">Read the sample</span> →</div>
+      </a>
+      <a class="sample-card reveal" href="samples/childs-blueprint.html">
+        <div class="sc-tag" data-i18n="samples.tag.template">Template · Sample</div>
+        <div class="sc-title"><span data-i18n="samples.s3.title1">Child's </span><em data-i18n="samples.s3.title2">Blueprint</em></div>
+        <div class="sc-meta">
+          <span data-i18n="samples.s3.meta1">For parents</span>
+          <span data-i18n="samples.s3.meta2">5 traditions</span>
+          <span>Veiled · EN/PT</span>
+        </div>
+        <div class="sc-desc" data-i18n="samples.s3.desc">A reading designed to help a parent understand the unique design of their child. Structure, voice, and synthesised guidance are visible — all identifying content is veiled with full care.</div>
+        <div class="sc-cta"><span data-i18n="samples.read">Read the sample</span> →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="ornament wrapper"><div class="ornament-inner">✦ · ✦ · ✦</div></div>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials-section" id="testimonials">
+  <div class="wrapper">
+    <div class="section-head reveal">
+      <span class="section-label" data-i18n="test.label">Voices</span>
+      <h2 class="section-title"><span data-i18n="test.title1">Souls </span><em data-i18n="test.title2">witnessed</em></h2>
+      <p class="section-body" data-i18n="test.body">Words from those who have walked this path.</p>
+    </div>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text" data-i18n="test.t1">"I do not have the words to express how moved and touched I am by your reading of me. I feel it deeply in the whole of my being. Never have I been seen so deeply in this way. You have brought to me the clarity that I needed in perfect timing. You are truly gifted."</p>
+        <div class="testimonial-author">Olukemi Ogunyemi</div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text" data-i18n="test.t2">"I'm speechless and deeply touched by our time together. The reading document came as a special gift, and your words are still twinkling as light stars in my Soul. You are truly gifted — and the world needs you."</p>
+        <div class="testimonial-author">A.C.</div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text" data-i18n="test.t3">"Because of your reading I started to understand the nature of my child better and feel more confident in guiding her. I was desperate, believing I was doing everything wrong — your kindness really helped me to be more compassionate toward myself and wiser as a parent."</p>
+        <div class="testimonial-author">K.W.</div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text" data-i18n="test.t4">"I absolutely loved the Soul Path reading. It was magical and so insightful. It did indeed leave me with deep, lasting nourishment. I felt honoured to receive this. I highly recommend your beautiful work."</p>
+        <div class="testimonial-author">Christina MacFarquhar</div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text" data-i18n="test.t5">"What you gave me is so powerful, so profound, that I took a while to digest it all. When you sent me that wonderful poem, things started to make more and more sense. It felt like I was a patchwork quilt — and now I'm whole and integrated again."</p>
+        <div class="testimonial-author">L.T.A.</div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text" data-i18n="test.t6">"I was delighted with the session I had with Cintia. It came at a time when I felt I wanted to re-evaluate my life direction and priorities and was motivated to make some changes. I say this because no amount of wise counselling will help if I am not open to doing some action. What I especially like about Cintia's approach is that she draws on a diverse range of sources — astrology, tarot, human design to name but a few — and teases out the themes and life lessons that are common to them all. To me, this gave a sense of rigour. Cintia has an in-depth understanding of these different modalities and explains the patterns that emerge with deep empathy. I left the session feeling both affirmed and inspired to take some clear next steps."</p>
+        <div class="testimonial-author">Patrick Lewington</div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text" data-i18n="test.t7">"Hello, Cintia darling — what a valuable gift, such a detailed analysis of these wisdom traditions! I'm absolutely blown away by the detail and accuracy. It is such a useful map to showcase where I have been — and where I am heading."</p>
+        <div class="testimonial-author">Dorota Owen</div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text" data-i18n="test.t8">"I was so happy with the complete reading we received for our baby — I had never come across anything so thorough. Exquisitely refined work, made with so much love and care. Eternal gratitude _/\_"</p>
+        <div class="testimonial-author">Thiago Terra</div>
+      </div>
+
+    </div>
+
+    <!-- Share your reflection -->
+    <form class="testimonial-share reveal" id="share" name="reflection" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="reflection">
+      <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+      <h3 data-i18n="share.title">Share your reflection</h3>
+      <p class="share-intro" data-i18n="share.intro">If you've received a reading and feel called to share your experience, your words are warmly welcomed. With your permission, they may also live here as a small light for those still finding their way.</p>
+      <div class="share-row">
+        <div>
+          <label class="form-label" for="shareName" data-i18n="share.name">Your name</label>
+          <input class="form-input" type="text" id="shareName" name="name" data-i18n-ph="share.name.ph" placeholder="As you'd like it to appear">
+        </div>
+        <div>
+          <label class="form-label" for="shareEmail" data-i18n="share.email">Your email</label>
+          <input class="form-input" type="email" id="shareEmail" name="email" data-i18n-ph="share.email.ph" placeholder="So Cintia can thank you">
+        </div>
+      </div>
+      <div>
+        <label class="form-label" for="shareWords" data-i18n="share.words">Your words</label>
+        <textarea class="form-textarea" id="shareWords" name="words" rows="4" data-i18n-ph="share.words.ph" placeholder="Share whatever lives in you after the reading…"></textarea>
+      </div>
+      <label class="share-permission">
+        <input type="checkbox" id="sharePermission" name="permission-to-publish" value="yes">
+        <span data-i18n="share.permission">Yes, Cinwicca may share these words publicly (with my name or initials only — never my email).</span>
+      </label>
+      <div class="share-actions">
+        <button type="submit" class="btn-secondary" style="border:1px solid var(--border-b);" data-i18n="share.send">Send my words</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<div class="ornament wrapper"><div class="ornament-inner">✦ · ✦ · ✦</div></div>
+
+<!-- ── FORM ── -->
+<div class="ornament wrapper"><div class="ornament-inner">✦ · ✦ · ✦</div></div>
+
+<!-- ── BLOG / WRITING ── -->
+<section class="blog-section" id="blog">
+  <div class="wrapper">
+    <div class="section-head reveal">
+      <span class="section-label" data-i18n="blog.label">Writing</span>
+      <h2 class="section-title"><span data-i18n="blog.title1">Words from </span><em data-i18n="blog.title2">the threshold</em></h2>
+      <p class="section-body" data-i18n="blog.body">Thoughts on the soul, on practice, on the strange intelligence of the symbolic — written slowly, when something insists on being said.</p>
+    </div>
+
+    <div class="blog-grid">
+
+      <a class="blog-card reveal" href="the-wounded-word.html">
+        <div class="blog-card-meta">
+          <span class="bc-tag" data-i18n="blog.p1.tag">Lineage</span>
+          <span data-i18n="blog.p1.meta">New writing</span>
+        </div>
+        <div class="blog-card-title" data-i18n="blog.p1.title">The Gate of the <em>Wounded Word</em></div>
+        <div class="blog-card-excerpt" data-i18n="blog.p1.excerpt">On the karma of gossip, the stiffness at the back of the neck, and the one permission that turns the direction of an inherited wound — the thing only a descendant can say to their dead.</div>
+        <div class="blog-card-cta" data-i18n="blog.cta">Read →</div>
+      </a>
+
+      <a class="blog-card reveal" href="#blog">
+        <div class="blog-card-meta">
+          <span class="bc-tag">Human Design</span>
+          <span>Coming soon</span>
+        </div>
+        <div class="blog-card-title">On Living as a <em>Projector</em></div>
+        <div class="blog-card-excerpt">What it means to wait for the invitation — and why that advice is so much stranger, and deeper, than it first sounds.</div>
+        <div class="blog-card-cta">Read →</div>
+      </a>
+
+      <a class="blog-card reveal" href="#blog">
+        <div class="blog-card-meta">
+          <span class="bc-tag">Convergence</span>
+          <span>Coming soon</span>
+        </div>
+        <div class="blog-card-title">When Five Traditions <em>Agree</em></div>
+        <div class="blog-card-excerpt">Five wisdom systems, five different centuries — and sometimes they say exactly the same thing about a soul. What happens when the maps converge.</div>
+        <div class="blog-card-cta">Read →</div>
+      </a>
+
+      <a class="blog-card reveal" href="#blog">
+        <div class="blog-card-meta">
+          <span class="bc-tag">Children</span>
+          <span>Coming soon</span>
+        </div>
+        <div class="blog-card-title">The Soul Arrives <em>Already Whole</em></div>
+        <div class="blog-card-excerpt">Reading a child's chart is an act of deep listening — before they can speak for themselves. Notes on what the map reveals, and what it never will.</div>
+        <div class="blog-card-cta">Read →</div>
+      </a>
+
+    </div>
+
+    <div class="blog-placeholder reveal" style="margin-top:2rem;">
+      <p data-i18n="blog.placeholder">New writings are added as they arrive. If a piece touches you, you are welcome to <a href="mailto:cinwicca@gmail.com" style="color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(212,177,90,0.3);">write to Cintia</a>.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── BEGIN / FORM ── -->
+<section class="form-section" id="form">
+  <div class="wrapper-sm">
+    <div class="section-head reveal">
+      <span class="section-label" data-i18n="form.label">Begin</span>
+      <h2 class="section-title"><span data-i18n="form.title1">Your Soul path </span><em data-i18n="form.title2">begins here</em></h2>
+      <div class="form-intro">
+        <p data-i18n="form.intro">Please fill this form with as much truth and openness as you can. This is a place for you to feel seen and heard. You don't need to make sense — begin your Self–Soul exploration here.</p>
+      </div>
+    </div>
+
+    <form class="soul-form reveal" id="soulForm" name="soul-path" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="soul-path">
+      <p style="display:none;"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+      <div class="form-group">
+        <label class="form-label" for="email"><span data-i18n="form.email">Email Address</span> <span class="req">*</span></label>
+        <input class="form-input" type="email" id="email" name="email" data-i18n-ph="form.email.ph" placeholder="your@email.com" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="name"><span data-i18n="form.name">Your Name</span> <span class="req">*</span></label>
+          <input class="form-input" type="text" id="name" name="name" data-i18n-ph="form.name.ph" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="dob"><span data-i18n="form.dob">Date of Birth</span> <span class="req">*</span></label>
+          <input class="form-input" type="text" id="dob" name="dob" placeholder="DD / MM / YYYY">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="pob"><span data-i18n="form.pob">Place of Birth</span> <span class="req">*</span></label>
+          <input class="form-input" type="text" id="pob" name="pob" data-i18n-ph="form.pob.ph" placeholder="City, Country">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="tob" data-i18n="form.tob">Time of Birth</label>
+          <span class="form-hint" data-i18n="form.tob.hint">As accurate as possible — even an approximate time helps.</span>
+          <input class="form-input" type="text" id="tob" name="tob" data-i18n-ph="form.tob.ph" placeholder="e.g. 14:35 or 'around 2pm'">
+        </div>
+      </div>
+
+      <hr class="form-divider">
+
+      <div class="form-group">
+        <label class="form-label"><span data-i18n="form.service">What are you looking for?</span> <span class="req">*</span></label>
+        <span class="form-hint" data-i18n="form.service.hint">Choose the offering that resonates most deeply with you right now.</span>
+        <div class="services-radio">
+          <div class="service-radio-item">
+            <input type="radio" name="service" id="s1" value="Area of Life Question" data-svc-name="svc.area.name" data-svc-price="price.222">
+            <label class="service-radio-label" for="s1">
+              <span class="srl-name" data-i18n="svc.area.name">Area of Life Question</span>
+              <span class="srl-price" data-i18n="price.222">£55</span>
+              <span class="srl-desc" data-i18n="svc.area.short">Clarity about a specific situation</span>
+            </label>
+          </div>
+          <div class="service-radio-item">
+            <input type="radio" name="service" id="s2" value="Natal Astrology Reading" data-svc-name="svc.natal.name" data-svc-price="price.444">
+            <label class="service-radio-label" for="s2">
+              <span class="srl-name" data-i18n="svc.natal.name">Natal Astrology Reading</span>
+              <span class="srl-price" data-i18n="price.444">£111</span>
+              <span class="srl-desc" data-i18n="svc.natal.short">Your birth chart in depth</span>
+            </label>
+          </div>
+          <div class="service-radio-item">
+            <input type="radio" name="service" id="s3" value="Human Design - Initial" data-svc-name="svc.hd1.name" data-svc-price="price.444">
+            <label class="service-radio-label" for="s3">
+              <span class="srl-name" data-i18n="svc.hd1.name">Human Design — Initial</span>
+              <span class="srl-price" data-i18n="price.444">£111</span>
+              <span class="srl-desc" data-i18n="svc.hd1.short">Your type, strategy & authority</span>
+            </label>
+          </div>
+          <div class="service-radio-item">
+            <input type="radio" name="service" id="s4" value="Human Design - Full" data-svc-name="svc.hd2.name" data-svc-price="price.555">
+            <label class="service-radio-label" for="s4">
+              <span class="srl-name" data-i18n="svc.hd2.name">Human Design — Full</span>
+              <span class="srl-price" data-i18n="price.555">£222</span>
+              <span class="srl-desc" data-i18n="svc.hd2.short">Complete HD analysis</span>
+            </label>
+          </div>
+          <div class="service-radio-item">
+            <input type="radio" name="service" id="s5" value="Soul Blueprint" data-svc-name="svc.soul.name" data-svc-price="price.555">
+            <label class="service-radio-label" for="s5">
+              <span class="srl-name" data-i18n="svc.soul.name">Soul Blueprint</span>
+              <span class="srl-price" data-i18n="price.555">£222</span>
+              <span class="srl-desc" data-i18n="svc.soul.short">Astrology + HD + Numerology</span>
+            </label>
+          </div>
+          <div class="service-radio-item">
+            <input type="radio" name="service" id="s6" value="Karmic Patterns" data-svc-name="svc.karma.name" data-svc-price="price.555">
+            <label class="service-radio-label" for="s6">
+              <span class="srl-name" data-i18n="svc.karma.name">Karmic Patterns</span>
+              <span class="srl-price" data-i18n="price.555">£222</span>
+              <span class="srl-desc" data-i18n="svc.karma.short">Ancestral & lineage work</span>
+            </label>
+          </div>
+          <div class="service-radio-item">
+            <input type="radio" name="service" id="s7" value="Solar Return" data-svc-name="svc.solar.name" data-svc-price="price.444">
+            <label class="service-radio-label" for="s7">
+              <span class="srl-name" data-i18n="svc.solar.name">Solar Return</span>
+              <span class="srl-price" data-i18n="price.444">£111</span>
+              <span class="srl-desc" data-i18n="svc.solar.short">Your year ahead in cycles</span>
+            </label>
+          </div>
+          <div class="service-radio-item">
+            <input type="radio" name="service" id="s8" value="Child's Blueprint" data-svc-name="svc.child.name" data-svc-price="price.555">
+            <label class="service-radio-label" for="s8">
+              <span class="srl-name" data-i18n="svc.child.name">Child's Blueprint</span>
+              <span class="srl-price" data-i18n="price.555">£222</span>
+              <span class="srl-desc" data-i18n="svc.child.short">Your child's Human Design</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <hr class="form-divider">
+
+      <div class="form-group">
+        <label class="form-label" for="lifeNow"><span data-i18n="form.lifenow">Where are you in your life?</span> <span class="req">*</span></label>
+        <span class="form-hint" data-i18n="form.lifenow.hint">What are your repeating patterns? Your struggles and concerns? Your places of joy?</span>
+        <textarea class="form-textarea" id="lifeNow" name="lifeNow" rows="4" data-i18n-ph="form.lifenow.ph" placeholder="Share as openly as you feel called to..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="priorKnowledge"><span data-i18n="form.prior">Do you know your Human Design, Astro-Chart, or anything about your numbers?</span> <span class="req">*</span></label>
+        <span class="form-hint" data-i18n="form.prior.hint">No prior knowledge needed — this just helps me understand where to begin with you.</span>
+        <textarea class="form-textarea" id="priorKnowledge" name="priorKnowledge" rows="3" data-i18n-ph="form.prior.ph" placeholder="e.g. I know I'm a Scorpio rising, Projector type... or 'I know nothing at all'"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="expectations" data-i18n="form.expect">What are your expectations?</label>
+        <span class="form-hint" data-i18n="form.expect.hint">Which area of life would you like the most attention on?</span>
+        <textarea class="form-textarea" id="expectations" name="expectations" rows="3" data-i18n-ph="form.expect.ph" placeholder="Relationships, career, purpose, family, health, spirituality..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="freeSpace" data-i18n="form.free">Your free space</label>
+        <span class="form-hint" data-i18n="form.free.hint">Use this as it pleases you. You can begin your Self–Soul exploration here — and you don't need to make sense. This is a place for you to feel seen and heard.</span>
+        <textarea class="form-textarea" id="freeSpace" name="freeSpace" rows="5" data-i18n-ph="form.free.ph" placeholder="Whatever wishes to be said..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="needSupport" data-i18n="form.support">Would you like to discuss a sliding scale or concession?</label>
+        <span class="form-hint" data-i18n="form.support.hint">If cost feels like a barrier, please mention it here — gently, without explanation. We'll find a way.</span>
+        <textarea class="form-textarea" id="needSupport" name="needSupport" rows="2" data-i18n-ph="form.support.ph" placeholder="A simple 'yes, please' is enough."></textarea>
+      </div>
+
+      <div class="payment-inline">
+        <div>
+          <div class="payment-inline-title" data-i18n="form.pay">Payment</div>
+          <p data-i18n="form.pay.body">After submitting, please send payment via <strong>PayPal</strong> to <code>cinwicca@gmail.com</code> or <strong>Wise</strong> to <code>@cintiag41</code>. Your reading is confirmed once payment is received.</p>
+        </div>
+        <a href="https://paypal.me/cinwicca?country.x=GB&locale.x=en_GB" target="_blank" rel="noopener" class="btn-secondary" style="white-space:nowrap;" data-i18n="form.pay.btn">Pay via PayPal ↗</a>
+      </div>
+
+      <div class="form-submit-wrap">
+        <button type="submit" class="btn-primary" style="font-size:0.82rem; padding:1.15rem 3rem; border:0;" data-i18n="form.submit">Send My Soul Request</button>
+        <p class="form-note" data-i18n="form.note">Your responses are held in full confidentiality and deep respect.<br>Cinwicca will be in touch within 48 hours to confirm your session.<br>Sliding scale and concession available — <a href="mailto:cinwicca@gmail.com">enquire by email</a>.</p>
+      </div>
+    </form>
+
+    <div class="form-success" id="formSuccess">
+      <div class="form-success-mark">✦</div>
+      <h3 data-i18n="success.title">Your request has been received.</h3>
+      <p data-i18n="success.body">Thank you for trusting this space.<br>Cinwicca will be in touch within 48 hours to confirm your session.<br><br><em>Remember to complete payment via PayPal or Wise to secure your reading.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Cinwicca</div>
+  <div class="footer-sub" data-i18n="footer.sub">also known as <strong>Cintia de Godoy</strong></div>
+  <div class="footer-links">
+    <a href="#about" data-i18n="nav.about">The Work</a>
+    <a href="#offerings" data-i18n="nav.offerings">Offerings</a>
+    <a href="#blog" data-i18n="nav.blog">Writing</a>
+    <a href="#form" data-i18n="nav.begin">Begin</a>
+    <a href="mailto:cinwicca@gmail.com" data-i18n="nav.contact">Contact</a>
+  </div>
+  <div class="footer-copy">
+    <span data-i18n="footer.copy">© 2025 Cinwicca · Soul Path Readings</span><br>
+    <span data-i18n="hero.modalities">Astrology · Numerology · Human Design · Maia Cosmology</span>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script>
+// ── COSMOS CANVAS ──
+const canvas = document.getElementById('cosmos');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [];
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+for (let i = 0; i < 180; i++) {
+  stars.push({
+    x: Math.random(), y: Math.random(),
+    r: Math.random() * 1.2 + 0.2,
+    o: Math.random() * 0.6 + 0.15,
+    speed: Math.random() * 0.0003 + 0.0001,
+    phase: Math.random() * Math.PI * 2,
+    gold: Math.random() > 0.85
+  });
+}
+let t = 0;
+function drawCosmos() {
+  ctx.clearRect(0, 0, W, H);
+  const grad = ctx.createRadialGradient(W*0.3, H*0.2, 0, W*0.5, H*0.5, W*0.8);
+  grad.addColorStop(0, 'rgba(31,42,90,0.18)');
+  grad.addColorStop(0.5, 'rgba(13,16,32,0.08)');
+  grad.addColorStop(1, 'rgba(8,9,15,0)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+  stars.forEach(s => {
+    const pulse = Math.sin(t * s.speed * 1000 + s.phase) * 0.3 + 0.7;
+    ctx.beginPath();
+    ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = s.gold
+      ? `rgba(212,177,90,${s.o * pulse})`
+      : `rgba(220,210,200,${s.o * pulse})`;
+    ctx.fill();
+  });
+  t += 0.016;
+  requestAnimationFrame(drawCosmos);
+}
+drawCosmos();
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver(
+  entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  }),
+  { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+);
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = `${(i % 3) * 0.1}s`;
+  observer.observe(el);
+});
+
+// ── FORM SUBMIT ──
+function getDict() { return (window.__i18n && window.__i18n[window.__lang]) || {}; }
+function stripHtml(s) { const d = document.createElement('div'); d.innerHTML = s || ''; return d.textContent || ''; }
+
+// Encode form data the way Netlify Forms expects (application/x-www-form-urlencoded)
+function encodeFormData(data) {
+  return Object.keys(data)
+    .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
+    .join('&');
+}
+
+// Post to Netlify Forms in the background. Falls back to a mailto if the
+// site is opened locally (file://) or the network post fails, so nothing is ever lost.
+function postToNetlify(formName, data, mailtoSubject, mailtoBody, onDone) {
+  const payload = Object.assign({ 'form-name': formName }, data);
+  const isLive = location.protocol === 'http:' || location.protocol === 'https:';
+  if (!isLive) {
+    // Opened from a file — Netlify isn't there; use the e-mail fallback.
+    window.location.href = `mailto:cinwicca@gmail.com?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`;
+    onDone();
+    return;
+  }
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: encodeFormData(payload)
+  })
+    .then(() => onDone())
+    .catch(() => {
+      window.location.href = `mailto:cinwicca@gmail.com?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`;
+      onDone();
+    });
+}
+
+// ── MAIN SOUL-PATH FORM ──
+const soulFormEl = document.getElementById('soulForm');
+if (soulFormEl) {
+  soulFormEl.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const name = document.getElementById('name').value;
+    const dob = document.getElementById('dob').value;
+    const service = document.querySelector('input[name="service"]:checked');
+    const L = getDict();
+
+    if (!email || !name || !dob) {
+      alert(L['alert.required'] || 'Please fill in your name, email and date of birth to continue.');
+      return;
+    }
+    if (!service) {
+      alert(L['alert.service'] || 'Please select a service offering.');
+      return;
+    }
+
+    const svcName = stripHtml(L[service.dataset.svcName] || service.value || '');
+    const svcPrice = stripHtml(L[service.dataset.svcPrice] || '');
+    const serviceLabel = `${svcName} – ${svcPrice}`;
+
+    const data = {
+      email: email,
+      name: name,
+      dob: dob,
+      pob: document.getElementById('pob').value,
+      tob: document.getElementById('tob').value,
+      service: serviceLabel,
+      lifeNow: document.getElementById('lifeNow').value,
+      priorKnowledge: document.getElementById('priorKnowledge').value,
+      expectations: document.getElementById('expectations').value,
+      freeSpace: document.getElementById('freeSpace').value,
+      needSupport: document.getElementById('needSupport').value
+    };
+
+    const mailBody =
+`SOUL PATH REQUEST
+=================
+Name: ${data.name}
+Email: ${data.email}
+Date of Birth: ${data.dob}
+Place of Birth: ${data.pob}
+Time of Birth: ${data.tob}
+
+Service Requested: ${data.service}
+
+WHERE I AM IN MY LIFE:
+${data.lifeNow}
+
+PRIOR KNOWLEDGE (HD / Astrology / Numerology):
+${data.priorKnowledge}
+
+EXPECTATIONS & FOCUS AREA:
+${data.expectations}
+
+FREE SPACE:
+${data.freeSpace}
+
+SLIDING SCALE / SUPPORT:
+${data.needSupport}
+`;
+
+    postToNetlify('soul-path', data, `Soul Path Request — ${serviceLabel} — ${name}`, mailBody, function () {
+      document.getElementById('soulForm').style.display = 'none';
+      document.getElementById('formSuccess').classList.add('visible');
+      window.scrollTo({ top: document.getElementById('formSuccess').offsetTop - 100, behavior: 'smooth' });
+    });
+  });
+}
+
+// ── SHARE / TESTIMONIAL FORM ──
+const shareFormEl = document.getElementById('share');
+if (shareFormEl) {
+  shareFormEl.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const sName = document.getElementById('shareName').value;
+    const sEmail = document.getElementById('shareEmail').value;
+    const sWords = document.getElementById('shareWords').value;
+    const sPerm = document.getElementById('sharePermission').checked;
+    const L = getDict();
+
+    if (!sName || !sWords) {
+      alert(L['alert.share'] || 'Please add your name and your words.');
+      return;
+    }
+
+    const data = {
+      name: sName,
+      email: sEmail || '(not provided)',
+      'permission-to-publish': sPerm ? 'yes' : 'no',
+      words: sWords
+    };
+
+    const mailBody =
+`A REFLECTION FROM A SOUL
+========================
+Name: ${sName}
+Email: ${sEmail || '(not provided)'}
+Permission to publish: ${sPerm ? 'YES' : 'NO'}
+
+WORDS:
+${sWords}
+`;
+
+    postToNetlify('reflection', data, `A reflection from ${sName}`, mailBody, function () {
+      shareFormEl.innerHTML = '<div style="text-align:center; padding:1rem 0;"><div style="font-size:2rem; color:var(--gold); margin-bottom:0.8rem;">✦</div><p style="font-family:\'Cormorant Garamond\',serif; font-style:italic; font-size:1.2rem; color:var(--gold-lt);">' + (L['share.thanks'] || 'Thank you for your words. They are received with gratitude.') + '</p></div>';
+    });
+  });
+}
+</script>
+</body>
+</html>

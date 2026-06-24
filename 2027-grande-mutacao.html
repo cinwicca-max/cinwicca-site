@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2027 e a Grande Mutação · Cinwicca</title>
+<meta name="description" content="A passagem da Cruz do Planejamento para a Cruz da Fênix Adormecida — a grande mutação de 2027 no Human Design.">
+
+<!-- ── Open Graph / Social previews (Facebook, WhatsApp, Telegram, etc.) ── -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Cinwicca">
+<meta property="og:title" content="2027 e a Grande Mutação">
+<meta property="og:description" content="A passagem para a Cruz da Fênix Adormecida no Human Design.">
+<meta property="og:url" content="https://cinwicca.com/2027-grande-mutacao.html">
+<!-- ↓ Troque pela imagem 1200×630 que eu posso gerar pra você (próximo passo) -->
+<meta property="og:image" content="https://cinwicca.com/assets/og-2027.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="2027 e a Grande Mutação">
+<meta name="twitter:description" content="A passagem para a Cruz da Fênix Adormecida no Human Design.">
+<meta name="twitter:image" content="https://cinwicca.com/assets/og-2027.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obsidian: #08090f;
+  --deep:     #0d1020;
+  --ink:      #141a2e;
+  --indigo:   #1f2a5a;
+  --gold:     #d4b15a;
+  --gold-lt:  #ecd49a;
+  --gold-dk:  #8b6b22;
+  --rose:     #b67a8f;
+  --cream:    #f6ecd0;
+  --text:     #f1e7cf;
+  --text-2:   #d6c7a2;
+  --text-3:   #a99878;
+  --border:   rgba(212,177,90,0.18);
+  --border-b: rgba(212,177,90,0.42);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  background: var(--obsidian);
+  color: var(--text);
+  overflow-x: hidden;
+  font-size: 18px;
+  line-height: 1.78;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.85; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 2.5rem;
+  background: rgba(8,9,15,0.78);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 500;
+  color: var(--gold); letter-spacing: 0.34em; text-decoration: none; text-transform: uppercase;
+}
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+.nav-links { display: flex; gap: 1.6rem; }
+.nav-links a {
+  font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 400;
+  letter-spacing: 0.08em; color: var(--text-2); text-decoration: none; transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* ── LANG SWITCHER ── */
+.lang-switch {
+  display: inline-flex; border: 1px solid var(--border); border-radius: 999px;
+  overflow: hidden; background: rgba(212,177,90,0.04);
+}
+.lang-switch button {
+  background: transparent; border: 0; color: var(--text-3);
+  font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.1em; padding: 0.45rem 0.85rem; cursor: pointer;
+  transition: all 0.25s; text-transform: uppercase;
+}
+.lang-switch button + button { border-left: 1px solid var(--border); }
+.lang-switch button:hover { color: var(--gold-lt); }
+.lang-switch button.active { background: var(--gold); color: var(--obsidian); }
+
+/* ── LAYOUT ── */
+.wrapper-sm { max-width: 720px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+
+/* ── ARTICLE HEAD ── */
+.article-head { padding: 9rem 1.5rem 1.5rem; text-align: center; position: relative; z-index: 1; }
+.back-link {
+  display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.72rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-3);
+  text-decoration: none; margin-bottom: 2.4rem; transition: color 0.3s;
+}
+.back-link:hover { color: var(--gold); }
+.article-eyebrow {
+  font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.32em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 1.4rem;
+}
+.article-title {
+  font-family: 'Cormorant Garamond', serif; font-weight: 400;
+  font-size: clamp(2.4rem, 6vw, 3.8rem); line-height: 1.08; color: var(--cream); margin-bottom: 1rem;
+}
+.article-sub {
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400;
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem); color: var(--text-2); max-width: 36ch;
+  margin: 0 auto 1.4rem;
+}
+.article-meta {
+  font-family: 'Inter', sans-serif; font-size: 0.72rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-3);
+}
+
+/* ── SHARE BAR ── */
+.share-bar {
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+  gap: 0.7rem; padding: 1.6rem 1.5rem; position: relative; z-index: 1;
+}
+.share-label {
+  width: 100%; text-align: center; font-family: 'Cinzel', serif;
+  font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.4rem;
+}
+.share-btn {
+  width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--border-b);
+  background: rgba(212,177,90,0.04); color: var(--gold-lt);
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.25s; text-decoration: none;
+}
+.share-btn:hover { background: var(--gold); color: var(--obsidian); border-color: var(--gold); transform: translateY(-2px); }
+.share-btn svg { width: 19px; height: 19px; display: block; }
+.toast {
+  position: fixed; left: 50%; bottom: 2rem; transform: translateX(-50%) translateY(20px);
+  background: var(--gold); color: var(--obsidian); font-family: 'Inter', sans-serif;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; padding: 0.7rem 1.4rem;
+  border-radius: 999px; opacity: 0; pointer-events: none; transition: all 0.35s; z-index: 200;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── ARTICLE BODY ── */
+.article-body { padding: 1.5rem 0 2rem; }
+.article-body p { margin: 0 0 1.5rem; color: var(--text); }
+.article-body p.lead { font-size: 1.18rem; color: var(--text); }
+.article-body p.lead::first-letter {
+  font-family: 'Cinzel', serif; font-size: 3.4rem; line-height: 0.8;
+  float: left; color: var(--gold); padding: 0.15rem 0.7rem 0 0; margin-top: 0.2rem;
+}
+.section-title {
+  font-family: 'Cinzel', serif; font-weight: 500; font-size: 1.12rem;
+  letter-spacing: 0.04em; color: var(--gold-lt); margin: 2.8rem 0 1.2rem;
+}
+.article-body strong { color: var(--gold-lt); font-weight: 600; }
+.article-body em { color: var(--text); }
+.num { color: var(--gold); font-variant-numeric: lining-nums; white-space: nowrap; }
+.section-divider { text-align: center; margin: 2.6rem 0; }
+.section-divider span { color: var(--gold-dk); font-size: 1rem; letter-spacing: 0.5em; }
+blockquote.ra {
+  position: relative; margin: 2.2rem 0; padding: 2rem 2rem;
+  border: 1px solid var(--border); outline: 1px solid var(--border); outline-offset: 5px;
+  background: rgba(212,177,90,0.03);
+  font-style: italic; font-size: 1.12rem; color: var(--text-2); line-height: 1.7;
+}
+blockquote.ra cite {
+  display: block; margin-top: 1rem; font-style: normal; font-family: 'Cinzel', serif;
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-3);
+}
+.types-list { list-style: none; margin: 0.5rem 0 1.5rem; }
+.types-list li { margin: 0 0 1.2rem; }
+.types-list .t-name { color: var(--gold-lt); font-weight: 600; }
+
+/* ── FOOTER ── */
+footer { text-align: center; padding: 3.5rem 1.5rem 4rem; border-top: 1px solid var(--border); margin-top: 2rem; position: relative; z-index: 1; }
+.footer-brand { font-family: 'Cinzel', serif; font-size: 1.05rem; letter-spacing: 0.34em; color: var(--gold); text-transform: uppercase; }
+.footer-sub { font-size: 1rem; color: var(--text-2); margin: 0.5rem 0 1.2rem; }
+.footer-sub strong { color: var(--gold-lt); font-weight: 500; }
+.footer-links { display: flex; gap: 1.8rem; justify-content: center; margin: 1rem 0 1.2rem; flex-wrap: wrap; }
+.footer-links a { font-family: 'Inter', sans-serif; font-size: 0.76rem; letter-spacing: 0.1em; color: var(--text-3); text-decoration: none; transition: color 0.3s; }
+.footer-links a:hover { color: var(--gold); }
+.footer-copy { font-size: 0.92rem; color: var(--text-3); line-height: 1.8; }
+
+@media (max-width: 720px) {
+  body { font-size: 17px; }
+  nav { padding: 0.9rem 1.2rem; }
+  .nav-brand { font-size: 0.82rem; letter-spacing: 0.24em; }
+  .nav-links { display: none; }
+  .lang-switch button { padding: 0.4rem 0.65rem; font-size: 0.68rem; }
+  .article-head { padding-top: 7rem; }
+  .footer-brand { font-size: 0.95rem; letter-spacing: 0.28em; }
+}
+</style>
+</head>
+<body>
+<canvas id="cosmos" aria-hidden="true"></canvas>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-brand" href="index.html">Cinwicca</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html#about" data-i18n="nav.about">The Work</a>
+      <a href="index.html#offerings" data-i18n="nav.offerings">Offerings</a>
+      <a href="index.html#blog" data-i18n="nav.blog">Writing</a>
+      <a href="index.html#form" data-i18n="nav.begin">Begin</a>
+    </div>
+    <div class="lang-switch" role="tablist" aria-label="Language">
+      <button data-lang="en">EN</button>
+      <button data-lang="pt" class="active">PT</button>
+      <button data-lang="es">ES</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── ARTICLE HEAD ── -->
+<header class="article-head">
+  <div class="wrapper-sm">
+    <a class="back-link" href="index.html#blog" data-i18n="a.back">← Voltar para Cinwicca</a>
+
+    <!-- PT -->
+    <div data-lang-block="pt">
+      <div class="article-eyebrow">2027 · A Grande Mutação</div>
+      <h1 class="article-title">2027 e a Grande Mutação</h1>
+      <p class="article-sub">A passagem da Cruz do Planejamento para a Cruz da Fênix Adormecida</p>
+      <div class="article-meta">Human Design · 9 min de leitura</div>
+    </div>
+    <!-- EN -->
+    <div data-lang-block="en" style="display:none">
+      <div class="article-eyebrow">2027 · The Great Mutation</div>
+      <h1 class="article-title">2027 and the Great Mutation</h1>
+      <p class="article-sub">The passage from the Cross of Planning to the Cross of the Sleeping Phoenix</p>
+      <div class="article-meta">Human Design · 9 min read</div>
+    </div>
+    <!-- ES -->
+    <div data-lang-block="es" style="display:none">
+      <div class="article-eyebrow">2027 · La Gran Mutación</div>
+      <h1 class="article-title">2027 y la Gran Mutación</h1>
+      <p class="article-sub">El paso de la Cruz de la Planificación a la Cruz del Fénix Dormido</p>
+      <div class="article-meta">Human Design · 9 min de lectura</div>
+    </div>
+  </div>
+</header>
+
+<!-- ── SHARE BAR (top) ── -->
+<div class="wrapper-sm">
+  <div class="share-bar" id="shareTop"></div>
+</div>
+
+<!-- ── ARTICLE BODY ── -->
+<main class="wrapper-sm">
+
+  <!-- ════════ PORTUGUÊS ════════ -->
+  <article class="article-body" data-lang-block="pt">
+    <p class="lead">Há datas que não marcam um acontecimento — marcam o fim de um modo de existir. <strong>15 de fevereiro de 2027</strong> é uma delas. Nesse ponto, o Human Design situa o encerramento de um ciclo global que nos imprime desde <span class="num">1615</span> e a abertura de outro, que nos acompanhará até <span class="num">2438</span>.</p>
+    <p>Não é um interruptor que se desliga numa madrugada. É uma maré que já está virando — e que muitos de nós já sentimos no corpo muito antes de termos uma palavra para nomeá-la.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">O que termina: a Cruz do Planejamento</h2>
+    <p>Por mais de quatrocentos anos vivemos sob a frequência de fundo da <strong>Cruz do Planejamento</strong>, formada pelos Portões <span class="num">9, 16, 37 e 40</span> — todos de circuitaria <strong>coletiva e tribal</strong>.</p>
+    <p>Esta foi a era do <em>pacto</em>. O canal <span class="num">37-40</span>, o Canal da Comunidade, é exatamente o lugar onde se sela o acordo tribal: eu te apoio, tu me apoias; eu cuido, e em troca recebo afeto e segurança. Foi esta frequência que ergueu tudo aquilo a que aprendemos a chamar de civilização — as instituições, os bancos, os sistemas de saúde e educação, o emprego como destino. A sobrevivência dependia do laço, do contrato, da pertença ao grupo.</p>
+    <p>E é por isso que, olhando à nossa volta, sentimos o chão tremer. O cimento que mantinha a tribo unida está a desfazer-se diante dos nossos olhos. Não é só impressão tua. É o ciclo a esgotar-se.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">O que começa: a Cruz da Fênix Adormecida</h2>
+    <p>A nova era é formada pelos Portões <span class="num">55, 59, 34 e 20</span>. Três deles são de circuitaria <strong>individual</strong> — e essa é toda a história contada numa só frase.</p>
+    <p>Saímos de <em>"faça um pacto com o teu próximo"</em> e entramos em <em>"lembra-te de que estás só."</em> Não no sentido do abandono, mas da <strong>soberania</strong>. O eixo <span class="num">34-20</span> é o da integração, da força e da presença no agora — a vitalidade individual que só se justifica quando serve ao todo. O Portão <span class="num">59</span> traz a intimidade real, a que se constrói sem as garantias do contrato. E no centro de tudo está o <span class="num">55</span>.</p>
+    <p>A frequência de fundo deixa de nos dizer onde nos encaixarmos e passa a perguntar quem realmente somos quando ninguém nos dá permissão.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">A mutação central: o Portão 55 e o Plexo Solar</h2>
+    <p>Aqui está o coração de tudo. Em 2027 a precessão dos equinócios entra no <strong>Portão 55 — a Abundância, o portão do Espírito —</strong> na sua <strong>6ª linha</strong>, deixando para trás o Portão 37. O detalhe técnico carrega o sentido inteiro: passamos da <strong>1ª linha</strong> (segurança, fundação, medo) para a <strong>6ª linha</strong> (inocência, exemplo, transformação). A frequência do medo como ruído de fundo da espécie começa, lentamente, a sair de cena.</p>
+    <p>E há algo ainda mais profundo. O <strong>Plexo Solar</strong> — que o Human Design sempre reconheceu como um dos três Centros de Consciência, mas que ao longo de toda a história humana funcionou sobretudo como um <em>motor</em> — está destinado a despertar como Centro de Consciência <strong>pleno</strong>. Pela primeira vez, a espécie ganharia um terceiro canal de saber, ao lado da <strong>Ajna</strong> (a mente) e do <strong>Baço</strong> (a intuição do instante).</p>
+    <p>Isto não acontece num ano. É o arco mais longo de todos — uma mutação celular no nosso sistema emocional que se desenrola por milénios. 2027 não é a chegada; é o limiar. É o momento em que a porta se entreabre.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">Por que "adormecida"?</h2>
+    <p>Ra Uru Hu deixou um aviso que muda tudo: a fénix esteve a dormir por muito tempo — sempre pronta, mas pronta para <em>não</em> se erguer. E quando finalmente acorda, ensinava ele, "a fénix tem de morrer antes de poder voar".</p>
+    <blockquote class="ra">Não é a cruz da fénix. É a cruz da fénix <em>adormecida</em>. No instante em que se compreende essa diferença, vê-se que 2027 é uma lâmina de dois gumes: traz a morte de algo — e é dessas cinzas que algo novo se ergue.<cite>— síntese do ensinamento de Ra Uru Hu</cite></blockquote>
+    <p>Quem vive estes ciclos pelo corpo sabe: o luto e o nascimento muitas vezes usam a mesma roupa.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">Os Tipos na nova era</h2>
+    <p>A grande virada não trata todos os desenhos da mesma forma. Eis o que se desenha para cada um:</p>
+    <ul class="types-list">
+      <li><span class="t-name">Projetores.</span> Durante quatrocentos anos guiaram e direcionaram dentro de um ciclo que sequer tinha uma categoria para o seu papel. A Cruz da Fênix Adormecida é muito mais reconhecível ao desenho do Projetor — é, num certo sentido, <em>a sua era</em>. O cuidado: o reconhecimento chega aos poucos, e o intervalo até a validação aparecer pode esgotar um Projetor que se esquece de descansar e esperar o convite.</li>
+      <li><span class="t-name">Manifestores.</span> Passaram quatro séculos dentro de um ciclo hostil às energias iniciadoras — um mundo de espera hierárquica e de pedir licença. A nova era é muito mais permissiva à energia que inicia sem carimbo de aprovação. E, contra a intuição, a estratégia de <em>informar antes de agir</em> importa mais, não menos.</li>
+      <li><span class="t-name">Geradores e Geradores Manifestantes.</span> O mundo deixa de premiar a pura produtividade e passa a premiar o alinhamento. Os GMs, em especial, foram desenhados para o ritmo que a nova era recompensa — multiapaixonados, rápidos, não-lineares. A resposta sacral continua a ser a bússola.</li>
+      <li><span class="t-name">Refletores.</span> Espelhos lunares da saúde da comunidade, refletem aquilo que os rodeia. Numa era que se individualiza, o que refletem muda de textura — e o seu papel como barómetros do bem-estar coletivo torna-se ainda mais precioso.</li>
+    </ul>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">Quem carrega os portões da transição</h2>
+    <p>Há pessoas que não vão apenas atravessar esta passagem — vão <em>carregá-la</em> nos próprios genes. Quem tem ativados os Portões <span class="num">55, 59, 34 ou 20</span> traz no mapa a assinatura da era que nasce. E quem nasceu sob a própria <strong>Cruz da Fênix Adormecida</strong> como Cruz de Encarnação é, de certa forma, um precursor.</p>
+    <p>Quem tem o <strong>Portão 55</strong> definido carrega de modo especial a mutação emocional — a travessia da onda baseada em esperança e dor rumo ao Espírito individual. E quem tem o eixo <span class="num">37-40</span> da Comunidade tende a sentir, com particular intensidade, a cola tribal a soltar-se.</p>
+    <p>Se reconheces estes portões no teu mapa, este texto talvez te chegue menos como notícia e mais como memória.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">O espelho no céu</h2>
+    <p>A Cruz da Fênix Adormecida vem do Human Design, mas não se ativa no vácuo. Os Ciclos Globais medem a <strong>precessão dos equinócios</strong>, e Ra descrevia o mecanismo com beleza: o nosso movimento no espaço expõe-nos a uma corrente de neutrinos gradualmente alterada, e os neutrinos, nascidos das estrelas, atravessam os corpos e carregam informação para dentro e para fora do nosso DNA.</p>
+    <p>Por isso o céu de agora <em>rima</em> com a virada. <strong>Plutão em Aquário</strong> dissolvendo as velhas estruturas de poder, a convergência rara dos planetas exteriores marcando o fim das eras externamente organizadas. O cosmos e a célula contam a mesma história.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">Como atravessar</h2>
+    <p>Não é uma profecia de fim do mundo. É uma profecia de <em>fim de um mundo</em> — e de nascimento de outro. Como a floresta depois do fogo. Como a Alma depois de largar um padrão antigo.</p>
+    <p>O convite é simples de dizer e de uma vida inteira para viver: deixa de terceirizar o teu poder. Aprende a confiar na tua Autoridade — no corpo, e não no medo. Cura os padrões emocionais que herdaste da tua linhagem. Reacende o teu fogo criativo. Constrói vínculos sobre a verdade, e não sobre o contrato.</p>
+    <p>Quanto mais ancorado estiveres em ti, mais leve será atravessar o que vem. A fénix não acorda para fugir do fogo. Acorda <em>através</em> dele. E talvez seja essa a notícia mais bonita de 2027: aquilo que durante tanto tempo pareceu o teu desencaixe pode revelar-se, afinal, o teu mapa.</p>
+  </article>
+
+  <!-- ════════ ENGLISH ════════ -->
+  <article class="article-body" data-lang-block="en" style="display:none">
+    <p class="lead">Some dates do not mark an event — they mark the end of a way of existing. <strong>15 February 2027</strong> is one of them. At that point, Human Design places the close of a global cycle that has imprinted us since <span class="num">1615</span>, and the opening of another that will accompany us until <span class="num">2438</span>.</p>
+    <p>It is not a switch that flips overnight. It is a tide already turning — one many of us feel in the body long before we have a word for it.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">What ends: the Cross of Planning</h2>
+    <p>For more than four hundred years we have lived under the background frequency of the <strong>Cross of Planning</strong>, formed by Gates <span class="num">9, 16, 37 and 40</span> — all of <strong>collective and tribal</strong> circuitry.</p>
+    <p>This was the age of the <em>bargain</em>. The <span class="num">37-40</span> channel, the Channel of Community, is precisely where the tribal agreement is sealed: I support you, you support me; I provide, and in return I receive affection and security. This frequency built everything we learned to call civilization — institutions, banks, healthcare and education, the job as destiny. Survival depended on the bond, the contract, belonging to the group.</p>
+    <p>And that is why, looking around us, the ground feels unsteady. The glue that held the tribe together is dissolving before our eyes. It is not only your impression. It is the cycle running out.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">What begins: the Cross of the Sleeping Phoenix</h2>
+    <p>The new era is formed by Gates <span class="num">55, 59, 34 and 20</span>. Three of them are of <strong>individual</strong> circuitry — and that is the whole story told in a single line.</p>
+    <p>We move from <em>"make a bargain with your neighbour"</em> to <em>"remember that you are alone."</em> Not in the sense of abandonment, but of <strong>sovereignty</strong>. The <span class="num">34-20</span> axis is one of integration, strength and presence in the now — individual vitality that is only justified when it serves the whole. Gate <span class="num">59</span> brings real intimacy, the kind built without the guarantees of a contract. And at the centre of it all stands <span class="num">55</span>.</p>
+    <p>The background frequency stops telling us where to fit in and begins to ask who we truly are when no one grants us permission.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">The central mutation: Gate 55 and the Solar Plexus</h2>
+    <p>Here is the heart of it. In 2027 the precession of the equinoxes enters <strong>Gate 55 — Abundance, the gate of Spirit —</strong> at its <strong>6th line</strong>, leaving Gate 37 behind. The technical detail carries the whole meaning: we pass from the <strong>1st line</strong> (security, foundation, fear) to the <strong>6th line</strong> (innocence, example, transformation). Fear as the background hum of the species slowly begins to leave the stage.</p>
+    <p>And there is something deeper still. The <strong>Solar Plexus</strong> — which Human Design has always recognised as one of three Awareness Centres, yet which across all of human history has functioned mostly as a <em>motor</em> — is destined to awaken as a <strong>full</strong> Awareness Centre. For the first time, the species would gain a third channel of knowing, alongside the <strong>Ajna</strong> (the mind) and the <strong>Spleen</strong> (the intuition of the instant).</p>
+    <p>This does not happen in a year. It is the longest arc of all — a cellular mutation in our emotional system unfolding across millennia. 2027 is not the arrival; it is the threshold. The moment the door swings ajar.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">Why "sleeping"?</h2>
+    <p>Ra Uru Hu left a warning that changes everything: the phoenix has slept a very long time — always ready, but ready <em>not</em> to rise. And when it finally wakes, he taught, "the phoenix has to die before it can fly".</p>
+    <blockquote class="ra">It is not the cross of the phoenix. It is the cross of the <em>sleeping</em> phoenix. The moment you grasp that difference, you see that 2027 is a double-edged sword: it brings the death of something — and out of those ashes something new arises.<cite>— synthesis of Ra Uru Hu's teaching</cite></blockquote>
+    <p>Those who live these cycles through the body know: grief and birth often wear the same garment.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">The Types in the new era</h2>
+    <p>The great turning does not treat every design the same way. Here is what takes shape for each:</p>
+    <ul class="types-list">
+      <li><span class="t-name">Projectors.</span> For four hundred years they guided and directed within a cycle that had no category for their role. The Cross of the Sleeping Phoenix is far more recognisable to the Projector design — in a sense, <em>their</em> era. The caution: recognition arrives gradually, and the gap before validation lands can burn out a Projector who forgets to rest and wait for the invitation.</li>
+      <li><span class="t-name">Manifestors.</span> They spent four centuries inside a cycle hostile to initiating energy — a world of hierarchical waiting and asking permission. The new era is far more permissive of energy that starts without a stamp of approval. And, against intuition, the strategy of <em>informing before acting</em> matters more, not less.</li>
+      <li><span class="t-name">Generators and Manifesting Generators.</span> The world stops rewarding pure productivity and begins to reward alignment. MGs in particular were designed for the rhythm this era rewards — multi-passionate, fast, non-linear. The sacral response remains the compass.</li>
+      <li><span class="t-name">Reflectors.</span> Lunar mirrors of community health, they reflect what surrounds them. In an era that individualises, what they mirror changes texture — and their role as barometers of collective wellbeing becomes more precious still.</li>
+    </ul>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">Who carries the gates of the transition</h2>
+    <p>Some people will not merely pass through this threshold — they will <em>carry</em> it in their own genes. Those with Gates <span class="num">55, 59, 34 or 20</span> activated bear the signature of the era now being born. And those born under the <strong>Cross of the Sleeping Phoenix</strong> itself as their Incarnation Cross are, in a way, forerunners.</p>
+    <p>Those with <strong>Gate 55</strong> defined carry the emotional mutation in a particular way — the crossing from the wave of hope and pain toward individual Spirit. And those with the <span class="num">37-40</span> axis of Community tend to feel, with particular intensity, the tribal glue coming loose.</p>
+    <p>If you recognise these gates in your chart, this text may reach you less as news and more as memory.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">The mirror in the sky</h2>
+    <p>The Cross of the Sleeping Phoenix comes from Human Design, but it does not activate in a vacuum. The Global Cycles measure the <strong>precession of the equinoxes</strong>, and Ra described the mechanism beautifully: our movement through space exposes us to a gradually altered stream of neutrinos, and neutrinos, born of the stars, pass through bodies and carry information into and out of our DNA.</p>
+    <p>So the sky of now <em>rhymes</em> with the turning. <strong>Pluto in Aquarius</strong> dissolving the old structures of power, the rare convergence of the outer planets marking the end of externally organised eras. The cosmos and the cell tell the same story.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">How to cross</h2>
+    <p>This is not a prophecy of the end of the world. It is a prophecy of the <em>end of a world</em> — and the birth of another. Like a forest after fire. Like the Soul after shedding an old pattern.</p>
+    <p>The invitation is simple to say and a lifetime to live: stop outsourcing your power. Learn to trust your Authority — in the body, not in fear. Heal the emotional patterns you inherited from your lineage. Rekindle your creative fire. Build bonds upon truth, not upon contract.</p>
+    <p>The more anchored you are in yourself, the lighter it will be to cross what comes. The phoenix does not wake to flee the fire. It wakes <em>through</em> it. And perhaps that is the most beautiful news of 2027: what for so long felt like your misfit may turn out, after all, to be your map.</p>
+  </article>
+
+  <!-- ════════ ESPAÑOL ════════ -->
+  <article class="article-body" data-lang-block="es" style="display:none">
+    <p class="lead">Hay fechas que no marcan un acontecimiento — marcan el fin de un modo de existir. El <strong>15 de febrero de 2027</strong> es una de ellas. En ese punto, el Human Design sitúa el cierre de un ciclo global que nos imprime desde <span class="num">1615</span> y la apertura de otro que nos acompañará hasta <span class="num">2438</span>.</p>
+    <p>No es un interruptor que se apaga de un día para otro. Es una marea que ya está girando — y que muchos sentimos en el cuerpo mucho antes de tener una palabra para nombrarla.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">Lo que termina: la Cruz de la Planificación</h2>
+    <p>Durante más de cuatrocientos años vivimos bajo la frecuencia de fondo de la <strong>Cruz de la Planificación</strong>, formada por las Puertas <span class="num">9, 16, 37 y 40</span> — todas de circuitería <strong>colectiva y tribal</strong>.</p>
+    <p>Fue la era del <em>pacto</em>. El canal <span class="num">37-40</span>, el Canal de la Comunidad, es justamente donde se sella el acuerdo tribal: yo te apoyo, tú me apoyas; yo proveo, y a cambio recibo afecto y seguridad. Esta frecuencia levantó todo lo que aprendimos a llamar civilización — las instituciones, los bancos, los sistemas de salud y educación, el empleo como destino. La supervivencia dependía del vínculo, del contrato, de la pertenencia al grupo.</p>
+    <p>Y por eso, al mirar a nuestro alrededor, el suelo tiembla. El cemento que mantenía unida a la tribu se deshace ante nuestros ojos. No es solo tu impresión. Es el ciclo agotándose.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">Lo que comienza: la Cruz del Fénix Dormido</h2>
+    <p>La nueva era está formada por las Puertas <span class="num">55, 59, 34 y 20</span>. Tres de ellas son de circuitería <strong>individual</strong> — y esa es toda la historia contada en una sola frase.</p>
+    <p>Pasamos de <em>"haz un pacto con tu prójimo"</em> a <em>"recuerda que estás solo."</em> No en el sentido del abandono, sino de la <strong>soberanía</strong>. El eje <span class="num">34-20</span> es el de la integración, la fuerza y la presencia en el ahora — la vitalidad individual que solo se justifica cuando sirve al todo. La Puerta <span class="num">59</span> trae la intimidad real, la que se construye sin las garantías del contrato. Y en el centro de todo está la <span class="num">55</span>.</p>
+    <p>La frecuencia de fondo deja de decirnos dónde encajar y empieza a preguntar quiénes somos de verdad cuando nadie nos da permiso.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">La mutación central: la Puerta 55 y el Plexo Solar</h2>
+    <p>Aquí está el corazón de todo. En 2027 la precesión de los equinoccios entra en la <strong>Puerta 55 — la Abundancia, la puerta del Espíritu —</strong> en su <strong>6ª línea</strong>, dejando atrás la Puerta 37. El detalle técnico carga el sentido entero: pasamos de la <strong>1ª línea</strong> (seguridad, fundación, miedo) a la <strong>6ª línea</strong> (inocencia, ejemplo, transformación). El miedo como ruido de fondo de la especie empieza, lentamente, a salir de escena.</p>
+    <p>Y hay algo aún más profundo. El <strong>Plexo Solar</strong> — que el Human Design siempre reconoció como uno de los tres Centros de Consciencia, pero que a lo largo de toda la historia humana funcionó sobre todo como un <em>motor</em> — está destinado a despertar como Centro de Consciencia <strong>pleno</strong>. Por primera vez, la especie ganaría un tercer canal de saber, junto a la <strong>Ajna</strong> (la mente) y el <strong>Bazo</strong> (la intuición del instante).</p>
+    <p>Esto no ocurre en un año. Es el arco más largo de todos — una mutación celular en nuestro sistema emocional que se despliega a lo largo de milenios. 2027 no es la llegada; es el umbral. El momento en que la puerta se entreabre.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">¿Por qué "dormido"?</h2>
+    <p>Ra Uru Hu dejó una advertencia que lo cambia todo: el fénix ha dormido mucho tiempo — siempre listo, pero listo para <em>no</em> alzarse. Y cuando por fin despierta, enseñaba, "el fénix tiene que morir antes de poder volar".</p>
+    <blockquote class="ra">No es la cruz del fénix. Es la cruz del fénix <em>dormido</em>. En el instante en que comprendes esa diferencia, ves que 2027 es un arma de doble filo: trae la muerte de algo — y de esas cenizas se alza algo nuevo.<cite>— síntesis de la enseñanza de Ra Uru Hu</cite></blockquote>
+    <p>Quien vive estos ciclos por el cuerpo lo sabe: el duelo y el nacimiento muchas veces visten la misma ropa.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">Los Tipos en la nueva era</h2>
+    <p>El gran giro no trata a todos los diseños de la misma forma. Esto es lo que se dibuja para cada uno:</p>
+    <ul class="types-list">
+      <li><span class="t-name">Proyectores.</span> Durante cuatrocientos años guiaron y dirigieron dentro de un ciclo que ni siquiera tenía una categoría para su papel. La Cruz del Fénix Dormido es mucho más reconocible para el diseño del Proyector — en cierto sentido, <em>su</em> era. El cuidado: el reconocimiento llega poco a poco, y el intervalo hasta que la validación aparece puede agotar a un Proyector que olvida descansar y esperar la invitación.</li>
+      <li><span class="t-name">Manifestadores.</span> Pasaron cuatro siglos dentro de un ciclo hostil a las energías iniciadoras — un mundo de espera jerárquica y de pedir permiso. La nueva era es mucho más permisiva con la energía que inicia sin sello de aprobación. Y, contra la intuición, la estrategia de <em>informar antes de actuar</em> importa más, no menos.</li>
+      <li><span class="t-name">Generadores y Generadores Manifestantes.</span> El mundo deja de premiar la pura productividad y pasa a premiar el alineamiento. Los GM, en especial, fueron diseñados para el ritmo que esta era recompensa — multiapasionados, rápidos, no lineales. La respuesta sacral sigue siendo la brújula.</li>
+      <li><span class="t-name">Reflectores.</span> Espejos lunares de la salud de la comunidad, reflejan lo que los rodea. En una era que se individualiza, lo que reflejan cambia de textura — y su papel como barómetros del bienestar colectivo se vuelve aún más precioso.</li>
+    </ul>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">Quién carga las puertas de la transición</h2>
+    <p>Hay personas que no solo van a atravesar este umbral — van a <em>cargarlo</em> en sus propios genes. Quien tiene activadas las Puertas <span class="num">55, 59, 34 o 20</span> lleva en su mapa la firma de la era que nace. Y quien nació bajo la propia <strong>Cruz del Fénix Dormido</strong> como Cruz de Encarnación es, de algún modo, un precursor.</p>
+    <p>Quien tiene la <strong>Puerta 55</strong> definida carga de manera especial la mutación emocional — la travesía de la ola basada en esperanza y dolor hacia el Espíritu individual. Y quien tiene el eje <span class="num">37-40</span> de la Comunidad tiende a sentir, con particular intensidad, cómo se suelta el pegamento tribal.</p>
+    <p>Si reconoces estas puertas en tu mapa, este texto quizá te llegue menos como noticia y más como memoria.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">El espejo en el cielo</h2>
+    <p>La Cruz del Fénix Dormido viene del Human Design, pero no se activa en el vacío. Los Ciclos Globales miden la <strong>precesión de los equinoccios</strong>, y Ra describía el mecanismo con belleza: nuestro movimiento por el espacio nos expone a una corriente de neutrinos gradualmente alterada, y los neutrinos, nacidos de las estrellas, atraviesan los cuerpos y llevan información hacia dentro y hacia fuera de nuestro ADN.</p>
+    <p>Por eso el cielo de ahora <em>rima</em> con el giro. <strong>Plutón en Acuario</strong> disolviendo las viejas estructuras de poder, la rara convergencia de los planetas exteriores marcando el fin de las eras organizadas desde fuera. El cosmos y la célula cuentan la misma historia.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <h2 class="section-title">Cómo atravesar</h2>
+    <p>No es una profecía del fin del mundo. Es una profecía del <em>fin de un mundo</em> — y del nacimiento de otro. Como el bosque después del fuego. Como el Alma después de soltar un patrón antiguo.</p>
+    <p>La invitación es simple de decir y de toda una vida para vivir: deja de tercerizar tu poder. Aprende a confiar en tu Autoridad — en el cuerpo, no en el miedo. Sana los patrones emocionales que heredaste de tu linaje. Reaviva tu fuego creativo. Construye vínculos sobre la verdad, no sobre el contrato.</p>
+    <p>Cuanto más anclado estés en ti, más ligero será atravesar lo que viene. El fénix no despierta para huir del fuego. Despierta <em>a través</em> de él. Y quizá esa sea la noticia más hermosa de 2027: lo que durante tanto tiempo pareció tu desencaje puede revelarse, al fin, como tu mapa.</p>
+  </article>
+
+</main>
+
+<!-- ── SHARE BAR (bottom) ── -->
+<div class="wrapper-sm">
+  <div class="share-bar" id="shareBottom"></div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand">Cinwicca</div>
+  <div class="footer-sub" data-i18n="footer.sub">também conhecida como <strong>Cintia de Godoy</strong></div>
+  <div class="footer-links">
+    <a href="index.html#about" data-i18n="nav.about">The Work</a>
+    <a href="index.html#blog" data-i18n="nav.blog">Writing</a>
+    <a href="index.html#form" data-i18n="nav.begin">Begin</a>
+    <a href="mailto:cinwicca@gmail.com" data-i18n="nav.contact">Contact</a>
+  </div>
+  <div class="footer-copy">
+    <span data-i18n="footer.copy">© 2025 Cinwicca · Leituras do Caminho da Alma</span><br>
+    Astrology · Numerology · Human Design · Maia Cosmology
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ── i18n for page chrome (nav, share labels, footer) + language blocks ── */
+(function(){
+  const KEY = 'sb_lang';
+  const T = {
+    en: {
+      'nav.about':'The Work','nav.offerings':'Offerings','nav.blog':'Writing','nav.begin':'Begin','nav.contact':'Contact',
+      'a.back':'← Back to Cinwicca',
+      'footer.sub':'also known as <strong>Cintia de Godoy</strong>',
+      'footer.copy':'© 2025 Cinwicca · Soul Path Readings',
+      'share.label':'Share this writing',
+      'share.text':'2027 and the Great Mutation — the shift into the Cross of the Sleeping Phoenix in Human Design. ✦ Cinwicca',
+      'share.subject':'2027 and the Great Mutation · Cinwicca',
+      'share.fb':'Share on Facebook','share.x':'Share on X','share.wa':'Share on WhatsApp',
+      'share.tg':'Share on Telegram','share.email':'Share by email','share.gmail':'Share via Gmail',
+      'share.ig':'Share to Instagram (copies link)','share.copy':'Copy link','share.more':'More options',
+      'toast.copied':'Link copied — paste it anywhere ✦'
+    },
+    pt: {
+      'nav.about':'O Trabalho','nav.offerings':'Sessões','nav.blog':'Escritos','nav.begin':'Começar','nav.contact':'Contato',
+      'a.back':'← Voltar para Cinwicca',
+      'footer.sub':'também conhecida como <strong>Cintia de Godoy</strong>',
+      'footer.copy':'© 2025 Cinwicca · Leituras do Caminho da Alma',
+      'share.label':'Compartilhe este escrito',
+      'share.text':'2027 e a Grande Mutação — a passagem para a Cruz da Fênix Adormecida no Human Design. ✦ Cinwicca',
+      'share.subject':'2027 e a Grande Mutação · Cinwicca',
+      'share.fb':'Compartilhar no Facebook','share.x':'Compartilhar no X','share.wa':'Compartilhar no WhatsApp',
+      'share.tg':'Compartilhar no Telegram','share.email':'Compartilhar por e-mail','share.gmail':'Compartilhar via Gmail',
+      'share.ig':'Compartilhar no Instagram (copia o link)','share.copy':'Copiar link','share.more':'Mais opções',
+      'toast.copied':'Link copiado — cole onde quiser ✦'
+    },
+    es: {
+      'nav.about':'El Trabajo','nav.offerings':'Sesiones','nav.blog':'Escritos','nav.begin':'Comenzar','nav.contact':'Contacto',
+      'a.back':'← Volver a Cinwicca',
+      'footer.sub':'también conocida como <strong>Cintia de Godoy</strong>',
+      'footer.copy':'© 2025 Cinwicca · Lecturas del Camino del Alma',
+      'share.label':'Comparte este escrito',
+      'share.text':'2027 y la Gran Mutación — el paso a la Cruz del Fénix Dormido en Human Design. ✦ Cinwicca',
+      'share.subject':'2027 y la Gran Mutación · Cinwicca',
+      'share.fb':'Compartir en Facebook','share.x':'Compartir en X','share.wa':'Compartir en WhatsApp',
+      'share.tg':'Compartir en Telegram','share.email':'Compartir por correo','share.gmail':'Compartir vía Gmail',
+      'share.ig':'Compartir en Instagram (copia el enlace)','share.copy':'Copiar enlace','share.more':'Más opciones',
+      'toast.copied':'Enlace copiado — pégalo donde quieras ✦'
+    }
+  };
+  window.__T = T;
+  window.__lang = localStorage.getItem(KEY) || (navigator.language||'en').slice(0,2).toLowerCase();
+  if (!T[window.__lang]) window.__lang = 'en';
+
+  function titleFor(lang){
+    return {en:'2027 and the Great Mutation · Cinwicca',
+            pt:'2027 e a Grande Mutação · Cinwicca',
+            es:'2027 y la Gran Mutación · Cinwicca'}[lang];
+  }
+
+  window.applyLang = function(lang){
+    if (!T[lang]) lang = 'en';
+    window.__lang = lang;
+    localStorage.setItem(KEY, lang);
+    document.documentElement.lang = lang==='pt'?'pt-BR':(lang==='es'?'es-ES':'en');
+    document.title = titleFor(lang);
+    const d = T[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const k = el.getAttribute('data-i18n'); if (d[k]!=null) el.innerHTML = d[k];
+    });
+    document.querySelectorAll('[data-lang-block]').forEach(b=>{
+      b.style.display = b.getAttribute('data-lang-block')===lang ? '' : 'none';
+    });
+    document.querySelectorAll('.lang-switch button').forEach(b=>{
+      b.classList.toggle('active', b.getAttribute('data-lang')===lang);
+    });
+    buildShare();
+  };
+
+  /* ── Share bar ── */
+  const ICON = {
+    fb:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.25-1.5 1.55-1.5H16.7V4.6c-.3 0-1.3-.1-2.45-.1-2.43 0-4.1 1.48-4.1 4.2v2.2H7.4V14h2.75v8z"/></svg>',
+    x:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 3h3l-6.55 7.48L21.7 21h-6.03l-4.72-6.17L5.55 21H2.5l7-8L2.3 3h6.18l4.27 5.64zm-1.06 16.2h1.67L7.64 4.7H5.85z"/></svg>',
+    wa:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a9.9 9.9 0 0 0-8.5 15l-1.3 4.7 4.8-1.26A9.9 9.9 0 1 0 12 2zm0 1.8a8.1 8.1 0 0 1 6.9 12.4l-.2.32.83 3-3.08-.8-.3.17A8.1 8.1 0 1 1 12 3.8zm-3.1 4c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02s.87 2.34 1 2.5c.12.16 1.7 2.6 4.18 3.64 2.06.86 2.48.69 2.93.65.45-.04 1.45-.6 1.65-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.16-.46-.28-.24-.12-1.45-.72-1.67-.8-.22-.08-.39-.12-.55.12-.16.24-.63.8-.77.96-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.45-1.35-1.69-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.34-.76-1.83-.2-.46-.4-.4-.55-.41z"/></svg>',
+    tg:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.8 4.2 18.6 19.5c-.24 1.07-.87 1.33-1.76.83l-4.86-3.58-2.35 2.26c-.26.26-.48.48-.98.48l.35-4.95 9.02-8.15c.4-.35-.08-.54-.6-.2L4.7 13.1l-4.8-1.5c-1.04-.33-1.06-1.04.22-1.54L20.46 2.9c.86-.32 1.62.2 1.34 1.3z"/></svg>',
+    email:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>',
+    gmail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.4 6 12 12.6 20.6 6"/><path d="M7 5v6.5M17 5v6.5"/></svg>',
+    ig:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17" cy="7" r="1.1" fill="currentColor" stroke="none"/></svg>',
+    copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9.5 13.5a3 3 0 0 0 4.2.3l2.8-2.8a3 3 0 1 0-4.2-4.2l-1 .9"/><path d="M14.5 10.5a3 3 0 0 0-4.2-.3L7.5 13a3 3 0 1 0 4.2 4.2l1-.9"/></svg>',
+    more:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="18" cy="5.5" r="2.1"/><circle cx="6" cy="12" r="2.1"/><circle cx="18" cy="18.5" r="2.1"/><path d="M8 10.8 16 6.6M8 13.2l8 4.2"/></svg>'
+  };
+
+  function buildShare(){
+    const d = window.__T[window.__lang];
+    const url = encodeURIComponent(location.href);
+    const text = encodeURIComponent(d['share.text']);
+    const subject = encodeURIComponent(d['share.subject']);
+    const targets = [
+      ['fb', d['share.fb'], 'https://www.facebook.com/sharer/sharer.php?u='+url],
+      ['x', d['share.x'], 'https://twitter.com/intent/tweet?text='+text+'&url='+url],
+      ['wa', d['share.wa'], 'https://wa.me/?text='+text+'%20'+url],
+      ['tg', d['share.tg'], 'https://t.me/share/url?url='+url+'&text='+text],
+      ['email', d['share.email'], 'mailto:?subject='+subject+'&body='+text+'%20'+url],
+      ['gmail', d['share.gmail'], 'https://mail.google.com/mail/?view=cm&fs=1&su='+subject+'&body='+text+'%20'+url],
+      ['ig', d['share.ig'], '__copy__'],
+      ['copy', d['share.copy'], '__copy__'],
+      ['more', d['share.more'], '__native__']
+    ];
+    const html = '<div class="share-label">'+d['share.label']+'</div>' + targets.map(t=>{
+      const [key,label,href] = t;
+      const icon = ICON[key];
+      if (href==='__copy__' || href==='__native__'){
+        return '<button class="share-btn" aria-label="'+label+'" title="'+label+'" data-action="'+(href==='__copy__'?'copy':'native')+'">'+icon+'</button>';
+      }
+      const tgt = key==='email' ? '' : ' target="_blank" rel="noopener"';
+      return '<a class="share-btn" aria-label="'+label+'" title="'+label+'" href="'+href+'"'+tgt+'>'+icon+'</a>';
+    }).join('');
+    ['shareTop','shareBottom'].forEach(id=>{ const el=document.getElementById(id); if(el) el.innerHTML = html; });
+    bindActions();
+  }
+
+  function showToast(){
+    const d = window.__T[window.__lang];
+    const t = document.getElementById('toast');
+    t.textContent = d['toast.copied'];
+    t.classList.add('show');
+    clearTimeout(window.__tt);
+    window.__tt = setTimeout(()=>t.classList.remove('show'), 2600);
+  }
+  function copyLink(){
+    const url = location.href;
+    if (navigator.clipboard) { navigator.clipboard.writeText(url).then(showToast, ()=>fallback(url)); }
+    else fallback(url);
+    function fallback(u){ const ta=document.createElement('textarea'); ta.value=u; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} ta.remove(); showToast(); }
+  }
+  function nativeShare(){
+    const d = window.__T[window.__lang];
+    if (navigator.share){ navigator.share({title:document.title, text:d['share.text'], url:location.href}).catch(()=>{}); }
+    else copyLink();
+  }
+  function bindActions(){
+    document.querySelectorAll('.share-btn[data-action]').forEach(b=>{
+      b.onclick = ()=> b.getAttribute('data-action')==='native' ? nativeShare() : copyLink();
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.querySelectorAll('.lang-switch button').forEach(b=>{
+      b.addEventListener('click', ()=>window.applyLang(b.getAttribute('data-lang')));
+    });
+    window.applyLang(window.__lang);
+  });
+})();
+
+/* ── COSMOS starfield (light, to match the home page) ── */
+(function(){
+  const canvas = document.getElementById('cosmos');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W,H,stars=[];
+  function resize(){ W=canvas.width=innerWidth; H=canvas.height=innerHeight;
+    stars = Array.from({length: Math.min(140, Math.floor(W*H/14000))}, ()=>({
+      x:Math.random()*W, y:Math.random()*H, r:Math.random()*1.1+0.2,
+      a:Math.random()*0.5+0.2, tw:Math.random()*0.02+0.004, p:Math.random()*Math.PI*2 }));
+  }
+  resize(); addEventListener('resize', resize);
+  (function loop(){
+    ctx.clearRect(0,0,W,H);
+    for(const s of stars){ s.p+=s.tw; const a=s.a*(0.6+0.4*Math.sin(s.p));
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(212,177,90,'+a+')'; ctx.fill(); }
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
+</body>
+</html>

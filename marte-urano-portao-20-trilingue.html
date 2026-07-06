@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portão 20 · A Voz do Agora · Cinwicca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obsidian: #08090f;
+  --deep:     #0d1020;
+  --ink:      #141a2e;
+  --gold:     #d4b15a;
+  --gold-lt:  #ecd49a;
+  --gold-dk:  #8b6b22;
+  --cream:    #f6ecd0;
+  --text:     #f1e7cf;
+  --text-2:   #d6c7a2;
+  --text-3:   #a99878;
+  --border:   rgba(212,177,90,0.18);
+  --border-b: rgba(212,177,90,0.42);
+  --sepia:    #c9a876;
+  --sepia-dk: #7a5c30;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: var(--obsidian);
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── THE SKY — Cin's own artwork, always present ── */
+.sky {
+  position: fixed; inset: 0; z-index: 0;
+  background: url('cinwicca-ceu.png') center 18% / cover no-repeat;
+}
+.sky::after {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(8,9,15,0.55), rgba(8,9,15,0.66) 40%, rgba(8,9,15,0.72));
+}
+
+/* ── DRIFTING GLYPHS — arriving to the words, or emanating from them ── */
+.drift-layer { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.glyph {
+  position: absolute;
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--gold);
+  text-shadow: 0 0 14px rgba(212,177,90,0.45);
+  opacity: 0;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: transform, opacity;
+}
+@keyframes driftE  { from { transform: translateX(0)    rotate(-4deg); opacity: 0.05; } to { transform: translateX(-16vw) rotate(5deg);  opacity: 0.55; } }
+@keyframes driftW  { from { transform: translateX(0)    rotate(6deg);  opacity: 0.05; } to { transform: translateX(16vw)  rotate(-5deg); opacity: 0.5;  } }
+@keyframes driftNE { from { transform: translate(0,0)   rotate(0);     opacity: 0.04; } to { transform: translate(-13vw,9vh)  rotate(8deg);  opacity: 0.5; } }
+@keyframes driftSW { from { transform: translate(0,0)   rotate(0);     opacity: 0.04; } to { transform: translate(12vw,-10vh) rotate(-7deg); opacity: 0.45;} }
+
+.g1  { top: 12%; left: -2%;  font-size: 2.0rem; animation-name: driftW;  animation-duration: 46s; }
+.g2  { top: 22%; right: -2%; font-size: 1.5rem; animation-name: driftE;  animation-duration: 58s; animation-delay: -14s; }
+.g3  { top: 44%; left: -3%;  font-size: 2.6rem; animation-name: driftW;  animation-duration: 72s; animation-delay: -30s; }
+.g4  { top: 58%; right: -3%; font-size: 1.8rem; animation-name: driftE;  animation-duration: 52s; animation-delay: -8s;  }
+.g5  { top: 74%; left: -2%;  font-size: 1.4rem; animation-name: driftNE; animation-duration: 64s; animation-delay: -22s; }
+.g6  { bottom: 10%; right: -2%; font-size: 2.2rem; animation-name: driftSW; animation-duration: 78s; animation-delay: -40s; }
+.g7  { top: 6%;  right: 18%; font-size: 1.2rem; animation-name: driftSW; animation-duration: 60s; animation-delay: -5s;  }
+.g8  { bottom: 4%; left: 20%;  font-size: 1.3rem; animation-name: driftNE; animation-duration: 56s; animation-delay: -18s; }
+
+/* ── SEPIA FRAGMENTS — yellowed memories of the '40s ── */
+.frag {
+  position: absolute;
+  width: 118px;
+  padding: 7px 7px 20px;
+  background: linear-gradient(150deg, #efe2c0, #d9c294 70%, #c7ab74);
+  box-shadow: 0 8px 26px rgba(0,0,0,0.55), inset 0 0 22px rgba(122,92,48,0.35);
+  opacity: 0;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: transform, opacity;
+}
+.frag svg { width: 100%; display: block; background: #b99a63; }
+.frag .cap {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.5rem; letter-spacing: 0.12em;
+  color: #5d4520; text-transform: uppercase;
+  text-align: center; margin-top: 5px;
+}
+@keyframes fragW  { from { transform: translateX(0) rotate(-7deg);  opacity: 0.03; } to { transform: translateX(13vw)  rotate(-3deg); opacity: 0.62; } }
+@keyframes fragE  { from { transform: translateX(0) rotate(6deg);   opacity: 0.03; } to { transform: translateX(-13vw) rotate(2deg);  opacity: 0.58; } }
+@keyframes fragSW { from { transform: translate(0,0) rotate(4deg);  opacity: 0.03; } to { transform: translate(10vw,-7vh) rotate(-2deg); opacity: 0.55; } }
+.f1 { top: 30%;  left: -110px;  animation-name: fragW;  animation-duration: 88s; animation-delay: -20s; }
+.f2 { top: 55%;  right: -110px; animation-name: fragE;  animation-duration: 96s; animation-delay: -48s; }
+.f3 { bottom: 8%; left: -100px; animation-name: fragSW; animation-duration: 104s; animation-delay: -70s; }
+
+/* ── THE SYMBOL — visible, always ── */
+.emblem-fixed {
+  position: fixed; bottom: 1.4rem; right: 1.4rem; z-index: 40;
+  width: 64px; height: 64px; border-radius: 50%;
+  background: url('cinwicca-emblema.png') center / cover;
+  border: 1px solid var(--border-b);
+  box-shadow: 0 0 26px rgba(212,177,90,0.28), 0 0 60px rgba(31,42,90,0.5);
+  opacity: 0.9;
+}
+
+/* ── NAV ── */
+.docnav {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.9rem 1.6rem;
+  background: rgba(8,9,15,0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+.docnav a.back {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.2em; color: var(--gold);
+  text-decoration: none; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: color 0.25s; white-space: nowrap;
+}
+.docnav a.back:hover { color: var(--gold-lt); }
+.lang-switch { display: flex; gap: 0.3rem; }
+.lang-switch button {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem; letter-spacing: 0.14em;
+  color: var(--text-3);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 0.45rem 0.8rem;
+  cursor: pointer; transition: all 0.25s;
+}
+.lang-switch button:hover { color: var(--gold); border-color: var(--border-b); }
+.lang-switch button.active { color: var(--obsidian); background: var(--gold); border-color: var(--gold); font-weight: 600; }
+
+/* ── DOCUMENT ── */
+.doc {
+  position: relative; z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4.5rem 2rem 6rem;
+}
+.doc-panel {
+  background: rgba(8,9,15,0.42);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 3.4rem clamp(1.4rem, 5vw, 3.2rem) 4rem;
+}
+
+/* Header */
+.doc-emblem {
+  width: 130px; height: 130px; margin: 0 auto 2rem;
+  border-radius: 50%;
+  background: url('cinwicca-emblema.png') center / cover;
+  border: 1px solid var(--border-b);
+  box-shadow: 0 0 45px rgba(212,177,90,0.25), 0 0 90px rgba(31,42,90,0.55);
+}
+.doc-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem; letter-spacing: 0.32em;
+  color: var(--gold); text-transform: uppercase;
+  text-align: center; margin-bottom: 1.4rem;
+}
+.doc-dingbats { text-align: center; color: var(--gold); margin-bottom: 1.2rem; letter-spacing: 0.6em; font-size: 0.9rem; }
+.doc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(2.3rem, 5vw, 3.4rem);
+  text-align: center; color: #fff;
+  line-height: 1.12; margin-bottom: 0.6rem;
+}
+.doc-title em { font-style: italic; color: var(--gold-lt); }
+.doc-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  text-align: center; color: var(--gold-lt);
+  margin-bottom: 1.6rem; font-weight: 400;
+}
+.doc-meta {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.76rem; color: var(--text-3);
+  letter-spacing: 0.14em; margin-bottom: 3rem;
+  text-transform: uppercase;
+}
+.doc-meta strong { color: var(--gold-lt); font-weight: 500; }
+
+/* Featured image */
+.featured {
+  margin: 0 auto 3.5rem; max-width: 560px;
+  border: 1px solid var(--border-b);
+  border-radius: 3px; overflow: hidden;
+  box-shadow: 0 24px 70px rgba(0,0,0,0.55), 0 0 50px rgba(212,177,90,0.08);
+}
+.featured img { display: block; width: 100%; }
+
+/* Chapters */
+.chapter-mark {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem; letter-spacing: 0.32em;
+  color: var(--gold); text-transform: uppercase;
+  text-align: center; margin-top: 4.5rem; margin-bottom: 0.9rem;
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3.8vw, 2.5rem);
+  text-align: center; color: #fff;
+  line-height: 1.2; margin-bottom: 2.2rem;
+}
+.chapter-title em { color: var(--gold-lt); font-style: italic; }
+.section-divider {
+  display: flex; align-items: center; gap: 1.2rem;
+  margin: 3.2rem auto 0; max-width: 340px;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-b));
+}
+.section-divider::after { background: linear-gradient(90deg, var(--border-b), transparent); }
+.section-divider span { color: var(--gold); font-size: 0.85rem; }
+
+p.body-p { font-size: 1.08rem; color: var(--text); line-height: 1.8; margin-bottom: 1.15rem; }
+p.body-p strong { color: var(--gold-lt); font-weight: 500; }
+p.body-p em { font-style: italic; }
+
+/* ── THE ORACLE — words as spellings, as prayers ── */
+.oracle {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  color: var(--gold-lt);
+  line-height: 1.65;
+  letter-spacing: 0.02em;
+  max-width: 540px;
+  margin: 2.8rem auto;
+  text-shadow: 0 0 30px rgba(212,177,90,0.25);
+}
+.oracle::before, .oracle::after {
+  content: '✦';
+  display: block;
+  font-style: normal;
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.6em;
+  opacity: 0.8;
+}
+.oracle::before { margin-bottom: 1.1rem; }
+.oracle::after  { margin-top: 1.1rem; }
+.oracle.grand { font-size: clamp(1.7rem, 4vw, 2.3rem); color: var(--cream); }
+
+/* Symbolic list / channels */
+.rows { margin: 1.6rem 0 2rem; padding: 0; list-style: none; }
+.rows li {
+  padding: 0.85rem 0 0.85rem 1.3rem;
+  border-left: 1px solid var(--border);
+  margin-bottom: 0.35rem; position: relative;
+  font-size: 1.06rem; color: var(--text); line-height: 1.65;
+}
+.rows li::before {
+  content: '✦'; position: absolute; left: -0.6rem; top: 0.9rem;
+  color: var(--gold); background: rgba(8,9,15,0.85);
+  padding: 0 0.3rem; font-size: 0.68rem;
+}
+.rows li strong { color: var(--gold-lt); font-weight: 500; }
+.rows li em { color: var(--text-2); }
+.rows li small { display: block; font-size: 0.95rem; color: var(--text-2); font-style: italic; margin-top: 0.15rem; }
+
+/* Cross pillars */
+.pillars {
+  display: flex; justify-content: center; gap: clamp(0.8rem, 4vw, 2rem);
+  margin: 2.2rem 0 2.4rem;
+}
+.pillars span {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.2rem, 3.4vw, 1.7rem);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: clamp(3.2rem, 9vw, 4.2rem); height: clamp(3.2rem, 9vw, 4.2rem);
+  display: flex; align-items: center; justify-content: center;
+}
+.pillars span.lit {
+  color: var(--obsidian);
+  background: linear-gradient(135deg, var(--gold-dk), var(--gold), var(--gold-lt));
+  border-color: var(--gold);
+  box-shadow: 0 0 30px rgba(212,177,90,0.45);
+  font-weight: 600;
+}
+
+/* Timeline of the '40s */
+.timeline { margin: 2rem 0; padding: 0; list-style: none; }
+.timeline li {
+  display: grid; grid-template-columns: 130px 1fr; gap: 1.2rem;
+  padding: 0.9rem 0; border-bottom: 1px solid rgba(212,177,90,0.1);
+  font-size: 1.04rem; align-items: baseline;
+}
+.timeline li:last-child { border-bottom: 0; }
+.timeline .when { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; }
+.timeline .what { color: var(--text); line-height: 1.6; }
+.timeline .what em { color: var(--text-2); font-style: italic; }
+@media (max-width: 560px) { .timeline li { grid-template-columns: 1fr; gap: 0.15rem; } }
+
+/* Bridge */
+.bridge {
+  margin-top: 5rem; padding: 2.6rem 2.2rem;
+  background: linear-gradient(140deg, rgba(31,42,90,0.3), rgba(13,16,32,0.55));
+  border: 1px solid var(--border-b); border-radius: 3px;
+  position: relative; text-align: center;
+}
+.bridge::before {
+  content: ''; position: absolute; top: -1px; left: 20%; right: 20%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.bridge p { font-size: 1.04rem; color: var(--text-2); line-height: 1.75; margin-bottom: 1.4rem; font-style: italic; }
+.btn-gold {
+  font-family: 'Cinzel', serif; font-size: 0.76rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 1rem 2.2rem; text-decoration: none;
+  border-radius: 2px; display: inline-block; transition: all 0.3s;
+  background: linear-gradient(135deg, var(--gold-dk), var(--gold), var(--gold-dk));
+  color: var(--obsidian);
+}
+.btn-gold:hover { background: linear-gradient(135deg, var(--gold), var(--gold-lt), var(--gold)); box-shadow: 0 0 30px rgba(212,177,90,0.25); }
+
+/* Signature & footer */
+.signature { text-align: center; margin-top: 4.5rem; padding: 2.6rem 0 0.5rem; border-top: 1px solid var(--border); }
+.signature .glyph { color: var(--gold); font-size: 1.3rem; letter-spacing: 0.6em; margin-bottom: 0.9rem; }
+.signature .sign-name { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.55rem; color: var(--gold); margin-bottom: 0.35rem; }
+.signature .sign-sub { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.28em; color: var(--text-3); text-transform: uppercase; }
+.doc-footer { text-align: center; margin-top: 3rem; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--text-3); }
+.doc-footer a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--border-b); }
+.doc-footer a:hover { color: var(--gold-lt); }
+
+/* Language blocks */
+.lang { display: none; }
+.lang.active { display: block; }
+
+@media (max-width: 640px) {
+  .doc { padding: 3.4rem 1rem 5rem; }
+  .doc-panel { padding: 2.6rem 1.2rem 3rem; }
+  body { font-size: 17px; }
+  .g3, .g6, .g7, .g8, .f3 { display: none; }
+  .frag { width: 92px; }
+  .emblem-fixed { width: 52px; height: 52px; bottom: 1rem; right: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glyph, .frag { animation: none; opacity: 0.25; }
+}
+</style>
+</head>
+<body>
+
+<div class="sky" aria-hidden="true"></div>
+
+<!-- Drifting glyphs & yellowed fragments -->
+<div class="drift-layer" aria-hidden="true">
+  <span class="glyph g1">♂</span>
+  <span class="glyph g2">♅</span>
+  <span class="glyph g3">♊</span>
+  <span class="glyph g4">☽</span>
+  <span class="glyph g5">✶</span>
+  <span class="glyph g6">🜁</span>
+  <span class="glyph g7">✦</span>
+  <span class="glyph g8">觀</span>
+
+  <div class="frag f1">
+    <svg viewBox="0 0 100 74" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100" height="74" fill="#b99a63"/>
+      <path d="M50 66 L44 66 L48 40 L40 40 L49 12 L51 12 L60 40 L52 40 L56 66 Z" fill="#6d5228"/>
+      <path d="M30 26 q10 -9 20 0 M26 20 q14 -13 28 0 M34 32 q6 -5 12 0" stroke="#7a5c30" stroke-width="1.6" fill="none"/>
+      <path d="M70 26 q-4 4 0 8 M76 22 q-6 7 0 14" stroke="#7a5c30" stroke-width="1.4" fill="none"/>
+      <rect x="0" y="62" width="100" height="12" fill="#8f7442" opacity="0.5"/>
+    </svg>
+    <div class="cap">1943 · radio</div>
+  </div>
+
+  <div class="frag f2">
+    <svg viewBox="0 0 100 74" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100" height="74" fill="#b99a63"/>
+      <rect x="8" y="46" width="12" height="28" fill="#6d5228"/>
+      <rect x="24" y="38" width="14" height="36" fill="#7a5c30"/>
+      <rect x="42" y="50" width="10" height="24" fill="#6d5228"/>
+      <rect x="56" y="34" width="16" height="40" fill="#7a5c30"/>
+      <rect x="76" y="44" width="14" height="30" fill="#6d5228"/>
+      <path d="M62 4 L50 26 L58 26 L46 48 L64 22 L56 22 Z" fill="#efe2c0"/>
+    </svg>
+    <div class="cap">1944 · o relâmpago</div>
+  </div>
+
+  <div class="frag f3">
+    <svg viewBox="0 0 100 74" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100" height="74" fill="#b99a63"/>
+      <rect x="30" y="26" width="40" height="26" rx="3" fill="#6d5228"/>
+      <line x1="38" y1="52" x2="38" y2="66" stroke="#6d5228" stroke-width="3"/>
+      <line x1="50" y1="52" x2="50" y2="66" stroke="#6d5228" stroke-width="3"/>
+      <line x1="62" y1="52" x2="62" y2="66" stroke="#6d5228" stroke-width="3"/>
+      <circle cx="50" cy="39" r="6" fill="none" stroke="#efe2c0" stroke-width="1.6"/>
+      <line x1="50" y1="14" x2="50" y2="26" stroke="#7a5c30" stroke-width="2"/>
+      <circle cx="50" cy="11" r="3" fill="#7a5c30"/>
+    </svg>
+    <div class="cap">1947 · transistor</div>
+  </div>
+</div>
+
+<div class="emblem-fixed" aria-hidden="true"></div>
+
+<nav class="docnav">
+  <a class="back" href="index.html">← Cinwicca</a>
+  <div class="lang-switch" role="tablist" aria-label="Language">
+    <button data-lang="pt">PT</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+  </div>
+</nav>
+
+<article class="doc">
+<div class="doc-panel">
+
+  <div class="doc-emblem" aria-hidden="true"></div>
+
+  <!-- ═══════════════ PORTUGUÊS ═══════════════ -->
+  <div class="lang lang-pt">
+
+    <div class="doc-eyebrow">Escritos · Cinwicca</div>
+    <div class="doc-dingbats">✶ &nbsp; ✦ &nbsp; ✶</div>
+    <h1 class="doc-title">Portão 20 · <em>A Voz do Agora</em></h1>
+    <p class="doc-subtitle">Marte ☌ Urano em Gêmeos</p>
+    <div class="doc-meta"><strong>04.07.2026</strong> &nbsp;·&nbsp; 3°52′ Gêmeos &nbsp;·&nbsp; Desenho Humano · Astrologia</div>
+
+    <div class="featured"><img src="portao-20-capa.png" alt="Portão 20 — corpo gráfico do Desenho Humano com a Garganta iluminada"></div>
+
+    <div class="chapter-mark">O Fenômeno</div>
+
+    <p class="body-p"><strong>Marte (♂)</strong> — a força da vontade, da ação e do instinto — encontra <strong>Urano (♅)</strong> — o despertar, a disrupção, o relâmpago da consciência — no signo de <strong>Gêmeos (♊)</strong>, o território da linguagem, da comunicação, das ideias e da conexão.</p>
+
+    <div class="oracle">Não é um trânsito silencioso.<br>É elétrico.</div>
+
+    <p class="body-p">A mente acelera. As conversas mudam de direção. Verdades irrompem. Tecnologias avançam. Os sistemas de comunicação se reorganizam. O que parecia estável pode mudar num instante.</p>
+    <p class="body-p">Quando Marte encontra Urano, o inesperado deixa de ser exceção — e se torna a própria linguagem.</p>
+    <p class="body-p">Desta vez, porém, há uma camada ainda mais profunda.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <div class="chapter-mark">Portão 20</div>
+    <h2 class="chapter-title">A Voz <em>do Agora</em></h2>
+
+    <p class="body-p">No Desenho Humano, esta conjunção acontece no <strong>Portão 20</strong>, o Portão do Agora, localizado no Centro da Garganta.</p>
+    <p class="body-p">É a voz que não fala de ontem nem de amanhã. Ela simplesmente declara:</p>
+
+    <div class="oracle grand">"Eu Sou. Agora."</div>
+
+    <p class="body-p">Correspondências simbólicas:</p>
+    <ul class="rows">
+      <li><strong>I Ching</strong> — Hexagrama 20 · Contemplação (觀)</li>
+      <li><strong>Gene Keys</strong> — Sombra → Superficialidade &nbsp;·&nbsp; Dom → Presença &nbsp;·&nbsp; Siddhi → Atestação</li>
+    </ul>
+
+    <p class="body-p">Não se trata apenas de falar.</p>
+    <p class="body-p">Trata-se de tornar-se Presença através da própria voz.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <div class="chapter-mark">Um dos Pilares de 2027</div>
+    <h2 class="chapter-title">A Cruz da <em>Fênix Adormecida</em></h2>
+
+    <p class="body-p">O Portão 20 é um dos quatro portões da <strong>Cruz da Fênix Adormecida</strong>:</p>
+
+    <div class="pillars"><span>55</span><span>59</span><span>34</span><span class="lit">20</span></div>
+
+    <p class="body-p">Segundo o Desenho Humano, esta Cruz torna-se o tema evolutivo central do ciclo que se abre em 2027. Ao ativar o Portão 20, Marte e Urano iluminam um de seus quatro pilares.</p>
+
+    <div class="oracle">Como um relâmpago<br>anunciando a chegada de uma nova estação.</div>
+
+    <div class="section-divider"><span>✦</span></div>
+    <div class="chapter-mark">A Ponte da Integração</div>
+    <h2 class="chapter-title">Três <em>Canais</em></h2>
+
+    <p class="body-p">Dependendo do teu Desenho Humano, esta ativação pode completar três canais significativos:</p>
+
+    <ul class="rows">
+      <li><strong>20–57 · O Canal da Onda Cerebral</strong><small>A intuição encontra a sua voz. O corpo sabe antes da mente.</small></li>
+      <li><strong>20–34 · O Canal do Carisma</strong><small>A ação emerge diretamente do momento presente. Sem força. Sem ensaio.</small></li>
+      <li><strong>20–10 · O Canal do Despertar</strong><small>O comportamento torna-se a expressão autêntica do Ser.</small></li>
+    </ul>
+
+    <p class="body-p">Se esses canais já estão definidos no teu mapa, este trânsito amplifica o que já está presente.</p>
+    <p class="body-p">Se não estão definidos, ele oferece uma experiência temporária dessas frequências.</p>
+    <p class="body-p">Se carregas um desses portões pendurado, o trânsito pode completar temporariamente o canal inteiro.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <div class="chapter-mark">O Símbolo Sabiano</div>
+    <h2 class="chapter-title">Gêmeos <em>4°</em></h2>
+
+    <div class="oracle">"Azevinho e visco<br>despertam velhas memórias."</div>
+
+    <p class="body-p" style="text-align:center;">Nota-chave: <strong>RITUALIZAÇÃO</strong></p>
+
+    <p class="body-p">O azevinho era sagrado para Saturno. O visco era sagrado para os Druidas — colhido do carvalho com uma foice de ouro e distribuído entre o povo como proteção contra o relâmpago, a doença e o infortúnio.</p>
+    <p class="body-p">O símbolo nos lembra que alguns despertares não são novos.</p>
+    <p class="body-p">São antigos. São memórias da Alma retornando à consciência.</p>
+    <p class="body-p">Como expressa lindamente a interpretação simbólica:</p>
+
+    <div class="oracle grand">Da escuridão…<br>"Eu Sou."</div>
+
+    <p class="body-p">Segundo a interpretação clássica de Dane Rudhyar, a nota essencial de Gêmeos 4° é <strong>o retorno à fonte primordial</strong> — o anseio por um estado de consciência que existe antes que o intelecto e o ego assumam o controle.</p>
+    <p class="body-p">A própria frequência do Portão 20: <em>"Eu Sou. Agora."</em></p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <div class="chapter-mark">A Última Vez</div>
+    <h2 class="chapter-title">1943 <em>· 1944</em></h2>
+
+    <p class="body-p">A última conjunção Marte–Urano neste mesmo Portão aconteceu entre <strong>dezembro de 1943 e janeiro de 1944</strong>.</p>
+    <p class="body-p">O mundo atravessava uma das maiores transições da história moderna.</p>
+
+    <div class="oracle">Uma realidade morria.<br>Outra nascia.</div>
+
+    <p class="body-p">Outras conjunções significativas daquele ciclo:</p>
+
+    <ul class="timeline">
+      <li><span class="when">Set 1943</span><span class="what">→ Portão 16</span></li>
+      <li><span class="when">Dez 1943 · Jan 1944</span><span class="what">→ Portão 20</span></li>
+      <li><span class="when">Ago 1945</span><span class="what">→ Portão 35 <em>(o capítulo final da Segunda Guerra Mundial)</em></span></li>
+      <li><span class="when">Ago 1947</span><span class="what">→ Portão 12 <em>(a invenção do transistor e a abertura de uma nova era tecnológica)</em></span></li>
+    </ul>
+
+    <p class="body-p">Mais do que sugerir causalidade, esses momentos ressoam simbolicamente com os temas arquetípicos de cada ativação.</p>
+
+    <div class="section-divider"><span>✦ &nbsp; ✶ &nbsp; ✦</span></div>
+    <div class="chapter-mark">A Pergunta</div>
+
+    <div class="oracle">1943–44. &nbsp;2026.<br>O mesmo Portão. A mesma Garganta.<br>O mesmo convite à Presença.</div>
+
+    <p class="body-p" style="text-align:center;">Naquela época, o que há muito permanecia em silêncio finalmente encontrou a sua voz.</p>
+
+    <div class="oracle grand">O que permanece em silêncio hoje?</div>
+
+    <p class="body-p" style="text-align:center; font-style:italic; color:var(--text-2);">E talvez, mais importante —</p>
+
+    <div class="oracle grand">O que em ti está finalmente<br>pronto para ser dito?</div>
+
+    <section class="bridge">
+      <p>Esta é uma leitura de trânsito — do céu que todas atravessamos. O modo como ela toca o teu desenho é único. Se quiseres compreender o que este relâmpago ilumina no teu próprio mapa, é aqui que o trabalho começa.</p>
+      <a href="index.html#offerings" class="btn-gold">Conhecer as sessões</a>
+    </section>
+
+  </div>
+
+  <!-- ═══════════════ ENGLISH ═══════════════ -->
+  <div class="lang lang-en">
+
+    <div class="doc-eyebrow">Writing · Cinwicca</div>
+    <div class="doc-dingbats">✶ &nbsp; ✦ &nbsp; ✶</div>
+    <h1 class="doc-title">Gate 20 · <em>The Voice of the Now</em></h1>
+    <p class="doc-subtitle">Mars ☌ Uranus in Gemini</p>
+    <div class="doc-meta"><strong>04.07.2026</strong> &nbsp;·&nbsp; 3°52′ Gemini &nbsp;·&nbsp; Human Design · Astrology</div>
+
+    <div class="featured"><img src="portao-20-capa.png" alt="Gate 20 — Human Design bodygraph with the Throat illuminated"></div>
+
+    <div class="chapter-mark">The Phenomenon</div>
+
+    <p class="body-p"><strong>Mars (♂)</strong> — the force of will, action, and instinct — meets <strong>Uranus (♅)</strong> — awakening, disruption, and the lightning bolt of consciousness — in the sign of <strong>Gemini (♊)</strong>, the realm of language, communication, ideas, and connection.</p>
+
+    <div class="oracle">This is not a quiet transit.<br>It is electric.</div>
+
+    <p class="body-p">The mind accelerates. Conversations change direction. Truths erupt. Technologies advance. Systems of communication reorganize themselves. What once seemed stable can shift in an instant.</p>
+    <p class="body-p">When Mars meets Uranus, the unexpected ceases to be the exception — and becomes the language itself.</p>
+    <p class="body-p">This time, however, there is an even deeper layer.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <div class="chapter-mark">Gate 20</div>
+    <h2 class="chapter-title">The Voice <em>of the Now</em></h2>
+
+    <p class="body-p">In Human Design, this conjunction occurs in <strong>Gate 20</strong>, the Gate of the Now, located in the Throat Center.</p>
+    <p class="body-p">It is the voice that speaks neither of yesterday nor tomorrow. It simply declares:</p>
+
+    <div class="oracle grand">"I Am. Now."</div>
+
+    <p class="body-p">Symbolic correspondences:</p>
+    <ul class="rows">
+      <li><strong>I Ching</strong> — Hexagram 20 · Contemplation (觀)</li>
+      <li><strong>Gene Keys</strong> — Shadow → Superficiality &nbsp;·&nbsp; Gift → Presence &nbsp;·&nbsp; Siddhi → Attestation</li>
+    </ul>
+
+    <p class="body-p">This is not merely about speaking.</p>
+    <p class="body-p">It is about becoming Presence through one's own voice.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <div class="chapter-mark">One of the Pillars of 2027</div>
+    <h2 class="chapter-title">The <em>Sleeping Phoenix</em> Cross</h2>
+
+    <p class="body-p">Gate 20 is one of the four gates of the <strong>Sleeping Phoenix Cross</strong>:</p>
+
+    <div class="pillars"><span>55</span><span>59</span><span>34</span><span class="lit">20</span></div>
+
+    <p class="body-p">According to Human Design, this Cross becomes the defining evolutionary theme as we move into the cycle beginning in 2027. By activating Gate 20, Mars and Uranus illuminate one of its four pillars.</p>
+
+    <div class="oracle">Like lightning<br>announcing the arrival of a new season.</div>
+
+    <div class="section-divider"><span>✦</span></div>
+    <div class="chapter-mark">The Bridge of Integration</div>
+    <h2 class="chapter-title">Three <em>Channels</em></h2>
+
+    <p class="body-p">Depending on your Human Design, this activation may complete three significant channels:</p>
+
+    <ul class="rows">
+      <li><strong>20–57 · The Brainwave Channel</strong><small>Intuition finds its voice. The body knows before the mind.</small></li>
+      <li><strong>20–34 · The Channel of Charisma</strong><small>Action emerges directly from the present moment. Without force. Without rehearsal.</small></li>
+      <li><strong>20–10 · The Channel of Awakening</strong><small>Behaviour becomes the authentic expression of the Self.</small></li>
+    </ul>
+
+    <p class="body-p">If these channels are already defined in your chart, this transit amplifies what is already present.</p>
+    <p class="body-p">If they are undefined, it offers a temporary experience of these frequencies.</p>
+    <p class="body-p">If you carry one of these as a hanging gate, the transit may temporarily complete the entire channel.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <div class="chapter-mark">The Sabian Symbol</div>
+    <h2 class="chapter-title">Gemini <em>4°</em></h2>
+
+    <div class="oracle">"Holly and mistletoe<br>reawaken old memories."</div>
+
+    <p class="body-p" style="text-align:center;">Keynote: <strong>RITUALIZATION</strong></p>
+
+    <p class="body-p">Holly was sacred to Saturn. Mistletoe was sacred to the Druids — harvested from the oak with a golden sickle and distributed among the people as protection against lightning, disease, and misfortune.</p>
+    <p class="body-p">The symbol reminds us that some awakenings are not new.</p>
+    <p class="body-p">They are ancient. They are memories of the Soul returning to consciousness.</p>
+    <p class="body-p">As the symbolic interpretation beautifully expresses:</p>
+
+    <div class="oracle grand">Out of the darkness…<br>"I Am."</div>
+
+    <p class="body-p">According to Dane Rudhyar's classical interpretation, the essential keynote of Gemini 4° is <strong>a return to the primordial source</strong> — the longing for a state of consciousness that exists before the intellect and the ego assume control.</p>
+    <p class="body-p">The very frequency of Gate 20: <em>"I Am. Now."</em></p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <div class="chapter-mark">The Last Time</div>
+    <h2 class="chapter-title">1943 <em>· 1944</em></h2>
+
+    <p class="body-p">The last Mars–Uranus conjunction in this same Gate occurred between <strong>December 1943 and January 1944</strong>.</p>
+    <p class="body-p">The world was passing through one of the greatest transitions in modern history.</p>
+
+    <div class="oracle">One reality was dying.<br>Another was being born.</div>
+
+    <p class="body-p">Other significant conjunctions during that cycle:</p>
+
+    <ul class="timeline">
+      <li><span class="when">Sep 1943</span><span class="what">→ Gate 16</span></li>
+      <li><span class="when">Dec 1943 · Jan 1944</span><span class="what">→ Gate 20</span></li>
+      <li><span class="when">Aug 1945</span><span class="what">→ Gate 35 <em>(the closing chapter of World War II)</em></span></li>
+      <li><span class="when">Aug 1947</span><span class="what">→ Gate 12 <em>(the invention of the transistor and the opening of a new technological era)</em></span></li>
+    </ul>
+
+    <p class="body-p">Rather than suggesting causation, these moments resonate symbolically with the archetypal themes carried by each activation.</p>
+
+    <div class="section-divider"><span>✦ &nbsp; ✶ &nbsp; ✦</span></div>
+    <div class="chapter-mark">The Question</div>
+
+    <div class="oracle">1943–44. &nbsp;2026.<br>The same Gate. The same Throat.<br>The same invitation to Presence.</div>
+
+    <p class="body-p" style="text-align:center;">Then, what had long remained silent finally found its voice.</p>
+
+    <div class="oracle grand">What remains silent today?</div>
+
+    <p class="body-p" style="text-align:center; font-style:italic; color:var(--text-2);">And perhaps, more importantly —</p>
+
+    <div class="oracle grand">What within you is finally<br>ready to be spoken?</div>
+
+    <section class="bridge">
+      <p>This is a transit reading — of the sky we all pass through. How it touches your design is unique to you. If you wish to understand what this lightning illuminates in your own chart, this is where the work begins.</p>
+      <a href="index.html#offerings" class="btn-gold">Explore the offerings</a>
+    </section>
+
+  </div>
+
+  <!-- ═══════════════ ESPAÑOL ═══════════════ -->
+  <div class="lang lang-es">
+
+    <div class="doc-eyebrow">Escritura · Cinwicca</div>
+    <div class="doc-dingbats">✶ &nbsp; ✦ &nbsp; ✶</div>
+    <h1 class="doc-title">Puerta 20 · <em>La Voz del Ahora</em></h1>
+    <p class="doc-subtitle">Marte ☌ Urano en Géminis</p>
+    <div class="doc-meta"><strong>04.07.2026</strong> &nbsp;·&nbsp; 3°52′ Géminis &nbsp;·&nbsp; Diseño Humano · Astrología</div>
+
+    <div class="featured"><img src="portao-20-capa.png" alt="Puerta 20 — carta corporal del Diseño Humano con la Garganta iluminada"></div>
+
+    <div class="chapter-mark">El Fenómeno</div>
+
+    <p class="body-p"><strong>Marte (♂)</strong> — la fuerza de la voluntad, la acción y el instinto — se encuentra con <strong>Urano (♅)</strong> — el despertar, la disrupción, el relámpago de la conciencia — en el signo de <strong>Géminis (♊)</strong>, el territorio del lenguaje, la comunicación, las ideas y la conexión.</p>
+
+    <div class="oracle">No es un tránsito silencioso.<br>Es eléctrico.</div>
+
+    <p class="body-p">La mente se acelera. Las conversaciones cambian de dirección. Las verdades irrumpen. Las tecnologías avanzan. Los sistemas de comunicación se reorganizan. Lo que parecía estable puede cambiar en un instante.</p>
+    <p class="body-p">Cuando Marte se encuentra con Urano, lo inesperado deja de ser la excepción — y se convierte en el lenguaje mismo.</p>
+    <p class="body-p">Esta vez, sin embargo, hay una capa aún más profunda.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <div class="chapter-mark">Puerta 20</div>
+    <h2 class="chapter-title">La Voz <em>del Ahora</em></h2>
+
+    <p class="body-p">En Diseño Humano, esta conjunción ocurre en la <strong>Puerta 20</strong>, la Puerta del Ahora, ubicada en el Centro de la Garganta.</p>
+    <p class="body-p">Es la voz que no habla ni de ayer ni de mañana. Simplemente declara:</p>
+
+    <div class="oracle grand">"Yo Soy. Ahora."</div>
+
+    <p class="body-p">Correspondencias simbólicas:</p>
+    <ul class="rows">
+      <li><strong>I Ching</strong> — Hexagrama 20 · Contemplación (觀)</li>
+      <li><strong>Gene Keys</strong> — Sombra → Superficialidad &nbsp;·&nbsp; Don → Presencia &nbsp;·&nbsp; Siddhi → Atestación</li>
+    </ul>
+
+    <p class="body-p">No se trata solo de hablar.</p>
+    <p class="body-p">Se trata de convertirse en Presencia a través de la propia voz.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <div class="chapter-mark">Uno de los Pilares de 2027</div>
+    <h2 class="chapter-title">La Cruz del <em>Fénix Dormido</em></h2>
+
+    <p class="body-p">La Puerta 20 es una de las cuatro puertas de la <strong>Cruz del Fénix Dormido</strong>:</p>
+
+    <div class="pillars"><span>55</span><span>59</span><span>34</span><span class="lit">20</span></div>
+
+    <p class="body-p">Según el Diseño Humano, esta Cruz se convierte en el tema evolutivo central del ciclo que se abre en 2027. Al activar la Puerta 20, Marte y Urano iluminan uno de sus cuatro pilares.</p>
+
+    <div class="oracle">Como un relámpago<br>que anuncia la llegada de una nueva estación.</div>
+
+    <div class="section-divider"><span>✦</span></div>
+    <div class="chapter-mark">El Puente de la Integración</div>
+    <h2 class="chapter-title">Tres <em>Canales</em></h2>
+
+    <p class="body-p">Según tu Diseño Humano, esta activación puede completar tres canales significativos:</p>
+
+    <ul class="rows">
+      <li><strong>20–57 · El Canal de la Onda Cerebral</strong><small>La intuición encuentra su voz. El cuerpo sabe antes que la mente.</small></li>
+      <li><strong>20–34 · El Canal del Carisma</strong><small>La acción emerge directamente del momento presente. Sin fuerza. Sin ensayo.</small></li>
+      <li><strong>20–10 · El Canal del Despertar</strong><small>El comportamiento se convierte en la expresión auténtica del Ser.</small></li>
+    </ul>
+
+    <p class="body-p">Si estos canales ya están definidos en tu carta, este tránsito amplifica lo que ya está presente.</p>
+    <p class="body-p">Si no están definidos, ofrece una experiencia temporal de estas frecuencias.</p>
+    <p class="body-p">Si llevas una de estas puertas colgante, el tránsito puede completar temporalmente el canal entero.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <div class="chapter-mark">El Símbolo Sabiano</div>
+    <h2 class="chapter-title">Géminis <em>4°</em></h2>
+
+    <div class="oracle">"El acebo y el muérdago<br>despiertan viejos recuerdos."</div>
+
+    <p class="body-p" style="text-align:center;">Nota clave: <strong>RITUALIZACIÓN</strong></p>
+
+    <p class="body-p">El acebo era sagrado para Saturno. El muérdago era sagrado para los Druidas — recogido del roble con una hoz de oro y distribuido entre el pueblo como protección contra el rayo, la enfermedad y el infortunio.</p>
+    <p class="body-p">El símbolo nos recuerda que algunos despertares no son nuevos.</p>
+    <p class="body-p">Son antiguos. Son memorias del Alma que regresan a la conciencia.</p>
+    <p class="body-p">Como expresa bellamente la interpretación simbólica:</p>
+
+    <div class="oracle grand">Desde la oscuridad…<br>"Yo Soy."</div>
+
+    <p class="body-p">Según la interpretación clásica de Dane Rudhyar, la nota esencial de Géminis 4° es <strong>el retorno a la fuente primordial</strong> — el anhelo de un estado de conciencia que existe antes de que el intelecto y el ego asuman el control.</p>
+    <p class="body-p">La frecuencia misma de la Puerta 20: <em>"Yo Soy. Ahora."</em></p>
+
+    <div class="section-divider"><span>✦</span></div>
+    <div class="chapter-mark">La Última Vez</div>
+    <h2 class="chapter-title">1943 <em>· 1944</em></h2>
+
+    <p class="body-p">La última conjunción Marte–Urano en esta misma Puerta ocurrió entre <strong>diciembre de 1943 y enero de 1944</strong>.</p>
+    <p class="body-p">El mundo atravesaba una de las mayores transiciones de la historia moderna.</p>
+
+    <div class="oracle">Una realidad moría.<br>Otra nacía.</div>
+
+    <p class="body-p">Otras conjunciones significativas de aquel ciclo:</p>
+
+    <ul class="timeline">
+      <li><span class="when">Sep 1943</span><span class="what">→ Puerta 16</span></li>
+      <li><span class="when">Dic 1943 · Ene 1944</span><span class="what">→ Puerta 20</span></li>
+      <li><span class="when">Ago 1945</span><span class="what">→ Puerta 35 <em>(el capítulo final de la Segunda Guerra Mundial)</em></span></li>
+      <li><span class="when">Ago 1947</span><span class="what">→ Puerta 12 <em>(la invención del transistor y la apertura de una nueva era tecnológica)</em></span></li>
+    </ul>
+
+    <p class="body-p">Más que sugerir causalidad, estos momentos resuenan simbólicamente con los temas arquetípicos de cada activación.</p>
+
+    <div class="section-divider"><span>✦ &nbsp; ✶ &nbsp; ✦</span></div>
+    <div class="chapter-mark">La Pregunta</div>
+
+    <div class="oracle">1943–44. &nbsp;2026.<br>La misma Puerta. La misma Garganta.<br>La misma invitación a la Presencia.</div>
+
+    <p class="body-p" style="text-align:center;">Entonces, lo que durante tanto tiempo permaneció en silencio finalmente encontró su voz.</p>
+
+    <div class="oracle grand">¿Qué permanece en silencio hoy?</div>
+
+    <p class="body-p" style="text-align:center; font-style:italic; color:var(--text-2);">Y quizás, más importante —</p>
+
+    <div class="oracle grand">¿Qué en ti está finalmente<br>listo para ser dicho?</div>
+
+    <section class="bridge">
+      <p>Esta es una lectura de tránsito — del cielo que todas atravesamos. La forma en que toca tu diseño es única. Si deseas comprender qué ilumina este relámpago en tu propia carta, aquí es donde comienza el trabajo.</p>
+      <a href="index.html#offerings" class="btn-gold">Ver las sesiones</a>
+    </section>
+
+  </div>
+
+  <!-- SIGNATURE (shared) -->
+  <div class="signature">
+    <div class="glyph">✦ &nbsp; ✶ &nbsp; ✦</div>
+    <div class="sign-name">Cinwicca</div>
+    <div class="sign-sub">Cintia de Godoy · Soul Path Reader</div>
+  </div>
+
+  <div class="doc-footer">
+    © 2026 <a href="index.html">cinwicca.com</a>
+  </div>
+
+</div>
+</article>
+
+<script>
+// ── Language switching (shared sb_lang with the main site) ──
+(function () {
+  let lang = localStorage.getItem('sb_lang') || (navigator.language || 'en').slice(0, 2).toLowerCase();
+  if (!['pt', 'en', 'es'].includes(lang)) lang = 'en';
+
+  function apply(l) {
+    lang = l;
+    localStorage.setItem('sb_lang', l);
+    document.documentElement.lang = l === 'pt' ? 'pt-BR' : (l === 'es' ? 'es-ES' : 'en');
+    document.querySelectorAll('.lang').forEach(d => d.classList.remove('active'));
+    document.querySelector('.lang-' + l).classList.add('active');
+    document.querySelectorAll('.lang-switch button').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('data-lang') === l);
+    });
+    document.title = l === 'pt'
+      ? 'Portão 20 · A Voz do Agora · Cinwicca'
+      : (l === 'es' ? 'Puerta 20 · La Voz del Ahora · Cinwicca' : 'Gate 20 · The Voice of the Now · Cinwicca');
+  }
+
+  document.querySelectorAll('.lang-switch button').forEach(b => {
+    b.addEventListener('click', () => apply(b.getAttribute('data-lang')));
+  });
+  apply(lang);
+})();
+</script>
+</body>
+</html>

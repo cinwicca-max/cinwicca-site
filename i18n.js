@@ -140,6 +140,21 @@ window.__i18n = {
     "test.t7": "\u201CHello, Cintia darling — what a valuable gift, such a detailed analysis of these wisdom traditions! I'm absolutely blown away by the detail and accuracy. It is such a useful map to showcase where I have been — and where I am heading.\u201D",
     "test.riina": "\u201CI often felt lost trying to understand how to parent my daughter because she is so different from me in her personality, needs and the way she experiences the world. But Cintia's reading gave me valuable insight into who my daughter is and provided a framework that helped me better understand her and how I can support and parent her more effectively. Such a rich and complex reading that is deeply insightful and will continue to guide me in my relationship with my child.\u201D",
     "test.thiago": "\u201CI was so happy with the complete reading we received for our baby — I have never seen anything so thorough. Exquisitely refined work, made with so much love and care. Eternal gratitude _/\\_\u201D",
+    "test.laura": "“I came across Cintia's work during a very difficult time in my life. I was feeling confused, stuck, and in need of clarity to move forward. Cintia helped me see my situation with greater perspective and offered a clear reflection of where I was. Her approach was both accurate and respectful; she did not impose interpretations or assumptions, but instead supported me in finding my own understanding. Through this process, I developed a stronger sense of discernment and an ability to accept what is. I highly recommend her work. She is professional, sensitive, and deeply compassionate.”",
+
+    "gift.label": "A gift",
+    "gift.title1": "The Card of ",
+    "gift.title2": "Emotions",
+    "gift.body": "One page to print, holding twenty emotions and the bridge that links each one to what is needed — inspired by Marshall Rosenberg's Nonviolent Communication. For the wall, the schoolbag, or the moment when words go missing.",
+    "gift.email": "Your email",
+    "gift.email.ph": "your@email.com",
+    "gift.consent": "Yes, I'd like to receive an occasional word from Cinwicca: writings on the Soul, on the transits, and new materials as they arrive. Nothing excessive, and you may leave the list whenever you wish.",
+    "gift.send": "Send me the Card",
+    "gift.privacy": "Your email stays with me alone; it is never shared.",
+    "gift.upsell": "There is also a personalised version — the Card and the Deck of Emotions drawn from a person's own map, for children and for adults. They accompany every reading, and may also be requested on their own.",
+    "gift.success.title": "Here it is.",
+    "gift.success.body": "Thank you. Download the Card below and print it at A5 — or at A4, if you'd like it larger for the wall.",
+    "gift.download": "Download the Card (PDF · A5)",
 
     "share.title": "Share your reflection",
     "share.intro": "If you've received a reading and feel called to share your experience, your words are warmly welcomed. With your permission, they may also live here as a small light for those still finding their way.",
@@ -200,7 +215,8 @@ window.__i18n = {
 
     "alert.required": "Please fill in your name, email and date of birth to continue.",
     "alert.service": "Please select a service offering.",
-    "alert.share": "Please add your name and your words."
+    "alert.share": "Please add your name and your words.",
+    "alert.gift": "Please add your email to receive the Card."
   },
 
   pt: {
@@ -343,6 +359,21 @@ window.__i18n = {
     "test.t7": "\u201COlá, querida Cintia — que presente valioso, que análise detalhada dessas tradições de sabedoria! Estou absolutamente impactada pelo nível de detalhe e precisão. É um mapa tão útil para mostrar por onde estive — e para onde estou indo.\u201D",
     "test.riina": "\u201CMuitas vezes eu me sentia perdida tentando entender como criar minha filha, porque ela é tão diferente de mim na personalidade, nas necessidades e na forma como vive o mundo. Mas a leitura da Cintia me deu uma compreensão valiosa de quem é a minha filha e ofereceu uma estrutura que me ajudou a entendê-la melhor — e a saber como apoiá-la e educá-la de forma mais eficaz. Uma leitura tão rica e complexa, profundamente reveladora, que continuará a me guiar na relação com a minha filha.\u201D",
     "test.thiago": "\u201CEu fiquei muito feliz com a leitura completa que recebemos da nossa bebê — não conheci nada tão completo. Trabalho refinadíssimo e feito com muito amor e carinho. Gratidão eterna _/\\_\u201D",
+    "test.laura": "“Encontrei o trabalho da Cintia num momento muito difícil da minha vida. Eu me sentia confusa, travada, precisando de clareza para seguir em frente. A Cintia me ajudou a ver a minha situação com mais perspectiva e me ofereceu um reflexo claro de onde eu estava. A abordagem dela foi ao mesmo tempo precisa e respeitosa: não impôs interpretações nem suposições, mas me apoiou a encontrar a minha própria compreensão. Nesse processo, desenvolvi um discernimento mais forte e a capacidade de aceitar o que é. Recomendo muito o trabalho dela. É profissional, sensível e profundamente compassiva.”",
+
+    "gift.label": "Presente",
+    "gift.title1": "A Carta das ",
+    "gift.title2": "Emoções",
+    "gift.body": "Uma página para imprimir, com vinte emoções e a ponte que liga cada uma ao que se precisa — inspirada na Comunicação Não-Violenta de Marshall Rosenberg. Para a parede, para a mochila, ou para o momento em que faltam as palavras.",
+    "gift.email": "Seu e-mail",
+    "gift.email.ph": "voce@email.com",
+    "gift.consent": "Sim, quero receber de vez em quando uma palavra da Cinwicca: escritos sobre a Alma, sobre os trânsitos, e novos materiais quando chegarem. Sem excessos, e você pode sair da lista quando quiser.",
+    "gift.send": "Quero a Carta",
+    "gift.privacy": "Seu e-mail fica só comigo, nunca é compartilhado.",
+    "gift.upsell": "Existe também a versão personalizada — a Carta e o Baralho das Emoções feitos a partir do mapa de cada pessoa, para crianças e para adultos. Acompanham cada leitura, e também podem ser pedidos à parte.",
+    "gift.success.title": "Está aqui.",
+    "gift.success.body": "Obrigada. Baixa a Carta abaixo e imprime em A5 — ou em A4, se a quiseres maior para a parede.",
+    "gift.download": "Baixar a Carta (PDF · A5)",
 
     "share.title": "Compartilhe sua reflexão",
     "share.intro": "Se você recebeu uma leitura e se sentir chamada a compartilhar sua experiência, suas palavras são muito bem-vindas. Com a sua permissão, elas também podem morar aqui como uma pequena luz para quem ainda está encontrando o caminho.",
@@ -403,7 +434,8 @@ window.__i18n = {
 
     "alert.required": "Por favor, preencha seu nome, e-mail e data de nascimento para continuar.",
     "alert.service": "Por favor, selecione uma sessão.",
-    "alert.share": "Por favor, adicione seu nome e suas palavras."
+    "alert.share": "Por favor, adicione seu nome e suas palavras.",
+    "alert.gift": "Por favor, adicione seu e-mail para receber a Carta."
   },
 
   es: {
@@ -546,6 +578,21 @@ window.__i18n = {
     "test.t7": "\u201CHola, querida Cintia — qué regalo tan valioso, qué análisis tan detallado de estas tradiciones de sabiduría. Estoy absolutamente impactada por el nivel de detalle y precisión. Es un mapa muy útil para mostrar por dónde he estado — y hacia dónde voy.\u201D",
     "test.riina": "\u201CMuchas veces me sentía perdida intentando entender cómo criar a mi hija, porque es muy diferente de mí en su personalidad, sus necesidades y su manera de vivir el mundo. Pero la lectura de Cintia me dio una comprensión valiosa de quién es mi hija y me ofreció un marco que me ayudó a entenderla mejor — y a saber cómo apoyarla y acompañarla de forma más eficaz. Una lectura tan rica y compleja, profundamente reveladora, que seguirá guiándome en la relación con mi hija.\u201D",
     "test.thiago": "\u201CQuedé muy feliz con la lectura completa que recibimos de nuestra bebé — no he conocido nada tan completo. Un trabajo refinadísimo, hecho con mucho amor y cariño. Gratitud eterna _/\\_\u201D",
+    "test.laura": "“Conocí el trabajo de Cintia en un momento muy difícil de mi vida. Me sentía confusa, estancada y necesitaba claridad para seguir adelante. Cintia me ayudó a ver mi situación con mayor perspectiva y me ofreció un reflejo claro de dónde estaba. Su enfoque fue a la vez preciso y respetuoso: no impuso interpretaciones ni suposiciones, sino que me acompañó a encontrar mi propia comprensión. A través de este proceso desarrollé un discernimiento más fuerte y la capacidad de aceptar lo que es. Recomiendo muchísimo su trabajo. Es profesional, sensible y profundamente compasiva.”",
+
+    "gift.label": "Regalo",
+    "gift.title1": "La Carta de las ",
+    "gift.title2": "Emociones",
+    "gift.body": "Una página para imprimir, con veinte emociones y el puente que une cada una con lo que se necesita — inspirada en la Comunicación No Violenta de Marshall Rosenberg. Para la pared, para la mochila, o para el momento en que faltan las palabras.",
+    "gift.email": "Tu correo",
+    "gift.email.ph": "tu@email.com",
+    "gift.consent": "Sí, quiero recibir de vez en cuando una palabra de Cinwicca: escritos sobre el Alma, sobre los tránsitos, y nuevos materiales cuando lleguen. Sin excesos, y puedes salir de la lista cuando quieras.",
+    "gift.send": "Quiero la Carta",
+    "gift.privacy": "Tu correo se queda solo conmigo; nunca se comparte.",
+    "gift.upsell": "Existe también la versión personalizada — la Carta y la Baraja de las Emociones creadas a partir del mapa de cada persona, para niñas, niños y adultos. Acompañan cada lectura, y también pueden pedirse aparte.",
+    "gift.success.title": "Aquí está.",
+    "gift.success.body": "Gracias. Descarga la Carta abajo e imprímela en A5 — o en A4, si la quieres más grande para la pared.",
+    "gift.download": "Descargar la Carta (PDF · A5)",
 
     "share.title": "Comparte tu reflexión",
     "share.intro": "Si has recibido una lectura y te sientes llamada a compartir tu experiencia, tus palabras son muy bienvenidas. Con tu permiso, también pueden vivir aquí como una pequeña luz para quienes aún están encontrando su camino.",
@@ -606,7 +653,8 @@ window.__i18n = {
 
     "alert.required": "Por favor, rellena tu nombre, correo y fecha de nacimiento para continuar.",
     "alert.service": "Por favor, selecciona una sesión.",
-    "alert.share": "Por favor, añade tu nombre y tus palabras."
+    "alert.share": "Por favor, añade tu nombre y tus palabras.",
+    "alert.gift": "Por favor, añade tu correo para recibir la Carta."
   }
 };
 

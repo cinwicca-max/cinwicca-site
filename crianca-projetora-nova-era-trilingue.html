@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Criança Projetora e a Nova Era · Cinwicca</title>
+<meta name="description" content="Como acompanhar uma Criança Projetora — descanso, reconhecimento, convite e autoridade — e prepará-la, com ternura, para a Grande Mutação de 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obsidian: #08090f;
+  --deep:     #0d1020;
+  --ink:      #141a2e;
+  --gold:     #d4b15a;
+  --gold-lt:  #ecd49a;
+  --gold-dk:  #8b6b22;
+  --rose:     #b67a8f;
+  --cream:    #f6ecd0;
+  --text:     #f1e7cf;
+  --text-2:   #d6c7a2;
+  --text-3:   #a99878;
+  --border:   rgba(212,177,90,0.18);
+  --border-b: rgba(212,177,90,0.42);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: var(--obsidian);
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.55; }
+
+/* ── NAV BAR ── */
+.docnav {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: rgba(8,9,15,0.85);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+.docnav a.back {
+  font-family: 'Cinzel', serif;
+  font-size: 0.74rem; font-weight: 500;
+  letter-spacing: 0.22em; color: var(--gold);
+  text-decoration: none; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: color 0.25s;
+}
+.docnav a.back:hover { color: var(--gold-lt); }
+.lang-switch { display: flex; gap: 0.4rem; }
+.lang-switch button {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem; letter-spacing: 0.18em;
+  background: transparent; color: var(--text-3);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-transform: uppercase;
+}
+.lang-switch button:hover { color: var(--gold-lt); border-color: var(--border-b); }
+.lang-switch button.active {
+  color: var(--obsidian);
+  background: linear-gradient(135deg, var(--gold-dk), var(--gold));
+  border-color: var(--gold);
+}
+
+/* ── DOCUMENT FRAME ── */
+.doc {
+  position: relative; z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 5rem 2rem 6rem;
+}
+.lang { display: none; }
+.lang.on { display: block; }
+
+/* ── DOC HEADER ── */
+.doc-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem; letter-spacing: 0.32em;
+  color: var(--gold); text-transform: uppercase;
+  text-align: center; margin-bottom: 1.6rem;
+}
+.doc-dingbats { text-align: center; color: var(--gold); margin-bottom: 1.4rem; letter-spacing: 0.6em; font-size: 0.9rem; }
+.doc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(2.3rem, 5vw, 3.4rem);
+  text-align: center; color: #fff;
+  line-height: 1.12; letter-spacing: -0.005em;
+  margin-bottom: 0.7rem;
+}
+.doc-title em { font-style: italic; color: var(--gold-lt); }
+.doc-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  text-align: center; color: var(--gold-lt);
+  margin-bottom: 2rem; font-weight: 400;
+}
+.doc-epigraph {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 1.15rem;
+  text-align: center; color: var(--text-2);
+  line-height: 1.65; max-width: 540px;
+  margin: 0 auto 3.5rem;
+}
+
+/* ── CHAPTERS ── */
+.chapter-mark {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem; letter-spacing: 0.32em;
+  color: var(--gold); text-transform: uppercase;
+  text-align: center; margin-top: 4.5rem; margin-bottom: 1rem;
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+  text-align: center; color: #fff;
+  line-height: 1.2; margin-bottom: 2.4rem;
+}
+.chapter-title em { color: var(--gold-lt); font-style: italic; }
+.section-divider {
+  display: flex; align-items: center; gap: 1.2rem;
+  margin: 3rem auto; max-width: 360px;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-b));
+}
+.section-divider::after { background: linear-gradient(90deg, var(--border-b), transparent); }
+.section-divider span { color: var(--gold); font-size: 0.85rem; }
+
+h3.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500; font-size: 1.5rem;
+  color: var(--gold-lt); line-height: 1.25;
+  margin: 2.5rem 0 0.9rem; letter-spacing: -0.005em;
+}
+
+p.body-p {
+  font-size: 1.07rem; line-height: 1.78;
+  color: var(--text); margin-bottom: 1.15rem;
+}
+p.body-p em { color: var(--gold-lt); font-style: italic; }
+p.body-p strong { color: var(--gold-lt); font-weight: 500; }
+
+.excerpt {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 1.28rem;
+  color: var(--gold-lt); line-height: 1.55;
+  border-left: 2px solid var(--gold-dk);
+  padding: 0.4rem 0 0.4rem 1.6rem;
+  margin: 1.8rem 0 2rem;
+}
+.excerpt.centered { text-align: center; border-left: 0; padding-left: 0; }
+
+.titles-only {
+  margin: 1.2rem 0 2rem; padding-left: 0; list-style: none;
+}
+.titles-only li {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem; color: var(--text);
+  padding: 0.65rem 0 0.65rem 1.2rem;
+  border-left: 1px solid var(--border);
+  margin-bottom: 0.3rem; position: relative;
+  line-height: 1.6;
+}
+.titles-only li::before {
+  content: '✦'; position: absolute; left: -0.6rem; top: 0.7rem;
+  color: var(--gold); background: var(--obsidian);
+  padding: 0 0.3rem; font-size: 0.7rem;
+}
+.titles-only li strong { color: var(--gold-lt); font-weight: 500; font-style: italic; }
+
+/* ── AUTHORITY CARDS ── */
+.auth-card {
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--gold-dk);
+  border-radius: 3px;
+  background: linear-gradient(140deg, rgba(31,42,90,0.14), rgba(13,16,32,0.4));
+  padding: 1.5rem 1.7rem;
+  margin: 1.4rem 0;
+}
+.auth-card h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold-lt); margin-bottom: 0.6rem;
+}
+.auth-card p { font-size: 1.03rem; line-height: 1.72; color: var(--text); }
+.auth-card p em { color: var(--gold-lt); font-style: italic; }
+
+/* ── KEY INSIGHT ── */
+.key-insight {
+  margin: 2.8rem 0;
+  padding: 2rem 2.2rem;
+  background: linear-gradient(140deg, rgba(212,177,90,0.05), rgba(31,42,90,0.18));
+  border: 1px solid var(--border-b);
+  border-left: 3px solid var(--gold);
+  border-radius: 3px;
+}
+.key-insight .ki-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem; letter-spacing: 0.28em;
+  color: var(--gold); text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.key-insight p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 1.28rem;
+  color: var(--cream); line-height: 1.5;
+}
+.key-insight p + p { margin-top: 0.8rem; color: var(--gold-lt); }
+
+/* ── CONFIG BADGES (2027 data) ── */
+.config-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0 1.6rem; justify-content: center; }
+.config-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  background: rgba(212,177,90,0.06);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+}
+
+/* ── GIFT BLOCK (Emotions Card offer) ── */
+.gift {
+  margin: 3.2rem 0;
+  padding: 2.6rem 2.2rem;
+  border: 1px solid var(--border-b);
+  border-radius: 3px;
+  background: linear-gradient(140deg, rgba(182,122,143,0.07), rgba(13,16,32,0.5));
+  position: relative;
+  text-align: center;
+}
+.gift::before {
+  content: ''; position: absolute; top: -1px; left: 25%; right: 25%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--rose), transparent);
+}
+.gift .gf-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--rose);
+  margin-bottom: 0.9rem;
+}
+.gift h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  color: #fff; line-height: 1.2; margin-bottom: 1rem;
+}
+.gift h3 em { color: var(--gold-lt); font-style: italic; }
+.gift p { font-size: 1.05rem; color: var(--text); line-height: 1.72; margin-bottom: 1rem; max-width: 580px; margin-left: auto; margin-right: auto; }
+.gift p em { color: var(--gold-lt); font-style: italic; }
+.gift .gf-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 0.98rem; color: var(--text-3);
+}
+
+/* ── BRIDGE / CTA ── */
+.bridge {
+  margin-top: 5rem; padding: 3rem 2.4rem;
+  background: linear-gradient(140deg, rgba(31,42,90,0.25), rgba(13,16,32,0.5));
+  border: 1px solid var(--border-b); border-radius: 3px; position: relative;
+}
+.bridge::before {
+  content: ''; position: absolute; top: -1px; left: 20%; right: 20%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.bridge .br-eyebrow {
+  font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--gold); text-align: center; margin-bottom: 1rem;
+}
+.bridge h2 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 500;
+  font-size: clamp(1.7rem, 3.2vw, 2.3rem); text-align: center;
+  color: #fff; line-height: 1.2; margin-bottom: 0.6rem;
+}
+.bridge h2 em { color: var(--gold-lt); font-style: italic; }
+.bridge .br-sub {
+  text-align: center; font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 1.1rem; color: var(--text-2); margin-bottom: 1.8rem;
+}
+.bridge p { font-size: 1.05rem; color: var(--text); line-height: 1.75; margin-bottom: 1.1rem; }
+.bridge .quote {
+  text-align: center; font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 1.2rem; color: var(--gold-lt);
+  margin: 2.2rem auto; max-width: 540px; line-height: 1.55;
+}
+.bridge .cta-row {
+  text-align: center; margin-top: 2.2rem;
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+.btn-gold, .btn-ghost {
+  font-family: 'Cinzel', serif; font-size: 0.76rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 1rem 2.2rem; text-decoration: none;
+  border-radius: 2px; display: inline-block; transition: all 0.3s;
+  border: 1px solid transparent;
+}
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-dk), var(--gold), var(--gold-dk));
+  color: var(--obsidian); font-weight: 600;
+}
+.btn-gold:hover { background: linear-gradient(135deg, var(--gold), var(--gold-lt), var(--gold)); box-shadow: 0 0 30px rgba(212,177,90,0.25); }
+.btn-ghost { background: transparent; color: var(--gold); border-color: var(--border-b); }
+.btn-ghost:hover { background: rgba(212,177,90,0.06); border-color: var(--gold); }
+
+/* ── SIGNATURE ── */
+.signature {
+  text-align: center; margin-top: 4.5rem;
+  padding: 3rem 0 2rem; border-top: 1px solid var(--border);
+}
+.signature .glyph { color: var(--gold); font-size: 1.4rem; letter-spacing: 0.6em; margin-bottom: 1rem; }
+.signature .sign-name {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 1.6rem; color: var(--gold); margin-bottom: 0.4rem;
+}
+.signature .sign-sub {
+  font-family: 'Cinzel', serif; font-size: 0.7rem;
+  letter-spacing: 0.28em; color: var(--text-3); text-transform: uppercase;
+}
+.doc-footer {
+  text-align: center; margin-top: 3.5rem;
+  font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--text-3);
+}
+.doc-footer a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--border-b); }
+.doc-footer a:hover { color: var(--gold-lt); }
+
+@media (max-width: 640px) {
+  .doc { padding: 4rem 1.4rem 5rem; }
+  .bridge, .gift { padding: 2.4rem 1.4rem; }
+  body { font-size: 17px; }
+  .docnav { padding: 0.9rem 1.2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #cosmos { display: none; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<nav class="docnav">
+  <a class="back" href="index.html">← Cinwicca</a>
+  <div class="lang-switch">
+    <button data-lang="pt">PT</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════ PORTUGUÊS ═══════════════════════ -->
+<article class="doc lang" data-lang="pt">
+
+  <div class="doc-eyebrow">Human Design · Mapa da Criança</div>
+  <div class="doc-dingbats">✶ &nbsp; ✦ &nbsp; ✶</div>
+  <h1 class="doc-title">A Criança Projetora<br><em>e a Nova Era</em></h1>
+  <p class="doc-subtitle">como acompanhar uma pequena guia — e prepará-la, com ternura, para 2027</p>
+  <p class="doc-epigraph">Há crianças que chegam correndo.<br>E há crianças que chegam observando —<br>como quem já veio para ver.</p>
+
+  <!-- ── 1 ── -->
+  <div class="chapter-mark">Uma aura que observa</div>
+  <h2 class="chapter-title">Ela não veio para <em>fazer</em>.<br>Veio para <em>ver</em>.</h2>
+
+  <p class="body-p">Se a sua criança parece observar a brincadeira antes de entrar nela… se cansa antes das outras e ninguém entende porquê… se faz perguntas que parecem grandes demais para a idade… se percebe o clima da casa antes de qualquer palavra ser dita — pode ser que você esteja criando uma <strong>Criança Projetora</strong>.</p>
+
+  <p class="body-p">No Human Design, a Projetora nasce sem o motor Sacral — a fonte de energia contínua que move Geradores e Geradoras. Em vez disso, ela carrega uma aura <em>focada e penetrante</em>: uma aura que entra fundo no outro, que lê sistemas, pessoas e energias com uma precisão que muitas vezes desconcerta os adultos ao redor.</p>
+
+  <p class="body-p">Essa criança não veio para sustentar o mundo com trabalho incansável. Ela veio para <em>ver</em> o mundo — e, quando reconhecida, para guiá-lo.</p>
+
+  <div class="excerpt">
+    "A Criança Projetora não é uma criança com pouca energia. É uma criança com outro tipo de energia — e um outro propósito para ela."
+  </div>
+
+  <!-- ── 2 ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">O corpo</div>
+  <h2 class="chapter-title">O descanso vem <em>antes</em> do cansaço</h2>
+
+  <p class="body-p">Aqui vive um dos paradoxos mais delicados: a Criança Projetora muitas vezes parece a mais elétrica da casa. Sem Sacral próprio, ela absorve e <em>amplifica</em> a energia sacral ao redor — dos pais, dos irmãos, da escola inteira. Ela brinca além do próprio limite, porque o limite que sente emprestado não é o dela.</p>
+
+  <p class="body-p">E depois, o colapso. O choro que parece vir do nada. A exaustão que os adultos leem como birra.</p>
+
+  <p class="body-p">Famílias de Projetoras costumam observar que a criança floresce quando:</p>
+
+  <ul class="titles-only">
+    <li>o <strong>deitar acontece antes do sono</strong> — um tempo horizontal, com um livro ou uma história, para a energia emprestada do dia escoar do corpo;</li>
+    <li>existe um <strong>tempo sozinha, na própria aura</strong> — alguns minutos por dia em que nenhuma outra aura a atravessa;</li>
+    <li>o cansaço é tratado como <strong>informação, não como defeito</strong> — "o teu corpo está a dizer alguma coisa" em vez de "aguenta mais um pouco";</li>
+    <li>ninguém compara o seu ritmo com o ritmo sacral dos irmãos ou colegas.</li>
+  </ul>
+
+  <!-- ── 3 ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">O coração</div>
+  <h2 class="chapter-title">Reconhecimento, <em>não aplauso</em></h2>
+
+  <p class="body-p">Toda criança gosta de elogio. A Criança Projetora precisa de algo mais fino: <strong>reconhecimento</strong>. Não o "muito bem!" genérico — mas o momento em que um adulto a vê, especificamente, naquilo que ela é.</p>
+
+  <p class="body-p"><em>"Eu percebi como você olhou para a tua amiga quando ela ficou triste."</em> — Isso é reconhecimento. É diferente de notar. Notar vê o que a criança fez. Reconhecer vê <em>quem ela é</em> por trás do que fez.</p>
+
+  <p class="body-p">Quando esse alimento chega, algo relaxa no corpo da Projetora. Quando não chega, ela pode aprender cedo demais a se esforçar por atenção — a virar quem os outros esperam, só para ser vista. E esse é o começo do amargor.</p>
+
+  <div class="key-insight">
+    <div class="ki-eyebrow">A bússola da Projetora</div>
+    <p>O amargor é o sinal de uma Projetora não reconhecida.</p>
+    <p>O sucesso — a sensação doce de ser vista e convidada — é a sua assinatura.</p>
+  </div>
+
+  <!-- ── 4 ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">A estratégia</div>
+  <h2 class="chapter-title">O convite <em>abre a porta</em></h2>
+
+  <p class="body-p">A estratégia da Projetora é esperar o convite — esperar o reconhecimento antes de oferecer a sua visão. Na infância, isso pode ganhar formas muito simples e muito bonitas:</p>
+
+  <ul class="titles-only">
+    <li><strong>Perguntas em vez de ordens</strong>, sempre que possível — "queres vir ajudar?" abre a aura de uma Projetora de um jeito que "vem cá agora" fecha;</li>
+    <li><strong>Escolhas pequenas e reais</strong> — entre duas roupas, dois caminhos, dois pratos. A escolha parece devolver a essa criança algo essencial;</li>
+    <li><strong>Pedir a sua visão</strong> — "o que é que tu vês nisso?" — e escutar de verdade. As respostas costumam surpreender;</li>
+    <li>Quando a criança dá conselhos não pedidos (e ela dá), acolher sem punir — e, com o tempo, mostrar com suavidade que a sua sabedoria brilha mais quando alguém a chama.</li>
+  </ul>
+
+  <!-- ── 5 ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">As autoridades</div>
+  <h2 class="chapter-title">Como <em>cada criança</em> decide</h2>
+
+  <p class="body-p">Nem toda Projetora decide da mesma forma. A <strong>autoridade</strong> — o modo como o corpo dessa criança específica sabe o que é correto — varia de desenho para desenho. Estas são as principais:</p>
+
+  <div class="auth-card">
+    <h4>Autoridade Emocional · Plexo Solar</h4>
+    <p>Esta criança vive em ondas. O que é um "sim" radiante de manhã pode ser um "não" à noite — e ambos são verdadeiros dentro da onda. Não há verdade no agora para ela. Famílias contam que frases como <em>"vamos dormir sobre isso e conversar amanhã"</em> se tornam um pequeno ritual sagrado — a clareza chega com o tempo, não com pressão.</p>
+  </div>
+
+  <div class="auth-card">
+    <h4>Autoridade Esplênica</h4>
+    <p>Aqui o corpo sabe primeiro — e fala uma única vez, baixinho, no instante. Um "não" repentino diante de uma pessoa, uma comida, um lugar. Esse sussurro não tem justificativa racional, e é exatamente por isso que merece ser levado a sério. Quando os adultos honram o pequeno "não" do corpo, essa criança aprende a confiar no seu radar para a vida inteira.</p>
+  </div>
+
+  <div class="auth-card">
+    <h4>Autoridade Autoprojetada</h4>
+    <p>Esta criança descobre a própria verdade <em>ao ouvir-se falar</em>. Ela precisa de alguém que escute sem corrigir, sem apressar, sem resolver — apenas presença. No meio da fala, de repente, ela mesma se ouve. E sabe.</p>
+  </div>
+
+  <div class="auth-card">
+    <h4>Autoridade Mental · Ambiental</h4>
+    <p>Para esta criança, o ambiente vem antes da decisão. No lugar certo, com as pessoas certas, a clareza aparece quase sozinha; no ambiente errado, tudo se confunde. Conversar com adultos de confiança — não para receber respostas, mas para ouvir os próprios pensamentos ecoarem — parece ser o seu caminho.</p>
+  </div>
+
+  <p class="body-p" style="font-style:italic; color:var(--text-2);">Cada desenho é único — tipo, autoridade, perfil, portões. O que este texto oferece são as linhas gerais; o mapa específico da sua criança conta uma história só dela.</p>
+
+  <!-- ── 6 ── -->
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">O horizonte</div>
+  <h2 class="chapter-title">2027 — o mundo <em>para o qual elas vieram</em></h2>
+
+  <div class="config-row">
+    <span class="config-badge">15 · fev · 2027</span>
+    <span class="config-badge">Portões 55 · 59 · 34 · 20</span>
+    <span class="config-badge">Plexo Solar</span>
+  </div>
+
+  <p class="body-p">Há uma razão maior para escrever sobre Crianças Projetoras agora. Em <strong>15 de fevereiro de 2027</strong>, encerra-se o ciclo da <strong>Cruz do Planejamento</strong> (1615–2027) — a era dos pactos, das instituições, das estruturas que prometiam segurança em troca de pertencimento. Abre-se a <strong>Cruz da Fênix Adormecida</strong> (2027–2438), sustentada pelos Portões <strong>55, 59, 34 e 20</strong>.</p>
+
+  <p class="body-p">No coração dessa passagem está o <strong>Portão 55</strong> — o Espírito, a Abundância — na sua <strong>linha 6</strong>: e com ele, a lenta mutação do <strong>Plexo Solar</strong>, que deixa de ser apenas um motor de emoções para se tornar, ao longo das gerações, um terceiro centro de <em>consciência</em>. Uma consciência que sente.</p>
+
+  <p class="body-p">As crianças que estão a crescer agora viverão quase toda a sua vida do outro lado dessa soleira. E as Projetoras, em particular — as que vieram para ver, para ler energia, para guiar — parecem trazer no próprio desenho um ensaio do que a humanidade inteira está a aprender a ser.</p>
+
+  <div class="key-insight">
+    <div class="ki-eyebrow">Por que isso importa para quem cria</div>
+    <p>Preparar uma criança para 2027 não é prepará-la para um acontecimento.</p>
+    <p>É dar-lhe, desde já, a linguagem do mundo que vem: a linguagem de sentir — e de nomear o que sente.</p>
+  </div>
+
+  <p class="body-p">E aqui os dois fios deste texto se encontram: a alfabetização emocional — a capacidade de dizer <em>"eu sinto isto, porque preciso daquilo"</em> — talvez seja o gesto mais concreto de preparação para o despertar do Plexo Solar. Não uma técnica. Um treino suave da consciência que está a nascer.</p>
+
+  <!-- ── GIFT ── -->
+  <div class="gift">
+    <div class="gf-eyebrow">Um presente · com a tua leitura</div>
+    <h3>A Carta <em>das Emoções</em></h3>
+    <p>Ao reservar qualquer leitura, tu recebes de presente a <strong>Carta das Emoções</strong> — uma carta desenhada com carinho para crianças, inspirada na Comunicação Não-Violenta de Marshall Rosenberg: as emoções que visitam quando as necessidades estão atendidas, as que pedem cuidado quando algo falta, e a ponte que as une — <em>"eu sinto… porque eu preciso de…"</em>.</p>
+    <p>Existe também uma <strong>versão para adultos</strong> — porque o Plexo Solar que desperta em 2027 não pertence só às crianças. Nomear o que sentimos é, para todos nós, o primeiro gesto da nova consciência.</p>
+    <p class="gf-note">A carta acompanha a leitura em formato digital, pronta para imprimir e viver na parede do quarto, na porta do frigorífico — onde a família se encontra.</p>
+  </div>
+
+  <!-- ── BRIDGE ── -->
+  <section class="bridge">
+    <div class="br-eyebrow">Uma leitura para quem ama essa criança</div>
+    <h2>O Mapa <em>da Criança</em></h2>
+    <p class="br-sub">Este texto abre uma porta. O mapa específico da tua criança é a sala inteira atrás dela.</p>
+
+    <p>O que leste aqui são as linhas gerais do desenho Projetor. Mas cada criança carrega uma configuração única — a sua autoridade, o seu perfil, os seus Portões, os presentes que os cinco sistemas de sabedoria revelam quando lidos em conjunto. O <strong>Mapa da Criança</strong> é escrito devagar, para os adultos que a amam: um mapa de cultivo da Alma, não de destino.</p>
+
+    <p class="quote">"O mapa não é a criança. Mas, para os adultos que a amam, pode ser o começo de um outro jeito de ver."</p>
+
+    <div class="cta-row">
+      <a href="index.html#form" class="btn-gold">Reservar um Mapa da Criança</a>
+      <a href="index.html#offerings" class="btn-ghost">Ver todas as sessões</a>
+    </div>
+  </section>
+
+  <div class="signature">
+    <div class="glyph">✦ &nbsp; ✶ &nbsp; ✦</div>
+    <div class="sign-name">Cinwicca</div>
+    <div class="sign-sub">Cintia de Godoy · Soul Path Reader</div>
+  </div>
+
+  <div class="doc-footer">
+    Cinwicca © 2026 · <a href="index.html">voltar para Cinwicca</a>
+  </div>
+
+</article>
+
+<!-- ═══════════════════════ ENGLISH ═══════════════════════ -->
+<article class="doc lang" data-lang="en">
+
+  <div class="doc-eyebrow">Human Design · Child's Blueprint</div>
+  <div class="doc-dingbats">✶ &nbsp; ✦ &nbsp; ✶</div>
+  <h1 class="doc-title">The Projector Child<br><em>and the New Era</em></h1>
+  <p class="doc-subtitle">how to accompany a small guide — and prepare them, tenderly, for 2027</p>
+  <p class="doc-epigraph">Some children arrive running.<br>And some children arrive watching —<br>as if they came here to see.</p>
+
+  <div class="chapter-mark">An aura that observes</div>
+  <h2 class="chapter-title">They did not come to <em>do</em>.<br>They came to <em>see</em>.</h2>
+
+  <p class="body-p">If your child seems to watch the game before joining it… if they tire before the others and no one understands why… if they ask questions that seem too large for their age… if they read the mood of the house before a single word is spoken — you may be raising a <strong>Projector Child</strong>.</p>
+
+  <p class="body-p">In Human Design, the Projector is born without the Sacral motor — the source of continuous energy that powers Generators. Instead, they carry a <em>focused, penetrating</em> aura: an aura that goes deep into the other, that reads systems, people and energies with a precision that often unsettles the adults around them.</p>
+
+  <p class="body-p">This child did not come to sustain the world through tireless work. They came to <em>see</em> the world — and, when recognised, to guide it.</p>
+
+  <div class="excerpt">
+    "The Projector Child is not a child with less energy. It is a child with another kind of energy — and another purpose for it."
+  </div>
+
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">The body</div>
+  <h2 class="chapter-title">Rest comes <em>before</em> tiredness</h2>
+
+  <p class="body-p">Here lives one of the most delicate paradoxes: the Projector Child often seems the most electric one in the house. Without a Sacral of their own, they absorb and <em>amplify</em> the sacral energy around them — from parents, siblings, an entire school. They play past their own limit, because the limit they feel is borrowed, and it is not theirs.</p>
+
+  <p class="body-p">And then, the collapse. The tears that seem to come from nowhere. The exhaustion that adults read as tantrum.</p>
+
+  <p class="body-p">Families of Projectors often observe that the child flourishes when:</p>
+
+  <ul class="titles-only">
+    <li><strong>lying down comes before sleep</strong> — a horizontal time, with a book or a story, so the day's borrowed energy can drain from the body;</li>
+    <li>there is <strong>time alone, in their own aura</strong> — a few minutes each day when no other aura passes through theirs;</li>
+    <li>tiredness is treated as <strong>information, not as a flaw</strong> — "your body is telling you something" rather than "hold on a little longer";</li>
+    <li>no one compares their rhythm with the sacral rhythm of siblings or classmates.</li>
+  </ul>
+
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">The heart</div>
+  <h2 class="chapter-title">Recognition, <em>not applause</em></h2>
+
+  <p class="body-p">Every child enjoys praise. The Projector Child needs something finer: <strong>recognition</strong>. Not the generic "well done!" — but the moment when an adult sees them, specifically, in what they are.</p>
+
+  <p class="body-p"><em>"I noticed how you looked at your friend when she was sad."</em> — That is recognition. It is different from noticing. Noticing sees what the child did. Recognition sees <em>who they are</em> behind what they did.</p>
+
+  <p class="body-p">When this nourishment arrives, something relaxes in the Projector's body. When it does not, they may learn too early to strive for attention — to become whoever others expect, just to be seen. And that is where bitterness begins.</p>
+
+  <div class="key-insight">
+    <div class="ki-eyebrow">The Projector's compass</div>
+    <p>Bitterness is the signal of an unrecognised Projector.</p>
+    <p>Success — the sweet sensation of being seen and invited — is their signature.</p>
+  </div>
+
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">The strategy</div>
+  <h2 class="chapter-title">The invitation <em>opens the door</em></h2>
+
+  <p class="body-p">The Projector's strategy is to wait for the invitation — to wait for recognition before offering their vision. In childhood, this can take very simple, very beautiful forms:</p>
+
+  <ul class="titles-only">
+    <li><strong>Questions rather than commands</strong>, wherever possible — "would you like to come help?" opens a Projector's aura the way "come here now" closes it;</li>
+    <li><strong>Small, real choices</strong> — between two outfits, two paths, two dishes. Choice seems to restore something essential to this child;</li>
+    <li><strong>Asking for their vision</strong> — "what do you see in this?" — and truly listening. The answers tend to surprise;</li>
+    <li>When the child offers unrequested advice (and they will), receiving it without punishment — and, over time, gently showing them that their wisdom shines brightest when someone calls for it.</li>
+  </ul>
+
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">The authorities</div>
+  <h2 class="chapter-title">How <em>each child</em> decides</h2>
+
+  <p class="body-p">Not every Projector decides the same way. The <strong>authority</strong> — the way this specific child's body knows what is correct — varies from design to design. These are the main paths:</p>
+
+  <div class="auth-card">
+    <h4>Emotional Authority · Solar Plexus</h4>
+    <p>This child lives in waves. What is a radiant "yes" in the morning may be a "no" by evening — and both are true within the wave. There is no truth in the now for them. Families share that phrases like <em>"let's sleep on it and talk tomorrow"</em> become a small sacred ritual — clarity arrives with time, not with pressure.</p>
+  </div>
+
+  <div class="auth-card">
+    <h4>Splenic Authority</h4>
+    <p>Here the body knows first — and speaks only once, quietly, in the instant. A sudden "no" toward a person, a food, a place. That whisper has no rational justification, and that is precisely why it deserves to be taken seriously. When adults honour the body's small "no", this child learns to trust their radar for a lifetime.</p>
+  </div>
+
+  <div class="auth-card">
+    <h4>Self-Projected Authority</h4>
+    <p>This child discovers their own truth <em>by hearing themselves speak</em>. They need someone who listens without correcting, without rushing, without fixing — simply presence. In the middle of speaking, suddenly, they hear themselves. And they know.</p>
+  </div>
+
+  <div class="auth-card">
+    <h4>Mental · Environmental Authority</h4>
+    <p>For this child, the environment comes before the decision. In the right place, with the right people, clarity appears almost by itself; in the wrong environment, everything blurs. Talking things through with trusted adults — not to receive answers, but to hear their own thoughts echo — seems to be their way.</p>
+  </div>
+
+  <p class="body-p" style="font-style:italic; color:var(--text-2);">Every design is unique — type, authority, profile, Gates. What this text offers are the broad lines; your child's specific map tells a story that is theirs alone.</p>
+
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">The horizon</div>
+  <h2 class="chapter-title">2027 — the world <em>they came for</em></h2>
+
+  <div class="config-row">
+    <span class="config-badge">15 · Feb · 2027</span>
+    <span class="config-badge">Gates 55 · 59 · 34 · 20</span>
+    <span class="config-badge">Solar Plexus</span>
+  </div>
+
+  <p class="body-p">There is a larger reason to write about Projector Children now. On <strong>15 February 2027</strong>, the cycle of the <strong>Cross of Planning</strong> (1615–2027) comes to a close — the era of pacts, institutions, and structures that promised safety in exchange for belonging. The <strong>Cross of the Sleeping Phoenix</strong> (2027–2438) opens, carried by Gates <strong>55, 59, 34 and 20</strong>.</p>
+
+  <p class="body-p">At the heart of this passage stands <strong>Gate 55</strong> — Spirit, Abundance — in its <strong>6th line</strong>: and with it, the slow mutation of the <strong>Solar Plexus</strong>, moving from a motor of emotions toward becoming, across generations, a third centre of <em>awareness</em>. An awareness that feels.</p>
+
+  <p class="body-p">The children growing up now will live almost their entire lives on the other side of that threshold. And Projectors in particular — the ones who came to see, to read energy, to guide — seem to carry in their very design a rehearsal of what all of humanity is learning to become.</p>
+
+  <div class="key-insight">
+    <div class="ki-eyebrow">Why this matters to those who raise them</div>
+    <p>Preparing a child for 2027 is not preparing them for an event.</p>
+    <p>It is giving them, from now, the language of the world to come: the language of feeling — and of naming what is felt.</p>
+  </div>
+
+  <p class="body-p">And here the two threads of this text meet: emotional literacy — the capacity to say <em>"I feel this, because I need that"</em> — may be the most concrete gesture of preparation for the awakening Solar Plexus. Not a technique. A gentle training of the consciousness being born.</p>
+
+  <div class="gift">
+    <div class="gf-eyebrow">A gift · with your reading</div>
+    <h3>The <em>Emotions Card</em></h3>
+    <p>When you book any reading, you receive the <strong>Emotions Card</strong> as a gift — a card designed with care for children, inspired by Marshall Rosenberg's Nonviolent Communication: the emotions that visit when needs are met, the ones that ask for care when something is missing, and the bridge that joins them — <em>"I feel… because I need…"</em>.</p>
+    <p>There is also a <strong>grown-up version</strong> — because the Solar Plexus awakening in 2027 does not belong to children alone. Naming what we feel is, for all of us, the first gesture of the new awareness.</p>
+    <p class="gf-note">The card comes with your reading in digital format, ready to print and live on the bedroom wall, the fridge door — wherever the family gathers.</p>
+  </div>
+
+  <section class="bridge">
+    <div class="br-eyebrow">A reading for the adults who love them</div>
+    <h2>The Child's <em>Blueprint</em></h2>
+    <p class="br-sub">This text opens a door. Your child's specific map is the whole room behind it.</p>
+
+    <p>What you have read here are the broad lines of the Projector design. But every child carries a unique configuration — their authority, their profile, their Gates, the gifts that five wisdom traditions reveal when read together. The <strong>Child's Blueprint</strong> is written slowly, for the adults who love them: a map for cultivating the soul, not for fixing it.</p>
+
+    <p class="quote">"The map is not the child. But for the adults who love them, it can be the beginning of a very different kind of seeing."</p>
+
+    <div class="cta-row">
+      <a href="index.html#form" class="btn-gold">Book a Child's Blueprint</a>
+      <a href="index.html#offerings" class="btn-ghost">See all offerings</a>
+    </div>
+  </section>
+
+  <div class="signature">
+    <div class="glyph">✦ &nbsp; ✶ &nbsp; ✦</div>
+    <div class="sign-name">Cinwicca</div>
+    <div class="sign-sub">Cintia de Godoy · Soul Path Reader</div>
+  </div>
+
+  <div class="doc-footer">
+    Cinwicca © 2026 · <a href="index.html">return to Cinwicca</a>
+  </div>
+
+</article>
+
+<!-- ═══════════════════════ ESPAÑOL ═══════════════════════ -->
+<article class="doc lang" data-lang="es">
+
+  <div class="doc-eyebrow">Human Design · Mapa de la Infancia</div>
+  <div class="doc-dingbats">✶ &nbsp; ✦ &nbsp; ✶</div>
+  <h1 class="doc-title">La Niña Proyectora<br><em>y la Nueva Era</em></h1>
+  <p class="doc-subtitle">cómo acompañar a una pequeña guía — y prepararla, con ternura, para 2027</p>
+  <p class="doc-epigraph">Hay niños que llegan corriendo.<br>Y hay niños que llegan observando —<br>como quien ya vino para ver.</p>
+
+  <div class="chapter-mark">Un aura que observa</div>
+  <h2 class="chapter-title">No vino para <em>hacer</em>.<br>Vino para <em>ver</em>.</h2>
+
+  <p class="body-p">Si tu hija o hijo parece observar el juego antes de entrar en él… si se cansa antes que los demás y nadie entiende por qué… si hace preguntas que parecen demasiado grandes para su edad… si percibe el clima de la casa antes de que se diga una sola palabra — puede que estés criando a una <strong>Niña o un Niño Proyector</strong>.</p>
+
+  <p class="body-p">En Human Design, quien es Proyector nace sin el motor Sacral — la fuente de energía continua que mueve a Generadores y Generadoras. En su lugar, lleva un aura <em>enfocada y penetrante</em>: un aura que entra hondo en el otro, que lee sistemas, personas y energías con una precisión que muchas veces desconcierta a los adultos alrededor.</p>
+
+  <p class="body-p">Esta criatura no vino a sostener el mundo con trabajo incansable. Vino a <em>ver</em> el mundo — y, cuando es reconocida, a guiarlo.</p>
+
+  <div class="excerpt">
+    "La infancia Proyectora no es una infancia con poca energía. Es una infancia con otro tipo de energía — y otro propósito para ella."
+  </div>
+
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">El cuerpo</div>
+  <h2 class="chapter-title">El descanso llega <em>antes</em> del cansancio</h2>
+
+  <p class="body-p">Aquí vive una de las paradojas más delicadas: la criatura Proyectora muchas veces parece la más eléctrica de la casa. Sin Sacral propio, absorbe y <em>amplifica</em> la energía sacral de alrededor — de sus padres, de sus hermanos, de toda la escuela. Juega más allá de su propio límite, porque el límite que siente es prestado, y no es el suyo.</p>
+
+  <p class="body-p">Y después, el colapso. El llanto que parece venir de la nada. El agotamiento que los adultos leen como rabieta.</p>
+
+  <p class="body-p">Las familias de Proyectores suelen observar que la criatura florece cuando:</p>
+
+  <ul class="titles-only">
+    <li><strong>acostarse llega antes que el sueño</strong> — un tiempo horizontal, con un libro o un cuento, para que la energía prestada del día pueda salir del cuerpo;</li>
+    <li>existe un <strong>tiempo a solas, en su propia aura</strong> — unos minutos al día en los que ninguna otra aura la atraviesa;</li>
+    <li>el cansancio se trata como <strong>información, no como defecto</strong> — "tu cuerpo te está diciendo algo" en lugar de "aguanta un poco más";</li>
+    <li>nadie compara su ritmo con el ritmo sacral de hermanos o compañeros.</li>
+  </ul>
+
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">El corazón</div>
+  <h2 class="chapter-title">Reconocimiento, <em>no aplauso</em></h2>
+
+  <p class="body-p">A toda criatura le gusta el elogio. La infancia Proyectora necesita algo más fino: <strong>reconocimiento</strong>. No el "¡muy bien!" genérico — sino el momento en que un adulto la ve, específicamente, en lo que es.</p>
+
+  <p class="body-p"><em>"Me di cuenta de cómo miraste a tu amiga cuando se puso triste."</em> — Eso es reconocimiento. Es distinto de notar. Notar ve lo que la criatura hizo. Reconocer ve <em>quién es</em> detrás de lo que hizo.</p>
+
+  <p class="body-p">Cuando ese alimento llega, algo se relaja en el cuerpo Proyector. Cuando no llega, puede aprender demasiado pronto a esforzarse por atención — a volverse quien los demás esperan, solo para ser vista. Y ahí comienza la amargura.</p>
+
+  <div class="key-insight">
+    <div class="ki-eyebrow">La brújula Proyectora</div>
+    <p>La amargura es la señal de un Proyector no reconocido.</p>
+    <p>El éxito — la sensación dulce de ser vista e invitada — es su firma.</p>
+  </div>
+
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">La estrategia</div>
+  <h2 class="chapter-title">La invitación <em>abre la puerta</em></h2>
+
+  <p class="body-p">La estrategia Proyectora es esperar la invitación — esperar el reconocimiento antes de ofrecer su visión. En la infancia, esto puede tomar formas muy simples y muy bellas:</p>
+
+  <ul class="titles-only">
+    <li><strong>Preguntas en lugar de órdenes</strong>, siempre que sea posible — "¿quieres venir a ayudar?" abre el aura Proyectora del mismo modo en que "ven aquí ahora" la cierra;</li>
+    <li><strong>Elecciones pequeñas y reales</strong> — entre dos prendas, dos caminos, dos platos. La elección parece devolverle a esta criatura algo esencial;</li>
+    <li><strong>Pedir su visión</strong> — "¿tú qué ves en esto?" — y escuchar de verdad. Las respuestas suelen sorprender;</li>
+    <li>Cuando la criatura da consejos no pedidos (y los dará), acogerlos sin castigo — y, con el tiempo, mostrarle con suavidad que su sabiduría brilla más cuando alguien la llama.</li>
+  </ul>
+
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">Las autoridades</div>
+  <h2 class="chapter-title">Cómo decide <em>cada criatura</em></h2>
+
+  <p class="body-p">No todo Proyector decide de la misma forma. La <strong>autoridad</strong> — el modo en que el cuerpo de esta criatura específica sabe qué es correcto — varía de diseño en diseño. Estos son los caminos principales:</p>
+
+  <div class="auth-card">
+    <h4>Autoridad Emocional · Plexo Solar</h4>
+    <p>Esta criatura vive en olas. Lo que es un "sí" radiante por la mañana puede ser un "no" por la noche — y ambos son verdaderos dentro de la ola. Para ella no hay verdad en el ahora. Las familias cuentan que frases como <em>"vamos a dormir sobre esto y hablamos mañana"</em> se vuelven un pequeño ritual sagrado — la claridad llega con el tiempo, no con presión.</p>
+  </div>
+
+  <div class="auth-card">
+    <h4>Autoridad Esplénica</h4>
+    <p>Aquí el cuerpo sabe primero — y habla una sola vez, bajito, en el instante. Un "no" repentino ante una persona, una comida, un lugar. Ese susurro no tiene justificación racional, y precisamente por eso merece ser tomado en serio. Cuando los adultos honran el pequeño "no" del cuerpo, esta criatura aprende a confiar en su radar para toda la vida.</p>
+  </div>
+
+  <div class="auth-card">
+    <h4>Autoridad Autoproyectada</h4>
+    <p>Esta criatura descubre su propia verdad <em>al oírse hablar</em>. Necesita a alguien que escuche sin corregir, sin apurar, sin resolver — solo presencia. En medio del habla, de pronto, se oye a sí misma. Y sabe.</p>
+  </div>
+
+  <div class="auth-card">
+    <h4>Autoridad Mental · Ambiental</h4>
+    <p>Para esta criatura, el ambiente viene antes que la decisión. En el lugar correcto, con las personas correctas, la claridad aparece casi sola; en el ambiente equivocado, todo se nubla. Conversar con adultos de confianza — no para recibir respuestas, sino para oír el eco de sus propios pensamientos — parece ser su camino.</p>
+  </div>
+
+  <p class="body-p" style="font-style:italic; color:var(--text-2);">Cada diseño es único — tipo, autoridad, perfil, puertas. Lo que este texto ofrece son las líneas generales; el mapa específico de tu criatura cuenta una historia que es solo suya.</p>
+
+  <div class="section-divider"><span>✦</span></div>
+  <div class="chapter-mark">El horizonte</div>
+  <h2 class="chapter-title">2027 — el mundo <em>para el que vinieron</em></h2>
+
+  <div class="config-row">
+    <span class="config-badge">15 · feb · 2027</span>
+    <span class="config-badge">Puertas 55 · 59 · 34 · 20</span>
+    <span class="config-badge">Plexo Solar</span>
+  </div>
+
+  <p class="body-p">Hay una razón mayor para escribir sobre la infancia Proyectora ahora. El <strong>15 de febrero de 2027</strong> se cierra el ciclo de la <strong>Cruz de la Planificación</strong> (1615–2027) — la era de los pactos, de las instituciones, de las estructuras que prometían seguridad a cambio de pertenencia. Se abre la <strong>Cruz del Fénix Dormido</strong> (2027–2438), sostenida por las Puertas <strong>55, 59, 34 y 20</strong>.</p>
+
+  <p class="body-p">En el corazón de este pasaje está la <strong>Puerta 55</strong> — el Espíritu, la Abundancia — en su <strong>línea 6</strong>: y con ella, la lenta mutación del <strong>Plexo Solar</strong>, que deja de ser solo un motor de emociones para volverse, a lo largo de las generaciones, un tercer centro de <em>consciencia</em>. Una consciencia que siente.</p>
+
+  <p class="body-p">Las criaturas que crecen ahora vivirán casi toda su vida al otro lado de ese umbral. Y los Proyectores en particular — quienes vinieron a ver, a leer la energía, a guiar — parecen llevar en su propio diseño un ensayo de lo que toda la humanidad está aprendiendo a ser.</p>
+
+  <div class="key-insight">
+    <div class="ki-eyebrow">Por qué importa a quienes crían</div>
+    <p>Preparar a una criatura para 2027 no es prepararla para un acontecimiento.</p>
+    <p>Es darle, desde ya, el lenguaje del mundo que viene: el lenguaje de sentir — y de nombrar lo que se siente.</p>
+  </div>
+
+  <p class="body-p">Y aquí se encuentran los dos hilos de este texto: la alfabetización emocional — la capacidad de decir <em>"siento esto, porque necesito aquello"</em> — quizá sea el gesto más concreto de preparación para el despertar del Plexo Solar. No una técnica. Un entrenamiento suave de la consciencia que está naciendo.</p>
+
+  <div class="gift">
+    <div class="gf-eyebrow">Un regalo · con tu lectura</div>
+    <h3>La Carta <em>de las Emociones</em></h3>
+    <p>Al reservar cualquier lectura, recibes de regalo la <strong>Carta de las Emociones</strong> — una carta diseñada con cariño para la infancia, inspirada en la Comunicación No Violenta de Marshall Rosenberg: las emociones que visitan cuando las necesidades están atendidas, las que piden cuidado cuando algo falta, y el puente que las une — <em>"siento… porque necesito…"</em>.</p>
+    <p>Existe también una <strong>versión para personas adultas</strong> — porque el Plexo Solar que despierta en 2027 no pertenece solo a la infancia. Nombrar lo que sentimos es, para todos, el primer gesto de la nueva consciencia.</p>
+    <p class="gf-note">La carta acompaña tu lectura en formato digital, lista para imprimir y vivir en la pared del cuarto, en la puerta de la nevera — donde la familia se encuentra.</p>
+  </div>
+
+  <section class="bridge">
+    <div class="br-eyebrow">Una lectura para quienes aman a esa criatura</div>
+    <h2>El Mapa <em>de la Infancia</em></h2>
+    <p class="br-sub">Este texto abre una puerta. El mapa específico de tu criatura es la habitación entera detrás de ella.</p>
+
+    <p>Lo que has leído aquí son las líneas generales del diseño Proyector. Pero cada criatura lleva una configuración única — su autoridad, su perfil, sus Puertas, los dones que cinco tradiciones de sabiduría revelan cuando se leen juntas. El <strong>Mapa de la Infancia</strong> se escribe despacio, para los adultos que la aman: un mapa de cultivo del Alma, no de destino.</p>
+
+    <p class="quote">"El mapa no es la criatura. Pero, para los adultos que la aman, puede ser el comienzo de otra manera de ver."</p>
+
+    <div class="cta-row">
+      <a href="index.html#form" class="btn-gold">Reservar un Mapa de la Infancia</a>
+      <a href="index.html#offerings" class="btn-ghost">Ver todas las sesiones</a>
+    </div>
+  </section>
+
+  <div class="signature">
+    <div class="glyph">✦ &nbsp; ✶ &nbsp; ✦</div>
+    <div class="sign-name">Cinwicca</div>
+    <div class="sign-sub">Cintia de Godoy · Soul Path Reader</div>
+  </div>
+
+  <div class="doc-footer">
+    Cinwicca © 2026 · <a href="index.html">volver a Cinwicca</a>
+  </div>
+
+</article>
+
+<script>
+// ── LANGUAGE SWITCH (shares sb_lang with the main site) ──
+(function() {
+  var langs = ['pt', 'en', 'es'];
+  var current = localStorage.getItem('sb_lang') || (navigator.language || 'pt').slice(0,2).toLowerCase();
+  if (langs.indexOf(current) === -1) current = 'pt';
+
+  function setLang(l) {
+    if (langs.indexOf(l) === -1) l = 'pt';
+    current = l;
+    localStorage.setItem('sb_lang', l);
+    document.documentElement.lang = l === 'pt' ? 'pt-BR' : (l === 'es' ? 'es-ES' : 'en');
+    document.querySelectorAll('.lang').forEach(function(a) {
+      a.classList.toggle('on', a.getAttribute('data-lang') === l);
+    });
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-lang') === l);
+    });
+  }
+
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() { setLang(b.getAttribute('data-lang')); });
+  });
+  setLang(current);
+})();
+
+// ── COSMOS CANVAS ──
+const canvas = document.getElementById('cosmos');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [];
+function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+resize(); addEventListener('resize', resize);
+for (let i = 0; i < 120; i++) {
+  stars.push({
+    x: Math.random(), y: Math.random(),
+    r: Math.random() * 1.1 + 0.2,
+    o: Math.random() * 0.5 + 0.1,
+    phase: Math.random() * Math.PI * 2,
+    speed: Math.random() * 0.0003 + 0.0001,
+    gold: Math.random() > 0.85
+  });
+}
+let t = 0;
+function drawCosmos() {
+  ctx.clearRect(0, 0, W, H);
+  stars.forEach(s => {
+    const pulse = Math.sin(t * s.speed * 1000 + s.phase) * 0.3 + 0.7;
+    ctx.beginPath();
+    ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = s.gold
+      ? `rgba(212,177,90,${s.o * pulse})`
+      : `rgba(220,210,200,${s.o * pulse})`;
+    ctx.fill();
+  });
+  t += 0.016;
+  requestAnimationFrame(drawCosmos);
+}
+drawCosmos();
+</script>
+</body>
+</html>

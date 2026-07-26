@@ -483,6 +483,86 @@ nav {
 .share-actions { text-align: right; }
 
 /* ── FORM ── */
+/* ── GIFT / CARTA DAS EMOÇÕES ── */
+.gift-section { padding: 5rem 0 2rem; }
+.gift-panel {
+  background: linear-gradient(140deg, rgba(31,42,90,0.25) 0%, rgba(13,16,32,0.55) 100%);
+  border: 1px solid var(--border-b);
+  border-radius: 3px;
+  padding: 3rem 2.6rem;
+  position: relative;
+  overflow: hidden;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.gift-panel::before {
+  content: '';
+  position: absolute; top: -1px; left: 20%; right: 20%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.gift-glyph { text-align: center; color: var(--gold); font-size: 1.1rem; letter-spacing: 0.5em; margin-bottom: 1.2rem; }
+.gift-label {
+  display: block; text-align: center;
+  font-family: 'Cinzel', serif; font-size: 0.68rem;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.9rem;
+}
+.gift-title {
+  font-family: 'Cormorant Garamond', serif; font-weight: 500;
+  font-size: clamp(1.9rem, 3.6vw, 2.5rem);
+  text-align: center; color: #fff; line-height: 1.2; margin-bottom: 1.1rem;
+}
+.gift-title em { color: var(--gold-lt); font-style: italic; }
+.gift-body {
+  text-align: center; font-size: 1.06rem; color: var(--text-2);
+  line-height: 1.75; max-width: 540px; margin: 0 auto 2rem;
+}
+.gift-form { max-width: 460px; margin: 0 auto; }
+.gift-consent {
+  display: flex; gap: 0.6rem; align-items: flex-start;
+  margin: 1.1rem 0 0.6rem; font-size: 0.92rem;
+  color: var(--text-2); line-height: 1.55; cursor: pointer;
+}
+.gift-consent input { margin-top: 0.35rem; accent-color: var(--gold); flex-shrink: 0; }
+.gift-privacy { font-size: 0.84rem; color: var(--text-3); font-style: italic; text-align: center; margin-top: 0.9rem; }
+.gift-actions { text-align: center; margin-top: 1.4rem; }
+.gift-actions button {
+  font-family: 'Cinzel', serif; font-size: 0.74rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 0.95rem 2.2rem; border: 0; border-radius: 2px; cursor: pointer;
+  background: linear-gradient(135deg, var(--gold-dk), var(--gold), var(--gold-dk));
+  color: var(--obsidian); transition: all 0.3s;
+}
+.gift-actions button:hover {
+  background: linear-gradient(135deg, var(--gold), var(--gold-lt), var(--gold));
+  box-shadow: 0 0 30px rgba(212,177,90,0.25);
+}
+.gift-upsell {
+  margin: 2rem auto 0; max-width: 540px; text-align: center;
+  font-size: 0.95rem; line-height: 1.7; color: var(--text-3);
+  font-style: italic; border-top: 1px solid var(--border); padding-top: 1.6rem;
+}
+.gift-success { display: none; text-align: center; }
+.gift-success.visible { display: block; }
+.gift-success h3 {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 1.7rem; color: var(--gold-lt); margin-bottom: 0.7rem;
+}
+.gift-success p { font-size: 1.02rem; color: var(--text-2); line-height: 1.7; margin-bottom: 1.6rem; }
+.gift-download {
+  display: inline-block;
+  font-family: 'Cinzel', serif; font-size: 0.74rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 0.95rem 2.2rem; border-radius: 2px; text-decoration: none;
+  background: linear-gradient(135deg, var(--gold-dk), var(--gold), var(--gold-dk));
+  color: var(--obsidian); transition: all 0.3s;
+}
+.gift-download:hover {
+  background: linear-gradient(135deg, var(--gold), var(--gold-lt), var(--gold));
+  box-shadow: 0 0 30px rgba(212,177,90,0.25);
+}
+@media (max-width: 640px) { .gift-panel { padding: 2.2rem 1.4rem; } }
+
 /* ── BLOG SECTION ── */
 .blog-section { padding: 6rem 0 4rem; }
 .blog-grid {
@@ -1004,6 +1084,11 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
         <div class="testimonial-author">Thiago Terra</div>
       </div>
 
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text" data-i18n="test.laura">“I came across Cintia's work during a very difficult time in my life. I was feeling confused, stuck, and in need of clarity to move forward. Cintia helped me see my situation with greater perspective and offered a clear reflection of where I was. Her approach was both accurate and respectful; she did not impose interpretations or assumptions, but instead supported me in finding my own understanding. Through this process, I developed a stronger sense of discernment and an ability to accept what is. I highly recommend her work. She is professional, sensitive, and deeply compassionate.”</p>
+        <div class="testimonial-author">Laura Passeti</div>
+      </div>
+
     </div>
 
     <!-- Share your reflection -->
@@ -1083,13 +1168,13 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
         <div class="blog-card-cta">Read →</div>
       </a>
 
-      <a class="blog-card reveal" href="#blog">
+      <a class="blog-card reveal" href="crianca-projetora-nova-era-trilingue.html">
         <div class="blog-card-meta">
           <span class="bc-tag">Children</span>
-          <span>Coming soon</span>
+          <span>New · PT · EN · ES</span>
         </div>
-        <div class="blog-card-title">The Soul Arrives <em>Already Whole</em></div>
-        <div class="blog-card-excerpt">Reading a child's chart is an act of deep listening — before they can speak for themselves. Notes on what the map reveals, and what it never will.</div>
+        <div class="blog-card-title">The Projector Child <em>and the New Era</em></div>
+        <div class="blog-card-excerpt">Rest that comes before tiredness, recognition rather than applause, and the invitation that opens the door — walking beside a Projector child toward 2027.</div>
         <div class="blog-card-cta">Read →</div>
       </a>
 
@@ -1099,6 +1184,44 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
       <p data-i18n="blog.placeholder">New writings are added as they arrive. If a piece touches you, you are welcome to <a href="mailto:cinwicca@gmail.com" style="color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(212,177,90,0.3);">write to Cintia</a>.</p>
     </div>
 
+  </div>
+</section>
+
+<!-- ── GIFT / CARTA DAS EMOÇÕES ── -->
+<section class="gift-section" id="gift">
+  <div class="wrapper">
+    <div class="gift-panel reveal">
+      <div class="gift-glyph">✦ &nbsp; ✶ &nbsp; ✦</div>
+      <span class="gift-label" data-i18n="gift.label">A gift</span>
+      <h2 class="gift-title"><span data-i18n="gift.title1">The Card of </span><em data-i18n="gift.title2">Emotions</em></h2>
+      <p class="gift-body" data-i18n="gift.body">One page to print, holding twenty emotions and the bridge that links each one to what is needed — inspired by Marshall Rosenberg's Nonviolent Communication. For the wall, the schoolbag, or the moment when words go missing.</p>
+
+      <form class="gift-form" id="giftForm" name="baralho" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="baralho">
+        <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+        <label class="form-label" for="giftEmail" data-i18n="gift.email">Your email</label>
+        <input class="form-input" type="email" id="giftEmail" name="email" data-i18n-ph="gift.email.ph" placeholder="your@email.com" required>
+
+        <label class="gift-consent">
+          <input type="checkbox" id="giftConsent" name="newsletter-consent" value="yes">
+          <span data-i18n="gift.consent">Yes, I'd like to receive an occasional word from Cinwicca: writings on the Soul, on the transits, and new materials as they arrive. Nothing excessive, and you may leave the list whenever you wish.</span>
+        </label>
+
+        <div class="gift-actions">
+          <button type="submit" data-i18n="gift.send">Send me the Card</button>
+        </div>
+        <p class="gift-privacy" data-i18n="gift.privacy">Your email stays with me alone; it is never shared.</p>
+      </form>
+
+      <p class="gift-upsell" data-i18n="gift.upsell">There is also a personalised version — the Card and the Deck of Emotions drawn from a person's own map, for children and for adults. They accompany every reading, and may also be requested on their own.</p>
+
+      <div class="gift-success" id="giftSuccess">
+        <h3 data-i18n="gift.success.title">Here it is.</h3>
+        <p data-i18n="gift.success.body">Thank you. Download the Card below and print it at A5 — or at A4, if you'd like it larger for the wall.</p>
+        <a class="gift-download" id="giftDownload" href="carta-das-emocoes-crianca-pt.pdf" download data-i18n="gift.download">Download the Card (PDF · A5)</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1449,6 +1572,52 @@ ${data.needSupport}
       document.getElementById('soulForm').style.display = 'none';
       document.getElementById('formSuccess').classList.add('visible');
       window.scrollTo({ top: document.getElementById('formSuccess').offsetTop - 100, behavior: 'smooth' });
+    });
+  });
+}
+
+// ── GIFT / CARTA DAS EMOÇÕES ──
+
+// o PDF acompanha o idioma escolhido
+function updateGiftDownload() {
+  const a = document.getElementById('giftDownload');
+  if (!a) return;
+  const l = (window.__lang === 'pt' || window.__lang === 'en' || window.__lang === 'es') ? window.__lang : 'en';
+  a.setAttribute('href', 'carta-das-emocoes-crianca-' + l + '.pdf');
+}
+document.addEventListener('DOMContentLoaded', function () {
+  updateGiftDownload();
+  document.querySelectorAll('.lang-switch button').forEach(function (b) {
+    b.addEventListener('click', function () { setTimeout(updateGiftDownload, 0); });
+  });
+});
+
+const giftFormEl = document.getElementById('giftForm');
+if (giftFormEl) {
+  giftFormEl.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const gEmail = document.getElementById('giftEmail').value;
+    const gConsent = document.getElementById('giftConsent').checked;
+    const L = getDict();
+
+    if (!gEmail) {
+      alert(L['alert.gift'] || 'Please add your email to receive the Card.');
+      return;
+    }
+
+    const data = { email: gEmail, 'newsletter-consent': gConsent ? 'yes' : 'no' };
+
+    const mailBody =
+`CARTA DAS EMOÇÕES — DOWNLOAD
+
+E-mail: ${gEmail}
+Newsletter consent: ${gConsent ? 'yes' : 'no'}`;
+
+    postToNetlify('baralho', data, 'Carta das Emoções — download', mailBody, function () {
+      giftFormEl.style.display = 'none';
+      const up = document.querySelector('.gift-upsell');
+      if (up) up.style.display = 'none';
+      document.getElementById('giftSuccess').classList.add('visible');
     });
   });
 }

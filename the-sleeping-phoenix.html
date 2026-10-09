@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sleeping Phoenix · 2027 and Human Design · Cinwicca</title>
+<meta name="description" content="According to Human Design, in 2027 humanity leaves the Cross of Planning, begun in 1615, and enters the Cross of the Sleeping Phoenix. What this means — and how to move through it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obsidian: #08090f;
+  --deep:     #0d1020;
+  --gold:     #d4b15a;
+  --gold-lt:  #ecd49a;
+  --gold-dk:  #8b6b22;
+  --cream:    #f6ecd0;
+  --text:     #f1e7cf;
+  --text-2:   #d6c7a2;
+  --text-3:   #a99878;
+  --border:   rgba(212,177,90,0.18);
+  --border-b: rgba(212,177,90,0.42);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: var(--obsidian); color: var(--text);
+  font-size: 19px; line-height: 1.78;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.55; }
+
+.docnav {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(8,9,15,0.85);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+.docnav a.back {
+  font-family: 'Cinzel', serif; font-size: 0.74rem; font-weight: 500;
+  letter-spacing: 0.22em; color: var(--gold); text-decoration: none;
+  text-transform: uppercase; transition: color 0.25s;
+}
+.docnav a.back:hover { color: var(--gold-lt); }
+.docnav .doctag {
+  font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 500;
+  color: var(--text-3); letter-spacing: 0.16em; text-transform: uppercase;
+}
+.docnav .doctag em { color: var(--gold); font-style: normal; }
+
+.doc { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 5rem 2rem 6rem; }
+
+.eyebrow {
+  font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.32em;
+  color: var(--gold); text-transform: uppercase; text-align: center; margin-bottom: 1.6rem;
+}
+.dingbats { text-align: center; color: var(--gold); margin-bottom: 1.4rem; letter-spacing: 0.6em; font-size: 0.9rem; }
+h1 {
+  font-weight: 500; font-size: clamp(2.4rem, 6vw, 3.8rem);
+  text-align: center; color: #fff; line-height: 1.1; margin-bottom: 0.8rem;
+}
+h1 em { color: var(--gold-lt); font-style: italic; }
+.subtitle {
+  font-style: italic; font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+  text-align: center; color: var(--gold-lt); margin-bottom: 1.6rem;
+}
+.meta {
+  text-align: center; font-family: 'Inter', sans-serif; font-size: 0.75rem;
+  color: var(--text-3); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 4rem;
+}
+
+.lede { font-size: 1.32rem; line-height: 1.65; color: var(--cream); margin-bottom: 1.4rem; }
+.lede::first-letter {
+  font-family: 'Cinzel', serif; float: left; font-size: 3.6rem; line-height: 0.9;
+  padding: 0.35rem 0.6rem 0 0; color: var(--gold);
+}
+p { margin-bottom: 1.25rem; }
+p strong { color: var(--gold-lt); font-weight: 500; }
+p em { color: var(--gold-lt); }
+
+.divider { display: flex; align-items: center; gap: 1.2rem; margin: 3.5rem auto; max-width: 320px; }
+.divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border-b)); }
+.divider::after { background: linear-gradient(90deg, var(--border-b), transparent); }
+.divider span { color: var(--gold); font-size: 0.85rem; }
+
+h2 {
+  font-weight: 500; font-size: clamp(1.7rem, 3.4vw, 2.2rem);
+  color: #fff; line-height: 1.2; margin-bottom: 1.4rem;
+}
+h2 em { color: var(--gold-lt); font-style: italic; }
+.mark {
+  font-family: 'Cinzel', serif; font-size: 0.66rem; letter-spacing: 0.3em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 0.6rem;
+}
+
+.crosses { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: stretch; margin: 2rem 0 2.4rem; }
+.cross {
+  border: 1px solid var(--border-b); border-radius: 3px; padding: 1.4rem 1.2rem; text-align: center;
+  background: linear-gradient(140deg, rgba(212,177,90,0.05), rgba(31,42,90,0.20));
+}
+.cross.old { opacity: 0.7; }
+.cross .yrs { font-family: 'Cinzel', serif; font-size: 0.66rem; letter-spacing: 0.22em; color: var(--text-3); text-transform: uppercase; }
+.cross .name { font-size: 1.3rem; color: #fff; line-height: 1.25; margin: 0.5rem 0; }
+.cross.new .name { color: var(--gold-lt); font-style: italic; }
+.cross .gates { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--gold); letter-spacing: 0.1em; }
+.cross .theme { font-style: italic; font-size: 1rem; color: var(--text-2); margin-top: 0.5rem; }
+.arrow { align-self: center; color: var(--gold); font-size: 1.4rem; }
+
+.pull {
+  font-style: italic; font-size: clamp(1.35rem, 2.6vw, 1.65rem); color: var(--gold-lt);
+  text-align: center; line-height: 1.45; margin: 3rem auto; max-width: 560px;
+}
+.pull::before, .pull::after { content: '✦'; display: block; font-style: normal; font-size: 0.7rem; color: var(--gold-dk); margin: 0.8rem 0; }
+
+.keys { list-style: none; margin: 1.6rem 0 2rem; }
+.keys li { padding: 0.8rem 0 0.8rem 1.6rem; border-bottom: 1px solid rgba(212,177,90,0.1); position: relative; }
+.keys li:last-child { border-bottom: 0; }
+.keys li::before { content: '◈'; position: absolute; left: 0; top: 1.05rem; font-size: 0.6rem; color: var(--gold); }
+.keys li strong { color: var(--gold-lt); font-weight: 500; font-style: italic; }
+
+.invite {
+  margin-top: 4.5rem; padding: 3rem 2.4rem; text-align: center; position: relative;
+  background: linear-gradient(140deg, rgba(31,42,90,0.25), rgba(13,16,32,0.5));
+  border: 1px solid var(--border-b); border-radius: 3px;
+}
+.invite::before { content: ''; position: absolute; top: -1px; left: 20%; right: 20%; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.invite h2 { text-align: center; }
+.invite p { color: var(--text); }
+.cta-row { margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-gold, .btn-ghost {
+  font-family: 'Cinzel', serif; font-size: 0.76rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; padding: 1rem 2.2rem;
+  text-decoration: none; border-radius: 2px; display: inline-block; transition: all 0.3s; border: 1px solid transparent;
+}
+.btn-gold { background: linear-gradient(135deg, var(--gold-dk), var(--gold), var(--gold-dk)); color: var(--obsidian); font-weight: 600; }
+.btn-gold:hover { background: linear-gradient(135deg, var(--gold), var(--gold-lt), var(--gold)); box-shadow: 0 0 30px rgba(212,177,90,0.25); }
+.btn-ghost { color: var(--gold); border-color: var(--border-b); }
+.btn-ghost:hover { background: rgba(212,177,90,0.06); border-color: var(--gold); }
+
+.signature { text-align: center; margin-top: 4.5rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+.signature .warm { font-style: italic; font-size: 1.2rem; color: var(--text-2); margin-bottom: 1.2rem; }
+.signature .namaste { color: var(--gold); letter-spacing: 0.2em; margin-bottom: 0.6rem; }
+.signature .community { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.28em; color: var(--text-3); text-transform: uppercase; margin-bottom: 0.4rem; }
+.signature .sign-name { font-style: italic; font-size: 1.7rem; color: var(--gold); }
+
+.doc-footer { text-align: center; margin-top: 4rem; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--text-3); }
+.doc-footer a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--border-b); }
+
+@media (max-width: 640px) {
+  .docnav { padding: 0.9rem 1rem; }
+  .docnav .doctag { display: none; }
+  .doc { padding: 3.5rem 1rem 5rem; }
+  body { font-size: 18px; }
+  .crosses { grid-template-columns: 1fr; }
+  .arrow { transform: rotate(90deg); justify-self: center; }
+  .invite { padding: 2.4rem 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<nav class="docnav">
+  <a class="back" href="../index.html">← Cinwicca</a>
+  <div class="doctag"><em>●</em> Writing</div>
+</nav>
+
+<article class="doc">
+
+  <div class="eyebrow">Writing · Human Design &amp; Gene Keys</div>
+  <div class="dingbats">✶ &nbsp; ✦ &nbsp; ✶</div>
+  <h1>The Sleeping <em>Phoenix</em></h1>
+  <p class="subtitle">2027 and humanity's great turning of the cycle</p>
+  <div class="meta">By Cinwicca · The North of Scotland</div>
+
+  <p class="lede">Do you feel the world has gone mad? That everything has changed — and keeps changing — too fast, and chaotically?</p>
+  <p>It isn't just you. According to Human Design, the Gene Keys and other traditions that read humanity's long cycles, we are passing through a thin portal of change: a time of shifts and adaptations that reach into our very genetic make-up. Passages like this are rare. The last one took place in <strong>1615</strong>.</p>
+
+  <div class="divider"><span>✦</span></div>
+
+  <div class="mark">The end of a cycle</div>
+  <h2>Four hundred years <em>of Planning</em></h2>
+
+  <p>In Human Design, humanity lives under great global cycles of roughly four centuries. Each is governed by an Incarnation Cross that sets the collective tone of an era.</p>
+  <p>Since 1615 we have lived under the <strong>Cross of Planning</strong>: the era of agreements, institutions, the State — the structures that organise life in common. It is what has held up the world as we know it. That cycle closes in <strong>February 2027</strong>.</p>
+
+  <div class="crosses">
+    <div class="cross old">
+      <div class="yrs">1615 – 2027</div>
+      <div class="name">Cross of Planning</div>
+      <div class="gates">Gates 37/40 · 9/16</div>
+      <div class="theme">the tribe, the bargain, the structure</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="cross new">
+      <div class="yrs">from 2027</div>
+      <div class="name">Cross of the Sleeping Phoenix</div>
+      <div class="gates">Gates 55/59 · 34/20</div>
+      <div class="theme">the individual, the spirit, the now</div>
+    </div>
+  </div>
+
+  <div class="divider"><span>✦</span></div>
+
+  <div class="mark">The new paradigm</div>
+  <h2>The Cross of the <em>Sleeping Phoenix</em></h2>
+
+  <p>The Phoenix is the bird that rises from its own ashes. The new cycle speaks of exactly this: a period of deep transformation, in which old paradigms dissolve to make way for rebirth.</p>
+  <p>Its central theme is <strong>individuation</strong>. The 34/20 definition — Sacral life force expressed directly through the Throat — honours authentic action in the present moment over the plan drawn up in advance. Each person is called to live from their own nature, within a wider collective awareness.</p>
+  <p>Gate 55, in turn, carries the mutation of the Solar Plexus: a new <em>emotional awareness</em> in gestation. In the Gene Keys, the 55th Key describes this path as the passage from Victimisation to Freedom.</p>
+
+  <p class="pull">The world has not gone mad.<br>One form of the world is ending.</p>
+
+  <div class="mark">Why so much chaos</div>
+  <h2>Structures <em>coming apart</em></h2>
+
+  <p>The breaking of structures we are living through — and taking part in — is the dismantling of social forms that no longer sustain life. It opens space for new ways of living and working, with more freedom and more fluidity in how each person moves through the world.</p>
+  <p>Consciously or not, we are all preparing for this new cycle. And it invites us into three movements:</p>
+
+  <ul class="keys">
+    <li><strong>Surrender</strong> — letting go of control over what is already changing.</li>
+    <li><strong>Emotional awareness</strong> — learning to feel without being swept away by the wave.</li>
+    <li><strong>Individuation</strong> — recognising and honouring your own design, in deep connection with your inner self.</li>
+  </ul>
+
+  <p>Understanding the planetary changes we are part of, and reaching for our inner resources, is no longer a luxury. It is a matter of survival — not only human, but planetary.</p>
+
+  <div class="divider"><span>✦</span></div>
+
+  <div class="mark">A tool for this time</div>
+  <h2>Turning <em>inward</em></h2>
+
+  <p>Human Design offers itself as a precious tool for self-knowledge: current, practical, and free of the taboos imposed by those who created and maintain this distorted reality. It does not tell you who you should be. It shows you how you were designed to be.</p>
+
+  <section class="invite">
+    <div class="mark">An invitation</div>
+    <h2>On this journey inward, <em>I can walk with you</em></h2>
+    <p>Come. Join us. Together we are many — and we are more.</p>
+    <div class="cta-row">
+      <a href="../index.html#form" class="btn-gold">Begin your reading</a>
+      <a href="../index.html#offerings" class="btn-ghost">Explore offerings</a>
+    </div>
+  </section>
+
+  <div class="signature">
+    <p class="warm">A warm embrace from the North of Scotland!</p>
+    <div class="namaste">_/\_</div>
+    <div class="community">In Community</div>
+    <div class="sign-name">Cinwicca</div>
+  </div>
+
+  <div class="doc-footer">
+    Cinwicca © 2026 · <a href="../index.html">return to Cinwicca</a>
+  </div>
+
+</article>
+
+<script>
+const canvas = document.getElementById('cosmos');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [];
+function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+resize(); addEventListener('resize', resize);
+for (let i = 0; i < 120; i++) {
+  stars.push({
+    x: Math.random(), y: Math.random(),
+    r: Math.random() * 1.1 + 0.2,
+    o: Math.random() * 0.5 + 0.1,
+    phase: Math.random() * Math.PI * 2,
+    speed: Math.random() * 0.0003 + 0.0001,
+    gold: Math.random() > 0.85
+  });
+}
+let t = 0;
+function drawCosmos() {
+  ctx.clearRect(0, 0, W, H);
+  stars.forEach(s => {
+    const pulse = Math.sin(t * s.speed * 1000 + s.phase) * 0.3 + 0.7;
+    ctx.beginPath();
+    ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = s.gold ? `rgba(212,177,90,${s.o * pulse})` : `rgba(220,210,200,${s.o * pulse})`;
+    ctx.fill();
+  });
+  t += 0.016;
+  requestAnimationFrame(drawCosmos);
+}
+drawCosmos();
+</script>
+</body>
+</html>

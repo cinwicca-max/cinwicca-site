@@ -48,6 +48,7 @@ body.gated .fb-btn{display:none}
 .gate h2{font-size:clamp(30px,5vw,42px);color:var(--gold3);margin-bottom:14px}
 .gate p{font-size:19px}
 .gate a{color:var(--gold2);border-bottom:1px solid rgba(212,177,90,.4)}
+.gate-home{font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);text-decoration:none}.gate-home:hover{color:var(--gold2)}
 .gate-sign{font-style:italic;color:var(--gold2)}
 .gate-form{margin:26px auto 0;max-width:440px;text-align:left;border:1px solid var(--line2);outline:1px solid rgba(212,177,90,.18);outline-offset:-7px;padding:24px 26px;background:rgba(13,16,32,.85)}
 .gate-form p.eyebrow{text-align:center;margin:0 0 6px;font-size:11.5px;letter-spacing:.22em}
@@ -227,7 +228,7 @@ footer a{color:var(--muted)}
   <a class="brand" href="#/">CINWICCA<small>ALMANAC 2027</small></a>
   <button class="menu-btn" id="menuBtn" aria-label="Menu">MENU</button>
   <nav class="main" id="nav">
-    <a href="../" class="home-link">← Cinwicca</a>
+    <a href="/" class="home-link">← Cinwicca</a>
     <a href="#/today" data-n="today">Today</a>
     <a href="#/year" data-n="year">The Year</a>
     <a href="#/keys" data-n="keys">64 Keys</a>
@@ -240,13 +241,13 @@ footer a{color:var(--muted)}
 <main class="wrap" id="app"></main>
 <footer><div class="wrap">
   <div>© 2027 Cintia de Godoy · Cinwicca. <span id="ft1"></span><span id="ftCoffee"></span></div>
-  <div style="margin-top:6px"><a href="../" id="ft2"></a> · <span id="ft2b"></span></div>
+  <div style="margin-top:6px"><a href="/" id="ft2"></a> · <span id="ft2b"></span></div>
   <div style="margin-top:6px"><span id="ft3"></span><a href="#/about" id="ft3a"></a>.</div>
 </div></footer>
 
 <form name="almanac-entrada" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="email"><input name="name"><input name="newsletter"><input name="lang"><input name="bot-field"></form>
 <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gTitle"><div class="gate-in">
-  <div class="gate-top"><span class="brand">CINWICCA</span><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="pt">PT</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button></div></div>
+  <div class="gate-top"><a href="/" class="brand gate-home" id="gBack" title="cinwicca.com">← CINWICCA</a><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="pt">PT</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button></div></div>
   <img id="gEmblem" alt="" class="gate-emblem">
   <h2 id="gTitle"></h2><p id="gP1"></p><p id="gP2" class="muted"></p><p id="gSign" class="gate-sign"></p>
   <form id="gForm" class="gate-form" novalidate>
@@ -1596,7 +1597,7 @@ function applyStatic(){
   $('#fbClose').textContent=f.close; $('#fbSend').textContent=f.send;
   [...$('#fbKind').options].forEach((o,i)=>o.textContent=f.kinds[i]);
   document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.toggle('active',b.dataset.lang===LANG));
-  const g=t.gate; $('#gTitle').textContent=g.title; $('#gP1').textContent=g.p1; $('#gP2').innerHTML=g.p2; $('#gSign').textContent=g.sign;
+  const g=t.gate; $('#gBack').textContent=t.foot2; $('#gTitle').textContent=g.title; $('#gP1').textContent=g.p1; $('#gP2').innerHTML=g.p2; $('#gSign').textContent=g.sign;
   $('#gLead').textContent=g.lead; $('#gEmailL').textContent=g.email; $('#gNameL').textContent=g.name; $('#gNewsL').textContent=g.news; $('#gEnter').textContent=g.enter; $('#gPrivacy').textContent=g.privacy;
   document.title = {pt:'Almanaque Cinwicca 2027 · Human Design · Gene Keys · Astrologia',en:'Cinwicca Almanac 2027 · Human Design · Gene Keys · Astrology',es:'Almanaque Cinwicca 2027 · Human Design · Gene Keys · Astrología'}[LANG];
 }

@@ -14,13 +14,13 @@
       "almanac.free.sign": "With gratitude, Cin"
     },
     pt: {
-      "almanac.free.title": "🔥 Livre enquanto a Fênix dorme",
+      "almanac.free.title": "🔥 Grátis enquanto a Fênix dorme",
       "almanac.free.p1": "O Almanaque da Alma está aberto a você, gratuitamente, enquanto caminhamos rumo a 2027, quando, no Human Design, o grande ciclo se transforma e a Fênix Adormecida começa a despertar. Até lá, cada página é sua para explorar: os dias, a Lua, os Portais e as Chaves Genéticas.",
       "almanac.free.p2": "Este é um almanaque vivo, e a sua experiência ajuda a moldá-lo. Se algo tocar você, ou puder ficar mais claro, eu adoraria ouvir. E se ele trouxer luz aos seus dias, você pode deixar uma pequena oferta em <a href=\"https://ko-fi.com/cinwicca\" target=\"_blank\" rel=\"noopener\">ko-fi.com/cinwicca</a>.",
       "almanac.free.sign": "Com gratidão, Cin"
     },
     es: {
-      "almanac.free.title": "🔥 Libre mientras el Fénix duerme",
+      "almanac.free.title": "🔥 Gratis mientras el Fénix duerme",
       "almanac.free.p1": "El Almanaque del Alma está abierto para ti, de forma gratuita, mientras caminamos hacia 2027, cuando, en el Human Design, el gran ciclo se transforma y el Fénix Dormido comienza a despertar. Hasta entonces, cada página es tuya para explorar: los días, la Luna, las Puertas y las Claves Genéticas.",
       "almanac.free.p2": "Este es un almanaque vivo, y tu experiencia ayuda a darle forma. Si algo te toca, o podría ser más claro, me encantaría escucharte. Y si trae luz a tus días, puedes dejar una pequeña ofrenda en <a href=\"https://ko-fi.com/cinwicca\" target=\"_blank\" rel=\"noopener\">ko-fi.com/cinwicca</a>.",
       "almanac.free.sign": "Con gratitud, Cin"
@@ -72,7 +72,7 @@
 
     // Remember the visitor's language between visits
     // (falls back to the browser's language, then English)
-    const LANG_KEY = 'cinwicca-lang';
+    const LANG_KEY = 'sb_lang'; // same key the main site (i18n.js) uses
     const saveLang = l => { try { localStorage.setItem(LANG_KEY, l); } catch (e) {} };
     const savedLang = () => {
       try { const l = localStorage.getItem(LANG_KEY); if (l && window.__i18n[l]) return l; } catch (e) {}

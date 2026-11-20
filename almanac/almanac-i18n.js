@@ -70,25 +70,41 @@
         <button data-lang="en">EN</button><button data-lang="pt">PT</button><button data-lang="es">ES</button>
       </div>`}`;
 
+    // Remember the visitor's language between visits
+    // (falls back to the browser's language, then English)
+    const LANG_KEY = 'cinwicca-lang';
+    const saveLang = l => { try { localStorage.setItem(LANG_KEY, l); } catch (e) {} };
+    const savedLang = () => {
+      try { const l = localStorage.getItem(LANG_KEY); if (l && window.__i18n[l]) return l; } catch (e) {}
+      const nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
+      return window.__i18n[nav] ? nav : 'en';
+    };
+    const markActive = l => box.querySelectorAll('.lang-switch button').forEach(x =>
+      x.classList.toggle('active', x.getAttribute('data-lang') === l));
+
     if (typeof applyI18n === 'function') {
       box.querySelectorAll('.lang-switch button').forEach(b =>
-        b.addEventListener('click', () => applyI18n(b.getAttribute('data-lang'))));
-      applyI18n(window.__lang || 'en');
+        b.addEventListener('click', () => {
+          const l = b.getAttribute('data-lang');
+          saveLang(l); applyI18n(l); markActive(l);
+        }));
+      const first = window.__lang || savedLang();
+      applyI18n(first); markActive(first);
     } else {
-      // Fallback if i18n.js isn't on the page: show English
-      const dict = window.__i18n.en;
-      box.querySelectorAll('[data-i18n]').forEach(el => {
-        el.innerHTML = dict[el.getAttribute('data-i18n')] || '';
-      });
+      // i18n.js isn't on the page: fill the notice ourselves
+      const show = l => {
+        const d = window.__i18n[l] || window.__i18n.en;
+        box.querySelectorAll('[data-i18n]').forEach(el => {
+          el.innerHTML = d[el.getAttribute('data-i18n')] || '';
+        });
+        markActive(l);
+      };
       box.querySelectorAll('.lang-switch button').forEach(b =>
         b.addEventListener('click', () => {
-          const d = window.__i18n[b.getAttribute('data-lang')] || dict;
-          box.querySelectorAll('[data-i18n]').forEach(el => {
-            el.innerHTML = d[el.getAttribute('data-i18n')] || '';
-          });
-          box.querySelectorAll('.lang-switch button').forEach(x =>
-            x.classList.toggle('active', x === b));
+          const l = b.getAttribute('data-lang');
+          saveLang(l); show(l);
         }));
+      show(savedLang());
     }
   });
 })();

@@ -34,10 +34,35 @@ nav.main a{white-space:nowrap;font-family:var(--sans);font-size:11px;letter-spac
 nav.main a.home-link{color:var(--gold);border-right:1px solid var(--line2);padding-right:18px;border-bottom-color:transparent}
 nav.main a:hover,nav.main a.on{color:var(--gold2);border-bottom-color:var(--gold)}
 .search{position:relative}
-.search input{width:150px;background:var(--ob1);border:1px solid var(--line2);color:var(--cream);font-family:var(--sans);font-size:13px;padding:8px 12px 8px 32px;border-radius:2px;outline:none}
+.search input{width:140px;background:var(--ob1);border:1px solid var(--line2);color:var(--cream);font-family:var(--sans);font-size:13px;padding:8px 12px 8px 32px;border-radius:2px;outline:none}
 .search input:focus{border-color:var(--gold)}
 .search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);opacity:.6}
 .menu-btn{display:none}
+.gate{position:fixed;inset:0;z-index:80;display:none;overflow:auto;background:radial-gradient(ellipse at top,rgba(31,42,90,.55),rgba(8,9,15,.97) 60%),var(--ob0);padding:28px 18px}
+body.gated .gate{display:block}
+body.gated{overflow:hidden}
+body.gated .fb-btn{display:none}
+.gate-in{max-width:620px;margin:0 auto;text-align:center}
+.gate-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
+.gate-emblem{width:120px;height:120px;object-fit:cover;border-radius:50%;border:1px solid var(--line2);box-shadow:0 0 60px rgba(143,127,214,.25);margin:6px auto 22px;display:block}
+.gate h2{font-size:clamp(30px,5vw,42px);color:var(--gold3);margin-bottom:14px}
+.gate p{font-size:19px}
+.gate a{color:var(--gold2);border-bottom:1px solid rgba(212,177,90,.4)}
+.gate-sign{font-style:italic;color:var(--gold2)}
+.gate-form{margin:26px auto 0;max-width:440px;text-align:left;border:1px solid var(--line2);outline:1px solid rgba(212,177,90,.18);outline-offset:-7px;padding:24px 26px;background:rgba(13,16,32,.85)}
+.gate-form p.eyebrow{text-align:center;margin:0 0 6px;font-size:11.5px;letter-spacing:.22em}
+.gate-form label{display:block;font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+.gate-form input[type=email],.gate-form input:not([type]){width:100%;background:var(--ob0);border:1px solid var(--line2);color:var(--cream);font-family:var(--serif);font-size:18px;padding:9px 12px;outline:none}
+.gate-form input:focus{border-color:var(--gold)}
+.gate-form .chk{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:16.5px;color:var(--cream)}
+.gate-form .chk input{margin-top:6px}
+.gate-form .btn{width:100%;margin-top:20px;background:rgba(212,177,90,.12);cursor:pointer}
+.gate-err{color:#e0a07a;font-family:var(--sans);font-size:13px !important;min-height:1em;margin:10px 0 0;text-align:center}
+.gate-privacy{font-family:var(--sans);font-size:11.5px !important;color:var(--dim);line-height:1.6;margin:8px 0 0}
+.lang-switch{display:inline-flex;border:1px solid var(--line2);border-radius:999px;overflow:hidden;flex:none}
+.lang-switch button{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:.08em;color:var(--muted);padding:6px 9px;border:0;background:transparent;cursor:pointer}
+.lang-switch button+button{border-left:1px solid var(--line2)}
+.lang-switch button.active{background:var(--gold);color:var(--ob0)}
 
 /* type */
 .eyebrow{font-family:var(--sans);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
@@ -159,8 +184,8 @@ footer a{color:var(--muted)}
 .navday{display:flex;justify-content:space-between;margin-top:40px;font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
 .navday a{color:var(--muted)}.navday a:hover{color:var(--gold2)}
 
-@media (max-width:1180px){.brand small{display:none}}
-@media (max-width:980px){
+.brand small{display:none}
+@media (max-width:1080px){nav.main a.home-link{border-right:0;padding-right:0}
   body{font-size:18px}
   .hero,.split,.reflect{grid-template-columns:1fr}
   .reflect .p{border-left:0;padding-left:0;border-top:1px solid var(--line2);padding-top:18px}
@@ -208,28 +233,45 @@ footer a{color:var(--muted)}
     <a href="#/keys" data-n="keys">64 Keys</a>
     <a href="#/me" data-n="me">My Almanac</a>
     <a href="#/about" data-n="about">How to read</a>
+    <div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="pt">PT</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button></div>
     <form class="search" id="sf" role="search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4b15a" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="sq" type="search" placeholder="A key, a date, an event" aria-label="Search the almanac"></form>
   </nav>
 </div></header>
 <main class="wrap" id="app"></main>
 <footer><div class="wrap">
-  <div>© 2027 Cintia de Godoy · Cinwicca. Positions from the Swiss Ephemeris (Astrodienst AG), read at 07:00 UK time.<span id="ftCoffee"></span></div>
-  <div style="margin-top:6px"><a href="../">← Back to cinwicca.com</a> · Soul Path Readings by Cintia de Godoy</div>
-  <div style="margin-top:6px">Gene Keys® is the work of Richard Rudd; Human Design is the work of Ra Uru Hu (Jovian Archive). This almanac is an independent companion; see <a href="#/about">references</a>.</div>
+  <div>© 2027 Cintia de Godoy · Cinwicca. <span id="ft1"></span><span id="ftCoffee"></span></div>
+  <div style="margin-top:6px"><a href="../" id="ft2"></a> · <span id="ft2b"></span></div>
+  <div style="margin-top:6px"><span id="ft3"></span><a href="#/about" id="ft3a"></a>.</div>
 </div></footer>
 
+<form name="almanac-entrada" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="email"><input name="name"><input name="newsletter"><input name="lang"><input name="bot-field"></form>
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gTitle"><div class="gate-in">
+  <div class="gate-top"><span class="brand">CINWICCA</span><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="pt">PT</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button></div></div>
+  <img id="gEmblem" alt="" class="gate-emblem">
+  <h2 id="gTitle"></h2><p id="gP1"></p><p id="gP2" class="muted"></p><p id="gSign" class="gate-sign"></p>
+  <form id="gForm" class="gate-form" novalidate>
+    <p class="eyebrow" id="gLead"></p>
+    <label for="gEmail" id="gEmailL"></label><input id="gEmail" name="email" type="email" autocomplete="email" required>
+    <label for="gName" id="gNameL"></label><input id="gName" name="name" autocomplete="given-name">
+    <div class="chk"><input id="gNews" type="checkbox" name="newsletter" value="yes"><label for="gNews" id="gNewsL" style="all:unset;cursor:pointer"></label></div>
+    <p style="display:none"><input name="bot-field" tabindex="-1" autocomplete="off"></p>
+    <button type="submit" class="btn" id="gEnter"></button>
+    <p class="gate-err" id="gErr" aria-live="polite"></p>
+    <p class="gate-privacy" id="gPrivacy"></p>
+  </form>
+</div></div>
 <form name="almanac-feedback" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="name"><input name="email"><select name="kind"><option>x</option></select><textarea name="message"></textarea><input name="page"><input name="updates"><input name="bot-field"></form>
-<button class="fb-btn" id="fbOpen" type="button">◆ Feedback</button>
+<button class="fb-btn" id="fbOpen" type="button">◆</button>
 <div class="fb-wrap" id="fbWrap" role="dialog" aria-modal="true" aria-labelledby="fbTitle"><form class="card framed fb" id="fbForm">
-  <div class="eyebrow">Free first edition</div><h3 id="fbTitle" style="margin:8px 0 6px">Your feedback</h3>
-  <p class="muted" style="font-size:17px;margin:0">This almanac grows with the people who use it. What do you love, what is missing, what would you like to go deeper into?</p>
-  <label for="fbKind">About</label><select id="fbKind" name="kind"><option>Something I love</option><option>An idea or wish</option><option>A date or position looks wrong</option><option>Something does not work</option><option>Other</option></select>
-  <label for="fbMsg">Message</label><textarea id="fbMsg" name="message" required></textarea>
-  <label for="fbName">Name (optional)</label><input id="fbName" name="name" autocomplete="name">
-  <label for="fbEmail">Email (optional)</label><input id="fbEmail" name="email" type="email" autocomplete="email">
-  <div class="chk"><input id="fbUpd" type="checkbox" name="updates" value="yes"><label for="fbUpd" style="all:unset;cursor:pointer">Keep me posted about new layers of the almanac.</label></div>
+  <div class="eyebrow" id="fbEyebrow"></div><h3 id="fbTitle" style="margin:8px 0 6px"></h3>
+  <p class="muted" style="font-size:17px;margin:0" id="fbLead"></p>
+  <label for="fbKind" id="fbKindL"></label><select id="fbKind" name="kind"><option value="Something I love"></option><option value="An idea or wish"></option><option value="A date or position looks wrong"></option><option value="Something does not work"></option><option value="Other"></option></select>
+  <label for="fbMsg" id="fbMsgL"></label><textarea id="fbMsg" name="message" required></textarea>
+  <label for="fbName" id="fbNameL"></label><input id="fbName" name="name" autocomplete="name">
+  <label for="fbEmail" id="fbEmailL"></label><input id="fbEmail" name="email" type="email" autocomplete="email">
+  <div class="chk"><input id="fbUpd" type="checkbox" name="updates" value="yes"><label for="fbUpd" id="fbUpdL" style="all:unset;cursor:pointer"></label></div>
   <p style="display:none"><input name="bot-field" tabindex="-1" autocomplete="off"></p>
-  <div class="row"><button type="button" class="x" id="fbClose">CLOSE</button><button type="submit" class="btn">Send</button></div>
+  <div class="row"><button type="button" class="x" id="fbClose"></button><button type="submit" class="btn" id="fbSend"></button></div>
   <div class="msg" id="fbMsgOut" aria-live="polite"></div>
 </form></div>
 <script>
@@ -637,8 +679,12 @@ if (typeof module !== 'undefined') module.exports = api; else root.HDChart = api
 const $ = s => document.querySelector(s);
 const app = $('#app');
 
-/* ---------- the 64 gates: I Ching name (Wilhelm) · Gene Key shadow / gift / siddhi (Rudd, 2013) ---------- */
-const K = {
+/* ================= LANGUAGES (PT · EN · ES) ================= */
+const LANGS=['pt','en','es'];
+let LANG=(()=>{try{const s=localStorage.getItem('sb_lang');if(LANGS.includes(s))return s;}catch(e){}const n=(navigator.language||'en').slice(0,2).toLowerCase();return LANGS.includes(n)?n:'en';})();
+
+/* 64 gates: I Ching name · Gene Key shadow / gift / siddhi */
+const KEYS={en:{
 1:['The Creative','Entropy','Freshness','Beauty'],2:['The Receptive','Dislocation','Orientation','Unity'],
 3:['Difficulty at the Beginning','Chaos','Innovation','Innocence'],4:['Youthful Folly','Intolerance','Understanding','Forgiveness'],
 5:['Waiting','Impatience','Patience','Timelessness'],6:['Conflict','Conflict','Diplomacy','Peace'],
@@ -670,25 +716,321 @@ const K = {
 57:['The Gentle, Wind','Unease','Intuition','Clarity'],58:['The Joyous, Lake','Dissatisfaction','Vitality','Bliss'],
 59:['Dispersion','Dishonesty','Intimacy','Transparency'],60:['Limitation','Limitation','Realism','Justice'],
 61:['Inner Truth','Psychosis','Inspiration','Sanctity'],62:['Preponderance of the Small','Intellect','Precision','Impeccability'],
-63:['After Completion','Doubt','Inquiry','Truth'],64:['Before Completion','Confusion','Imagination','Illumination']};
-const CENTRES = {Head:[64,61,63],Ajna:[47,24,4,17,43,11],Throat:[62,23,56,35,12,45,33,8,31,20,16],G:[1,13,25,46,2,15,10,7],
-  Heart:[21,40,26,51],Spleen:[48,57,44,50,32,28,18],Sacral:[5,14,29,59,9,3,42,27,34],'Solar Plexus':[6,37,22,36,30,55,49],Root:[53,60,52,19,39,41,58,38,54]};
-const CENTRE_NAME = {G:'G Centre',Heart:'Heart (Ego)'};
-const centreOf = g => {for (const c in CENTRES) if (CENTRES[c].includes(g)) return CENTRE_NAME[c]||c;};
-const LINES = [null,'Foundation','Nature','Experiment','Network','Projection','Vision'];
+63:['After Completion','Doubt','Inquiry','Truth'],64:['Before Completion','Confusion','Imagination','Illumination']},
+pt:{
+1:['O Criativo','Entropia','Frescor','Beleza'],2:['O Receptivo','Deslocamento','Orientação','Unidade'],
+3:['A Dificuldade Inicial','Caos','Inovação','Inocência'],4:['A Insensatez Juvenil','Intolerância','Compreensão','Perdão'],
+5:['A Espera','Impaciência','Paciência','Atemporalidade'],6:['O Conflito','Conflito','Diplomacia','Paz'],
+7:['O Exército','Divisão','Guia','Virtude'],8:['A Solidariedade','Mediocridade','Estilo','Requinte'],
+9:['O Poder de Domar do Pequeno','Inércia','Determinação','Invencibilidade'],10:['A Conduta','Autoobsessão','Naturalidade','Ser'],
+11:['A Paz','Obscuridade','Idealismo','Luz'],12:['A Estagnação','Vaidade','Discriminação','Pureza'],
+13:['A Comunidade','Discórdia','Discernimento','Empatia'],14:['A Grande Posse','Concessão','Competência','Generosidade'],
+15:['A Modéstia','Monotonia','Magnetismo','Florescência'],16:['O Entusiasmo','Indiferença','Versatilidade','Maestria'],
+17:['O Seguir','Opinião','Visão de Futuro','Onisciência'],18:['A Correção do Que Foi Corrompido','Julgamento','Integridade','Perfeição'],
+19:['A Aproximação','Codependência','Sensibilidade','Sacrifício'],20:['A Contemplação','Superficialidade','Autoconfiança','Presença'],
+21:['A Mordida','Controle','Autoridade','Valor'],22:['A Graciosidade','Desonra','Graciosidade','Graça'],
+23:['A Desintegração','Complexidade','Simplicidade','Quintessência'],24:['O Retorno','Vício','Invenção','Silêncio'],
+25:['A Inocência','Constrição','Aceitação','Amor Universal'],26:['O Poder de Domar do Grande','Orgulho','Engenhosidade','Invisibilidade'],
+27:['A Nutrição','Egoísmo','Altruísmo','Abnegação'],28:['A Preponderância do Grande','Falta de Propósito','Totalidade','Imortalidade'],
+29:['O Abismal','Falta de Entrega','Compromisso','Devoção'],30:['O Aderir, o Fogo','Desejo','Leveza','Arrebatamento'],
+31:['A Influência','Arrogância','Liderança','Humildade'],32:['A Duração','Fracasso','Preservação','Veneração'],
+33:['A Retirada','Esquecimento','Atenção Plena','Revelação'],34:['O Poder do Grande','Força Bruta','Força','Majestade'],
+35:['O Progresso','Fome','Aventura','Infinitude'],36:['O Obscurecimento da Luz','Turbulência','Humanidade','Compaixão'],
+37:['A Família','Fraqueza','Igualdade','Ternura'],38:['A Oposição','Luta','Perseverança','Honra'],
+39:['O Obstáculo','Provocação','Dinamismo','Libertação'],40:['A Liberação','Exaustão','Resolução','Vontade Divina'],
+41:['A Diminuição','Fantasia','Antecipação','Emanação'],42:['O Aumento','Expectativa','Desapego','Celebração'],
+43:['A Ruptura','Surdez','Insight','Epifania'],44:['O Vir ao Encontro','Interferência','Trabalho em Equipe','Sinarquia'],
+45:['A Reunião','Dominação','Sinergia','Comunhão'],46:['A Ascensão','Seriedade','Deleite','Êxtase'],
+47:['A Opressão','Opressão','Transmutação','Transfiguração'],48:['O Poço','Inadequação','Desenvoltura','Sabedoria'],
+49:['A Revolução','Reação','Revolução','Renascimento'],50:['O Caldeirão','Corrupção','Equilíbrio','Harmonia'],
+51:['O Incitar, o Trovão','Agitação','Iniciativa','Despertar'],52:['A Quietude, a Montanha','Estresse','Contenção','Quietude'],
+53:['O Desenvolvimento','Imaturidade','Expansão','Superabundância'],54:['A Jovem que se Casa','Ganância','Aspiração','Ascensão'],
+55:['A Abundância','Vitimização','Liberdade','Liberdade'],56:['O Viajante','Distração','Enriquecimento','Embriaguez'],
+57:['A Suavidade, o Vento','Inquietação','Intuição','Clareza'],58:['A Alegria, o Lago','Insatisfação','Vitalidade','Bem-Aventurança'],
+59:['A Dispersão','Desonestidade','Intimidade','Transparência'],60:['A Limitação','Limitação','Realismo','Justiça'],
+61:['A Verdade Interior','Psicose','Inspiração','Santidade'],62:['A Preponderância do Pequeno','Intelecto','Precisão','Impecabilidade'],
+63:['Após a Conclusão','Dúvida','Investigação','Verdade'],64:['Antes da Conclusão','Confusão','Imaginação','Iluminação']},
+es:{
+1:['Lo Creativo','Entropía','Frescura','Belleza'],2:['Lo Receptivo','Dislocación','Orientación','Unidad'],
+3:['La Dificultad Inicial','Caos','Innovación','Inocencia'],4:['La Necedad Juvenil','Intolerancia','Comprensión','Perdón'],
+5:['La Espera','Impaciencia','Paciencia','Atemporalidad'],6:['El Conflicto','Conflicto','Diplomacia','Paz'],
+7:['El Ejército','División','Guía','Virtud'],8:['La Solidaridad','Mediocridad','Estilo','Exquisitez'],
+9:['La Fuerza Domesticadora de lo Pequeño','Inercia','Determinación','Invencibilidad'],10:['El Porte','Obsesión por Sí','Naturalidad','Ser'],
+11:['La Paz','Oscuridad','Idealismo','Luz'],12:['El Estancamiento','Vanidad','Discriminación','Pureza'],
+13:['La Comunidad','Discordia','Discernimiento','Empatía'],14:['La Posesión de lo Grande','Concesión','Competencia','Generosidad'],
+15:['La Modestia','Monotonía','Magnetismo','Florecimiento'],16:['El Entusiasmo','Indiferencia','Versatilidad','Maestría'],
+17:['El Seguimiento','Opinión','Visión de Futuro','Omnisciencia'],18:['El Trabajo en lo Echado a Perder','Juicio','Integridad','Perfección'],
+19:['El Acercamiento','Codependencia','Sensibilidad','Sacrificio'],20:['La Contemplación','Superficialidad','Seguridad en Sí','Presencia'],
+21:['La Mordedura Tajante','Control','Autoridad','Valor'],22:['La Gracia','Deshonra','Gentileza','Gracia'],
+23:['La Desintegración','Complejidad','Simplicidad','Quintaesencia'],24:['El Retorno','Adicción','Invención','Silencio'],
+25:['La Inocencia','Constricción','Aceptación','Amor Universal'],26:['La Fuerza Domesticadora de lo Grande','Orgullo','Ingenio','Invisibilidad'],
+27:['Las Comisuras de la Boca','Egoísmo','Altruismo','Abnegación'],28:['La Preponderancia de lo Grande','Falta de Propósito','Totalidad','Inmortalidad'],
+29:['Lo Abismal','Desgana','Compromiso','Devoción'],30:['Lo Adherente, el Fuego','Deseo','Ligereza','Arrobamiento'],
+31:['El Influjo','Arrogancia','Liderazgo','Humildad'],32:['La Duración','Fracaso','Preservación','Veneración'],
+33:['La Retirada','Olvido','Atención Plena','Revelación'],34:['El Poder de lo Grande','Fuerza Bruta','Fortaleza','Majestad'],
+35:['El Progreso','Hambre','Aventura','Infinitud'],36:['El Oscurecimiento de la Luz','Turbulencia','Humanidad','Compasión'],
+37:['La Familia','Debilidad','Igualdad','Ternura'],38:['El Antagonismo','Lucha','Perseverancia','Honor'],
+39:['El Impedimento','Provocación','Dinamismo','Liberación'],40:['La Liberación','Agotamiento','Resolución','Voluntad Divina'],
+41:['La Disminución','Fantasía','Anticipación','Emanación'],42:['El Aumento','Expectativa','Desapego','Celebración'],
+43:['El Desbordamiento','Sordera','Lucidez','Epifanía'],44:['El Ir al Encuentro','Interferencia','Trabajo en Equipo','Sinarquía'],
+45:['La Reunión','Dominación','Sinergia','Comunión'],46:['La Subida','Seriedad','Deleite','Éxtasis'],
+47:['La Desazón','Opresión','Transmutación','Transfiguración'],48:['El Pozo de Agua','Insuficiencia','Recursividad','Sabiduría'],
+49:['La Revolución','Reacción','Revolución','Renacimiento'],50:['El Caldero','Corrupción','Equilibrio','Armonía'],
+51:['Lo Suscitativo, el Trueno','Agitación','Iniciativa','Despertar'],52:['El Aquietamiento, la Montaña','Estrés','Contención','Quietud'],
+53:['El Desarrollo','Inmadurez','Expansión','Superabundancia'],54:['La Muchacha que se Casa','Codicia','Aspiración','Ascensión'],
+55:['La Abundancia','Victimismo','Libertad','Libertad'],56:['El Andariego','Distracción','Enriquecimiento','Embriaguez'],
+57:['Lo Suave, el Viento','Desasosiego','Intuición','Claridad'],58:['Lo Sereno, el Lago','Insatisfacción','Vitalidad','Dicha'],
+59:['La Disolución','Deshonestidad','Intimidad','Transparencia'],60:['La Restricción','Limitación','Realismo','Justicia'],
+61:['La Verdad Interior','Psicosis','Inspiración','Santidad'],62:['La Preponderancia de lo Pequeño','Intelecto','Precisión','Impecabilidad'],
+63:['Después de la Consumación','Duda','Indagación','Verdad'],64:['Antes de la Consumación','Confusión','Imaginación','Iluminación']}};
 
-const SIGNS = ['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
+const CHANNEL_T={pt:{'1-8':'Inspiração','2-14':'O Pulso','3-60':'Mutação','4-63':'Lógica','5-15':'Ritmo','6-59':'Acasalamento','7-31':'O Alfa','9-52':'Concentração','10-20':'Despertar','10-34':'Exploração','10-57':'Forma Perfeita','11-56':'Curiosidade','12-22':'Abertura','13-33':'O Pródigo','16-48':'Comprimento de Onda','17-62':'Aceitação','18-58':'Julgamento','19-49':'Síntese','20-34':'Carisma','20-57':'Onda Cerebral','21-45':'Dinheiro','23-43':'Estruturação','24-61':'Consciência','25-51':'Iniciação','26-44':'Entrega','27-50':'Preservação','28-38':'Luta','29-46':'Descoberta','30-41':'Reconhecimento','32-54':'Transformação','34-57':'Poder','35-36':'Transitoriedade','37-40':'Comunidade','39-55':'Emoção','42-53':'Maturação','47-64':'Abstração'},
+es:{'1-8':'Inspiración','2-14':'El Pulso','3-60':'Mutación','4-63':'Lógica','5-15':'Ritmo','6-59':'Apareamiento','7-31':'El Alfa','9-52':'Concentración','10-20':'Despertar','10-34':'Exploración','10-57':'Forma Perfeccionada','11-56':'Curiosidad','12-22':'Apertura','13-33':'El Pródigo','16-48':'Longitud de Onda','17-62':'Aceptación','18-58':'Juicio','19-49':'Síntesis','20-34':'Carisma','20-57':'Onda Cerebral','21-45':'Dinero','23-43':'Estructuración','24-61':'Conciencia','25-51':'Iniciación','26-44':'Entrega','27-50':'Preservación','28-38':'Lucha','29-46':'Descubrimiento','30-41':'Reconocimiento','32-54':'Transformación','34-57':'Poder','35-36':'Transitoriedad','37-40':'Comunidad','39-55':'Emoción','42-53':'Maduración','47-64':'Abstracción'}};
+
+const W={
+en:{months:['January','February','March','April','May','June','July','August','September','October','November','December'],
+  mon3:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+  wd:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],wd3:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+  on:['on Sunday','on Monday','on Tuesday','on Wednesday','on Thursday','on Friday','on Saturday'],mini:['M','T','W','T','F','S','S'],
+  signs:['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'],
+  bodies:{sun:'Sun',earth:'Earth',moon:'Moon',mercury:'Mercury',venus:'Venus',mars:'Mars',jupiter:'Jupiter',saturn:'Saturn',uranus:'Uranus',neptune:'Neptune',pluto:'Pluto',node:'North Node',snode:'South Node'},
+  bodiesThe:{sun:'The Sun',earth:'The Earth',moon:'The Moon',mercury:'Mercury',venus:'Venus',mars:'Mars',jupiter:'Jupiter',saturn:'Saturn',uranus:'Uranus',neptune:'Neptune',pluto:'Pluto',node:'The North Node',snode:'The South Node'},
+  lines:[null,'Foundation','Nature','Experiment','Network','Projection','Vision'],
+  centres:{Head:'Head',Ajna:'Ajna',Throat:'Throat',G:'G Centre',Heart:'Heart (Ego)',Spleen:'Spleen',Sacral:'Sacral',SolarPlexus:'Solar Plexus',Root:'Root'},
+  phases:{'New Moon':'New Moon','Waxing Crescent':'Waxing Crescent','First Quarter':'First Quarter','Waxing Gibbous':'Waxing Gibbous','Full Moon':'Full Moon','Waning Gibbous':'Waning Gibbous','Last Quarter':'Last Quarter','Waning Crescent':'Waning Crescent'},
+  eclipses:{'Annular solar eclipse':'Annular solar eclipse','Total solar eclipse':'Total solar eclipse','Partial solar eclipse':'Partial solar eclipse','Hybrid solar eclipse':'Hybrid solar eclipse','Penumbral lunar eclipse':'Penumbral lunar eclipse','Partial lunar eclipse':'Partial lunar eclipse','Total lunar eclipse':'Total lunar eclipse'},
+  and:' and ',gate:'Gate'},
+pt:{months:['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'],
+  mon3:['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'],
+  wd:['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'],wd3:['dom','seg','ter','qua','qui','sex','sáb'],
+  on:['no domingo','na segunda-feira','na terça-feira','na quarta-feira','na quinta-feira','na sexta-feira','no sábado'],mini:['S','T','Q','Q','S','S','D'],
+  signs:['Áries','Touro','Gêmeos','Câncer','Leão','Virgem','Libra','Escorpião','Sagitário','Capricórnio','Aquário','Peixes'],
+  bodies:{sun:'Sol',earth:'Terra',moon:'Lua',mercury:'Mercúrio',venus:'Vênus',mars:'Marte',jupiter:'Júpiter',saturn:'Saturno',uranus:'Urano',neptune:'Netuno',pluto:'Plutão',node:'Nodo Norte',snode:'Nodo Sul'},
+  bodiesThe:{sun:'O Sol',earth:'A Terra',moon:'A Lua',mercury:'Mercúrio',venus:'Vênus',mars:'Marte',jupiter:'Júpiter',saturn:'Saturno',uranus:'Urano',neptune:'Netuno',pluto:'Plutão',node:'O Nodo Norte',snode:'O Nodo Sul'},
+  lines:[null,'Fundação','Natureza','Experimento','Rede','Projeção','Visão'],
+  centres:{Head:'Cabeça',Ajna:'Ajna',Throat:'Garganta',G:'Centro G',Heart:'Coração (Ego)',Spleen:'Baço',Sacral:'Sacral',SolarPlexus:'Plexo Solar',Root:'Raiz'},
+  phases:{'New Moon':'Lua Nova','Waxing Crescent':'Crescente','First Quarter':'Quarto Crescente','Waxing Gibbous':'Gibosa Crescente','Full Moon':'Lua Cheia','Waning Gibbous':'Gibosa Minguante','Last Quarter':'Quarto Minguante','Waning Crescent':'Balsâmica'},
+  eclipses:{'Annular solar eclipse':'Eclipse solar anular','Total solar eclipse':'Eclipse solar total','Partial solar eclipse':'Eclipse solar parcial','Hybrid solar eclipse':'Eclipse solar híbrido','Penumbral lunar eclipse':'Eclipse lunar penumbral','Partial lunar eclipse':'Eclipse lunar parcial','Total lunar eclipse':'Eclipse lunar total'},
+  and:' e ',gate:'Portal'},
+es:{months:['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'],
+  mon3:['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'],
+  wd:['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],wd3:['dom','lun','mar','mié','jue','vie','sáb'],
+  on:['el domingo','el lunes','el martes','el miércoles','el jueves','el viernes','el sábado'],mini:['L','M','X','J','V','S','D'],
+  signs:['Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario','Capricornio','Acuario','Piscis'],
+  bodies:{sun:'Sol',earth:'Tierra',moon:'Luna',mercury:'Mercurio',venus:'Venus',mars:'Marte',jupiter:'Júpiter',saturn:'Saturno',uranus:'Urano',neptune:'Neptuno',pluto:'Plutón',node:'Nodo Norte',snode:'Nodo Sur'},
+  bodiesThe:{sun:'El Sol',earth:'La Tierra',moon:'La Luna',mercury:'Mercurio',venus:'Venus',mars:'Marte',jupiter:'Júpiter',saturn:'Saturno',uranus:'Urano',neptune:'Neptuno',pluto:'Plutón',node:'El Nodo Norte',snode:'El Nodo Sur'},
+  lines:[null,'Fundamento','Naturaleza','Experimento','Red','Proyección','Visión'],
+  centres:{Head:'Cabeza',Ajna:'Ajna',Throat:'Garganta',G:'Centro G',Heart:'Corazón (Ego)',Spleen:'Bazo',Sacral:'Sacro',SolarPlexus:'Plexo Solar',Root:'Raíz'},
+  phases:{'New Moon':'Luna Nueva','Waxing Crescent':'Creciente','First Quarter':'Cuarto Creciente','Waxing Gibbous':'Gibosa Creciente','Full Moon':'Luna Llena','Waning Gibbous':'Gibosa Menguante','Last Quarter':'Cuarto Menguante','Waning Crescent':'Balsámica'},
+  eclipses:{'Annular solar eclipse':'Eclipse solar anular','Total solar eclipse':'Eclipse solar total','Partial solar eclipse':'Eclipse solar parcial','Hybrid solar eclipse':'Eclipse solar híbrido','Penumbral lunar eclipse':'Eclipse lunar penumbral','Partial lunar eclipse':'Eclipse lunar parcial','Total lunar eclipse':'Eclipse lunar total'},
+  and:' y ',gate:'Puerta'}};
+
+const HD={
+en:{type:{'Generator':'Generator','Manifesting Generator':'Manifesting Generator','Projector':'Projector','Manifestor':'Manifestor','Reflector':'Reflector'},
+  strategy:{'Generator':'To respond','Manifesting Generator':'To respond, then inform','Projector':'To wait for the invitation','Manifestor':'To inform','Reflector':'To wait a lunar cycle'},
+  sig:{'Generator':['Satisfaction','Frustration'],'Manifesting Generator':['Satisfaction','Frustration'],'Projector':['Success','Bitterness'],'Manifestor':['Peace','Anger'],'Reflector':['Surprise','Disappointment']},
+  auth:{'Emotional':'Emotional','Sacral':'Sacral','Splenic':'Splenic','Ego Manifested':'Ego Manifested','Ego Projected':'Ego Projected','Self-Projected':'Self-Projected','Mental (Outer Authority)':'Mental (Outer Authority)','Lunar':'Lunar'},
+  def:{'None':'None','Single Definition':'Single Definition','Split Definition':'Split Definition','Triple Split Definition':'Triple Split Definition','Quadruple Split Definition':'Quadruple Split Definition'},
+  angle:{'Right Angle':'Right Angle','Juxtaposition':'Juxtaposition','Left Angle':'Left Angle'},
+  spheres:{lifesWork:"Life's Work",evolution:'Evolution',radiance:'Radiance',purpose:'Purpose'},
+  your:{lifesWork:"your Life's Work",evolution:'your Evolution',radiance:'your Radiance',purpose:'your Purpose'},
+  src:{lifesWork:'Personality Sun',evolution:'Personality Earth',radiance:'Design Sun',purpose:'Design Earth'},P:'Personality',D:'Design'},
+pt:{type:{'Generator':'Gerador','Manifesting Generator':'Gerador Manifestante','Projector':'Projetor','Manifestor':'Manifestador','Reflector':'Refletor'},
+  strategy:{'Generator':'Responder','Manifesting Generator':'Responder, depois informar','Projector':'Esperar o convite','Manifestor':'Informar','Reflector':'Esperar um ciclo lunar'},
+  sig:{'Generator':['Satisfação','Frustração'],'Manifesting Generator':['Satisfação','Frustração'],'Projector':['Sucesso','Amargura'],'Manifestor':['Paz','Raiva'],'Reflector':['Surpresa','Decepção']},
+  auth:{'Emotional':'Emocional','Sacral':'Sacral','Splenic':'Esplênica','Ego Manifested':'Ego Manifestado','Ego Projected':'Ego Projetado','Self-Projected':'Autoprojetada','Mental (Outer Authority)':'Mental (Autoridade Externa)','Lunar':'Lunar'},
+  def:{'None':'Nenhuma','Single Definition':'Definição Simples','Split Definition':'Definição Dividida','Triple Split Definition':'Tripla Divisão','Quadruple Split Definition':'Quádrupla Divisão'},
+  angle:{'Right Angle':'Ângulo Direito','Juxtaposition':'Justaposição','Left Angle':'Ângulo Esquerdo'},
+  spheres:{lifesWork:'Trabalho de Vida',evolution:'Evolução',radiance:'Radiância',purpose:'Propósito'},
+  your:{lifesWork:'o seu Trabalho de Vida',evolution:'a sua Evolução',radiance:'a sua Radiância',purpose:'o seu Propósito'},
+  src:{lifesWork:'Sol da Personalidade',evolution:'Terra da Personalidade',radiance:'Sol do Design',purpose:'Terra do Design'},P:'Personalidade',D:'Design'},
+es:{type:{'Generator':'Generador','Manifesting Generator':'Generador Manifestante','Projector':'Proyector','Manifestor':'Manifestador','Reflector':'Reflector'},
+  strategy:{'Generator':'Responder','Manifesting Generator':'Responder y luego informar','Projector':'Esperar la invitación','Manifestor':'Informar','Reflector':'Esperar un ciclo lunar'},
+  sig:{'Generator':['Satisfacción','Frustración'],'Manifesting Generator':['Satisfacción','Frustración'],'Projector':['Éxito','Amargura'],'Manifestor':['Paz','Ira'],'Reflector':['Sorpresa','Decepción']},
+  auth:{'Emotional':'Emocional','Sacral':'Sacral','Splenic':'Esplénica','Ego Manifested':'Ego Manifestado','Ego Projected':'Ego Proyectado','Self-Projected':'Autoproyectada','Mental (Outer Authority)':'Mental (Autoridad Externa)','Lunar':'Lunar'},
+  def:{'None':'Ninguna','Single Definition':'Definición Simple','Split Definition':'Definición Partida','Triple Split Definition':'Triple Partida','Quadruple Split Definition':'Cuádruple Partida'},
+  angle:{'Right Angle':'Ángulo Derecho','Juxtaposition':'Yuxtaposición','Left Angle':'Ángulo Izquierdo'},
+  spheres:{lifesWork:'Obra de Vida',evolution:'Evolución',radiance:'Radiancia',purpose:'Propósito'},
+  your:{lifesWork:'tu Obra de Vida',evolution:'tu Evolución',radiance:'tu Radiancia',purpose:'tu Propósito'},
+  src:{lifesWork:'Sol de la Personalidad',evolution:'Tierra de la Personalidad',radiance:'Sol del Diseño',purpose:'Tierra del Diseño'},P:'Personalidad',D:'Diseño'}};
+
+/* UI strings and writing. Functions take the values they need. */
+const S={
+en:{
+ gate:{title:'🔥 Free while the Phoenix sleeps',p1:'The Soul Almanac is open to you freely as we move toward 2027, when, in Human Design, the great cycle turns and the Sleeping Phoenix begins to wake. Until then, every page is yours to explore: the days, the Moon, the Gates and the Gene Keys.',p2:'This is a living almanac, and your experience shapes it. If something touches you, or something could be clearer, I would love to hear from you. And if it brings light to your days, you\'re welcome to leave a little offering at <a href="https://ko-fi.com/cinwicca" target="_blank" rel="noopener">ko-fi.com/cinwicca</a>.',sign:'With gratitude, Cin',
+  lead:'Leave your email to enter.',email:'Your email',name:'Your name (optional)',news:'Yes, send me news of the almanac and of Cinwicca. I can leave at any time.',privacy:'Your email opens the almanac for you. It is used for news only if you tick the box above. Your birth data, if you add it later, never leaves your browser.',enter:'Enter the almanac',err:'Please enter a valid email.',sending:'Opening…'},
+ nav:{today:'Today',year:'The Year',keys:'64 Keys',me:'My Almanac',about:'How to read',home:'← Cinwicca'},
+ searchPh:'A key, a date, an event',brandSmall:'ALMANAC 2027',
+ foot1:'Positions from the Swiss Ephemeris (Astrodienst AG), read at 07:00 UK time.',foot2:'← Back to cinwicca.com',foot2b:'Soul Path Readings by Cintia de Godoy',
+ foot3:'Gene Keys® is the work of Richard Rudd; Human Design is the work of Ra Uru Hu (Jovian Archive). This almanac is an independent companion; see',refs:'references',
+ coffee:'Offer a coffee',coffeeLine:'If the almanac nourishes you, <a class="gold" href="{u}" target="_blank" rel="noopener">offer a coffee ☕</a>, or any gift you wish.',
+ fb:{btn:'◆ Feedback',eyebrow:'Free first edition',title:'Your feedback',lead:'This almanac grows with the people who use it. What do you love, what is missing, what would you like to go deeper into?',about:'About',kinds:['Something I love','An idea or wish','A date or position looks wrong','Something does not work','Other'],msg:'Message',name:'Name (optional)',email:'Email (optional)',upd:'Keep me posted about new layers of the almanac.',close:'CLOSE',send:'Send',sending:'Sending…',thanks:'Thank you. Your words have arrived.',fail:'It could not be sent from here. Please try again in a moment.'},
+ special:{'2027-01-22':['Rave New Year','The Sun enters Gate 41, Decrease, the start codon of the wheel. The Human Design year begins: the seed of the next cycle is planted in what we are willing to let go.'],
+   '2027-02-15':['The Phoenix threshold','The threshold of the great mutation: the global cross turns from the Cross of Planning (9/16 · 37/40) towards the Cross of the Sleeping Phoenix (55/59 · 34/20). From the tribe to the individual soul; from bargain to freedom.']},
+ ev:{portal:(g,G,e)=>`Sun enters Gate ${g}, ${G} · Earth Gate ${e}`,phase:(p,s,gl)=>`${p} in ${s}, Gate ${gl}`,eclipse:(n,pos,gl)=>`${n}, ${pos}, Gate ${gl}`,
+   station:(b,dir,pos,gl)=>`${b} stations ${dir==='retrograde'?'retrograde':'direct'}, ${pos}, Gate ${gl}`,ingress:(b,s,rx)=>`${b} enters ${s}${rx?' (retrograde)':''}`,moonsign:s=>`Moon enters ${s}`},
+ aff:[null,g=>`I root myself in ${lc(g)}; what is true holds me.`,g=>`${g} lives in me naturally. When life calls, I answer.`,g=>`I let ${lc(g)} learn by trying. Nothing lived is wasted.`,g=>`I share ${lc(g)} with the people already around me.`,g=>`I offer ${lc(g)} where it is truly needed, and let the rest go.`,g=>`From a wider view, I let ${lc(g)} become an example.`],
+ prompt:{'New Moon':m=>`What wants to begin in you? Plant one small seed of ${lc(m)}.`,'Waxing Crescent':m=>`Where can ${lc(m)} take a first, gentle step today?`,'First Quarter':m=>`What needs a decision, so that ${lc(m)} can keep growing?`,'Waxing Gibbous':m=>`What can you refine, so that ${lc(m)} arrives whole?`,'Full Moon':m=>`What has come to light? Notice where ${lc(m)} is already present.`,'Waning Gibbous':m=>`Who could receive what you have learned about ${lc(m)}?`,'Last Quarter':m=>`What is ready to be put down, so that ${lc(m)} has room?`,'Waning Crescent':m=>`Rest. Where does ${lc(m)} want quiet more than effort?`},
+ q:[g=>`Where is ${lc(g)} asking for more room in your life?`,g=>`What would change this week if you trusted your ${lc(g)}?`,g=>`Who brings out your ${lc(g)}, and when did you last tell them?`,g=>`What small, real act of ${lc(g)} is available to you today?`],
+ watch:(sh,g)=>`Watch for ${lc(sh)}; it is the doorway to ${lc(g)}.`,
+ dayLine:(G,L)=>`${G}, in the key of ${lc(L)}.`,
+ wTitle:(a,b)=>`${a} into ${b}`,
+ wPortal:(g,ich,on,A,P)=>`The Sun opens Gate ${g}, ${ich}, ${on}: the week turns from ${lc(A)} towards ${lc(P)}.`,
+ wHold:(g,ich,A)=>`The Sun holds Gate ${g}, ${ich}, all week: a steady practice of ${lc(A)}.`,
+ wMoon:(list,ph)=>`The Moon crosses ${list}.${ph?' '+ph+'.':''}`,phOn:(p,on)=>`${p} ${on}`,inSky:'In the sky:',
+ axis:(g,eg,G,EG,mg,MG)=>`The Sun in Gate ${g} and the Earth opposite in Gate ${eg} make the day's axis: ${G} with ${lc(EG)} as its ground. The Moon in Gate ${mg} colours the feeling of the day with ${lc(MG)}.`,
+ home:{eyebrow:'Human Design · Gene Keys · Astrology',h1:'The Almanac',lede:"A year read in three layers: the Sun's path through the 64 gates, the Moon's rhythm, and the Gene Key that lives inside each day.",
+   today:d=>`Today is ${d}.`,opens:n=>`The year opens in ${n} day${n===1?'':'s'}.`,done:'The 2027 cycle is complete.',openToday:'Open today',open1:'Open 1 January',glance:'The year at a glance',
+   thisWeek:'This week',firstWeek:'The first week',week:'Week',openWeek:'Open the week →',thresholds:'Thresholds of 2027',moons:'The moons of 2027',
+   kd:[['New Moon','Gate 54.3, Aspiration'],['Rave New Year','Sun enters Gate 41'],['Annular solar eclipse','Gate 13.5, Discernment'],['The Phoenix threshold','The great mutation'],['Total solar eclipse','9°55′ Leo, Gate 33.3'],['December solstice','Sun enters Capricorn']],
+   fbEyebrow:'Free first edition',fbTitle:'Help shape the almanac',fbText:'The almanac is open and free while it grows. Tell me what you love, what is missing and where you would like to go deeper. If it nourishes you, a coffee keeps it growing.',share:'Share feedback',eclipse:'eclipse'},
+ book:{eyebrow:'The journal edition',text:'The whole year on paper and Kindle: weekly journal pages, a line for every day, the moons and the Phoenix threshold.',btn:'See the book'},
+ year:{eyebrow:'The year at a glance',lede:'Each month in Monday-to-Sunday weeks. A gold diamond marks a portal, the day the Sun opens a new gate. Shaded days hold a New Moon, ringed days a Full Moon.',portal:'Portal',nm:'New Moon',fm:'Full Moon',ecl:'Eclipse',portals:'portals',gates:'Gates'},
+ month:{back:'← The year',label:'Month',through:'Sun through gates',keys:'Keys this month',overview:'Overview',yourGate:'◆ your gate',portal:'Portal',ecl:'ecl.'},
+ day:{lit:'lit',reflection:'Reflection',sun:'SUN',moon:'MOON',aff:'Affirmation',prompt:'Prompt',sky:'The sky at 07:00 UK',events:'Events · UK time',quiet:'A quiet sky: no stations, phases or gate changes today.',bodies:'All bodies · 07:00 UK',line:'line',gk:'Gene Key',
+   tell:'Something looks off, or a wish for this page? <a href="#" data-fb="A date or position looks wrong" class="gold">Tell me</a>.',coffee:'If the almanac nourishes you, <a class="gold" href="{u}" target="_blank" rel="noopener">offer a coffee ☕</a>.',notIn:'The almanac holds 28 December 2026 to 2 January 2028.',week:'Week',sunGate:'SUN GATE',lineW:'LINE'},
+ spec:['Shadow','Gift','Siddhi'],
+ keys:{eyebrow:'The spine',h1:'The 64 Gene Keys',lede:'The same 64 numbers the calendar runs on, as gates of the Human Design wheel and hexagrams of the I Ching. Each key carries a shadow, a gift and a siddhi.',back:'← The 64 keys',gate:'Gate',wheel:'On the wheel',from:(a,b,c)=>`From ${a} to ${b}, in the ${c}.`,hex:'I Ching hexagram',in:'In 2027',sun:'Sun',earth:'Earth',moon:n=>`The Moon visits this gate on ${n} mornings of the year.`,key:'Key'},
+ search:{eyebrow:'Find',h1:'Search the almanac',ph:'A Gene Key, a date, or an event',tries:['Anticipation','41','New Moon','Mercury retrograde','eclipse','14 March','Portal 55','Rave New Year'],none:q=>`Nothing found for “${q}”. Try a key name, a number from 1 to 64, a date, or an event.`,keys:'Gene Keys',days:'Days',months:'Months',events:'Celestial events',sun:'Sun'},
+ nf:{h:'Not in the almanac',p:'This page does not exist.',home:'Home'},
+ aboutHTML:`<div class="eyebrow">How to read the almanac</div><h1 style="margin:12px 0 22px">Reading a day</h1>
+  <p>Every day opens with the sky at <b>07:00 UK time</b> (GMT until 28 March, BST until 31 October, then GMT again). Times of events are given in UK time too.</p>
+  <h3>Sun, Earth and Moon</h3><p>The Sun and the Earth always sit opposite each other: together they carry most of the day's tone. The Moon moves through about two gates a day and colours the feeling.</p>
+  <h3>Gate and line</h3><p>The zodiac is divided into 64 gates of 5°37′30″, starting with Gate 41 at 2° Aquarius. Each gate has six lines of 56′15″. A position such as <span class="gold">14.3</span> reads as Gate 14, line 3. The lines: 1 Foundation, 2 Nature, 3 Experiment, 4 Network, 5 Projection, 6 Vision.</p>
+  <h3>Portals</h3><p>A portal is the moment the Sun opens a new gate, about every five and a half days. The year has 64 of them, starting with Rave New Year on 22 January, when the Sun enters Gate 41.</p>
+  <h3>The Gene Key of the day</h3><p>Each gate is also a Gene Key: a spectrum from shadow through gift to siddhi. The almanac names the shadow not as a fault but as the doorway: what we notice, we can transform.</p>
+  <h3>Weeks</h3><p>Weeks run Monday to Sunday. Week 1 begins on 28 December 2026, so the almanac holds 53 weeks.</p>
+  <h3>My Almanac (beta)</h3><p>Enter your birth data once and the almanac calculates your Human Design (Type, Strategy, Authority, Profile, Definition, Cross) and your Gene Keys Activation Sequence. Each day then shows the gates the sky lights in your chart, the channels it completes and the centres it defines. Calculated in your browser and checked against the Swiss Ephemeris; your data is not sent anywhere.</p>
+  <h3>Three languages</h3><p>The almanac speaks Portuguese, English and Spanish. Gene Keys and I Ching names in Portuguese and Spanish are our own renderings; the original English names are those of Richard Rudd.</p>
+  <h3>References</h3>`,
+ aboutNote:'Gene Keys® is a registered mark of Richard Rudd / Gene Keys Publishing. Human Design is the work of Ra Uru Hu. This almanac is an independent work by Cintia de Godoy; all affirmations, prompts and overviews are original. Prepared with digital tools, including Claude (Anthropic).',
+ freeEyebrow:'Free while it grows',freeText:'This almanac is offered freely. If it brings you something, a coffee or any gift you wish helps it keep growing.'
+},
+pt:{
+ gate:{title:'🔥 Grátis enquanto a Fênix dorme',p1:'O Almanaque da Alma está aberto a você, gratuitamente, enquanto caminhamos rumo a 2027, quando, no Human Design, o grande ciclo se transforma e a Fênix Adormecida começa a despertar. Até lá, cada página é sua para explorar: os dias, a Lua, os Portais e as Chaves Genéticas.',p2:'Este é um almanaque vivo, e a sua experiência ajuda a moldá-lo. Se algo tocar você, ou puder ficar mais claro, eu adoraria ouvir. E se ele trouxer luz aos seus dias, você pode deixar uma pequena oferta em <a href="https://ko-fi.com/cinwicca" target="_blank" rel="noopener">ko-fi.com/cinwicca</a>.',sign:'Com gratidão, Cin',
+  lead:'Deixe o seu e-mail para entrar.',email:'O seu e-mail',name:'O seu nome (opcional)',news:'Sim, quero receber novidades do almanaque e da Cinwicca. Posso sair quando quiser.',privacy:'O seu e-mail abre o almanaque para você. Ele só será usado para novidades se você marcar a caixinha acima. Os seus dados de nascimento, se você os colocar depois, nunca saem do seu navegador.',enter:'Entrar no almanaque',err:'Coloque um e-mail válido.',sending:'Abrindo…'},
+ nav:{today:'Hoje',year:'O Ano',keys:'64 Chaves',me:'Meu Almanaque',about:'Como ler',home:'← Cinwicca'},
+ searchPh:'Uma chave, uma data, um evento',brandSmall:'ALMANAQUE 2027',
+ foot1:'Posições da Swiss Ephemeris (Astrodienst AG), lidas às 07:00, hora do Reino Unido.',foot2:'← Voltar a cinwicca.com',foot2b:'Leituras do Caminho da Alma por Cintia de Godoy',
+ foot3:'Gene Keys® é obra de Richard Rudd; o Human Design é obra de Ra Uru Hu (Jovian Archive). Este almanaque é um companheiro independente; veja as',refs:'referências',
+ coffee:'Oferecer um café',coffeeLine:'Se o almanaque te nutre, <a class="gold" href="{u}" target="_blank" rel="noopener">ofereça um café ☕</a>, ou o presente que desejar.',
+ fb:{btn:'◆ Sua opinião',eyebrow:'Primeira edição, gratuita',title:'A sua opinião',lead:'Este almanaque cresce com quem o usa. O que você ama, o que falta, onde gostaria de ir mais fundo?',about:'Sobre',kinds:['Algo que eu amo','Uma ideia ou desejo','Uma data ou posição parece errada','Algo não funciona','Outro'],msg:'Mensagem',name:'Nome (opcional)',email:'E-mail (opcional)',upd:'Quero saber das novas camadas do almanaque.',close:'FECHAR',send:'Enviar',sending:'Enviando…',thanks:'Obrigada. As suas palavras chegaram.',fail:'Não foi possível enviar daqui. Tente de novo em um instante.'},
+ special:{'2027-01-22':['Ano Novo Rave','O Sol entra no Portal 41, a Diminuição, o códon de início da mandala. Começa o ano do Human Design: a semente do próximo ciclo é plantada naquilo que estamos dispostas a soltar.'],
+   '2027-02-15':['O limiar da Fênix','O limiar da grande mutação: a cruz global passa da Cruz do Planejamento (9/16 · 37/40) para a Cruz da Fênix Adormecida (55/59 · 34/20). Da tribo para a alma individual; da barganha para a liberdade.']},
+ ev:{portal:(g,G,e)=>`O Sol entra no Portal ${g}, ${G} · Terra no Portal ${e}`,phase:(p,s,gl)=>`${p} em ${s}, Portal ${gl}`,eclipse:(n,pos,gl)=>`${n}, ${pos}, Portal ${gl}`,
+   station:(b,dir,pos,gl)=>`Estação ${dir==='retrograde'?'retrógrada':'direta'} de ${b}, ${pos}, Portal ${gl}`,ingress:(b,s,rx)=>`${b} entra em ${s}${rx?' (em retrogradação)':''}`,moonsign:s=>`A Lua entra em ${s}`},
+ aff:[null,g=>`Enraízo-me em ${g}: o que é verdadeiro me sustenta.`,g=>`${g} é natural em mim. Quando a vida chama, eu respondo.`,g=>`Deixo ${g} aprender experimentando. Nada vivido se perde.`,g=>`Partilho ${g} com quem já está ao meu redor.`,g=>`Ofereço ${g} onde é de fato preciso, e deixo o resto ir.`,g=>`De um olhar mais amplo, deixo ${g} tornar-se exemplo.`],
+ prompt:{'New Moon':m=>`O que quer começar em você? Plante uma pequena semente de ${m}.`,'Waxing Crescent':m=>`Por onde ${m} pode dar hoje um primeiro passo, suave?`,'First Quarter':m=>`Que decisão é necessária para que ${m} continue crescendo?`,'Waxing Gibbous':m=>`O que você pode refinar, para que ${m} chegue por inteiro?`,'Full Moon':m=>`O que veio à luz? Perceba onde ${m} já está presente.`,'Waning Gibbous':m=>`Quem poderia receber o que você aprendeu sobre ${m}?`,'Last Quarter':m=>`O que está pronto para ser deixado, para que ${m} tenha espaço?`,'Waning Crescent':m=>`Descanse. Onde ${m} pede mais silêncio do que esforço?`},
+ q:[g=>`Onde ${g} pede mais espaço na sua vida?`,g=>`O que mudaria nesta semana se você confiasse em ${g}?`,g=>`Quem desperta ${g} em você — e quando foi a última vez que disse isso a essa pessoa?`,g=>`Que pequeno gesto real de ${g} está ao seu alcance hoje?`],
+ watch:(sh,g)=>`Observe ${sh}: é a porta para ${g}.`,
+ dayLine:(G,L)=>`${G}, em tom de ${L}.`,
+ wTitle:(a,b)=>`De ${a} a ${b}`,
+ wPortal:(g,ich,on,A,P)=>`O Sol abre o Portal ${g}, ${ich}, ${on}: a semana passa de ${A} para ${P}.`,
+ wHold:(g,ich,A)=>`O Sol permanece no Portal ${g}, ${ich}, a semana inteira: uma prática constante de ${A}.`,
+ wMoon:(list,ph)=>`A Lua atravessa ${list}.${ph?' '+ph+'.':''}`,phOn:(p,on)=>`${p} ${on}`,inSky:'No céu:',
+ axis:(g,eg,G,EG,mg,MG)=>`O Sol no Portal ${g} e a Terra oposta no Portal ${eg} formam o eixo do dia: ${G}, com ${EG} como chão. A Lua no Portal ${mg} dá ao sentimento do dia a cor de ${MG}.`,
+ home:{eyebrow:'Human Design · Gene Keys · Astrologia',h1:'O Almanaque',lede:'Um ano lido em três camadas: o caminho do Sol pelos 64 portais, o ritmo da Lua, e a Gene Key que vive dentro de cada dia.',
+   today:d=>`Hoje é ${d}.`,opens:n=>`O ano começa em ${n} dia${n===1?'':'s'}.`,done:'O ciclo de 2027 se completou.',openToday:'Abrir hoje',open1:'Abrir 1º de janeiro',glance:'O ano num olhar',
+   thisWeek:'Esta semana',firstWeek:'A primeira semana',week:'Semana',openWeek:'Abrir a semana →',thresholds:'Limiares de 2027',moons:'As luas de 2027',
+   kd:[['Lua Nova','Portal 54.3, Aspiração'],['Ano Novo Rave','O Sol entra no Portal 41'],['Eclipse solar anular','Portal 13.5, Discernimento'],['O limiar da Fênix','A grande mutação'],['Eclipse solar total','9°55′ Leão, Portal 33.3'],['Solstício de dezembro','O Sol entra em Capricórnio']],
+   fbEyebrow:'Primeira edição, gratuita',fbTitle:'Ajude a dar forma ao almanaque',fbText:'O almanaque está aberto e gratuito enquanto cresce. Conte o que você ama, o que falta e onde gostaria de ir mais fundo. Se ele te nutre, um café o ajuda a crescer.',share:'Dar a minha opinião',eclipse:'eclipse'},
+ book:{eyebrow:'A edição diário',text:'O ano inteiro em papel e Kindle: páginas de diário semanais, uma linha para cada dia, as luas e o limiar da Fênix.',btn:'Ver o livro'},
+ year:{eyebrow:'O ano num olhar',lede:'Cada mês em semanas de segunda a domingo. Um losango dourado marca um portal, o dia em que o Sol abre um novo portal. Dias sombreados trazem uma Lua Nova; dias com círculo, uma Lua Cheia.',portal:'Portal',nm:'Lua Nova',fm:'Lua Cheia',ecl:'Eclipse',portals:'portais',gates:'Portais'},
+ month:{back:'← O ano',label:'Mês',through:'O Sol pelos portais',keys:'Chaves do mês',overview:'Panorama',yourGate:'◆ o seu portal',portal:'Portal',ecl:'ecl.'},
+ day:{lit:'iluminada',reflection:'Reflexão',sun:'SOL',moon:'LUA',aff:'Afirmação',prompt:'Pergunta',sky:'O céu às 07:00 (Reino Unido)',events:'Eventos · hora do Reino Unido',quiet:'Um céu quieto: sem estações, fases ou mudanças de portal hoje.',bodies:'Todos os corpos · 07:00 (Reino Unido)',line:'linha',gk:'Gene Key',
+   tell:'Algo parece errado, ou um desejo para esta página? <a href="#" data-fb="A date or position looks wrong" class="gold">Conte para mim</a>.',coffee:'Se o almanaque te nutre, <a class="gold" href="{u}" target="_blank" rel="noopener">ofereça um café ☕</a>.',notIn:'O almanaque vai de 28 de dezembro de 2026 a 2 de janeiro de 2028.',week:'Semana',sunGate:'PORTAL DO SOL',lineW:'LINHA'},
+ spec:['Sombra','Dom','Siddhi'],
+ keys:{eyebrow:'A espinha dorsal',h1:'As 64 Gene Keys',lede:'Os mesmos 64 números que movem o calendário: portais da mandala do Human Design e hexagramas do I Ching. Cada chave traz uma sombra, um dom e um siddhi.',back:'← As 64 chaves',gate:'Portal',wheel:'Na mandala',from:(a,b,c)=>`De ${a} a ${b}, no centro ${c}.`,hex:'Hexagrama do I Ching',in:'Em 2027',sun:'Sol',earth:'Terra',moon:n=>`A Lua visita este portal em ${n} manhãs do ano.`,key:'Chave'},
+ search:{eyebrow:'Buscar',h1:'Buscar no almanaque',ph:'Uma Gene Key, uma data ou um evento',tries:['Antecipação','41','Lua Nova','Mercúrio retrógrado','eclipse','14 de março','Portal 55','Ano Novo Rave'],none:q=>`Nada encontrado para “${q}”. Tente o nome de uma chave, um número de 1 a 64, uma data ou um evento.`,keys:'Gene Keys',days:'Dias',months:'Meses',events:'Eventos celestes',sun:'Sol'},
+ nf:{h:'Não está no almanaque',p:'Esta página não existe.',home:'Início'},
+ aboutHTML:`<div class="eyebrow">Como ler o almanaque</div><h1 style="margin:12px 0 22px">Lendo um dia</h1>
+  <p>Cada dia abre com o céu às <b>07:00, hora do Reino Unido</b> (GMT até 28 de março, BST até 31 de outubro, depois GMT de novo). Os horários dos eventos também estão na hora do Reino Unido.</p>
+  <h3>Sol, Terra e Lua</h3><p>O Sol e a Terra estão sempre em oposição: juntos, carregam a maior parte do tom do dia. A Lua atravessa cerca de dois portais por dia e dá cor ao sentimento.</p>
+  <h3>Portal e linha</h3><p>O zodíaco é dividido em 64 portais de 5°37′30″, começando pelo Portal 41 a 2° de Aquário. Cada portal tem seis linhas de 56′15″. Uma posição como <span class="gold">14.3</span> se lê Portal 14, linha 3. As linhas: 1 Fundação, 2 Natureza, 3 Experimento, 4 Rede, 5 Projeção, 6 Visão.</p>
+  <h3>Portais do Sol</h3><p>Um portal é o momento em que o Sol abre um novo portal, mais ou menos a cada cinco dias e meio. O ano tem 64 deles, começando pelo Ano Novo Rave, em 22 de janeiro, quando o Sol entra no Portal 41.</p>
+  <h3>A Gene Key do dia</h3><p>Cada portal é também uma Gene Key: um espectro da sombra, pelo dom, até o siddhi. O almanaque nomeia a sombra não como defeito, mas como porta: o que percebemos, podemos transformar.</p>
+  <h3>Semanas</h3><p>As semanas vão de segunda a domingo. A Semana 1 começa em 28 de dezembro de 2026; o almanaque tem 53 semanas.</p>
+  <h3>Meu Almanaque (beta)</h3><p>Coloque os seus dados de nascimento uma vez e o almanaque calcula o seu Human Design (Tipo, Estratégia, Autoridade, Perfil, Definição, Cruz) e a sua Sequência de Ativação das Gene Keys. A partir daí, cada dia mostra os portais que o céu acende no seu mapa, os canais que completa e os centros que define. Calculado no seu navegador e conferido com a Swiss Ephemeris; os seus dados não são enviados a lugar nenhum.</p>
+  <h3>Três línguas</h3><p>O almanaque fala português, inglês e espanhol. Os nomes das Gene Keys e do I Ching em português e espanhol são traduções nossas; os nomes originais em inglês são de Richard Rudd.</p>
+  <h3>Referências</h3>`,
+ aboutNote:'Gene Keys® é marca registrada de Richard Rudd / Gene Keys Publishing. O Human Design é obra de Ra Uru Hu. Este almanaque é uma obra independente de Cintia de Godoy; todas as afirmações, perguntas e panoramas são originais. Preparado com ferramentas digitais, incluindo Claude (Anthropic).',
+ freeEyebrow:'Gratuito enquanto cresce',freeText:'Este almanaque é oferecido de graça. Se ele te traz algo, um café ou o presente que desejar o ajuda a continuar crescendo.'
+},
+es:{
+ gate:{title:'🔥 Gratis mientras el Fénix duerme',p1:'El Almanaque del Alma está abierto para ti, de forma gratuita, mientras caminamos hacia 2027, cuando, en el Human Design, el gran ciclo se transforma y el Fénix Dormido comienza a despertar. Hasta entonces, cada página es tuya para explorar: los días, la Luna, las Puertas y las Claves Genéticas.',p2:'Este es un almanaque vivo, y tu experiencia ayuda a darle forma. Si algo te toca, o podría ser más claro, me encantaría escucharte. Y si trae luz a tus días, puedes dejar una pequeña ofrenda en <a href="https://ko-fi.com/cinwicca" target="_blank" rel="noopener">ko-fi.com/cinwicca</a>.',sign:'Con gratitud, Cin',
+  lead:'Deja tu correo para entrar.',email:'Tu correo',name:'Tu nombre (opcional)',news:'Sí, quiero recibir novedades del almanaque y de Cinwicca. Puedo darme de baja cuando quiera.',privacy:'Tu correo te abre el almanaque. Solo se usará para novedades si marcas la casilla de arriba. Tus datos de nacimiento, si los añades después, nunca salen de tu navegador.',enter:'Entrar al almanaque',err:'Introduce un correo válido.',sending:'Abriendo…'},
+ nav:{today:'Hoy',year:'El Año',keys:'64 Claves',me:'Mi Almanaque',about:'Cómo leer',home:'← Cinwicca'},
+ searchPh:'Una clave, una fecha, un evento',brandSmall:'ALMANAQUE 2027',
+ foot1:'Posiciones de la Swiss Ephemeris (Astrodienst AG), leídas a las 07:00, hora del Reino Unido.',foot2:'← Volver a cinwicca.com',foot2b:'Lecturas del Camino del Alma por Cintia de Godoy',
+ foot3:'Gene Keys® es obra de Richard Rudd; el Human Design es obra de Ra Uru Hu (Jovian Archive). Este almanaque es un compañero independiente; ver las',refs:'referencias',
+ coffee:'Invitar a un café',coffeeLine:'Si el almanaque te nutre, <a class="gold" href="{u}" target="_blank" rel="noopener">invítame a un café ☕</a>, o al regalo que desees.',
+ fb:{btn:'◆ Tu opinión',eyebrow:'Primera edición, gratuita',title:'Tu opinión',lead:'Este almanaque crece con quienes lo usan. ¿Qué te encanta, qué falta, dónde te gustaría ir más hondo?',about:'Sobre',kinds:['Algo que me encanta','Una idea o un deseo','Una fecha o posición parece errónea','Algo no funciona','Otro'],msg:'Mensaje',name:'Nombre (opcional)',email:'Correo (opcional)',upd:'Quiero saber de las nuevas capas del almanaque.',close:'CERRAR',send:'Enviar',sending:'Enviando…',thanks:'Gracias. Tus palabras han llegado.',fail:'No se pudo enviar desde aquí. Inténtalo de nuevo en un momento.'},
+ special:{'2027-01-22':['Año Nuevo Rave','El Sol entra en la Puerta 41, la Disminución, el codón de inicio del mandala. Empieza el año del Human Design: la semilla del próximo ciclo se planta en aquello que estamos dispuestas a soltar.'],
+   '2027-02-15':['El umbral del Fénix','El umbral de la gran mutación: la cruz global pasa de la Cruz de la Planificación (9/16 · 37/40) a la Cruz del Fénix Dormido (55/59 · 34/20). De la tribu al alma individual; del trato a la libertad.']},
+ ev:{portal:(g,G,e)=>`El Sol entra en la Puerta ${g}, ${G} · Tierra en la Puerta ${e}`,phase:(p,s,gl)=>`${p} en ${s}, Puerta ${gl}`,eclipse:(n,pos,gl)=>`${n}, ${pos}, Puerta ${gl}`,
+   station:(b,dir,pos,gl)=>`Estación ${dir==='retrograde'?'retrógrada':'directa'} de ${b}, ${pos}, Puerta ${gl}`,ingress:(b,s,rx)=>`${b} entra en ${s}${rx?' (en retrogradación)':''}`,moonsign:s=>`La Luna entra en ${s}`},
+ aff:[null,g=>`Me enraízo en ${g}: lo verdadero me sostiene.`,g=>`${g} es natural en mí. Cuando la vida llama, respondo.`,g=>`Dejo que ${g} aprenda probando. Nada vivido se pierde.`,g=>`Comparto ${g} con quienes ya están a mi alrededor.`,g=>`Ofrezco ${g} donde de verdad se necesita, y dejo ir el resto.`,g=>`Desde una mirada más amplia, dejo que ${g} se vuelva ejemplo.`],
+ prompt:{'New Moon':m=>`¿Qué quiere empezar en ti? Planta una pequeña semilla de ${m}.`,'Waxing Crescent':m=>`¿Por dónde puede ${m} dar hoy un primer paso, suave?`,'First Quarter':m=>`¿Qué decisión hace falta para que ${m} siga creciendo?`,'Waxing Gibbous':m=>`¿Qué puedes afinar para que ${m} llegue por entero?`,'Full Moon':m=>`¿Qué ha salido a la luz? Nota dónde ${m} ya está presente.`,'Waning Gibbous':m=>`¿Quién podría recibir lo que has aprendido sobre ${m}?`,'Last Quarter':m=>`¿Qué está listo para soltarse, para que ${m} tenga espacio?`,'Waning Crescent':m=>`Descansa. ¿Dónde pide ${m} más quietud que esfuerzo?`},
+ q:[g=>`¿Dónde pide ${g} más espacio en tu vida?`,g=>`¿Qué cambiaría esta semana si confiaras en ${g}?`,g=>`¿Quién despierta ${g} en ti — y cuándo se lo dijiste por última vez?`,g=>`¿Qué pequeño gesto real de ${g} tienes hoy a tu alcance?`],
+ watch:(sh,g)=>`Observa ${sh}: es la puerta hacia ${g}.`,
+ dayLine:(G,L)=>`${G}, en clave de ${L}.`,
+ wTitle:(a,b)=>`De ${a} a ${b}`,
+ wPortal:(g,ich,on,A,P)=>`El Sol abre la Puerta ${g}, ${ich}, ${on}: la semana pasa de ${A} a ${P}.`,
+ wHold:(g,ich,A)=>`El Sol permanece en la Puerta ${g}, ${ich}, toda la semana: una práctica constante de ${A}.`,
+ wMoon:(list,ph)=>`La Luna cruza ${list}.${ph?' '+ph+'.':''}`,phOn:(p,on)=>`${p} ${on}`,inSky:'En el cielo:',
+ axis:(g,eg,G,EG,mg,MG)=>`El Sol en la Puerta ${g} y la Tierra opuesta en la Puerta ${eg} forman el eje del día: ${G}, con ${EG} como suelo. La Luna en la Puerta ${mg} da al sentimiento del día el color de ${MG}.`,
+ home:{eyebrow:'Human Design · Gene Keys · Astrología',h1:'El Almanaque',lede:'Un año leído en tres capas: el camino del Sol por las 64 puertas, el ritmo de la Luna, y la Gene Key que vive dentro de cada día.',
+   today:d=>`Hoy es ${d}.`,opens:n=>`El año empieza en ${n} día${n===1?'':'s'}.`,done:'El ciclo de 2027 se ha completado.',openToday:'Abrir hoy',open1:'Abrir el 1 de enero',glance:'El año de un vistazo',
+   thisWeek:'Esta semana',firstWeek:'La primera semana',week:'Semana',openWeek:'Abrir la semana →',thresholds:'Umbrales de 2027',moons:'Las lunas de 2027',
+   kd:[['Luna Nueva','Puerta 54.3, Aspiración'],['Año Nuevo Rave','El Sol entra en la Puerta 41'],['Eclipse solar anular','Puerta 13.5, Discernimiento'],['El umbral del Fénix','La gran mutación'],['Eclipse solar total','9°55′ Leo, Puerta 33.3'],['Solsticio de diciembre','El Sol entra en Capricornio']],
+   fbEyebrow:'Primera edición, gratuita',fbTitle:'Ayuda a dar forma al almanaque',fbText:'El almanaque está abierto y es gratuito mientras crece. Cuéntame qué te encanta, qué falta y dónde te gustaría ir más hondo. Si te nutre, un café lo ayuda a crecer.',share:'Dar mi opinión',eclipse:'eclipse'},
+ book:{eyebrow:'La edición diario',text:'El año entero en papel y Kindle: páginas de diario semanales, una línea para cada día, las lunas y el umbral del Fénix.',btn:'Ver el libro'},
+ year:{eyebrow:'El año de un vistazo',lede:'Cada mes en semanas de lunes a domingo. Un rombo dorado marca un portal, el día en que el Sol abre una nueva puerta. Los días sombreados traen una Luna Nueva; los rodeados, una Luna Llena.',portal:'Portal',nm:'Luna Nueva',fm:'Luna Llena',ecl:'Eclipse',portals:'portales',gates:'Puertas'},
+ month:{back:'← El año',label:'Mes',through:'El Sol por las puertas',keys:'Claves del mes',overview:'Panorama',yourGate:'◆ tu puerta',portal:'Portal',ecl:'ecl.'},
+ day:{lit:'iluminada',reflection:'Reflexión',sun:'SOL',moon:'LUNA',aff:'Afirmación',prompt:'Pregunta',sky:'El cielo a las 07:00 (Reino Unido)',events:'Eventos · hora del Reino Unido',quiet:'Un cielo tranquilo: sin estaciones, fases ni cambios de puerta hoy.',bodies:'Todos los cuerpos · 07:00 (Reino Unido)',line:'línea',gk:'Gene Key',
+   tell:'¿Algo parece erróneo, o un deseo para esta página? <a href="#" data-fb="A date or position looks wrong" class="gold">Cuéntamelo</a>.',coffee:'Si el almanaque te nutre, <a class="gold" href="{u}" target="_blank" rel="noopener">invítame a un café ☕</a>.',notIn:'El almanaque va del 28 de diciembre de 2026 al 2 de enero de 2028.',week:'Semana',sunGate:'PUERTA DEL SOL',lineW:'LÍNEA'},
+ spec:['Sombra','Don','Siddhi'],
+ keys:{eyebrow:'La columna',h1:'Las 64 Gene Keys',lede:'Los mismos 64 números que mueven el calendario: puertas del mandala del Human Design y hexagramas del I Ching. Cada clave lleva una sombra, un don y un siddhi.',back:'← Las 64 claves',gate:'Puerta',wheel:'En el mandala',from:(a,b,c)=>`De ${a} a ${b}, en el centro ${c}.`,hex:'Hexagrama del I Ching',in:'En 2027',sun:'Sol',earth:'Tierra',moon:n=>`La Luna visita esta puerta ${n} mañanas del año.`,key:'Clave'},
+ search:{eyebrow:'Buscar',h1:'Buscar en el almanaque',ph:'Una Gene Key, una fecha o un evento',tries:['Anticipación','41','Luna Nueva','Mercurio retrógrado','eclipse','14 de marzo','Portal 55','Año Nuevo Rave'],none:q=>`Nada encontrado para “${q}”. Prueba el nombre de una clave, un número del 1 al 64, una fecha o un evento.`,keys:'Gene Keys',days:'Días',months:'Meses',events:'Eventos celestes',sun:'Sol'},
+ nf:{h:'No está en el almanaque',p:'Esta página no existe.',home:'Inicio'},
+ aboutHTML:`<div class="eyebrow">Cómo leer el almanaque</div><h1 style="margin:12px 0 22px">Leer un día</h1>
+  <p>Cada día abre con el cielo a las <b>07:00, hora del Reino Unido</b> (GMT hasta el 28 de marzo, BST hasta el 31 de octubre, luego GMT de nuevo). Las horas de los eventos también están en hora del Reino Unido.</p>
+  <h3>Sol, Tierra y Luna</h3><p>El Sol y la Tierra están siempre en oposición: juntos llevan la mayor parte del tono del día. La Luna cruza unas dos puertas al día y da color al sentimiento.</p>
+  <h3>Puerta y línea</h3><p>El zodiaco se divide en 64 puertas de 5°37′30″, empezando por la Puerta 41 a 2° de Acuario. Cada puerta tiene seis líneas de 56′15″. Una posición como <span class="gold">14.3</span> se lee Puerta 14, línea 3. Las líneas: 1 Fundamento, 2 Naturaleza, 3 Experimento, 4 Red, 5 Proyección, 6 Visión.</p>
+  <h3>Portales</h3><p>Un portal es el momento en que el Sol abre una nueva puerta, más o menos cada cinco días y medio. El año tiene 64, empezando por el Año Nuevo Rave, el 22 de enero, cuando el Sol entra en la Puerta 41.</p>
+  <h3>La Gene Key del día</h3><p>Cada puerta es también una Gene Key: un espectro de la sombra, por el don, hasta el siddhi. El almanaque nombra la sombra no como defecto, sino como puerta: lo que notamos, lo podemos transformar.</p>
+  <h3>Semanas</h3><p>Las semanas van de lunes a domingo. La Semana 1 empieza el 28 de diciembre de 2026; el almanaque tiene 53 semanas.</p>
+  <h3>Mi Almanaque (beta)</h3><p>Introduce tus datos de nacimiento una vez y el almanaque calcula tu Human Design (Tipo, Estrategia, Autoridad, Perfil, Definición, Cruz) y tu Secuencia de Activación de las Gene Keys. Desde entonces, cada día muestra las puertas que el cielo enciende en tu carta, los canales que completa y los centros que define. Calculado en tu navegador y verificado con la Swiss Ephemeris; tus datos no se envían a ningún sitio.</p>
+  <h3>Tres lenguas</h3><p>El almanaque habla portugués, inglés y español. Los nombres de las Gene Keys y del I Ching en portugués y español son traducciones nuestras; los nombres originales en inglés son de Richard Rudd.</p>
+  <h3>Referencias</h3>`,
+ aboutNote:'Gene Keys® es marca registrada de Richard Rudd / Gene Keys Publishing. El Human Design es obra de Ra Uru Hu. Este almanaque es una obra independiente de Cintia de Godoy; todas las afirmaciones, preguntas y panoramas son originales. Preparado con herramientas digitales, incluido Claude (Anthropic).',
+ freeEyebrow:'Gratuito mientras crece',freeText:'Este almanaque se ofrece gratis. Si te aporta algo, un café o el regalo que desees lo ayuda a seguir creciendo.'
+}};
+const lc = s => s.toLowerCase();
+const T = () => S[LANG];
+const Wl = () => W[LANG];
+const HDl = () => HD[LANG];
+const K = new Proxy({}, {get:(_,g)=>KEYS[LANG][g]});
+const chName = key => LANG==='en' ? HDChart.CHANNEL_NAMES[key] : CHANNEL_T[LANG][key];
+const SIGN_IDX = Object.fromEntries(W.en.signs.map((s,i)=>[s,i]));
+const signT = en => Wl().signs[SIGN_IDX[en]];
+const phT = en => Wl().phases[en]||en;
+
+
+const CENTRES = {Head:[64,61,63],Ajna:[47,24,4,17,43,11],Throat:[62,23,56,35,12,45,33,8,31,20,16],G:[1,13,25,46,2,15,10,7],
+  Heart:[21,40,26,51],Spleen:[48,57,44,50,32,28,18],Sacral:[5,14,29,59,9,3,42,27,34],SolarPlexus:[6,37,22,36,30,55,49],Root:[53,60,52,19,39,41,58,38,54]};
+const centreOf = g => {for (const c in CENTRES) if (CENTRES[c].includes(g)) return Wl().centres[c];};
 const SG = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'].map(s=>s+'︎');
 const PG = {sun:'☉',earth:'⊕',moon:'☽',mercury:'☿',venus:'♀',mars:'♂',jupiter:'♃',saturn:'♄',uranus:'♅',neptune:'♆',pluto:'♇',node:'☊',snode:'☋'};
-const PN = {sun:'Sun',earth:'Earth',moon:'Moon',mercury:'Mercury',venus:'Venus',mars:'Mars',jupiter:'Jupiter',saturn:'Saturn',uranus:'Uranus',neptune:'Neptune',pluto:'Pluto',node:'North Node',snode:'South Node'};
 const ALL = ['sun','earth','moon','mercury','venus','mars','jupiter','saturn','uranus','neptune','pluto','node','snode'];
-const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-const WD = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const PN = new Proxy({}, {get:(_,k)=>Wl().bodies[k]});
+const LINE = l => Wl().lines[l];
 
 const ORDER = SKY.order;
 function gl(lon){const x=((lon-302)%360+360)%360;const i=Math.floor(x/5.625);return [ORDER[i],Math.floor((x-i*5.625)/0.9375)+1];}
 function dms(lon){const s=Math.floor(lon/30);let d=lon-s*30;let deg=Math.floor(d);let m=Math.round((d-deg)*60);if(m===60){m=0;deg++;}return {deg,m,s};}
-const fmtLon = lon => {const v=dms(lon);return `${v.deg}°${String(v.m).padStart(2,'0')}′ <span class="g">${SG[v.s]}</span> ${SIGNS[v.s]}`;};
+const fmtLon = lon => {const v=dms(lon);return `${v.deg}°${String(v.m).padStart(2,'0')}′ <span class="g">${SG[v.s]}</span> ${Wl().signs[v.s]}`;};
+function fmtPlain(lon){const v=dms(lon);return `${v.deg}°${String(v.m).padStart(2,'0')}′ ${Wl().signs[v.s]}`;}
 
 /* ---------- dates ---------- */
 const DAY = {}; SKY.days.forEach((d,i)=>{d.i=i;DAY[d.date]=d;});
@@ -696,36 +1038,37 @@ const D = s => new Date(s+'T12:00:00Z');
 const iso = dt => dt.toISOString().slice(0,10);
 const addDays = (s,n) => {const t=D(s);t.setUTCDate(t.getUTCDate()+n);return iso(t);};
 const wd = s => D(s).getUTCDay();
-const nice = (s,opt={}) => {const t=D(s);return `${opt.wd?WD[t.getUTCDay()]+', ':''}${t.getUTCDate()} ${MONTHS[t.getUTCMonth()]}${opt.y?' '+t.getUTCFullYear():''}`;};
-const short = s => {const t=D(s);return `${WD[t.getUTCDay()].slice(0,3)} ${t.getUTCDate()} ${MONTHS[t.getUTCMonth()].slice(0,3)}`;};
+function nice(s,opt={}){const t=D(s),w=Wl(),dd=t.getUTCDate(),mo=w.months[t.getUTCMonth()],y=t.getUTCFullYear(),wn=opt.wd?w.wd[t.getUTCDay()]+', ':'';
+  if(LANG==='en') return `${wn}${dd} ${mo}${opt.y?' '+y:''}`;
+  return `${wn}${dd} de ${mo}${opt.y?' de '+y:''}`;}
+function short(s){const t=D(s),w=Wl();return `${w.wd3[t.getUTCDay()]} ${t.getUTCDate()} ${w.mon3[t.getUTCMonth()]}`;}
+const monthName = i => {const m=Wl().months[i];return m.charAt(0).toUpperCase()+m.slice(1);};
 const FIRST='2027-01-01', LAST='2027-12-31', W1='2026-12-28';
 const todayISO = () => { const t=new Date(); return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London'}).format(t); };
 const weekNo = s => Math.floor((D(s)-D(W1))/864e5/7)+1;
 const weekStart = n => addDays(W1,(n-1)*7);
+const listAnd = a => a.length<2?a.join(''):a.slice(0,-1).join(', ')+Wl().and+a[a.length-1];
 
 /* ---------- events ---------- */
-const EV = {}; // by date
+const EV = {};
 SKY.events.forEach(e=>{const d=e.time.slice(0,10);(EV[d]=EV[d]||[]).push(e);});
-const SPECIAL = {
- '2027-01-22':{title:'Rave New Year',text:'The Sun enters Gate 41, Decrease, the start codon of the wheel. The Human Design year begins: the seed of the next cycle is planted in what we are willing to let go.'},
- '2027-02-15':{title:'The Phoenix threshold',text:'The threshold of the great mutation: the global cross turns from the Cross of Planning (9/16 · 37/40) towards the Cross of the Sleeping Phoenix (55/59 · 34/20). From the tribe to the individual soul; from bargain to freedom.'}
-};
+const SPECIAL = new Proxy({}, {get:(_,d)=>{const s=T().special[d];return s?{title:s[0],text:s[1]}:undefined;}, has:(_,d)=>d in S.en.special, ownKeys:()=>Object.keys(S.en.special), getOwnPropertyDescriptor:()=>({enumerable:true,configurable:true})});
 const timeOf = e => e.time.slice(11);
 function evText(e){
+  const v=T().ev;
   switch(e.kind){
-    case 'portal': return `Sun enters Gate ${e.gate}, ${K[e.gate][2]} · Earth Gate ${e.earth}`;
-    case 'phase': return `${e.name} in ${SIGNS[Math.floor(e.lon/30)]}, Gate ${e.gate}.${e.line}`;
-    case 'eclipse': return `${e.name}, ${fmtPlain(e.lon)}, Gate ${e.gate}.${e.line}`;
-    case 'station': return `${PN[e.body]} stations ${e.dir}, ${fmtPlain(e.lon)}, Gate ${e.gate}.${e.line}`;
-    case 'ingress': return `${PN[e.body]} enters ${e.sign}${e.retro?' (retrograde)':''}`;
-    case 'moonsign': return `Moon enters ${e.sign}`;
+    case 'portal': return v.portal(e.gate,K[e.gate][2],e.earth);
+    case 'phase': return v.phase(phT(e.name),Wl().signs[Math.floor(e.lon/30)],`${e.gate}.${e.line}`);
+    case 'eclipse': return v.eclipse(Wl().eclipses[e.name]||e.name,fmtPlain(e.lon),`${e.gate}.${e.line}`);
+    case 'station': return v.station(PN[e.body],e.dir,fmtPlain(e.lon),`${e.gate}.${e.line}`);
+    case 'ingress': return v.ingress(PN[e.body],signT(e.sign),e.retro);
+    case 'moonsign': return v.moonsign(signT(e.sign));
   }
 }
-function fmtPlain(lon){const v=dms(lon);return `${v.deg}°${String(v.m).padStart(2,'0')}′ ${SIGNS[v.s]}`;}
 const isMajor = e => e.kind!=='moonsign';
 
 /* ---------- moon ---------- */
-function phaseName(el,ds){
+function phaseName(el,ds){ // canonical English key
   const ex=ds&&(EV[ds]||[]).find(e=>e.kind==='phase'); if(ex) return ex.name;
   return ['Waxing Crescent','Waxing Gibbous','Waning Gibbous','Waning Crescent'][Math.floor(el/90)%4];
 }
@@ -736,60 +1079,32 @@ function moonIcon(el,size=46){
   return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}"><circle cx="${c}" cy="${c}" r="${r}" fill="#141a2e" stroke="#343c5c"/><path d="${lit}" fill="#f6ecd0" opacity=".92"/></svg>`;
 }
 
-/* ---------- writing: affirmations, prompts, overviews (original Cinwicca text) ---------- */
-const lc = s => s.toLowerCase();
-const AFF = [null,
- g=>`I root myself in ${lc(g)}; what is true holds me.`,
- g=>`${g} lives in me naturally. I let it be called out.`,
- g=>`I let ${lc(g)} learn by trying. Nothing lived is wasted.`,
- g=>`I share ${lc(g)} with the people already around me.`,
- g=>`I offer ${lc(g)} where it is truly needed, and let the rest go.`,
- g=>`From a wider view, I let ${lc(g)} become an example.`];
-const PROMPT = {
- 'New Moon':m=>`What wants to begin in you? Plant one small seed of ${lc(m)}.`,
- 'Waxing Crescent':m=>`Where can ${lc(m)} take a first, gentle step today?`,
- 'First Quarter':m=>`What needs a decision, so that ${lc(m)} can keep growing?`,
- 'Waxing Gibbous':m=>`What can you refine, so that ${lc(m)} arrives whole?`,
- 'Full Moon':m=>`What has come to light? Notice where ${lc(m)} is already present.`,
- 'Waning Gibbous':m=>`Who could receive what you have learned about ${lc(m)}?`,
- 'Last Quarter':m=>`What is ready to be put down, so that ${lc(m)} has room?`,
- 'Waning Crescent':m=>`Rest. Where does ${lc(m)} want quiet more than effort?`};
-const QUESTIONS = [
- g=>`Where is ${lc(g)} asking for more room in your life?`,
- g=>`What would change this week if you trusted your ${lc(g)}?`,
- g=>`Who brings out your ${lc(g)}, and when did you last tell them?`,
- g=>`What small, real act of ${lc(g)} is available to you today?`];
-
-function dayLine(d){const [g,l]=gl(d.sun[0]);return `${K[g][2]}, in the key of ${lc(LINES[l])}.`;}
-
+/* ---------- writing ---------- */
+function dayLine(d){const [g,l]=gl(d.sun[0]);return T().dayLine(K[g][2],LINE(l));}
 function weekData(n){
   const s=weekStart(n), days=[...Array(7)].map((_,i)=>addDays(s,i)).filter(x=>DAY[x]);
   const sunGates=[];days.forEach(x=>{const g=gl(DAY[x].sun[0])[0];if(!sunGates.includes(g))sunGates.push(g);});
-  const signs=[];days.forEach(x=>{const sg=SIGNS[Math.floor(DAY[x].moon[0]/30)];if(!signs.includes(sg))signs.push(sg);});
-  (days.flatMap(x=>EV[x]||[]).filter(e=>e.kind==='moonsign')).forEach(e=>{if(!signs.includes(e.sign))signs.push(e.sign);});
+  const signs=[];days.forEach(x=>{const si=Math.floor(DAY[x].moon[0]/30);if(!signs.includes(si))signs.push(si);});
+  (days.flatMap(x=>EV[x]||[]).filter(e=>e.kind==='moonsign')).forEach(e=>{const si=SIGN_IDX[e.sign];if(!signs.includes(si))signs.push(si);});
   const evs=days.flatMap(x=>(EV[x]||[]).filter(isMajor).map(e=>({...e,d:x})));
   return {n,s,e:addDays(s,6),days,sunGates,signs,evs};
 }
-const listAnd = a => a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
 function weekOverview(w){
-  const [a,b]=w.sunGates; const title = b?`${K[a][2]} into ${K[b][2]}`:K[a][2];
-  let lead;
+  const t=T(), [a,b]=w.sunGates; const title = b?t.wTitle(K[a][2],K[b][2]):K[a][2];
   const portal=w.evs.find(e=>e.kind==='portal');
-  if(portal) lead=`The Sun opens Gate ${portal.gate}, ${K[portal.gate][0]}, on ${WD[wd(portal.d)]}: the week turns from ${lc(K[a][2])} towards ${lc(K[portal.gate][2])}.`;
-  else lead=`The Sun holds Gate ${a}, ${K[a][0]}, all week: a steady practice of ${lc(K[a][2])}.`;
-  const ph=w.evs.filter(e=>e.kind==='phase').map(e=>`${e.name} on ${WD[wd(e.d)]}`);
-  const moon=`The Moon crosses ${listAnd(w.signs)}.${ph.length?' '+ph.join(', ')+'.':''}`;
+  const lead = portal ? t.wPortal(portal.gate,K[portal.gate][0],Wl().on[wd(portal.d)],K[a][2],K[portal.gate][2]) : t.wHold(a,K[a][0],K[a][2]);
+  const ph=w.evs.filter(e=>e.kind==='phase').map(e=>t.phOn(phT(e.name),Wl().on[wd(e.d)]));
+  const moon=t.wMoon(listAnd(w.signs.map(i=>Wl().signs[i])),ph.join(', '));
   const sky=w.evs.filter(e=>['eclipse','station'].includes(e.kind)).map(e=>`${evText(e).split(',')[0]} (${short(e.d)})`);
   const g=portal?portal.gate:a;
-  const q=QUESTIONS[w.n%4](K[g][2]);
-  return {title,lead,moon,sky,q,gates:w.sunGates};
+  return {title,lead,moon,sky,q:t.q[w.n%4](K[g][2]),gates:w.sunGates};
 }
 
 /* ---------- wheel ---------- */
 function wheel(d,size=520){
   const c=size/2, R=c-8, rz=R-30, rg=rz-30, rp=rg-38;
   const P=(r,lon)=>{const a=lon*Math.PI/180;return [c-r*Math.cos(a), c+r*Math.sin(a)];};
-  let s=`<svg class="wheel" viewBox="0 0 ${size} ${size}" role="img" aria-label="The wheel of the 64 gates and the zodiac">`;
+  let s=`<svg class="wheel" viewBox="0 0 ${size} ${size}" role="img" aria-label="64 gates · zodiac">`;
   s+=`<circle cx="${c}" cy="${c}" r="${R}" fill="none" stroke="#343c5c"/><circle cx="${c}" cy="${c}" r="${rz}" fill="none" stroke="#343c5c"/><circle cx="${c}" cy="${c}" r="${rg}" fill="none" stroke="#262d47"/>`;
   for(let i=0;i<12;i++){const[x1,y1]=P(rz,i*30),[x2,y2]=P(R,i*30);s+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#343c5c"/>`;
     const[tx,ty]=P((R+rz)/2,i*30+15);s+=`<text x="${tx}" y="${ty}" fill="#8f7fd6" font-size="17" text-anchor="middle" dominant-baseline="central" font-family="DejaVu Sans,Segoe UI Symbol,sans-serif">${SG[i]}</text>`;}
@@ -797,206 +1112,192 @@ function wheel(d,size=520){
   for(let i=0;i<64;i++){const l0=302+i*5.625;const[x1,y1]=P(rg,l0),[x2,y2]=P(rz,l0);s+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#262d47"/>`;
     const g=ORDER[i];const[tx,ty]=P((rz+rg)/2,l0+2.8125);const hi=g===sunG||g===earthG, mo=g===moonG;
     s+=`<a href="#/key/${g}"><text x="${tx}" y="${ty}" fill="${hi?'#ecd49a':mo?'#f6ecd0':'#6b7190'}" font-size="${hi?12:10}" font-weight="${hi?600:400}" text-anchor="middle" dominant-baseline="central" font-family="Inter,sans-serif">${g}</text></a>`;}
-  // axis sun-earth
   const[sx,sy]=P(rg,d.sun[0]),[ex,ey]=P(rg,d.earth[0]);
   s+=`<line x1="${sx}" y1="${sy}" x2="${ex}" y2="${ey}" stroke="#d4b15a" stroke-opacity=".35" stroke-dasharray="3 5"/>`;
-  // planets with simple collision spread
-  const pts=ALL.map(k=>({k,lon:d[k][0],rx:d[k][1]})).sort((a,b)=>a.lon-b.lon);
+  const pts=ALL.map(k=>({k,lon:d[k][0]})).sort((a,b)=>a.lon-b.lon);
   const placed=[];pts.forEach(p=>{let r=rp;while(placed.some(q=>Math.abs(((q.lon-p.lon+540)%360)-180)<7&&q.r===r))r-=26;p.r=r;placed.push(p);});
   pts.forEach(p=>{const[x,y]=P(p.r,p.lon),[tx,ty]=P(rg,p.lon);const main=['sun','earth','moon'].includes(p.k);
     s+=`<line x1="${tx}" y1="${ty}" x2="${x}" y2="${y}" stroke="${main?'#d4b15a':'#343c5c'}" stroke-opacity=".6"/>`;
-    s+=`<circle cx="${x}" cy="${y}" r="12" fill="#0d1020" stroke="${main?'#d4b15a':'#343c5c'}"/>`;
+    s+=`<circle cx="${x}" cy="${y}" r="12" fill="#0d1020" stroke="${main?'#d4b15a':'#343c5c'}"><title>${PN[p.k]}</title></circle>`;
     s+=`<text x="${x}" y="${y+1}" fill="${main?'#ecd49a':'#cfc6e8'}" font-size="14" text-anchor="middle" dominant-baseline="central" font-family="DejaVu Sans,Segoe UI Symbol,sans-serif">${PG[p.k]}︎</text>`;});
   s+=`<circle cx="${c}" cy="${c}" r="62" fill="#0d1020" stroke="#d4b15a" stroke-opacity=".5"/>`;
-  s+=`<text x="${c}" y="${c-22}" fill="#9aa0b8" font-size="9.5" letter-spacing="2.5" text-anchor="middle" font-family="Inter,sans-serif">SUN GATE</text>`;
+  s+=`<text x="${c}" y="${c-22}" fill="#9aa0b8" font-size="9.5" letter-spacing="2" text-anchor="middle" font-family="Inter,sans-serif">${T().day.sunGate}</text>`;
   s+=`<text x="${c}" y="${c+8}" fill="#f6ecd0" font-size="34" text-anchor="middle" font-family="Cormorant Garamond,serif">${sunG}</text>`;
-  s+=`<text x="${c}" y="${c+30}" fill="#d4b15a" font-size="10" letter-spacing="2.5" text-anchor="middle" font-family="Inter,sans-serif">LINE ${gl(d.sun[0])[1]}</text></svg>`;
+  s+=`<text x="${c}" y="${c+30}" fill="#d4b15a" font-size="10" letter-spacing="2.5" text-anchor="middle" font-family="Inter,sans-serif">${T().day.lineW} ${gl(d.sun[0])[1]}</text></svg>`;
   return s;
 }
 
 /* ---------- small renderers ---------- */
 const keyChip = g => `<a class="chip" href="#/key/${g}"><b>${g}</b> ${K[g][2]}</a>`;
-const spec = g => `<dl class="spec"><dt>Shadow</dt><dd>${K[g][1]}</dd><dt>Gift</dt><dd class="gift">${K[g][2]}</dd><dt>Siddhi</dt><dd>${K[g][3]}</dd></dl>`;
+const spec = g => {const L=T().spec;return `<dl class="spec"><dt>${L[0]}</dt><dd>${K[g][1]}</dd><dt>${L[1]}</dt><dd class="gift">${K[g][2]}</dd><dt>${L[2]}</dt><dd>${K[g][3]}</dd></dl>`;};
 function posCard(d,body){
-  const [g,l]=gl(d[body][0]);
+  const [g,l]=gl(d[body][0]);const t=T().day;
   return `<div class="card pos"><div class="eyebrow m">${PN[body]}</div><div class="deg" style="margin-top:8px">${fmtLon(d[body][0])}</div>
-  <div class="gl"><span class="num">${g}.${l}</span><span class="muted" style="font-size:17px">${K[g][0]} · line ${l}, ${LINES[l]}</span></div>
-  <div style="margin-top:16px"><a href="#/key/${g}" class="eyebrow">Gene Key ${g}</a>${spec(g)}</div></div>`;
+  <div class="gl"><span class="num">${g}.${l}</span><span class="muted" style="font-size:17px">${K[g][0]} · ${t.line} ${l}, ${LINE(l)}</span></div>
+  <div style="margin-top:16px"><a href="#/key/${g}" class="eyebrow">${t.gk} ${g}</a>${spec(g)}</div></div>`;
 }
 function bodiesTable(d){
-  const rows=ALL.map(k=>{const [g,l]=gl(d[k][0]);return `<tr><td>${PN[k]}${d[k][1]&&k!=='snode'&&k!=='node'?'<span class="rx">℞</span>':''}</td><td class="r">${fmtPlain(d[k][0]).replace(/ (\w+)$/,' <span class="g" style="color:var(--violet)">'+SG[Math.floor(d[k][0]/30)]+'</span>')}</td><td class="r"><a class="gt" href="#/key/${g}">${g}.${l}</a></td></tr>`;});
+  const rows=ALL.map(k=>{const [g,l]=gl(d[k][0]);const v=dms(d[k][0]);return `<tr><td>${PN[k]}${d[k][1]&&k!=='snode'&&k!=='node'?'<span class="rx">℞</span>':''}</td><td class="r">${v.deg}°${String(v.m).padStart(2,'0')}′ <span class="g" style="color:var(--violet)">${SG[v.s]}</span></td><td class="r"><a class="gt" href="#/key/${g}">${g}.${l}</a></td></tr>`;});
   const half=Math.ceil(rows.length/2);
   return `<div class="grid g2" style="gap:0 34px"><table class="bodies">${rows.slice(0,half).join('')}</table><table class="bodies">${rows.slice(half).join('')}</table></div>`;
 }
 function evList(list){
-  if(!list.length) return `<p class="muted">A quiet sky: no stations, phases or gate changes today.</p>`;
+  if(!list.length) return `<p class="muted">${T().day.quiet}</p>`;
   return `<ul class="events">${list.map(e=>`<li><time>${timeOf(e)}</time><span>${evText(e)}</span></li>`).join('')}</ul>`;
 }
-const coffee = (label='Offer a coffee') => SUPPORT_URL ? `<a class="btn" href="${SUPPORT_URL}" target="_blank" rel="noopener">☕ ${label}</a>` : '';
+const coffee = () => SUPPORT_URL ? `<a class="btn" href="${SUPPORT_URL}" target="_blank" rel="noopener">☕ ${T().coffee}</a>` : '';
 const diamond = () => `<div class="diamond"><span>◆</span></div>`;
-const bookBox = () => BOOK_URL ? `<section class="card framed cta"><div><div class="eyebrow">The journal edition</div><h3 style="margin-top:8px">The Soul Almanac 2027</h3><p class="muted">The whole year on paper and Kindle: weekly journal pages, a line for every day, the moons and the Phoenix threshold.</p></div><a class="btn" href="${BOOK_URL}" target="_blank" rel="noopener">See the book</a></section>` : '';
+const bookBox = () => {const b=T().book;return BOOK_URL ? `<section class="card framed cta"><div><div class="eyebrow">${b.eyebrow}</div><h3 style="margin-top:8px">The Soul Almanac 2027</h3><p class="muted">${b.text}</p></div><a class="btn" href="${BOOK_URL}" target="_blank" rel="noopener">${b.btn}</a></section>` : '';};
 
 /* ---------- pages ---------- */
 function pageHome(){
-  const t=todayISO(); const inYear = t>=FIRST && t<=LAST;
+  const h=T().home, t=todayISO(); const inYear = t>=FIRST && t<=LAST;
   const days = Math.ceil((D(FIRST)-D(t))/864e5);
-  const keyDates = [
-    ['2027-01-07','New Moon','Gate 54.3, Aspiration'],
-    ['2027-01-22','Rave New Year','Sun enters Gate 41'],
-    ['2027-02-06','Annular solar eclipse','Gate 13.5, Discernment'],
-    ['2027-02-15','The Phoenix threshold','The great mutation'],
-    ['2027-08-02','Total solar eclipse','9°55′ Leo, Gate 33.3'],
-    [SKY.events.find(e=>e.kind==='ingress'&&e.body==='sun'&&e.sign==='Capricorn').time.slice(0,10),'December solstice','Sun enters Capricorn']];
-  const nextW = weekNo(inYear?t:FIRST);
-  const w = weekData(nextW), o = weekOverview(w);
+  const kdDates=['2027-01-07','2027-01-22','2027-02-06','2027-02-15','2027-08-02',SKY.events.find(e=>e.kind==='ingress'&&e.body==='sun'&&e.sign==='Capricorn').time.slice(0,10)];
+  const w = weekData(weekNo(inYear?t:FIRST)), o = weekOverview(w);
   return `<div class="page">
   <section class="hero"><div>
-    <div class="eyebrow">Human Design · Gene Keys · Astrology</div>
-    <h1 style="margin:16px 0 18px">The Almanac<br><em>2027</em></h1>
-    <p class="lede">A year read in three layers: the Sun's path through the 64 gates, the Moon's rhythm, and the Gene Key that lives inside each day.</p>
-    <p class="muted">${inYear?`Today is ${nice(t,{wd:1})}.`:days>0?`The year opens in ${days} day${days===1?'':'s'}.`:'The 2027 cycle is complete.'}</p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px"><a class="btn" href="#/${inYear?'today':'day/'+FIRST}">${inYear?'Open today':'Open 1 January'}</a><a class="btn" href="#/year" style="border-color:var(--line2);color:var(--cream)">The year at a glance</a></div>
-  </div>${EMBLEM.startsWith('data:')?`<img src="${EMBLEM}" alt="Cinwicca emblem">`:''}</section>
+    <div class="eyebrow">${h.eyebrow}</div>
+    <h1 style="margin:16px 0 18px">${h.h1}<br><em>2027</em></h1>
+    <p class="lede">${h.lede}</p>
+    <p class="muted">${inYear?h.today(nice(t,{wd:1})):days>0?h.opens(days):h.done}</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px"><a class="btn" href="#/${inYear?'today':'day/'+FIRST}">${inYear?h.openToday:h.open1}</a><a class="btn" href="#/year" style="border-color:var(--line2);color:var(--cream)">${h.glance}</a></div>
+  </div>${EMBLEM.startsWith('data:')?`<img src="${EMBLEM}" alt="Cinwicca">`:''}</section>
   ${diamond()}
-  <section><div class="eyebrow">${inYear?'This week':'The first week'} · Week ${w.n} · ${short(w.s)} – ${short(w.e)}</div>
-   <div class="card framed week" style="margin-top:14px"><h3>${o.title}</h3><p class="ov">${o.lead}</p><p class="muted">${o.moon}</p>${o.sky.length?`<p class="muted">In the sky: ${o.sky.join(' · ')}.</p>`:''}<p class="q">${o.q}</p>
-   <div style="margin-top:14px">${o.gates.map(keyChip).join('')}</div><a class="eyebrow" style="display:inline-block;margin-top:14px" href="#/month/${w.days.find(x=>x>=FIRST)?.slice(5,7)||'01'}#w${w.n}">Open the week →</a></div></section>
-  <section><div class="eyebrow">Thresholds of 2027</div><div class="grid g3" style="margin-top:14px">
-   ${keyDates.map(([d,a,b])=>`<a class="card" href="#/day/${d}"><div class="eyebrow m">${nice(d)}</div><h3 style="margin:8px 0 4px">${a}</h3><div class="muted">${b}</div></a>`).join('')}</div></section>
-  <section><div class="eyebrow">The moons of 2027</div><div class="card" style="margin-top:14px">${moonsTable()}</div></section>
-  <section class="card framed cta"><div><div class="eyebrow">Free first edition</div><h3 style="margin-top:8px">Help shape the almanac</h3><p class="muted" style="margin:6px 0 0">The almanac is open and free while it grows. Tell me what you love, what is missing and where you would like to go deeper. If it nourishes you, a coffee keeps it growing.</p></div><div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" type="button" data-fb="An idea or wish">Share feedback</button>${coffee()}</div></section>
+  <section><div class="eyebrow">${inYear?h.thisWeek:h.firstWeek} · ${h.week} ${w.n} · ${short(w.s)} – ${short(w.e)}</div>
+   <div class="card framed week" style="margin-top:14px"><h3>${o.title}</h3><p class="ov">${o.lead}</p><p class="muted">${o.moon}</p>${o.sky.length?`<p class="muted">${T().inSky} ${o.sky.join(' · ')}.</p>`:''}<p class="q">${o.q}</p>
+   <div style="margin-top:14px">${o.gates.map(keyChip).join('')}</div><a class="eyebrow" style="display:inline-block;margin-top:14px" href="#/month/${w.days.find(x=>x>=FIRST)?.slice(5,7)||'01'}#w${w.n}">${h.openWeek}</a></div></section>
+  <section><div class="eyebrow">${h.thresholds}</div><div class="grid g3" style="margin-top:14px">
+   ${kdDates.map((d,i)=>`<a class="card" href="#/day/${d}"><div class="eyebrow m">${nice(d)}</div><h3 style="margin:8px 0 4px">${h.kd[i][0]}</h3><div class="muted">${h.kd[i][1]}</div></a>`).join('')}</div></section>
+  <section><div class="eyebrow">${h.moons}</div><div class="card" style="margin-top:14px">${moonsTable()}</div></section>
+  <section class="card framed cta"><div><div class="eyebrow">${h.fbEyebrow}</div><h3 style="margin-top:8px">${h.fbTitle}</h3><p class="muted" style="margin:6px 0 0">${h.fbText}</p></div><div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" type="button" data-fb="An idea or wish">${h.share}</button>${coffee()}</div></section>
   ${bookBox()}
   </div>`;
 }
 function moonsTable(){
   const ph=SKY.events.filter(e=>e.kind==='phase'&&(e.name==='New Moon'||e.name==='Full Moon')&&e.time.slice(0,4)==='2027');
   const ecl=SKY.events.filter(e=>e.kind==='eclipse');
-  const rows=MONTHS.map((m,i)=>{const mm=String(i+1).padStart(2,'0');const l=ph.filter(e=>e.time.slice(5,7)===mm);
-    return `<tr><td>${m}</td><td class="r">${l.map(e=>{const ec=ecl.find(x=>x.time.slice(0,10)===e.time.slice(0,10));return `<a href="#/day/${e.time.slice(0,10)}">${e.name==='New Moon'?'<span class="dim">○</span>':'<span class="gold">●</span>'} ${D(e.time.slice(0,10)).getUTCDate()} <span class="gt">${e.gate}.${e.line}</span>${ec?' <span class="tag">eclipse</span>':''}</a>`;}).join(' &nbsp; ')}</td></tr>`;});
+  const rows=[...Array(12)].map((_,i)=>{const mm=String(i+1).padStart(2,'0');const l=ph.filter(e=>e.time.slice(5,7)===mm);
+    return `<tr><td>${monthName(i)}</td><td class="r">${l.map(e=>{const ec=ecl.find(x=>x.time.slice(0,10)===e.time.slice(0,10));return `<a href="#/day/${e.time.slice(0,10)}" title="${phT(e.name)}">${e.name==='New Moon'?'<span class="dim">○</span>':'<span class="gold">●</span>'} ${D(e.time.slice(0,10)).getUTCDate()} <span class="gt">${e.gate}.${e.line}</span>${ec?` <span class="tag">${T().home.eclipse}</span>`:''}</a>`;}).join(' &nbsp; ')}</td></tr>`;});
   return `<table class="bodies">${rows.join('')}</table>`;
 }
 
 function pageYear(){
-  const t=todayISO();
-  return `<div class="page"><div class="eyebrow">The year at a glance</div><h1 style="margin:12px 0 10px">2027</h1>
-  <p class="muted prose">Each month in Monday-to-Sunday weeks. A gold diamond marks a portal, the day the Sun opens a new gate. Shaded days hold a New Moon, ringed days a Full Moon.</p>
-  <div class="legend" style="margin:18px 0 22px"><span><i style="background:var(--gold);transform:rotate(45deg) scale(.6)"></i>Portal</span><span><i style="background:rgba(143,127,214,.35)"></i>New Moon</span><span><i style="border:1px solid #f6ecd0;border-radius:50%"></i>Full Moon</span><span><i style="background:rgba(212,177,90,.4)"></i>Eclipse</span></div>
-  <div class="grid g3">${MONTHS.map((m,i)=>{
+  const y=T().year, t=todayISO();
+  return `<div class="page"><div class="eyebrow">${y.eyebrow}</div><h1 style="margin:12px 0 10px">2027</h1>
+  <p class="muted prose">${y.lede}</p>
+  <div class="legend" style="margin:18px 0 22px"><span><i style="background:var(--gold);transform:rotate(45deg) scale(.6)"></i>${y.portal}</span><span><i style="background:rgba(143,127,214,.35)"></i>${y.nm}</span><span><i style="border:1px solid #f6ecd0;border-radius:50%"></i>${y.fm}</span><span><i style="background:rgba(212,177,90,.4)"></i>${y.ecl}</span></div>
+  <div class="grid g3">${[...Array(12)].map((_,i)=>{
     const mm=String(i+1).padStart(2,'0'), first=`2027-${mm}-01`;
     const nd=new Date(Date.UTC(2027,i+1,0)).getUTCDate();
     const lead=(wd(first)+6)%7;
     const gates=[...new Set([...Array(nd)].map((_,k)=>gl(DAY[`2027-${mm}-${String(k+1).padStart(2,'0')}`].sun[0])[0]))];
-    let cells=['M','T','W','T','F','S','S'].map(x=>`<span class="h">${x}</span>`).join('')+'<span></span>'.repeat(lead);
+    let cells=Wl().mini.map(x=>`<span class="h">${x}</span>`).join('')+'<span></span>'.repeat(lead);
     for(let k=1;k<=nd;k++){const ds=`2027-${mm}-${String(k).padStart(2,'0')}`;const ev=EV[ds]||[];
       const cl=[ev.some(e=>e.kind==='portal')?'p':'',ev.some(e=>e.name==='New Moon')?'nm':'',ev.some(e=>e.name==='Full Moon')?'fm':'',ev.some(e=>e.kind==='eclipse')?'ec':'',ds===t?'td':''].join(' ');
       cells+=`<a class="${cl}" href="#/day/${ds}" title="${nice(ds,{wd:1})}">${k}</a>`;}
     const np=Object.keys(EV).filter(x=>x.startsWith(`2027-${mm}`)).reduce((n,x)=>n+EV[x].filter(e=>e.kind==='portal').length,0);
-    return `<div class="card mon"><h3><a href="#/month/${mm}">${m}</a><span class="eyebrow m" style="font-size:10px">${np} portals</span></h3>
-    <div class="sans" style="font-size:12px;color:var(--gold);margin-top:4px">Gates ${gates[0]} → ${gates[gates.length-1]}</div><div class="mini">${cells}</div></div>`;}).join('')}</div>
+    return `<div class="card mon"><h3><a href="#/month/${mm}">${monthName(i)}</a><span class="eyebrow m" style="font-size:10px">${np} ${y.portals}</span></h3>
+    <div class="sans" style="font-size:12px;color:var(--gold);margin-top:4px">${y.gates} ${gates[0]} → ${gates[gates.length-1]}</div><div class="mini">${cells}</div></div>`;}).join('')}</div>
   ${bookBox()}</div>`;
 }
 
 function pageMonth(mm, anchor){
-  const i=parseInt(mm,10)-1; if(!(i>=0&&i<12)) return notFound();
+  const M=T().month, i=parseInt(mm,10)-1; if(!(i>=0&&i<12)) return notFound();
   const first=`2027-${mm}-01`, nd=new Date(Date.UTC(2027,i+1,0)).getUTCDate(), last=`2027-${mm}-${nd}`;
   const w0=weekNo(first), w1=weekNo(last);
   const gates=[...new Set([...Array(nd)].map((_,k)=>gl(DAY[addDays(first,k)].sun[0])[0]))];
-  let html=`<div class="page"><a class="back" href="#/year">← The year</a>
+  let html=`<div class="page"><a class="back" href="#/year">${M.back}</a>
   <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-top:18px">
-   <div><div class="eyebrow m">Month ${mm} · 2027</div><h1 style="margin-top:8px">${MONTHS[i]}</h1></div>
-   <div class="sans muted" style="font-size:13px">Sun through gates <span class="gold">${gates[0]} → ${gates[gates.length-1]}</span></div></div>
-  <div style="margin:22px 0 6px"><span class="eyebrow m" style="margin-right:12px">Keys this month</span>${gates.map(keyChip).join('')}</div>`;
+   <div><div class="eyebrow m">${M.label} ${mm} · 2027</div><h1 style="margin-top:8px">${monthName(i)}</h1></div>
+   <div class="sans muted" style="font-size:13px">${M.through} <span class="gold">${gates[0]} → ${gates[gates.length-1]}</span></div></div>
+  <div style="margin:22px 0 6px"><span class="eyebrow m" style="margin-right:12px">${M.keys}</span>${gates.map(keyChip).join('')}</div>`;
   for(let n=w0;n<=w1;n++){
     const w=weekData(n),o=weekOverview(w);
     const specials=w.days.filter(x=>SPECIAL[x]);
-    html+=`<div class="card framed week" id="w${n}"><div class="head"><span class="eyebrow">Week ${n} · Overview</span><span class="sans muted" style="font-size:13px">${short(w.s)} – ${short(w.e)}</span></div>
-    <h3>${o.title}</h3><p class="ov">${o.lead}</p><p class="muted">${o.moon}</p>${o.sky.length?`<p class="muted">In the sky: ${o.sky.join(' · ')}.</p>`:''}
+    html+=`<div class="card framed week" id="w${n}"><div class="head"><span class="eyebrow">${T().home.week} ${n} · ${M.overview}</span><span class="sans muted" style="font-size:13px">${short(w.s)} – ${short(w.e)}</span></div>
+    <h3>${o.title}</h3><p class="ov">${o.lead}</p><p class="muted">${o.moon}</p>${o.sky.length?`<p class="muted">${T().inSky} ${o.sky.join(' · ')}.</p>`:''}
     ${specials.map(x=>`<div class="card special" style="margin:14px 0;padding:16px 20px"><div class="eyebrow">${short(x)} · ${SPECIAL[x].title}</div><p style="margin:6px 0 0">${SPECIAL[x].text}</p></div>`).join('')}
     <p class="q">${o.q}</p>
     <div class="daylist">${[...Array(7)].map((_,k)=>{const ds=addDays(w.s,k);const d=DAY[ds];if(!d)return '';const [g,l]=gl(d.sun[0]);const [mg,ml]=gl(d.moon[0]);
-      const ev=(EV[ds]||[]).filter(isMajor).filter(e=>e.kind!=='ingress'||e.body!=='moon');
+      const ev=(EV[ds]||[]).filter(isMajor);
       const out=ds.slice(5,7)!==mm;
-      return `<a class="dayrow${out?' out':''}" href="#/day/${ds}"><div class="dn">${WD[wd(ds)].slice(0,3).toUpperCase()}<b>${D(ds).getUTCDate()}</b></div>
-      <div><div><span class="gold">${g}.${l}</span> ${K[g][2]} <span class="muted">· ${LINES[l]}</span></div><div class="sub">Moon ${mg}.${ml} · ${SIGNS[Math.floor(d.moon[0]/30)]} · ${phaseName(d.elong,ds)}${out?' · '+MONTHS[D(ds).getUTCMonth()]:''}</div></div>
-      <div class="ev">${[...(SPECIAL[ds]?[SPECIAL[ds].title]:[]),...(ME_CHART&&(ME_CHART.gates.includes(g)||ME_CHART.gates.includes(gl(d.earth[0])[0]))?['◆ your gate']:[]),...ev.filter(e=>['portal','phase','eclipse','station'].includes(e.kind)).map(e=>e.kind==='portal'?`Portal ${e.gate}`:e.kind==='phase'?e.name:e.kind==='eclipse'?e.name.replace(' eclipse',' ecl.'):`${PN[e.body]} ${e.dir==='retrograde'?'℞':'D'}`)].join('<br>')}</div></a>`;}).join('')}</div></div>`;
+      return `<a class="dayrow${out?' out':''}" href="#/day/${ds}"><div class="dn">${Wl().wd3[wd(ds)].toUpperCase()}<b>${D(ds).getUTCDate()}</b></div>
+      <div><div><span class="gold">${g}.${l}</span> ${K[g][2]} <span class="muted">· ${LINE(l)}</span></div><div class="sub">${PN.moon} ${mg}.${ml} · ${Wl().signs[Math.floor(d.moon[0]/30)]} · ${phT(phaseName(d.elong,ds))}${out?' · '+monthName(D(ds).getUTCMonth()):''}</div></div>
+      <div class="ev">${[...(SPECIAL[ds]?[SPECIAL[ds].title]:[]),...(ME_CHART&&(ME_CHART.gates.includes(g)||ME_CHART.gates.includes(gl(d.earth[0])[0]))?[M.yourGate]:[]),...ev.filter(e=>['portal','phase','eclipse','station'].includes(e.kind)).map(e=>e.kind==='portal'?`${M.portal} ${e.gate}`:e.kind==='phase'?phT(e.name):e.kind==='eclipse'?(Wl().eclipses[e.name]||e.name):`${PN[e.body]} ${e.dir==='retrograde'?'℞':'D'}`)].join('<br>')}</div></a>`;}).join('')}</div></div>`;
   }
-  const prev=i>0?`<a href="#/month/${String(i).padStart(2,'0')}">← ${MONTHS[i-1]}</a>`:'<span></span>';
-  const next=i<11?`<a href="#/month/${String(i+2).padStart(2,'0')}">${MONTHS[i+1]} →</a>`:'<span></span>';
+  const prev=i>0?`<a href="#/month/${String(i).padStart(2,'0')}">← ${monthName(i-1)}</a>`:'<span></span>';
+  const next=i<11?`<a href="#/month/${String(i+2).padStart(2,'0')}">${monthName(i+1)} →</a>`:'<span></span>';
   html+=`<div class="navday">${prev}${next}</div></div>`;
   setTimeout(()=>{if(anchor){const el=document.getElementById(anchor);if(el)el.scrollIntoView();}},30);
   return html;
 }
 
 function pageDay(ds){
-  const d=DAY[ds]; if(!d) return notFound(`The almanac holds 28 December 2026 to 2 January 2028.`);
+  const t=T(), dy=t.day, d=DAY[ds]; if(!d) return notFound(dy.notIn);
   const [g,l]=gl(d.sun[0]), [mg]=gl(d.moon[0]), [eg]=gl(d.earth[0]);
   const ph=phaseName(d.elong,ds);
   const ev=(EV[ds]||[]);
   const sp=SPECIAL[ds];
   const prev=DAY[addDays(ds,-1)], next=DAY[addDays(ds,1)];
-  const n=weekNo(ds), mm=ds.slice(5,7);
-  return `<div class="page"><a class="back" href="#/month/${mm}#w${n}">← ${MONTHS[parseInt(mm)-1]} ${ds.slice(0,4)} · Week ${n}</a>
+  const n=weekNo(ds), mm=ds.slice(5,7), w=Wl();
+  const h1 = LANG==='en' ? `${w.wd[wd(ds)]}, <em>${D(ds).getUTCDate()}</em> ${monthName(parseInt(mm)-1)}` : `${w.wd[wd(ds)]}, <em>${D(ds).getUTCDate()}</em> de ${w.months[parseInt(mm)-1]}`;
+  return `<div class="page"><a class="back" href="#/month/${mm}#w${n}">← ${monthName(parseInt(mm)-1)} ${ds.slice(0,4)} · ${dy.week} ${n}</a>
   <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-top:18px">
-   <div><div class="eyebrow m">${WD[wd(ds)].slice(0,3)} · ${ds}</div><h1 style="margin:8px 0 10px">${WD[wd(ds)]}, <em>${D(ds).getUTCDate()}</em> ${MONTHS[parseInt(mm)-1]}</h1>
+   <div><div class="eyebrow m">${w.wd3[wd(ds)]} · ${ds}</div><h1 style="margin:8px 0 10px">${h1}</h1>
    <div style="font-size:22px;color:var(--gold3)">${dayLine(d)}</div></div>
-   <div style="display:flex;gap:14px;align-items:center">${moonIcon(d.elong,54)}<div class="sans" style="font-size:13px"><div>${ph}</div><div class="muted">${d.illum}% lit</div></div></div></div>
+   <div style="display:flex;gap:14px;align-items:center">${moonIcon(d.elong,54)}<div class="sans" style="font-size:13px"><div>${phT(ph)}</div><div class="muted">${d.illum}% ${dy.lit}</div></div></div></div>
   ${sp?`<section class="card special"><div class="eyebrow">${sp.title}</div><p style="font-size:21px;margin:8px 0 0">${sp.text}</p></section>`:''}
-  <section class="card framed"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px"><span class="eyebrow">Reflection</span><span class="sans muted" style="font-size:12px;letter-spacing:.1em">SUN ${g}.${l} · MOON ${mg} · ${ph.toUpperCase()}</span></div>
-   <div class="reflect" style="margin-top:14px"><div><div class="eyebrow m">Affirmation</div><blockquote>“${AFF[l](K[g][2])}”</blockquote></div>
-   <div class="p"><div class="eyebrow m">Prompt</div><p>${PROMPT[ph](K[mg][2])}</p><p class="muted" style="font-size:17px">Watch for ${lc(K[g][1])}; it is the doorway to ${lc(K[g][2])}.</p></div></div></section>
+  <section class="card framed"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px"><span class="eyebrow">${dy.reflection}</span><span class="sans muted" style="font-size:12px;letter-spacing:.1em">${dy.sun} ${g}.${l} · ${dy.moon} ${mg} · ${phT(ph).toUpperCase()}</span></div>
+   <div class="reflect" style="margin-top:14px"><div><div class="eyebrow m">${dy.aff}</div><blockquote>“${t.aff[l](K[g][2])}”</blockquote></div>
+   <div class="p"><div class="eyebrow m">${dy.prompt}</div><p>${t.prompt[ph](K[mg][2])}</p><p class="muted" style="font-size:17px">${t.watch(K[g][1],K[g][2])}</p></div></div></section>
   ${personalDay(ds)}
-  <section class="split"><div>${wheel(d)}</div><div><div class="eyebrow">The sky at 07:00 UK</div><h2 style="margin:10px 0 14px">${short(ds)}</h2>
-   <p class="muted">The Sun in Gate ${g} and the Earth opposite in Gate ${eg} make the day's axis: ${K[g][2]} with ${lc(K[eg][2])} as its ground. The Moon in Gate ${mg} colours the feeling of the day with ${lc(K[mg][2])}.</p>
-   <div class="eyebrow m" style="margin-top:20px">Events · UK time</div>${evList(ev)}</div></section>
+  <section class="split"><div>${wheel(d)}</div><div><div class="eyebrow">${dy.sky}</div><h2 style="margin:10px 0 14px">${short(ds)}</h2>
+   <p class="muted">${t.axis(g,eg,K[g][2],K[eg][2],mg,K[mg][2])}</p>
+   <div class="eyebrow m" style="margin-top:20px">${dy.events}</div>${evList(ev)}</div></section>
   <section class="grid g3">${posCard(d,'sun')}${posCard(d,'earth')}${posCard(d,'moon')}</section>
-  <section class="card"><div class="eyebrow m" style="margin-bottom:10px">All bodies · 07:00 UK</div>${bodiesTable(d)}</section>
-  <p class="sans muted" style="font-size:12.5px;margin-top:30px">Something looks off, or a wish for this page? <a href="#" data-fb="A date or position looks wrong" class="gold">Tell me</a>.${SUPPORT_URL?` &nbsp;·&nbsp; If the almanac nourishes you, <a class="gold" href="${SUPPORT_URL}" target="_blank" rel="noopener">offer a coffee ☕</a>.`:''}</p>
+  <section class="card"><div class="eyebrow m" style="margin-bottom:10px">${dy.bodies}</div>${bodiesTable(d)}</section>
+  <p class="sans muted" style="font-size:12.5px;margin-top:30px">${dy.tell}${SUPPORT_URL?' &nbsp;·&nbsp; '+dy.coffee.replace('{u}',SUPPORT_URL):''}</p>
   <div class="navday">${prev?`<a href="#/day/${addDays(ds,-1)}">← ${short(addDays(ds,-1))}</a>`:'<span></span>'}${next?`<a href="#/day/${addDays(ds,1)}">${short(addDays(ds,1))} →</a>`:'<span></span>'}</div></div>`;
 }
 
-function sunDates(g){ // periods when Sun / Earth is in gate g within 2027
+function sunDates(g){
   const runs=(body)=>{const r=[];let cur=null;SKY.days.forEach(d=>{if(d.date<FIRST||d.date>LAST)return;const x=gl(d[body][0])[0]===g;if(x&&!cur){cur=[d.date,d.date];r.push(cur);}else if(x)cur[1]=d.date;else cur=null;});return r;};
   return {sun:runs('sun'),earth:runs('earth'),moon:SKY.days.filter(d=>d.date>=FIRST&&d.date<=LAST&&gl(d.moon[0])[0]===g).length};
 }
 function pageKeys(){
-  return `<div class="page"><div class="eyebrow">The spine</div><h1 style="margin:12px 0 12px">The 64 Gene Keys</h1>
-  <p class="muted prose">The same 64 numbers the calendar runs on, as gates of the Human Design wheel and hexagrams of the I Ching. Each key carries a shadow, a gift and a siddhi.</p>
+  const k=T().keys;
+  return `<div class="page"><div class="eyebrow">${k.eyebrow}</div><h1 style="margin:12px 0 12px">${k.h1}</h1>
+  <p class="muted prose">${k.lede}</p>
   <div class="keys" style="margin-top:26px">${Array.from({length:64},(_,i)=>i+1).map(g=>`<a href="#/key/${g}"><div class="n">${String(g).padStart(2,'0')}<span>${K[g][3]}</span></div><div class="gf">${K[g][2]}</div><div class="sm">${K[g][1]} → ${K[g][2]}</div></a>`).join('')}</div></div>`;
 }
 function pageKey(g){
-  g=parseInt(g,10); if(!K[g]) return notFound();
+  const k=T().keys; g=parseInt(g,10); if(!(g>=1&&g<=64)) return notFound();
   const sd=sunDates(g); const idx=ORDER.indexOf(g); const start=(302+idx*5.625)%360;
   const per=r=>r.map(([a,b])=>`<a class="chip" href="#/day/${a}">${a===b?short(a):short(a)+' – '+short(b)}</a>`).join('')||'<span class="muted">—</span>';
-  return `<div class="page"><a class="back" href="#/keys">← The 64 keys</a>
-  <div style="margin-top:18px" class="eyebrow m">Gate ${g} · ${centreOf(g)} · ${K[g][0]}</div><h1 style="margin:8px 0 6px">${K[g][2]}</h1>
+  return `<div class="page"><a class="back" href="#/keys">${k.back}</a>
+  <div style="margin-top:18px" class="eyebrow m">${k.gate} ${g} · ${centreOf(g)} · ${K[g][0]}</div><h1 style="margin:8px 0 6px">${K[g][2]}</h1>
   <div class="grid g2" style="margin-top:28px"><div class="card framed"><div class="eyebrow">Gene Key ${g}</div>${spec(g).replace('class="spec"','class="spec" style="font-size:24px"')}</div>
-  <div class="card"><div class="eyebrow">On the wheel</div><p>From ${fmtPlain(start)} to ${fmtPlain((start+5.625)%360)}, in the ${centreOf(g)}.</p>
-  <p class="muted">I Ching hexagram ${g}: <i>${K[g][0]}</i>.</p></div></div>
-  <section class="card"><div class="eyebrow">In 2027</div>
-   <p style="margin-top:12px"><span class="eyebrow m" style="margin-right:10px">Sun</span>${per(sd.sun)}</p>
-   <p><span class="eyebrow m" style="margin-right:10px">Earth</span>${per(sd.earth)}</p>
-   <p class="muted">The Moon visits this gate on ${sd.moon} mornings of the year.</p></section>
-  <div class="navday"><a href="#/key/${g>1?g-1:64}">← Key ${g>1?g-1:64}</a><a href="#/key/${g<64?g+1:1}">Key ${g<64?g+1:1} →</a></div></div>`;
+  <div class="card"><div class="eyebrow">${k.wheel}</div><p>${k.from(fmtPlain(start),fmtPlain((start+5.625)%360),centreOf(g))}</p>
+  <p class="muted">${k.hex} ${g}: <i>${K[g][0]}</i>.</p></div></div>
+  <section class="card"><div class="eyebrow">${k.in}</div>
+   <p style="margin-top:12px"><span class="eyebrow m" style="margin-right:10px">${k.sun}</span>${per(sd.sun)}</p>
+   <p><span class="eyebrow m" style="margin-right:10px">${k.earth}</span>${per(sd.earth)}</p>
+   <p class="muted">${k.moon(sd.moon)}</p></section>
+  <div class="navday"><a href="#/key/${g>1?g-1:64}">← ${k.key} ${g>1?g-1:64}</a><a href="#/key/${g<64?g+1:1}">${k.key} ${g<64?g+1:1} →</a></div></div>`;
 }
 
 function pageAbout(){
-  return `<div class="page prose"><div class="eyebrow">How to read the almanac</div><h1 style="margin:12px 0 22px">Reading a day</h1>
-  <p>Every day opens with the sky at <b>07:00 UK time</b> (GMT until 28 March, BST until 31 October, then GMT again). Times of events are given in UK time too.</p>
-  <h3>Sun, Earth and Moon</h3><p>The Sun and the Earth always sit opposite each other: together they carry most of the day's tone. The Moon moves through about two gates a day and colours the feeling.</p>
-  <h3>Gate and line</h3><p>The zodiac is divided into 64 gates of 5°37′30″, starting with Gate 41 at 2° Aquarius. Each gate has six lines of 56′15″. A position such as <span class="gold">14.3</span> reads as Gate 14, line 3. The lines: 1 Foundation, 2 Nature, 3 Experiment, 4 Network, 5 Projection, 6 Vision.</p>
-  <h3>Portals</h3><p>A portal is the moment the Sun opens a new gate, about every five and a half days. The year has 64 of them, starting with Rave New Year on 22 January, when the Sun enters Gate 41.</p>
-  <h3>The Gene Key of the day</h3><p>Each gate is also a Gene Key: a spectrum from shadow through gift to siddhi. The almanac names the shadow not as a fault but as the doorway: what we notice, we can transform.</p>
-  <h3>Weeks</h3><p>Weeks run Monday to Sunday. Week 1 begins on 28 December 2026, so the almanac holds 53 weeks.</p>
-  <h3>My Almanac (beta)</h3><p>Enter your birth data once and the almanac calculates your Human Design (Type, Strategy, Authority, Profile, Definition, Cross) and your Gene Keys Activation Sequence. Each day then shows the gates the sky lights in your chart, the channels it completes and the centres it defines. Calculated in your browser and checked against the Swiss Ephemeris; your data is not sent anywhere.</p>
-  <h3>References</h3><ul class="refs">
-  <li>Richard Rudd, <i>The Gene Keys: Embracing Your Higher Purpose</i> (Watkins, 2013) · genekeys.com. Shadow, gift and siddhi names are cited from this work.</li>
+  const t=T();
+  return `<div class="page prose">${t.aboutHTML}<ul class="refs">
+  <li>Richard Rudd, <i>The Gene Keys: Embracing Your Higher Purpose</i> (Watkins, 2013) · genekeys.com.</li>
   <li>Ra Uru Hu & Lynda Bunnell, <i>The Definitive Book of Human Design</i> (HDC Publishing, 2011) · Jovian Archive.</li>
   <li>Chetan Parkyn, <i>Human Design</i> (New World Library, 2009).</li>
   <li>Karen Curry Parker, <i>Understanding Human Design</i> (Hierophant, 2013).</li>
-  <li>Richard Wilhelm & Cary F. Baynes, <i>The I Ching or Book of Changes</i> (Princeton, Bollingen XIX, 3rd ed. 1967). Hexagram names after Wilhelm.</li>
-  <li>Swiss Ephemeris, Astrodienst AG. Positions with true lunar node.</li></ul>
-  <p class="muted" style="font-size:16px;margin-top:26px">Gene Keys® is a registered mark of Richard Rudd / Gene Keys Publishing. Human Design is the work of Ra Uru Hu. This almanac is an independent work by Cintia de Godoy; all affirmations, prompts and overviews are original. Prepared with digital tools, including Claude (Anthropic).</p>
-  <div class="card framed cta" style="margin-top:30px"><div><div class="eyebrow">Free while it grows</div><p style="margin:6px 0 0">This almanac is offered freely. If it brings you something, a coffee or any gift you wish helps it keep growing.</p></div>${coffee()}</div>
+  <li>Richard Wilhelm & Cary F. Baynes, <i>The I Ching or Book of Changes</i> (Princeton, Bollingen XIX, 3rd ed. 1967).</li>
+  <li>Swiss Ephemeris, Astrodienst AG.</li></ul>
+  <p class="muted" style="font-size:16px;margin-top:26px">${t.aboutNote}</p>
+  <div class="card framed cta" style="margin-top:30px"><div><div class="eyebrow">${t.freeEyebrow}</div><p style="margin:6px 0 0">${t.freeText}</p></div>${coffee()}</div>
   ${bookBox()}</div>`;
 }
 
@@ -1007,8 +1308,8 @@ function loadMe(){try{const s=localStorage.getItem(ME_KEY);if(s)ME=JSON.parse(s)
 function saveMe(v){ME=v;try{localStorage.setItem(ME_KEY,JSON.stringify(v));}catch(e){} buildChart();}
 function forgetMe(){ME=null;ME_CHART=null;try{localStorage.removeItem(ME_KEY);}catch(e){}}
 function buildChart(){ME_CHART=null;if(!ME)return;try{ME_CHART=HDChart.chart(new Date(ME.utc));}catch(e){console.error(e);}}
+window.addEventListener('storage',e=>{if(e.key===ME_KEY){ME=null;loadMe();route(true);}});
 
-/* local birth time → UTC, using the browser's historical time-zone data */
 function tzOffset(ms,tz){
   const f=new Intl.DateTimeFormat('en-US',{timeZone:tz,hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'});
   const p={};f.formatToParts(new Date(ms)).forEach(x=>p[x.type]=x.value);
@@ -1020,28 +1321,86 @@ function zonedToUTC(dateStr,timeStr,tz){
 }
 const TZS=(()=>{try{return Intl.supportedValuesOf('timeZone');}catch(e){return ['UTC','Europe/London','America/Sao_Paulo'];}})();
 const guessTZ=()=>{try{return Intl.DateTimeFormat().resolvedOptions().timeZone;}catch(e){return 'Europe/London';}};
+const SPHERES=['lifesWork','evolution','radiance','purpose'];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-const CENTRE_LABEL={Head:'Head',Ajna:'Ajna',Throat:'Throat',G:'G Centre',Heart:'Heart',Spleen:'Spleen',Sacral:'Sacral',SolarPlexus:'Solar Plexus',Root:'Root'};
-const SPHERES=[['lifesWork',"Life's Work",'Personality Sun'],['evolution','Evolution','Personality Earth'],['radiance','Radiance','Design Sun'],['purpose','Purpose','Design Earth']];
-const TYPE_PROMPT={
- 'Generator':g=>`Let ${lc(g)} come to you first. What does your body answer: a clear yes, or a quiet no?`,
- 'Manifesting Generator':g=>`Respond first, then let people know. Where does ${lc(g)} want to move quickly today?`,
- 'Projector':g=>`Where are you recognised and invited to bring ${lc(g)}? Keep your energy for that.`,
- 'Manifestor':g=>`If ${lc(g)} moves you to act today, tell the people it will touch before you go.`,
- 'Reflector':g=>`Taste ${lc(g)} lightly today. Nothing needs deciding yet.`};
-const AUTH_NOTE={'Emotional':'Give it time: clarity comes in waves.','Sacral':'Trust the answer of the gut, in the moment.','Splenic':'Listen to the first quiet knowing.',
- 'Ego Manifested':'Ask yourself: do I truly want this?','Ego Projected':'Ask yourself: do I truly want this?','Self-Projected':'Speak it aloud and hear what you say.',
- 'Mental (Outer Authority)':'Talk it through with people you trust, then listen to yourself.','Lunar':'Let a full lunar cycle pass before you decide.'};
-function sphereOf(g){const r=[];if(!ME_CHART)return r;SPHERES.forEach(([k,n])=>{if(ME_CHART.gk[k][0]===g)r.push(n);});return r;}
-function actLabel(g){ // where gate g sits in the natal chart
-  const a=ME_CHART.acts.filter(x=>x.gate===g);
-  return a.map(x=>`${x.side==='p'?'Personality':'Design'} ${PN[x.body]}`).join(', ');
-}
+const PS={
+en:{
+ typePrompt:{'Generator':g=>`Let ${lc(g)} come to you first. What does your body answer: a clear yes, or a quiet no?`,'Manifesting Generator':g=>`Respond first, then let people know. Where does ${lc(g)} want to move quickly today?`,'Projector':g=>`Where are you recognised and invited to bring ${lc(g)}? Keep your energy for that.`,'Manifestor':g=>`If ${lc(g)} moves you to act today, tell the people it will touch before you go.`,'Reflector':g=>`Taste ${lc(g)} lightly today. Nothing needs deciding yet.`},
+ auth:{'Emotional':'Give it time: clarity comes in waves.','Sacral':'Trust the answer of the gut, in the moment.','Splenic':'Listen to the first quiet knowing.','Ego Manifested':'Ask yourself: do I truly want this?','Ego Projected':'Ask yourself: do I truly want this?','Self-Projected':'Speak it aloud and hear what you say.','Mental (Outer Authority)':'Talk it through with people you trust, then listen to yourself.','Lunar':'Let a full lunar cycle pass before you decide.'},
+ invite:'Add your birth data once, and every day will show where the sky touches your own design.',personalise:'Personalise',eyebrow:'Your almanac · beta',skyToday:'Your sky today',
+ lit:(B,g,G,sp,where)=>`${B} lights your Gate ${g}, <b class="gold" style="font-weight:500">${G}</b>${sp?`, ${sp}`:''}. <span class="muted">In your chart: ${where}.</span>`,
+ ch:(bys,theirs,mine,key,name,c1,c2)=>`${bys} in Gate ${theirs} ${bys.includes(' and ')?'meet':'meets'} your Gate ${mine}: the Channel ${key} (${name}) is complete today, linking ${c1} and ${c2}.`,
+ centresTag:'Centres',centres:list=>`Your open centres defined by the sky today: ${list}. A borrowed consistency, to feel rather than to keep.`,
+ longer:'Longer currents, lasting weeks or months:',also:'Also on your gates:',guest:G=>`The Sun, Earth and Moon pass through gates you do not carry: a day to receive the sky's ${lc(G)} from the outside, as a guest.`,
+ legend:'Gold: your design · violet dashed: completed by today’s sky',channel:'Channel',
+ sr:(pos,gk,time)=>`The Sun returns to its place at your birth (${pos}, Gate ${gk}) at ${time} UK time. Your personal year begins.`,srKind:'Solar return',
+ season:(g,G,your,eg,EG,eyour)=>`The Sun lights Gate ${g}, ${G}: ${your}${eyour?`, while the Earth grounds Gate ${eg}, ${EG}: ${eyour}`:''}. A season to live ${eyour?'these gifts':'this gift'} in full view.`,
+ chYear:(body,theirs,mine,key,name)=>`${body} in Gate ${theirs} completes your Gate ${mine}: the Channel ${key} (${name}) is yours to live for a few days.`,sunThe:'The Sun',earthThe:'The Earth',to:'to',
+ formH1:'Personalise the year',formLede:'Enter your birth data once. The almanac will calculate your Human Design and Gene Keys Profile, and every day will show where the sky touches your design: the gates it lights, the channels it completes, the centres it opens.',
+ fName:'Name (optional)',fDate:'Date of birth',fTime:'Time of birth · 24-hour clock, local time where you were born',hour:'hour',min:'min',fUnknown:'I do not know my birth time (noon will be used; the Moon and some lines may differ).',
+ fTz:'Time zone of the birth place',tzPh:'e.g. America/Sao_Paulo, Europe/London',tzHint:'Type the nearest city: Sao_Paulo, Lisbon, London, New_York… Historical summer time is applied automatically.',
+ private:'Your data stays in this browser. Nothing is sent anywhere.',show:'Show my almanac',errDate:'Please enter your date of birth.',errTime:'Please choose the hour and minutes of your birth, or tick that you do not know it.',errTz:'Please choose a time zone from the list, such as America/Sao_Paulo.',errCalc:'Something went wrong with the calculation.',
+ h12:h=>h===0?'midnight':h===12?'noon':h>12?(h-12)+' pm':h+' am',yourDesign:'Your design',unknownT:'time unknown',edit:'edit',forget:'forget',
+ check:(t,city,utc,ps,ds)=>`Born ${t} ${city} time = ${utc} UTC · Personality Sun ${ps} · Design Sun ${ds}`,noon:'(noon, time unknown)',notRight:'Not right? Check the hour.',
+ labels:['Strategy','Authority','Profile','Definition','Cross','Signature','Not-self'],channels:'Channels',noCh:'No defined channels.',gates:'Your gates',gkp:'Gene Keys Profile · Activation Sequence',
+ openToday:'Open today in your chart',open1:'Open 1 January in your chart',y2027:'Your 2027',y2027lede:'Your solar return, the seasons when the Sun and Earth light your four prime gifts, and the days the Sun or Earth completes one of your channels.',
+ freeEy:'Free beta',free:c=>`Your personal almanac is free while it grows. Tell me how it feels to use${c?', and if it nourishes you, offer a coffee':''}.`,share:'Share feedback',
+ calc:d=>`Calculated in your browser with the open astronomy-engine library, checked against the Swiss Ephemeris. Design moment: the Sun 88° before birth, ${d} UTC.`},
+pt:{
+ typePrompt:{'Generator':g=>`Deixe ${g} vir até você primeiro. O que o seu corpo responde: um sim claro, ou um não silencioso?`,'Manifesting Generator':g=>`Responda primeiro, depois avise. Por onde ${g} quer se mover depressa hoje?`,'Projector':g=>`Onde você é reconhecida e convidada a trazer ${g}? Guarde a sua energia para isso.`,'Manifestor':g=>`Se ${g} te move a agir hoje, avise antes as pessoas que isso vai tocar.`,'Reflector':g=>`Prove ${g} com leveza hoje. Nada precisa ser decidido ainda.`},
+ auth:{'Emotional':'Dê tempo ao tempo: a clareza vem em ondas.','Sacral':'Confie na resposta das entranhas, no momento.','Splenic':'Escute o primeiro saber silencioso.','Ego Manifested':'Pergunte a si: eu quero isto de verdade?','Ego Projected':'Pergunte a si: eu quero isto de verdade?','Self-Projected':'Diga em voz alta e escute o que você diz.','Mental (Outer Authority)':'Converse com pessoas de confiança e depois escute a si mesma.','Lunar':'Deixe passar um ciclo lunar inteiro antes de decidir.'},
+ invite:'Coloque os seus dados de nascimento uma vez, e cada dia vai mostrar onde o céu toca o seu próprio desenho.',personalise:'Personalizar',eyebrow:'O seu almanaque · beta',skyToday:'O seu céu hoje',
+ lit:(B,g,G,sp,where)=>`${B} acende o seu Portal ${g}, <b class="gold" style="font-weight:500">${G}</b>${sp?`, ${sp}`:''}. <span class="muted">No seu mapa: ${where}.</span>`,
+ ch:(bys,theirs,mine,key,name,c1,c2)=>`${bys} no Portal ${theirs} ${bys.includes(' e ')?'encontram':'encontra'} o seu Portal ${mine}: o Canal ${key} (${name}) se completa hoje, ligando ${c1} e ${c2}.`,
+ centresTag:'Centros',centres:list=>`Centros abertos que o céu define hoje: ${list}. Uma consistência emprestada, para sentir e não para guardar.`,
+ longer:'Correntes longas, que duram semanas ou meses:',also:'Também nos seus portais:',guest:G=>`O Sol, a Terra e a Lua passam por portais que você não carrega: um dia para receber ${G} do céu, de fora, como hóspede.`,
+ legend:'Dourado: o seu desenho · violeta tracejado: completado pelo céu de hoje',channel:'Canal',
+ sr:(pos,gk,time)=>`O Sol volta ao lugar do seu nascimento (${pos}, Portal ${gk}) às ${time}, hora do Reino Unido. Começa o seu ano pessoal.`,srKind:'Revolução Solar',
+ season:(g,G,your,eg,EG,eyour)=>`O Sol acende o Portal ${g}, ${G}: ${your}${eyour?`, enquanto a Terra ancora o Portal ${eg}, ${EG}: ${eyour}`:''}. Uma estação para viver ${eyour?'estes dons':'este dom'} à vista.`,
+ chYear:(body,theirs,mine,key,name)=>`${body} no Portal ${theirs} completa o seu Portal ${mine}: o Canal ${key} (${name}) é seu para viver por alguns dias.`,sunThe:'O Sol',earthThe:'A Terra',to:'a',
+ formH1:'Personalize o ano',formLede:'Coloque os seus dados de nascimento uma vez. O almanaque calcula o seu Human Design e o seu Perfil das Gene Keys, e cada dia mostra onde o céu toca o seu desenho: os portais que acende, os canais que completa, os centros que abre.',
+ fName:'Nome (opcional)',fDate:'Data de nascimento',fTime:'Hora de nascimento · relógio de 24 horas, hora local do lugar onde você nasceu',hour:'hora',min:'min',fUnknown:'Não sei a hora do meu nascimento (será usado meio-dia; a Lua e algumas linhas podem mudar).',
+ fTz:'Fuso horário do lugar de nascimento',tzPh:'ex.: America/Sao_Paulo, Europe/London',tzHint:'Digite a cidade mais próxima: Sao_Paulo, Recife, Lisbon, London… O horário de verão histórico é aplicado automaticamente.',
+ private:'Os seus dados ficam neste navegador. Nada é enviado a lugar nenhum.',show:'Mostrar o meu almanaque',errDate:'Coloque a sua data de nascimento.',errTime:'Escolha a hora e os minutos do seu nascimento, ou marque que não sabe.',errTz:'Escolha um fuso horário da lista, por exemplo America/Sao_Paulo.',errCalc:'Algo deu errado no cálculo.',
+ h12:h=>h===0?'meia-noite':h===12?'meio-dia':h<12?h+'h da manhã':h<18?(h-12)+'h da tarde':(h-12)+'h da noite',yourDesign:'O seu desenho',unknownT:'hora desconhecida',edit:'editar',forget:'apagar',
+ check:(t,city,utc,ps,ds)=>`Nascimento ${t}, hora de ${city} = ${utc} UTC · Sol da Personalidade ${ps} · Sol do Design ${ds}`,noon:'(meio-dia, hora desconhecida)',notRight:'Não confere? Verifique a hora.',
+ labels:['Estratégia','Autoridade','Perfil','Definição','Cruz','Assinatura','Não-eu'],channels:'Canais',noCh:'Sem canais definidos.',gates:'Os seus portais',gkp:'Perfil das Gene Keys · Sequência de Ativação',
+ openToday:'Abrir hoje no seu mapa',open1:'Abrir 1º de janeiro no seu mapa',y2027:'O seu 2027',y2027lede:'A sua Revolução Solar, as estações em que o Sol e a Terra acendem os seus quatro dons principais, e os dias em que o Sol ou a Terra completam um dos seus canais.',
+ freeEy:'Beta gratuito',free:c=>`O seu almanaque pessoal é gratuito enquanto cresce. Conte como é usá-lo${c?', e, se ele te nutre, ofereça um café':''}.`,share:'Dar a minha opinião',
+ calc:d=>`Calculado no seu navegador com a biblioteca aberta astronomy-engine, conferido com a Swiss Ephemeris. Momento do Design: o Sol 88° antes do nascimento, ${d} UTC.`},
+es:{
+ typePrompt:{'Generator':g=>`Deja que ${g} venga a ti primero. ¿Qué responde tu cuerpo: un sí claro o un no callado?`,'Manifesting Generator':g=>`Responde primero y luego avisa. ¿Por dónde quiere ${g} moverse rápido hoy?`,'Projector':g=>`¿Dónde te reconocen y te invitan a traer ${g}? Guarda tu energía para eso.`,'Manifestor':g=>`Si ${g} te mueve a actuar hoy, avisa antes a las personas a quienes tocará.`,'Reflector':g=>`Prueba ${g} con ligereza hoy. Nada necesita decidirse todavía.`},
+ auth:{'Emotional':'Date tiempo: la claridad llega en olas.','Sacral':'Confía en la respuesta de las entrañas, en el momento.','Splenic':'Escucha el primer saber silencioso.','Ego Manifested':'Pregúntate: ¿de verdad quiero esto?','Ego Projected':'Pregúntate: ¿de verdad quiero esto?','Self-Projected':'Dilo en voz alta y escucha lo que dices.','Mental (Outer Authority)':'Habla con personas de confianza y luego escúchate.','Lunar':'Deja pasar un ciclo lunar entero antes de decidir.'},
+ invite:'Introduce tus datos de nacimiento una vez, y cada día mostrará dónde toca el cielo tu propio diseño.',personalise:'Personalizar',eyebrow:'Tu almanaque · beta',skyToday:'Tu cielo hoy',
+ lit:(B,g,G,sp,where)=>`${B} enciende tu Puerta ${g}, <b class="gold" style="font-weight:500">${G}</b>${sp?`, ${sp}`:''}. <span class="muted">En tu carta: ${where}.</span>`,
+ ch:(bys,theirs,mine,key,name,c1,c2)=>`${bys} en la Puerta ${theirs} ${bys.includes(' y ')?'encuentran':'encuentra'} tu Puerta ${mine}: el Canal ${key} (${name}) se completa hoy, uniendo ${c1} y ${c2}.`,
+ centresTag:'Centros',centres:list=>`Centros abiertos que el cielo define hoy: ${list}. Una consistencia prestada, para sentir y no para quedársela.`,
+ longer:'Corrientes largas, que duran semanas o meses:',also:'También en tus puertas:',guest:G=>`El Sol, la Tierra y la Luna pasan por puertas que no llevas: un día para recibir ${G} del cielo, desde fuera, como huésped.`,
+ legend:'Dorado: tu diseño · violeta discontinuo: completado por el cielo de hoy',channel:'Canal',
+ sr:(pos,gk,time)=>`El Sol vuelve a su lugar en tu nacimiento (${pos}, Puerta ${gk}) a las ${time}, hora del Reino Unido. Empieza tu año personal.`,srKind:'Retorno Solar',
+ season:(g,G,your,eg,EG,eyour)=>`El Sol enciende la Puerta ${g}, ${G}: ${your}${eyour?`, mientras la Tierra ancla la Puerta ${eg}, ${EG}: ${eyour}`:''}. Una estación para vivir ${eyour?'estos dones':'este don'} a la vista.`,
+ chYear:(body,theirs,mine,key,name)=>`${body} en la Puerta ${theirs} completa tu Puerta ${mine}: el Canal ${key} (${name}) es tuyo para vivir durante unos días.`,sunThe:'El Sol',earthThe:'La Tierra',to:'al',
+ formH1:'Personaliza el año',formLede:'Introduce tus datos de nacimiento una vez. El almanaque calcula tu Human Design y tu Perfil de las Gene Keys, y cada día muestra dónde toca el cielo tu diseño: las puertas que enciende, los canales que completa, los centros que abre.',
+ fName:'Nombre (opcional)',fDate:'Fecha de nacimiento',fTime:'Hora de nacimiento · reloj de 24 horas, hora local del lugar donde naciste',hour:'hora',min:'min',fUnknown:'No sé mi hora de nacimiento (se usará mediodía; la Luna y algunas líneas pueden cambiar).',
+ fTz:'Huso horario del lugar de nacimiento',tzPh:'p. ej. America/Sao_Paulo, Europe/Madrid',tzHint:'Escribe la ciudad más cercana: Madrid, Buenos_Aires, Mexico_City, London… El horario de verano histórico se aplica automáticamente.',
+ private:'Tus datos se quedan en este navegador. No se envía nada a ningún sitio.',show:'Mostrar mi almanaque',errDate:'Introduce tu fecha de nacimiento.',errTime:'Elige la hora y los minutos de tu nacimiento, o marca que no la sabes.',errTz:'Elige un huso horario de la lista, por ejemplo America/Sao_Paulo.',errCalc:'Algo salió mal en el cálculo.',
+ h12:h=>h===0?'medianoche':h===12?'mediodía':h<12?h+' de la mañana':h<20?(h-12)+' de la tarde':(h-12)+' de la noche',yourDesign:'Tu diseño',unknownT:'hora desconocida',edit:'editar',forget:'borrar',
+ check:(t,city,utc,ps,ds)=>`Nacimiento ${t}, hora de ${city} = ${utc} UTC · Sol de la Personalidad ${ps} · Sol del Diseño ${ds}`,noon:'(mediodía, hora desconocida)',notRight:'¿No coincide? Revisa la hora.',
+ labels:['Estrategia','Autoridad','Perfil','Definición','Cruz','Firma','No-ser'],channels:'Canales',noCh:'Sin canales definidos.',gates:'Tus puertas',gkp:'Perfil de las Gene Keys · Secuencia de Activación',
+ openToday:'Abrir hoy en tu carta',open1:'Abrir el 1 de enero en tu carta',y2027:'Tu 2027',y2027lede:'Tu Retorno Solar, las estaciones en que el Sol y la Tierra encienden tus cuatro dones principales, y los días en que el Sol o la Tierra completan uno de tus canales.',
+ freeEy:'Beta gratuita',free:c=>`Tu almanaque personal es gratuito mientras crece. Cuéntame cómo es usarlo${c?', y si te nutre, invítame a un café':''}.`,share:'Dar mi opinión',
+ calc:d=>`Calculado en tu navegador con la biblioteca abierta astronomy-engine, verificado con la Swiss Ephemeris. Momento del Diseño: el Sol 88° antes del nacimiento, ${d} UTC.`}};
+const P = () => PS[LANG];
+const yourSphere = k => HDl().your[k];
+function sphereKeysOf(g){return ME_CHART?SPHERES.filter(k=>ME_CHART.gk[k][0]===g):[];}
+function actLabel(g){const h=HDl();return ME_CHART.acts.filter(x=>x.gate===g).map(x=>`${PN[x.body]} (${x.side==='p'?h.P:h.D})`).join(', ');}
 
 /* centres map */
 function centresMap(ch,ov){
   const C={Head:[150,38],Ajna:[150,104],Throat:[150,180],G:[150,262],Heart:[212,292],Spleen:[52,330],SolarPlexus:[248,330],Sacral:[150,346],Root:[150,420]};
   const shape={Head:'tri-up',Ajna:'tri-down',Throat:'sq',G:'dia',Heart:'tri-sm',Spleen:'tri-r',SolarPlexus:'tri-l',Sacral:'sq',Root:'sq'};
+  const lab=c=>(Wl().centres[c]||c).replace(/ \(Ego\)/,'').toUpperCase();
   const path=(c)=>{const [x,y]=C[c],s=28;switch(shape[c]){
     case 'tri-up':return `M${x},${y-s} L${x+s},${y+s*.8} L${x-s},${y+s*.8}Z`;
     case 'tri-down':return `M${x-s},${y-s*.8} L${x+s},${y-s*.8} L${x},${y+s}Z`;
@@ -1055,180 +1414,200 @@ function centresMap(ch,ov){
     const n=pairCount[pk]=(pairCount[pk]||0)+1;const [x1,y1]=C[ca],[x2,y2]=C[cb];const dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1;const nx=-dy/L,ny=dx/L;
     const off=(n%2?1:-1)*Math.ceil((n-1)/2)*9;let s='';
     [-2,2].forEach(w=>{const o=off+w;s+=`<line x1="${x1+nx*o}" y1="${y1+ny*o}" x2="${x2+nx*o}" y2="${y2+ny*o}" stroke="${style==='t'?'#8f7fd6':'#d4b15a'}" stroke-width="1.6" ${style==='t'?'stroke-dasharray="5 4"':''} stroke-opacity=".9"/>`;});return s;};
-  let s=`<svg viewBox="0 0 300 470" class="wheel" style="max-width:300px" role="img" aria-label="Centres map">`;
+  let s=`<svg viewBox="0 0 300 470" class="wheel" style="max-width:300px" role="img" aria-label="Bodygraph">`;
   s+=`<path d="M150,10 L292,452 L8,452Z" fill="none" stroke="#262d47"/>`;
   ch.channels.forEach(k=>s+=lane(k,'n'));
   (ov?ov.completed:[]).forEach(c=>s+=lane(c.key,'t'));
   Object.keys(C).forEach(c=>{const def=ch.defined.includes(c),tday=ov&&ov.newCentres.includes(c);
     s+=`<path d="${path(c)}" fill="${def?'rgba(212,177,90,.55)':tday?'rgba(143,127,214,.45)':'#0d1020'}" stroke="${def?'#ecd49a':tday?'#8f7fd6':'#4a5275'}" stroke-width="1.3"/>`;
     const out={Heart:[C.Heart[0]+24,C.Heart[1]+4,'start'],Spleen:[C.Spleen[0]-6,C.Spleen[1]+44,'middle'],SolarPlexus:[C.SolarPlexus[0]+6,C.SolarPlexus[1]+44,'middle']}[c];
-    if(out) s+=`<text x="${out[0]}" y="${out[1]}" fill="${def?'#ecd49a':'#9aa0b8'}" font-size="8.5" letter-spacing="1" text-anchor="${out[2]}" font-family="Inter,sans-serif">${CENTRE_LABEL[c].toUpperCase()}</text>`;
-    else s+=`<text x="${C[c][0]}" y="${C[c][1]+(shape[c]==='tri-up'?10:shape[c]==='tri-down'?-8:3)}" fill="${def?'#08090f':'#9aa0b8'}" font-size="${c==='G'?7.5:8.5}" letter-spacing="1" text-anchor="middle" font-family="Inter,sans-serif">${c==='G'?'G':CENTRE_LABEL[c].toUpperCase()}</text>`;});
+    if(out) s+=`<text x="${out[0]}" y="${out[1]}" fill="${def?'#ecd49a':'#9aa0b8'}" font-size="8.5" letter-spacing="1" text-anchor="${out[2]}" font-family="Inter,sans-serif">${lab(c)}</text>`;
+    else s+=`<text x="${C[c][0]}" y="${C[c][1]+(shape[c]==='tri-up'?10:shape[c]==='tri-down'?-8:3)}" fill="${def?'#08090f':'#9aa0b8'}" font-size="${c==='G'?7.5:8.5}" letter-spacing="1" text-anchor="middle" font-family="Inter,sans-serif">${c==='G'?'G':lab(c)}</text>`;});
   return s+'</svg>';
 }
 
 /* the day's personal layer */
 function personalDay(ds){
-  if(!ME_CHART) return `<section class="card cta"><div><div class="eyebrow">Your almanac · beta</div><p style="margin:6px 0 0">Add your birth data once, and every day will show where the sky touches your own design.</p></div><a class="btn" href="#/me">Personalise</a></section>`;
+  const p=P();
+  if(!ME_CHART) return `<section class="card cta"><div><div class="eyebrow">${p.eyebrow}</div><p style="margin:6px 0 0">${p.invite}</p></div><a class="btn" href="#/me">${p.personalise}</a></section>`;
   const d=DAY[ds]; const t={};ALL.forEach(k=>t[k]=d[k][0]);
   const ov=HDChart.overlay(ME_CHART,t);
-  const main=['sun','earth','moon'];
+  const main=['sun','earth','moon'], FAST=['sun','earth','moon','mercury','venus','mars'];
   const litMain=ov.lit.filter(x=>main.includes(x.body)), litOther=ov.lit.filter(x=>!main.includes(x.body));
   const [sg]=gl(d.sun[0]);
   const items=[];
-  litMain.forEach(x=>{const sp=sphereOf(x.gate);items.push(`<li><span class="tag">${PN[x.body]} ${x.gate}.${x.line}</span> <span>The ${PN[x.body]} lights your Gate ${x.gate}, <b class="gold" style="font-weight:500">${K[x.gate][2]}</b>${sp.length?`, your ${sp.join(' and ')}`:''}. <span class="muted">In your chart: ${actLabel(x.gate)}.</span></span></li>`);});
-  const FAST=['sun','earth','moon','mercury','venus','mars'];
+  litMain.forEach(x=>{const sp=sphereKeysOf(x.gate).map(yourSphere);items.push(`<li><span class="tag">${PN[x.body]} ${x.gate}.${x.line}</span> <span>${p.lit(Wl().bodiesThe[x.body],x.gate,K[x.gate][2],sp.length?listAnd(sp):'',actLabel(x.gate))}</span></li>`);});
   const slow=ov.completed.filter(c=>c.personal&&!c.by.some(k=>FAST.includes(k)));
   ov.completed.filter(c=>c.personal&&c.by.some(k=>FAST.includes(k))).forEach(c=>{const [a,b]=c.key.split('-').map(Number);const mine=ME_CHART.gates.includes(a)?a:b, theirs=mine===a?b:a;
-    const isMain=c.by.some(k=>main.includes(k));
-    items.push(`<li${isMain?'':' class="minor"'}><span class="tag" style="border-color:rgba(143,127,214,.6);color:#cfc6e8">Channel ${c.key}</span> <span>${c.by.map(k=>PN[k]).join(' and ')} in Gate ${theirs} meet${c.by.length>1?'':'s'} your Gate ${mine}: the Channel of ${chName(c.name)} is complete today, linking ${CENTRE_LABEL[HDChart.CENTRE_OF[a]]} and ${CENTRE_LABEL[HDChart.CENTRE_OF[b]]}.</span></li>`);});
-  if(ov.newCentres.length) items.push(`<li><span class="tag" style="border-color:rgba(143,127,214,.6);color:#cfc6e8">Centres</span> <span>Your open ${listAnd(ov.newCentres.map(c=>CENTRE_LABEL[c]))} ${ov.newCentres.length>1?'are':'is'} defined by the sky today: a borrowed consistency, to feel rather than to keep.</span></li>`);
-  const longer=slow.length?`<p class="muted" style="font-size:17px;margin-top:12px">Longer currents, lasting weeks or months: ${slow.map(c=>`${chName(c.name).replace(/^the /,'The ')} ${c.key} (${c.by.map(k=>PN[k]).join(', ')})`).join(' · ')}.</p>`:'';
-  const others=litOther.length?`<p class="muted" style="font-size:17px;margin-top:12px">Also on your gates: ${litOther.map(x=>`${PN[x.body]} in ${x.gate}.${x.line}`).join(' · ')}.</p>`:'';
-  return `<section class="card framed"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px"><span class="eyebrow">Your sky today${ME.name?' · '+esc(ME.name):''}</span><a class="sans muted" style="font-size:12px;letter-spacing:.1em" href="#/me">${ME_CHART.type.toUpperCase()} · ${ME_CHART.profile}</a></div>
+    items.push(`<li><span class="tag" style="border-color:rgba(143,127,214,.6);color:#cfc6e8">${p.channel} ${c.key}</span> <span>${p.ch(listAnd(c.by.map(k=>PN[k])),theirs,mine,c.key,chName(c.key),Wl().centres[HDChart.CENTRE_OF[a]],Wl().centres[HDChart.CENTRE_OF[b]])}</span></li>`);});
+  if(ov.newCentres.length) items.push(`<li><span class="tag" style="border-color:rgba(143,127,214,.6);color:#cfc6e8">${p.centresTag}</span> <span>${p.centres(listAnd(ov.newCentres.map(c=>Wl().centres[c])))}</span></li>`);
+  const longer=slow.length?`<p class="muted" style="font-size:17px;margin-top:12px">${p.longer} ${slow.map(c=>`${chName(c.key)} ${c.key} (${c.by.map(k=>PN[k]).join(', ')})`).join(' · ')}.</p>`:'';
+  const others=litOther.length?`<p class="muted" style="font-size:17px;margin-top:12px">${p.also} ${litOther.map(x=>`${PN[x.body]} ${x.gate}.${x.line}`).join(' · ')}.</p>`:'';
+  return `<section class="card framed"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px"><span class="eyebrow">${p.skyToday}${ME.name?' · '+esc(ME.name):''}</span><a class="sans muted" style="font-size:12px;letter-spacing:.1em" href="#/me">${HDl().type[ME_CHART.type].toUpperCase()} · ${ME_CHART.profile}</a></div>
   <div class="split" style="margin-top:14px;align-items:start"><div>
-   <p style="font-size:22px;color:var(--gold3);margin:0 0 6px">${TYPE_PROMPT[ME_CHART.type](K[sg][2])}</p><p class="muted">${AUTH_NOTE[ME_CHART.authority]}</p>
-   ${items.length?`<ul class="events pers">${items.join('')}</ul>`:`<p class="muted">The Sun, Earth and Moon pass through gates you do not carry: a day to receive the sky's ${lc(K[sg][2])} from the outside, as a guest.</p>`}${others}${longer}</div>
-   <div>${centresMap(ME_CHART,ov)}<p class="sans muted" style="font-size:12px;text-align:center">Gold: your design · violet dashed: completed by today's sky</p></div></div></section>`;
+   <p style="font-size:22px;color:var(--gold3);margin:0 0 6px">${p.typePrompt[ME_CHART.type](K[sg][2])}</p><p class="muted">${p.auth[ME_CHART.authority]}</p>
+   ${items.length?`<ul class="events pers">${items.join('')}</ul>`:`<p class="muted">${p.guest(K[sg][2])}</p>`}${others}${longer}</div>
+   <div>${centresMap(ME_CHART,ov)}<p class="sans muted" style="font-size:12px;text-align:center">${p.legend}</p></div></div></section>`;
 }
-const chName=n=>n.replace(/^The /,'the ');
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 /* personal year overview */
 function personalYear(){
-  const ch=ME_CHART, out=[];
+  const ch=ME_CHART, p=P(), out=[];
   const days=SKY.days.filter(d=>d.date>=FIRST&&d.date<=LAST);
   const runs=(test)=>{const r=[];let cur=null;days.forEach(d=>{if(test(d)){if(!cur){cur=[d.date,d.date];r.push(cur);}else cur[1]=d.date;}else cur=null;});return r;};
-  // solar return
   const ns=ch.personality.sun;
   for(let i=1;i<days.length;i++){const a=days[i-1].sun[0],b=days[i].sun[0];if(((ns-a+360)%360)<((b-a+360)%360)){
     let lo=new Date(Date.parse(days[i-1].date+'T07:00:00Z')-36e5),hi=new Date(Date.parse(days[i].date+'T07:00:00Z')+36e5);
     for(let k=0;k<40;k++){const m=new Date((lo.getTime()+hi.getTime())/2);if(((HDChart.positions(m).sun-ns+540)%360)-180<0)lo=m;else hi=m;}
     const ukd=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London'}).format(lo);
     const ukt=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hour:'2-digit',minute:'2-digit'}).format(lo);
-    out.push({d:ukd,kind:'Solar return',text:`The Sun returns to its place at your birth (${fmtPlain(ns)}, Gate ${ch.gk.lifesWork.join('.')}) at ${ukt} UK time. Your personal year begins.`});break;}}
-  // four prime gifts
-  const sphereNames=g=>SPHERES.filter(([k])=>ch.gk[k][0]===g).map(([,n])=>n);
+    out.push({d:ukd,kind:p.srKind,text:p.sr(fmtPlain(ns),ch.gk.lifesWork.join('.'),ukt)});break;}}
+  const sphereOfG=g=>SPHERES.filter(k=>ch.gk[k][0]===g);
   const seen=new Set();
-  SPHERES.forEach(([k])=>{const g=ch.gk[k][0];if(seen.has(g))return;seen.add(g);
-    runs(d=>gl(d.sun[0])[0]===g).forEach(([a,b])=>{const eg=gl(DAY[a].earth[0])[0],en=sphereNames(eg);
-      const sn=sphereNames(g);
-      out.push({d:a,e:b,kind:[...sn,...en].join(' · '),text:`The Sun lights Gate ${g}, ${K[g][2]}: your ${listAnd(sn)}${en.length?`, while the Earth grounds Gate ${eg}, ${K[eg][2]}: your ${listAnd(en)}`:''}. A season to live ${en.length?'these gifts':'this gift'} in full view.`});});});
-  // channels completed by Sun/Earth
+  SPHERES.forEach(k=>{const g=ch.gk[k][0];if(seen.has(g))return;seen.add(g);
+    runs(d=>gl(d.sun[0])[0]===g).forEach(([a,b])=>{const eg=gl(DAY[a].earth[0])[0],ek=sphereOfG(eg),sk=sphereOfG(g);
+      out.push({d:a,e:b,kind:[...sk,...ek].map(x=>HDl().spheres[x]).join(' · '),text:p.season(g,K[g][2],listAnd(sk.map(yourSphere)),eg,K[eg][2],ek.length?listAnd(ek.map(yourSphere)):'')});});});
   const natal=new Set(ch.gates);
   HDChart.CHANNELS.forEach(([a,b])=>{const ha=natal.has(a),hb=natal.has(b);if(ha===hb)return;const mine=ha?a:b,theirs=ha?b:a,key=`${a}-${b}`;
-    runs(d=>gl(d.sun[0])[0]===theirs||gl(d.earth[0])[0]===theirs).forEach(([s,e])=>{const body=gl(DAY[s].sun[0])[0]===theirs?'Sun':'Earth';
-      out.push({d:s,e,kind:'Channel',text:`The ${body} in Gate ${theirs} completes your Gate ${mine}: the Channel of ${chName(HDChart.CHANNEL_NAMES[key])} (${key}) is yours to live for a few days.`});});});
+    runs(d=>gl(d.sun[0])[0]===theirs||gl(d.earth[0])[0]===theirs).forEach(([s,e])=>{const body=gl(DAY[s].sun[0])[0]===theirs?p.sunThe:p.earthThe;
+      out.push({d:s,e,kind:p.channel,text:p.chYear(body,theirs,mine,key,chName(key))});});});
   out.sort((x,y)=>x.d<y.d?-1:1);
   let html='',m='';
-  out.forEach(o=>{const mm=o.d.slice(5,7);if(mm!==m){m=mm;html+=`<h3 class="eyebrow" style="margin:26px 0 6px;font-size:11px">${MONTHS[parseInt(mm)-1]}</h3>`;}
-    html+=`<a class="dayrow" href="#/day/${o.d}" style="grid-template-columns:120px 1fr"><div class="sans gold" style="font-size:12.5px">${short(o.d)}${o.e&&o.e!==o.d?'<br><span class="muted">to '+short(o.e)+'</span>':''}</div><div><div class="eyebrow m" style="font-size:10px">${o.kind}</div><div>${o.text}</div></div></a>`;});
+  out.forEach(o=>{const mm=o.d.slice(5,7);if(mm!==m){m=mm;html+=`<h3 class="eyebrow" style="margin:26px 0 6px;font-size:11px">${monthName(parseInt(mm)-1)}</h3>`;}
+    html+=`<a class="dayrow" href="#/day/${o.d}" style="grid-template-columns:120px 1fr"><div class="sans gold" style="font-size:12.5px">${short(o.d)}${o.e&&o.e!==o.d?'<br><span class="muted">'+p.to+' '+short(o.e)+'</span>':''}</div><div><div class="eyebrow m" style="font-size:10px">${o.kind}</div><div>${o.text}</div></div></a>`;});
   return html;
 }
 
 function meForm(){
-  const v=ME||{name:'',date:'',time:'',unknown:false,tz:guessTZ()};
-  return `<div class="page"><div class="eyebrow">Your almanac · beta</div><h1 style="margin:12px 0 14px">Personalise the year</h1>
-  <p class="prose muted">Enter your birth data once. The almanac will calculate your Human Design and Gene Keys Profile, and every day will show where the sky touches your design: the gates it lights, the channels it completes, the centres it opens.</p>
+  const p=P(), v=ME||{name:'',date:'',time:'',unknown:false,tz:guessTZ()};
+  return `<div class="page"><div class="eyebrow">${p.eyebrow}</div><h1 style="margin:12px 0 14px">${p.formH1}</h1>
+  <p class="prose muted">${p.formLede}</p>
   <form class="card framed fb" id="meForm" style="max-width:560px;margin-top:26px">
-   <label for="meName">Name (optional)</label><input id="meName" value="${esc(v.name||'')}" autocomplete="given-name">
-   <label for="meDate">Date of birth</label><input id="meDate" type="date" required value="${v.date||''}" min="1900-01-01" max="2027-12-31">
-   <label for="meHour">Time of birth · 24-hour clock, local time where you were born</label>
-   <div style="display:flex;gap:10px;align-items:center"><select id="meHour" aria-label="Hour (0 to 23)" style="width:auto"><option value="">hour</option>${[...Array(24)].map((_,h)=>{const hh=String(h).padStart(2,'0');return `<option value="${hh}" ${v.time&&v.time.slice(0,2)===hh&&!v.unknown?'selected':''}>${hh}${h===0?' (midnight)':h===12?' (noon)':h>12?` (${h-12} pm)`:` (${h} am)`}</option>`;}).join('')}</select>
-   <span class="gold">:</span><select id="meMin" aria-label="Minutes" style="width:auto"><option value="">min</option>${[...Array(60)].map((_,m)=>{const mm=String(m).padStart(2,'0');return `<option value="${mm}" ${v.time&&v.time.slice(3,5)===mm&&!v.unknown?'selected':''}>${mm}</option>`;}).join('')}</select></div>
-   <div class="chk"><input id="meUnknown" type="checkbox" ${v.unknown?'checked':''}><label for="meUnknown" style="all:unset;cursor:pointer">I do not know my birth time (noon will be used; the Moon and some lines may differ).</label></div>
-   <label for="meTz">Time zone of the birth place</label><input id="meTz" list="tzList" value="${esc(v.tz||guessTZ())}" required placeholder="e.g. America/Sao_Paulo, Europe/London">
+   <label for="meName">${p.fName}</label><input id="meName" value="${esc(v.name||'')}" autocomplete="given-name">
+   <label for="meDate">${p.fDate}</label><input id="meDate" type="date" required value="${v.date||''}" min="1900-01-01" max="2027-12-31">
+   <label for="meHour">${p.fTime}</label>
+   <div style="display:flex;gap:10px;align-items:center"><select id="meHour" style="width:auto"><option value="">${p.hour}</option>${[...Array(24)].map((_,h)=>{const hh=String(h).padStart(2,'0');return `<option value="${hh}" ${v.time&&v.time.slice(0,2)===hh&&!v.unknown?'selected':''}>${hh} (${p.h12(h)})</option>`;}).join('')}</select>
+   <span class="gold">:</span><select id="meMin" style="width:auto"><option value="">${p.min}</option>${[...Array(60)].map((_,m)=>{const mm=String(m).padStart(2,'0');return `<option value="${mm}" ${v.time&&v.time.slice(3,5)===mm&&!v.unknown?'selected':''}>${mm}</option>`;}).join('')}</select></div>
+   <div class="chk"><input id="meUnknown" type="checkbox" ${v.unknown?'checked':''}><label for="meUnknown" style="all:unset;cursor:pointer">${p.fUnknown}</label></div>
+   <label for="meTz">${p.fTz}</label><input id="meTz" list="tzList" value="${esc(v.tz||guessTZ())}" required placeholder="${p.tzPh}">
    <datalist id="tzList">${TZS.map(z=>`<option value="${z}">`).join('')}</datalist>
-   <p class="sans muted" style="font-size:12px;margin-top:8px">Type the nearest city: Sao_Paulo, Lisbon, London, New_York… Historical summer time is applied automatically.</p>
-   <div class="row"><span class="sans muted" style="font-size:12px">Your data stays in this browser. Nothing is sent anywhere.</span><button class="btn" type="submit">Show my almanac</button></div>
+   <p class="sans muted" style="font-size:12px;margin-top:8px">${p.tzHint}</p>
+   <div class="row"><span class="sans muted" style="font-size:12px">${p.private}</span><button class="btn" type="submit">${p.show}</button></div>
    <div class="msg" id="meMsg" aria-live="polite"></div></form></div>`;
 }
 function bindMeForm(){
-  const f=$('#meForm');if(!f)return;
+  const f=$('#meForm');if(!f)return; const p=P();
   const un=$('#meUnknown'),hh=$('#meHour'),mn=$('#meMin');const sync=()=>{hh.disabled=mn.disabled=un.checked;};un.addEventListener('change',sync);sync();
   f.addEventListener('submit',e=>{e.preventDefault();
     const date=$('#meDate').value,unknown=un.checked,time=unknown?'12:00':(hh.value&&mn.value?hh.value+':'+mn.value:''),tz=$('#meTz').value.trim();
-    if(!date){$('#meMsg').textContent='Please enter your date of birth.';return;}
-    if(!time){$('#meMsg').textContent='Please choose the hour and minutes of your birth, or tick that you do not know it.';return;}
-    if(!TZS.includes(tz)){$('#meMsg').textContent='Please choose a time zone from the list, such as America/Sao_Paulo.';return;}
-    const utc=zonedToUTC(date,time,tz);
-    saveMe({name:$('#meName').value.trim(),date,time,unknown,tz,utc});
-    if(!ME_CHART){$('#meMsg').textContent='Something went wrong with the calculation.';return;}
+    if(!date){$('#meMsg').textContent=p.errDate;return;}
+    if(!time){$('#meMsg').textContent=p.errTime;return;}
+    if(!TZS.includes(tz)){$('#meMsg').textContent=p.errTz;return;}
+    saveMe({name:$('#meName').value.trim(),date,time,unknown,tz,utc:zonedToUTC(date,time,tz)});
+    if(!ME_CHART){$('#meMsg').textContent=p.errCalc;return;}
     go('#/me');});
 }
 function pageMe(edit){
   if(!ME_CHART||edit) return meForm();
-  const c=ME_CHART;
-  const utcStr=new Intl.DateTimeFormat('en-GB',{timeZone:'UTC',hour:'2-digit',minute:'2-digit',day:'numeric',month:'short'}).format(new Date(ME.utc));
-  const h12=(t=>{const h=+t.slice(0,2);return h===0?'midnight':h===12?'noon':h>12?(h-12)+t.slice(2)+' pm':h+t.slice(2)+' am';})(ME.time);
-  const birthLocal=`${nice(ME.date,{y:1})}${ME.unknown?' · time unknown':` · ${ME.time} (${h12})`}`;
-  const check=`Born ${ME.unknown?'(noon, time unknown)':ME.time} ${esc(ME.tz.split('/').pop().replace(/_/g,' '))} time = ${utcStr} UTC · Personality Sun ${c.gk.lifesWork.join('.')} · Design Sun ${c.gk.radiance.join('.')}`;
-  const spheres=SPHERES.map(([k,n,src])=>{const [g,l]=c.gk[k];return `<a class="card" href="#/key/${g}"><div class="eyebrow m">${n}</div><div style="display:flex;gap:10px;align-items:baseline;margin-top:8px"><span class="num">${g}.${l}</span><h3>${K[g][2]}</h3></div><div class="sans dim" style="font-size:11.5px;margin-top:4px">${src}</div>${spec(g)}</a>`;}).join('');
+  const c=ME_CHART, p=P(), h=HDl();
+  const utcStr=new Intl.DateTimeFormat({pt:'pt-BR',en:'en-GB',es:'es-ES'}[LANG],{timeZone:'UTC',hour:'2-digit',minute:'2-digit',day:'numeric',month:'short'}).format(new Date(ME.utc));
+  const birthLocal=`${nice(ME.date,{y:1})}${ME.unknown?' · '+p.unknownT:` · ${ME.time} (${p.h12(+ME.time.slice(0,2))})`}`;
+  const check=p.check(ME.unknown?p.noon:ME.time,esc(ME.tz.split('/').pop().replace(/_/g,' ')),utcStr,c.gk.lifesWork.join('.'),c.gk.radiance.join('.'));
+  const spheres=SPHERES.map(k=>{const [g,l]=c.gk[k];return `<a class="card" href="#/key/${g}"><div class="eyebrow m">${h.spheres[k]}</div><div style="display:flex;gap:10px;align-items:baseline;margin-top:8px"><span class="num">${g}.${l}</span><h3>${K[g][2]}</h3></div><div class="sans dim" style="font-size:11.5px;margin-top:4px">${h.src[k]}</div>${spec(g)}</a>`;}).join('');
   const t=todayISO(), td=DAY[t]&&t>=FIRST?t:FIRST;
-  const crossG=c.cross.gates;
-  return `<div class="page"><div class="eyebrow">Your almanac · beta</div>
-  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px"><h1 style="margin:12px 0 6px">${ME.name?esc(ME.name):'Your design'}</h1>
-  <div class="sans muted" style="font-size:12.5px;text-align:right">${birthLocal}<br>${esc(ME.tz)} · <a class="gold" href="#/me/edit">edit</a> · <a class="gold" href="#" id="meForget">forget</a></div></div>
+  const X=c.cross.gates, L=p.labels;
+  return `<div class="page"><div class="eyebrow">${p.eyebrow}</div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px"><h1 style="margin:12px 0 6px">${ME.name?esc(ME.name):p.yourDesign}</h1>
+  <div class="sans muted" style="font-size:12.5px;text-align:right">${birthLocal}<br>${esc(ME.tz)} · <a class="gold" href="#/me/edit">${p.edit}</a> · <a class="gold" href="#" id="meForget">${p.forget}</a></div></div>
   <section class="split" style="align-items:start"><div class="card framed">
-   <div class="eyebrow">Human Design</div><h2 style="margin:10px 0 4px">${c.type}</h2>
-   <p class="sans muted" style="font-size:12px;margin:4px 0 0">${check}. <a class="gold" href="#/me/edit">Not right? Check the hour.</a></p>
-   <dl class="spec" style="font-size:19px;margin-top:14px"><dt>Strategy</dt><dd>${c.strategy}</dd><dt>Authority</dt><dd>${c.authority}</dd><dt>Profile</dt><dd>${c.profile}</dd>
-   <dt>Definition</dt><dd>${c.definition}</dd><dt>Cross</dt><dd>${c.cross.angle} · ${crossG[0]}/${crossG[1]} | ${crossG[2]}/${crossG[3]}</dd>
-   <dt>Signature</dt><dd class="gift">${c.signature[0]}</dd><dt>Not-self</dt><dd>${c.signature[1]}</dd></dl>
-   <div style="margin-top:16px"><div class="eyebrow m" style="margin-bottom:6px">Channels</div>${c.channels.length?c.channels.map(k=>`<span class="chip"><b>${k}</b> ${HDChart.CHANNEL_NAMES[k]}</span>`).join(''):'<span class="muted">No defined channels.</span>'}</div>
-   <div style="margin-top:12px"><div class="eyebrow m" style="margin-bottom:6px">Your gates</div>${c.gates.map(g=>`<a class="chip" href="#/key/${g}"><b>${g}</b></a>`).join('')}</div></div>
+   <div class="eyebrow">Human Design</div><h2 style="margin:10px 0 4px">${h.type[c.type]}</h2>
+   <p class="sans muted" style="font-size:12px;margin:4px 0 0">${check}. <a class="gold" href="#/me/edit">${p.notRight}</a></p>
+   <dl class="spec" style="font-size:19px;margin-top:14px"><dt>${L[0]}</dt><dd>${h.strategy[c.type]}</dd><dt>${L[1]}</dt><dd>${h.auth[c.authority]}</dd><dt>${L[2]}</dt><dd>${c.profile}</dd>
+   <dt>${L[3]}</dt><dd>${h.def[c.definition]}</dd><dt>${L[4]}</dt><dd>${h.angle[c.cross.angle]} · ${X[0]}/${X[1]} | ${X[2]}/${X[3]}</dd>
+   <dt>${L[5]}</dt><dd class="gift">${h.sig[c.type][0]}</dd><dt>${L[6]}</dt><dd>${h.sig[c.type][1]}</dd></dl>
+   <div style="margin-top:16px"><div class="eyebrow m" style="margin-bottom:6px">${p.channels}</div>${c.channels.length?c.channels.map(k=>`<span class="chip"><b>${k}</b> ${chName(k)}</span>`).join(''):`<span class="muted">${p.noCh}</span>`}</div>
+   <div style="margin-top:12px"><div class="eyebrow m" style="margin-bottom:6px">${p.gates}</div>${c.gates.map(g=>`<a class="chip" href="#/key/${g}" title="${K[g][2]}"><b>${g}</b></a>`).join('')}</div></div>
    <div>${centresMap(c)}</div></section>
-  <section><div class="eyebrow">Gene Keys Profile · Activation Sequence</div><div class="grid g4" style="margin-top:14px">${spheres}</div></section>
-  <section><a class="btn" href="#/day/${td}">Open ${td===t?'today':'1 January'} in your chart</a></section>
-  <section class="card"><div class="eyebrow">Your 2027</div><p class="muted" style="margin-top:8px">Your solar return, the seasons when the Sun and Earth light your four prime gifts, and the days the Sun or Earth completes one of your channels.</p>${personalYear()}</section>
-  <section class="card framed cta"><div><div class="eyebrow">Free beta</div><p style="margin:6px 0 0">Your personal almanac is free while it grows. Tell me how it feels to use${SUPPORT_URL?', and if it nourishes you, offer a coffee':''}.</p></div><div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" type="button" data-fb="An idea or wish">Share feedback</button>${coffee()}</div></section>
-  <p class="sans muted" style="font-size:12px">Calculated in your browser with the open astronomy-engine library, checked against the Swiss Ephemeris. Design moment: the Sun 88° before birth, ${new Intl.DateTimeFormat('en-GB',{dateStyle:'medium',timeStyle:'short',timeZone:'UTC'}).format(c.design)} UTC.</p></div>`;
+  <section><div class="eyebrow">${p.gkp}</div><div class="grid g4" style="margin-top:14px">${spheres}</div></section>
+  <section><a class="btn" href="#/day/${td}">${td===t?p.openToday:p.open1}</a></section>
+  <section class="card"><div class="eyebrow">${p.y2027}</div><p class="muted" style="margin-top:8px">${p.y2027lede}</p>${personalYear()}</section>
+  <section class="card framed cta"><div><div class="eyebrow">${p.freeEy}</div><p style="margin:6px 0 0">${p.free(!!SUPPORT_URL)}</p></div><div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" type="button" data-fb="An idea or wish">${p.share}</button>${coffee()}</div></section>
+  <p class="sans muted" style="font-size:12px">${p.calc(new Intl.DateTimeFormat('en-GB',{dateStyle:'medium',timeStyle:'short',timeZone:'UTC'}).format(c.design))}</p></div>`;
 }
 function bindMe(){bindMeForm();const fg=$('#meForget');if(fg)fg.addEventListener('click',e=>{e.preventDefault();forgetMe();go('#/me');});}
 
-/* ---------- search ---------- */
+
+/* ---------- search (all three languages) ---------- */
+const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
 function parseDate(q){
-  q=q.trim().toLowerCase();
+  q=norm(q.trim());
   let m=q.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/); if(m) return `${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`;
   m=q.match(/^(\d{1,2})[\/.](\d{1,2})(?:[\/.](\d{2,4}))?$/); if(m) return `2027-${m[2].padStart(2,'0')}-${m[1].padStart(2,'0')}`;
-  const mi=MONTHS.findIndex(x=>q.includes(x.toLowerCase().slice(0,3)));
-  const dn=q.match(/\b(\d{1,2})(st|nd|rd|th)?\b/);
+  let mi=-1; for(const L of LANGS){const i=W[L].months.findIndex(x=>q.includes(norm(x).slice(0,3)));if(i>=0){mi=i;break;}}
+  const dn=q.match(/\b(\d{1,2})(st|nd|rd|th|º)?\b/);
   if(mi>=0&&dn) return `2027-${String(mi+1).padStart(2,'0')}-${dn[1].padStart(2,'0')}`;
   return null;
 }
+const EXTRA = {portal:'portal portais portales puerta gate',station:'station estacao estacion',retro:'retrograde retrograda retrogrado',eclipse:'eclipse',phase:'lua luna moon'};
 function search(q){
-  const ql=q.trim().toLowerCase(); const res={keys:[],days:[],months:[],events:[]};
+  const ql=norm(q.trim()); const res={keys:[],days:[],months:[],events:[]};
   if(!ql) return res;
   const n=parseInt(ql,10);
-  if(String(n)===ql&&K[n]) res.keys.push(n);
-  for(let g=1;g<=64;g++){if(res.keys.includes(g))continue;if(K[g].some(x=>x.toLowerCase().includes(ql))&&ql.length>2)res.keys.push(g);}
+  if(String(n)===ql&&n>=1&&n<=64) res.keys.push(n);
+  for(let g=1;g<=64;g++){if(res.keys.includes(g))continue;if(ql.length>2&&LANGS.some(L=>KEYS[L][g].some(x=>norm(x).includes(ql))))res.keys.push(g);}
   const ds=parseDate(ql); if(ds&&DAY[ds]) res.days.push(ds);
-  MONTHS.forEach((m,i)=>{if(ql.length>2&&m.toLowerCase().startsWith(ql))res.months.push(i);});
+  [...Array(12)].forEach((_,i)=>{if(ql.length>2&&LANGS.some(L=>norm(W[L].months[i]).startsWith(ql)))res.months.push(i);});
   const ev=SKY.events.filter(isMajor).filter(e=>e.time>='2027');
-  const match=e=>{const t=(evText(e)+' '+(e.kind==='portal'?'portal':'')+' '+(e.kind==='station'&&e.dir==='retrograde'?'retrograde':'')).toLowerCase();return ql.length>2&&ql.split(/\s+/).every(w=>t.includes(w));};
-  res.events=ev.filter(match).slice(0,60);
-  Object.keys(SPECIAL).forEach(d=>{if(SPECIAL[d].title.toLowerCase().includes(ql)&&ql.length>2)res.events.unshift({special:1,d,title:SPECIAL[d].title});});
+  const words=ql.split(/\s+/).filter(Boolean);
+  const hay=e=>{const cur=LANG;let s='';for(const L of LANGS){LANG=L;s+=' '+evText(e);}LANG=cur;
+    s+=' '+(e.kind==='portal'?EXTRA.portal:'')+(e.kind==='station'?' '+EXTRA.station+(e.dir==='retrograde'?' '+EXTRA.retro:''):'')+(e.kind==='ingress'&&e.retro?' '+EXTRA.retro:'')+(e.kind==='phase'?' '+EXTRA.phase:'');return norm(s);};
+  if(ql.length>2) res.events=ev.filter(e=>{const h=hay(e);return words.every(w=>h.includes(w));}).slice(0,60);
+  Object.keys(S.en.special).forEach(d=>{if(ql.length>2&&LANGS.some(L=>norm(S[L].special[d][0]).includes(ql)))res.events.unshift({special:1,d});});
   return res;
 }
 function pageSearch(q){
-  const r=search(q);const total=r.keys.length+r.days.length+r.months.length+r.events.length;
-  const tries=['Anticipation','41','New Moon','Mercury retrograde','eclipse','14 March','Portal 55','Rave New Year'];
-  return `<div class="page"><div class="eyebrow m">Find</div><h1 style="margin:10px 0 22px">Search the almanac</h1>
-  <input class="bigsearch" id="bq" value="${q.replace(/"/g,'&quot;')}" placeholder="A Gene Key, a date, or an event" autofocus>
-  <div style="margin:16px 0">${tries.map(t=>`<a class="chip" href="#/search/${encodeURIComponent(t)}">${t}</a>`).join('')}</div>
-  <div class="sres">${q&&!total?`<p class="muted">Nothing found for “${q}”. Try a key name, a number from 1 to 64, a date, or an event.</p>`:''}
-  ${r.keys.length?`<h3>Gene Keys</h3>${r.keys.map(g=>`<a href="#/key/${g}"><span class="gold">${g}</span> &nbsp;${K[g][2]} <span class="muted">· ${K[g][1]} → ${K[g][3]} · ${K[g][0]}</span></a>`).join('')}`:''}
-  ${r.days.length?`<h3>Days</h3>${r.days.map(d=>`<a href="#/day/${d}">${nice(d,{wd:1,y:1})} <span class="muted">· Sun ${gl(DAY[d].sun[0]).join('.')}</span></a>`).join('')}`:''}
-  ${r.months.length?`<h3>Months</h3>${r.months.map(i=>`<a href="#/month/${String(i+1).padStart(2,'0')}">${MONTHS[i]} 2027</a>`).join('')}`:''}
-  ${r.events.length?`<h3>Celestial events</h3>${r.events.map(e=>e.special?`<a href="#/day/${e.d}"><span class="gold">${short(e.d)}</span> &nbsp;${e.title}</a>`:`<a href="#/day/${e.time.slice(0,10)}"><span class="gold">${short(e.time.slice(0,10))}</span> &nbsp;${evText(e)} <span class="muted">· ${timeOf(e)}</span></a>`).join('')}`:''}
+  const s=T().search, r=search(q);const total=r.keys.length+r.days.length+r.months.length+r.events.length;
+  const esq=q.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  return `<div class="page"><div class="eyebrow m">${s.eyebrow}</div><h1 style="margin:10px 0 22px">${s.h1}</h1>
+  <input class="bigsearch" id="bq" value="${esq}" placeholder="${s.ph}" autofocus>
+  <div style="margin:16px 0">${s.tries.map(t=>`<a class="chip" href="#/search/${encodeURIComponent(t)}">${t}</a>`).join('')}</div>
+  <div class="sres">${q&&!total?`<p class="muted">${s.none(esq)}</p>`:''}
+  ${r.keys.length?`<h3>${s.keys}</h3>${r.keys.map(g=>`<a href="#/key/${g}"><span class="gold">${g}</span> &nbsp;${K[g][2]} <span class="muted">· ${K[g][1]} → ${K[g][3]} · ${K[g][0]}</span></a>`).join('')}`:''}
+  ${r.days.length?`<h3>${s.days}</h3>${r.days.map(d=>`<a href="#/day/${d}">${nice(d,{wd:1,y:1})} <span class="muted">· ${s.sun} ${gl(DAY[d].sun[0]).join('.')}</span></a>`).join('')}`:''}
+  ${r.months.length?`<h3>${s.months}</h3>${r.months.map(i=>`<a href="#/month/${String(i+1).padStart(2,'0')}">${monthName(i)} 2027</a>`).join('')}`:''}
+  ${r.events.length?`<h3>${s.events}</h3>${r.events.map(e=>e.special?`<a href="#/day/${e.d}"><span class="gold">${short(e.d)}</span> &nbsp;${SPECIAL[e.d].title}</a>`:`<a href="#/day/${e.time.slice(0,10)}"><span class="gold">${short(e.time.slice(0,10))}</span> &nbsp;${evText(e)} <span class="muted">· ${timeOf(e)}</span></a>`).join('')}`:''}
   </div></div>`;
 }
-function notFound(msg){return `<div class="page"><h2>Not in the almanac</h2><p class="muted">${msg||'This page does not exist.'}</p><a class="btn" href="#/">Home</a></div>`;}
+function notFound(msg){const n=T().nf;return `<div class="page"><h2>${n.h}</h2><p class="muted">${msg||n.p}</p><a class="btn" href="#/">${n.home}</a></div>`;}
+
+/* ---------- static text and language switch ---------- */
+function applyStatic(){
+  const t=T();
+  document.documentElement.lang={pt:'pt-BR',en:'en',es:'es-ES'}[LANG];
+  document.querySelectorAll('[data-n]').forEach(a=>{a.textContent=t.nav[a.dataset.n];});
+  $('.home-link').textContent=t.nav.home;
+  $('.brand small').textContent=t.brandSmall;
+  $('#sq').placeholder=t.searchPh; $('#sq').setAttribute('aria-label',t.searchPh);
+  $('#ft1').textContent=t.foot1; $('#ft2').textContent=t.foot2; $('#ft2b').textContent=t.foot2b; $('#ft3').textContent=t.foot3+' '; $('#ft3a').textContent=t.refs;
+  $('#ftCoffee').innerHTML=SUPPORT_URL?` &nbsp;<a href="${SUPPORT_URL}" target="_blank" rel="noopener">☕ ${t.coffee}</a>`:'';
+  const f=t.fb;
+  $('#fbOpen').textContent=f.btn; $('#fbEyebrow').textContent=f.eyebrow; $('#fbTitle').textContent=f.title; $('#fbLead').textContent=f.lead;
+  $('#fbKindL').textContent=f.about; $('#fbMsgL').textContent=f.msg; $('#fbNameL').textContent=f.name; $('#fbEmailL').textContent=f.email; $('#fbUpdL').textContent=f.upd;
+  $('#fbClose').textContent=f.close; $('#fbSend').textContent=f.send;
+  [...$('#fbKind').options].forEach((o,i)=>o.textContent=f.kinds[i]);
+  document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.toggle('active',b.dataset.lang===LANG));
+  const g=t.gate; $('#gTitle').textContent=g.title; $('#gP1').textContent=g.p1; $('#gP2').innerHTML=g.p2; $('#gSign').textContent=g.sign;
+  $('#gLead').textContent=g.lead; $('#gEmailL').textContent=g.email; $('#gNameL').textContent=g.name; $('#gNewsL').textContent=g.news; $('#gEnter').textContent=g.enter; $('#gPrivacy').textContent=g.privacy;
+  document.title = {pt:'Almanaque Cinwicca 2027 · Human Design · Gene Keys · Astrologia',en:'Cinwicca Almanac 2027 · Human Design · Gene Keys · Astrology',es:'Almanaque Cinwicca 2027 · Human Design · Gene Keys · Astrología'}[LANG];
+}
+function setLang(l){ if(!LANGS.includes(l)) return; LANG=l; try{localStorage.setItem('sb_lang',l);}catch(e){} applyStatic(); const y=window.scrollY; route(true); window.scrollTo(0,y); }
+document.querySelectorAll('.lang-switch button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+window.addEventListener('storage',e=>{if(e.key==='sb_lang'&&LANGS.includes(e.newValue)&&e.newValue!==LANG)setLang(e.newValue);});
 
 /* ---------- router ---------- */
 let CUR=location.hash;
 function go(h){CUR=h;try{history.pushState(null,'',h);}catch(e){}route();}
-function route(){
+function route(keepScroll){
   const h=decodeURIComponent((CUR||'').replace(/^#\/?/,''));
   const [path,anchor]=h.split('#'); const parts=path.split('/');
   let html, nav='';
@@ -1247,21 +1626,43 @@ function route(){
   }
   app.innerHTML=html;
   if(parts[0]==='me') bindMe();
-  document.querySelectorAll('nav.main a').forEach(a=>a.classList.toggle('on',a.dataset.n===nav));
+  document.querySelectorAll('nav.main a[data-n]').forEach(a=>a.classList.toggle('on',a.dataset.n===nav));
   $('#nav').classList.remove('open');
-  if(!anchor) window.scrollTo(0,0);
-  const bq=$('#bq'); if(bq){bq.focus();bq.setSelectionRange(bq.value.length,bq.value.length);
-    let tm;bq.addEventListener('input',()=>{clearTimeout(tm);tm=setTimeout(()=>{CUR='#/search/'+encodeURIComponent(bq.value);try{history.replaceState(null,'',CUR);}catch(e){}route();},250);});}
+  if(!anchor&&!keepScroll) window.scrollTo(0,0);
+  const bq=$('#bq'); if(bq&&!keepScroll){bq.focus();bq.setSelectionRange(bq.value.length,bq.value.length);}
+  if(bq){let tm;bq.addEventListener('input',()=>{clearTimeout(tm);tm=setTimeout(()=>{CUR='#/search/'+encodeURIComponent(bq.value);try{history.replaceState(null,'',CUR);}catch(e){}route();},250);});}
 }
 window.addEventListener('hashchange',()=>{CUR=location.hash;route();});
 window.addEventListener('popstate',()=>{CUR=location.hash;route();});
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#/"]');if(!a||e.metaKey||e.ctrlKey)return;e.preventDefault();go(a.getAttribute('href'));});
 $('#sf').addEventListener('submit',e=>{e.preventDefault();go('#/search/'+encodeURIComponent($('#sq').value));});
 $('#menuBtn').addEventListener('click',()=>$('#nav').classList.toggle('open'));
-if(SUPPORT_URL){$('#ftCoffee').innerHTML=` &nbsp;<a href="${SUPPORT_URL}" target="_blank" rel="noopener">☕ Offer a coffee</a>`;}
+applyStatic();
 loadMe();
 route();
 
+/* ---------- entrance: email for access, newsletter only by choice ---------- */
+const ENTRY_KEY='cinwicca_almanac_entry'; let ENTRY_MEM=null;
+const getEntry=()=>{try{const s=localStorage.getItem(ENTRY_KEY);return s?JSON.parse(s):ENTRY_MEM;}catch(e){return ENTRY_MEM;}};
+const setEntry=v=>{ENTRY_MEM=v;try{localStorage.setItem(ENTRY_KEY,JSON.stringify(v));}catch(e){}};
+async function sendEntry(v){
+  const body=new URLSearchParams({'form-name':'almanac-entrada',email:v.email,name:v.name||'',newsletter:v.newsletter?'yes':'no',lang:v.lang}).toString();
+  const r=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});
+  if(!r.ok) throw new Error('post');
+}
+function openGate(){ if(EMBLEM.startsWith('data:')) $('#gEmblem').src=EMBLEM; else $('#gEmblem').remove(); document.body.classList.add('gated'); setTimeout(()=>{const e=$('#gEmail');if(e)e.focus();},50); }
+const entry=getEntry();
+if(!entry) openGate();
+else if(!entry.sent){ sendEntry(entry).then(()=>setEntry({...entry,sent:true})).catch(()=>{}); }
+$('#gForm').addEventListener('submit',async e=>{
+  e.preventDefault(); const g=T().gate;
+  const email=$('#gEmail').value.trim(), name=$('#gName').value.trim(), newsletter=$('#gNews').checked;
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ $('#gErr').textContent=g.err; $('#gEmail').focus(); return; }
+  $('#gErr').textContent=g.sending;
+  const v={email,name,newsletter,lang:LANG,at:new Date().toISOString(),sent:false};
+  try{ await sendEntry(v); v.sent=true; }catch(err){ /* kept and retried on the next visit */ }
+  setEntry(v); document.body.classList.remove('gated'); $('#gErr').textContent='';
+});
 
 /* ---------- feedback (Netlify Forms) ---------- */
 const fbWrap=$('#fbWrap'),fbForm=$('#fbForm'),fbOut=$('#fbMsgOut');
@@ -1273,13 +1674,13 @@ fbWrap.addEventListener('click',e=>{if(e.target===fbWrap)closeFb();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFb();});
 document.addEventListener('click',e=>{const b=e.target.closest('[data-fb]');if(b){e.preventDefault();openFb(b.dataset.fb);}});
 fbForm.addEventListener('submit',async e=>{
-  e.preventDefault();
-  const fd=new FormData(fbForm);fd.set('form-name','almanac-feedback');fd.set('page',(CUR||'#/')+' · '+document.title);
+  e.preventDefault(); const f=T().fb;
+  const fd=new FormData(fbForm);fd.set('form-name','almanac-feedback');fd.set('page',(CUR||'#/')+' · '+LANG);
   if(!fd.get('updates'))fd.set('updates','no');
-  fbOut.textContent='Sending…';
+  fbOut.textContent=f.sending;
   try{const r=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()});
-    if(!r.ok)throw 0;fbForm.reset();fbOut.innerHTML='Thank you. Your words have arrived.'+(SUPPORT_URL?` <a class="gold" href="${SUPPORT_URL}" target="_blank" rel="noopener">Offer a coffee ☕</a>`:'');setTimeout(closeFb,SUPPORT_URL?6000:2200);}
-  catch(err){fbOut.textContent='It could not be sent from here. Please try again in a moment.';}
+    if(!r.ok)throw 0;fbForm.reset();fbOut.innerHTML=f.thanks+(SUPPORT_URL?` <a class="gold" href="${SUPPORT_URL}" target="_blank" rel="noopener">☕ ${T().coffee}</a>`:'');setTimeout(closeFb,SUPPORT_URL?6000:2200);}
+  catch(err){fbOut.textContent=f.fail;}
 });
 /* ---------- star canvas ---------- */
 const cv=$('#stars'),cx=cv.getContext('2d');let st=[];
@@ -1288,7 +1689,7 @@ function draw(){cx.clearRect(0,0,cv.width,cv.height);st.forEach(s=>{s.p+=s.s;cx.
 size();addEventListener('resize',size);
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches) draw(); else {st.forEach(s=>{cx.globalAlpha=.5;cx.fillStyle='#cfd3ea';cx.beginPath();cx.arc(s.x,s.y,s.r,0,6.28);cx.fill();});}
 })();
+
 </script>
-<script src="almanac-i18n.js"></script>
 </body>
 </html>
